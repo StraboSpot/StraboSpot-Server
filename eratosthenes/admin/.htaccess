@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Eratosthenes Admin"
+AuthUserFile /home/jasonash/.eratosthenespw
+Require valid-user

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Other Features (not auto-form in Strabo)</h:title>
+    <model>
+      <instance>
+        <other_features id="other_features">
+          <feature_and_describe/>
+          <Geomorphology/>
+          <Hydrology/>
+          <Paleontology/>
+          <igneous_feature/>
+          <metamorphic_feature/>
+          <sedimentology/>
+          <other_features/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </other_features>
+      </instance>
+      <bind nodeset="/other_features/feature_and_describe" readonly="true()" required="false()" type="string"/>
+      <bind nodeset="/other_features/Geomorphology" required="false()" type="string"/>
+      <bind nodeset="/other_features/Hydrology" required="false()" type="string"/>
+      <bind nodeset="/other_features/Paleontology" required="false()" type="string"/>
+      <bind nodeset="/other_features/igneous_feature" required="false()" type="string"/>
+      <bind nodeset="/other_features/metamorphic_feature" required="false()" type="string"/>
+      <bind nodeset="/other_features/sedimentology" required="false()" type="string"/>
+      <bind nodeset="/other_features/other_features" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/other_features/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/other_features/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/other_features/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/other_features/feature_and_describe">
+      <label>List a feature and describe it</label>
+    </input>
+    <input ref="/other_features/Geomorphology">
+      <label>Geomorphology</label>
+    </input>
+    <input ref="/other_features/Hydrology">
+      <label>Hydrology</label>
+    </input>
+    <input ref="/other_features/Paleontology">
+      <label>Paleontology</label>
+    </input>
+    <input ref="/other_features/igneous_feature">
+      <label>Igneous Feature</label>
+    </input>
+    <input ref="/other_features/metamorphic_feature">
+      <label>Metamorphic Feature</label>
+    </input>
+    <input ref="/other_features/sedimentology">
+      <label>Sedimentology</label>
+    </input>
+    <input ref="/other_features/other_features">
+      <label>Other Features</label>
+    </input>
+  </h:body>
+</h:html>

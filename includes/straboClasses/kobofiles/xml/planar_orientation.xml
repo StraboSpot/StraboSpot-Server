@@ -1,0 +1,874 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Planar Orientation</h:title>
+    <model>
+      <instance>
+        <planar_orientation id="planar_orientation">
+          <label/>
+          <strike/>
+          <dip_direction/>
+          <dip/>
+          <facing/>
+          <facing_defined_by/>
+          <other_facing_defined_by/>
+          <quality/>
+          <feature_type/>
+          <bedding_type/>
+          <contact_type/>
+          <other_contact_type/>
+          <other_dep_contact_type/>
+          <other_ig_contact_type/>
+          <other_met_contact_type/>
+          <foliation_type/>
+          <other_foliation_type/>
+          <foliation_defined_by/>
+          <fracture_type/>
+          <other_fracture_type/>
+          <fracture_defined_by/>
+          <vein_type/>
+          <vein_fill/>
+          <other_vein_fill/>
+          <fault_or_sz_type/>
+          <other_fault_or_sz_type/>
+          <movement/>
+          <other_movement/>
+          <movement_justification/>
+          <other_movement_justification/>
+          <directional_indicators/>
+          <other_directional_indic/>
+          <other_feature/>
+          <movement_amount_m/>
+          <movement_amount_qualifier/>
+          <thickness/>
+          <length/>
+          <notes/>
+          <min_age/>
+          <min_age_just/>
+          <max_age/>
+          <max_age_just/>
+          <geo_age/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </planar_orientation>
+      </instance>
+      <bind nodeset="/planar_orientation/label" required="false()" type="string"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 360" jr:constraintMsg="Strike must be between 0-360." nodeset="/planar_orientation/strike" required="false()" type="int"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 360" jr:constraintMsg="values must be between 0-360" nodeset="/planar_orientation/dip_direction" required="false()" type="int"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 90" jr:constraintMsg="values must be between 0-90" nodeset="/planar_orientation/dip" required="false()" type="int"/>
+      <bind nodeset="/planar_orientation/facing" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/facing_defined_by" relevant=" /planar_orientation/facing  != ''" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/other_facing_defined_by" relevant=" /planar_orientation/facing_defined_by  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/quality" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/feature_type" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/bedding_type" relevant=" /planar_orientation/feature_type  = 'bedding'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/contact_type" relevant=" /planar_orientation/feature_type  = 'contact'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/other_contact_type" relevant=" /planar_orientation/contact_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/other_dep_contact_type" relevant=" /planar_orientation/contact_type  = 'other_depositional_contact'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/other_ig_contact_type" relevant=" /planar_orientation/contact_type  = 'other_igneous'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/other_met_contact_type" relevant=" /planar_orientation/contact_type  = 'other_metamorp'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/foliation_type" relevant=" /planar_orientation/feature_type  = 'foliation'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/other_foliation_type" relevant=" /planar_orientation/foliation_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/foliation_defined_by" relevant=" /planar_orientation/feature_type  = 'foliation'" required="false()" type="string"/>
+      <bind nodeset="/planar_orientation/fracture_type" relevant=" /planar_orientation/feature_type  = 'fracture'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/other_fracture_type" relevant=" /planar_orientation/fracture_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/fracture_defined_by" relevant=" /planar_orientation/feature_type  = 'fracture'" required="false()" type="string"/>
+      <bind nodeset="/planar_orientation/vein_type" relevant=" /planar_orientation/feature_type  = 'vein'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/vein_fill" relevant=" /planar_orientation/feature_type  = 'vein'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/other_vein_fill" relevant=" /planar_orientation/vein_fill  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/fault_or_sz_type" relevant=" /planar_orientation/feature_type  = 'fault' or  /planar_orientation/feature_type  = 'shear_zone_bou' or  /planar_orientation/feature_type  = 'shear_zone'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/other_fault_or_sz_type" relevant=" /planar_orientation/fault_or_sz_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/movement" relevant=" /planar_orientation/feature_type  = 'fault' or  /planar_orientation/feature_type  = 'shear_zone_bou' or  /planar_orientation/feature_type  = 'shear_zone' or  /planar_orientation/feature_type  = 'fracture' or  /planar_orientation/feature_type  = 'foliation'" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/other_movement" relevant=" /planar_orientation/movement  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/movement_justification" relevant=" /planar_orientation/movement  != ''" required="false()" type="select"/>
+      <bind nodeset="/planar_orientation/other_movement_justification" relevant="selected( /planar_orientation/movement_justification , 'other')" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/directional_indicators" relevant=" /planar_orientation/feature_type  = 'fault' or  /planar_orientation/feature_type  = 'shear_zone_bou'" required="false()" type="select"/>
+      <bind nodeset="/planar_orientation/other_directional_indic" relevant="selected( /planar_orientation/directional_indicators , 'other')" required="true()" type="string"/>
+      <bind nodeset="/planar_orientation/other_feature" relevant=" /planar_orientation/feature_type  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/planar_orientation/movement_amount_m" required="false()" type="decimal"/>
+      <bind nodeset="/planar_orientation/movement_amount_qualifier" relevant=" /planar_orientation/movement_amount_m  != ''" required="false()" type="select1"/>
+      <bind nodeset="/planar_orientation/thickness" required="false()" type="decimal"/>
+      <bind nodeset="/planar_orientation/length" required="false()" type="decimal"/>
+      <bind nodeset="/planar_orientation/notes" required="false()" type="string"/>
+      <bind nodeset="/planar_orientation/min_age" required="false()" type="decimal"/>
+      <bind nodeset="/planar_orientation/min_age_just" relevant=" /planar_orientation/min_age  != ''" required="false()" type="string"/>
+      <bind nodeset="/planar_orientation/max_age" required="false()" type="decimal"/>
+      <bind nodeset="/planar_orientation/max_age_just" relevant=" /planar_orientation/max_age  != ''" required="false()" type="string"/>
+      <bind nodeset="/planar_orientation/geo_age" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/planar_orientation/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/planar_orientation/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/planar_orientation/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/planar_orientation/label">
+      <label>Label</label>
+      <hint>If a label is not specified a default label will be given.</hint>
+    </input>
+    <input ref="/planar_orientation/strike">
+      <label>Strike</label>
+      <hint>Azimuth in degrees</hint>
+    </input>
+    <input ref="/planar_orientation/dip_direction">
+      <label>Dip Direction</label>
+    </input>
+    <input ref="/planar_orientation/dip">
+      <label>Dip</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/planar_orientation/facing">
+      <label>Plane Facing</label>
+      <hint>Orientation of plane relative to original position e.g., upright, overturned, vertical</hint>
+      <item>
+        <label>upright</label>
+        <value>upright</value>
+      </item>
+      <item>
+        <label>overturned</label>
+        <value>overturned</value>
+      </item>
+      <item>
+        <label>vertical</label>
+        <value>vertical</value>
+      </item>
+      <item>
+        <label>not applicable</label>
+        <value>not_applicable</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/planar_orientation/facing_defined_by">
+      <label>Plane Facing Defined By</label>
+      <hint>Criteria for facing direction: e.g., stratigraphy, facing iindicators, other</hint>
+      <item>
+        <label>stratigraphy</label>
+        <value>stratigraphy</value>
+      </item>
+      <item>
+        <label>facing indicator</label>
+        <value>facing_indicat</value>
+      </item>
+      <item>
+        <label>assumed</label>
+        <value>assumed</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/other_facing_defined_by">
+      <label>Other Plane Facing Defined By</label>
+    </input>
+    <select1 appearance="likert" ref="/planar_orientation/quality">
+      <label>Planar Measurement Quality</label>
+      <hint>How well was this plane exposed or measured?</hint>
+      <item>
+        <label>5 - best - accurate</label>
+        <value>5</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>3 - approximate</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>1 - poor - irregular - uncertain</label>
+        <value>1</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/planar_orientation/feature_type">
+      <label>Planar Feature Type</label>
+      <hint>Type of planar geologic feature: e.g., bedding, contact, foliation, fracture, vein, shear zone</hint>
+      <item>
+        <label>bedding</label>
+        <value>bedding</value>
+      </item>
+      <item>
+        <label>contact</label>
+        <value>contact</value>
+      </item>
+      <item>
+        <label>foliation</label>
+        <value>foliation</value>
+      </item>
+      <item>
+        <label>fracture</label>
+        <value>fracture</value>
+      </item>
+      <item>
+        <label>vein</label>
+        <value>vein</value>
+      </item>
+      <item>
+        <label>fault</label>
+        <value>fault</value>
+      </item>
+      <item>
+        <label>shear zone</label>
+        <value>shear_zone</value>
+      </item>
+      <item>
+        <label>shear zone boundary</label>
+        <value>shear_zone_bou</value>
+      </item>
+      <item>
+        <label>fold axial surface</label>
+        <value>fold_axial_surface</value>
+      </item>
+      <item>
+        <label>plane of boudinage</label>
+        <value>plane_of_boudinage</value>
+      </item>
+      <item>
+        <label>plane of mullions</label>
+        <value>plane_of_mullions</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <select1 ref="/planar_orientation/bedding_type">
+      <label>Bedding Type</label>
+      <hint>Bedding defined by? change in lithology or sedimentary feature</hint>
+      <item>
+        <label>lithologic change</label>
+        <value>lithologic_cha</value>
+      </item>
+      <item>
+        <label>sedimentary feature</label>
+        <value>sedimentary_fe</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/planar_orientation/contact_type">
+      <label>Contact Type</label>
+      <hint>Specific contacts types under depositional, igneous and metamorphic</hint>
+      <item>
+        <label>stratigraphic</label>
+        <value>stratigraphic</value>
+      </item>
+      <item>
+        <label>alluvial</label>
+        <value>alluvial</value>
+      </item>
+      <item>
+        <label>unconformity</label>
+        <value>unconformity</value>
+      </item>
+      <item>
+        <label>angular unconformity</label>
+        <value>angular_unconf</value>
+      </item>
+      <item>
+        <label>nonconformity</label>
+        <value>nonconformity</value>
+      </item>
+      <item>
+        <label>disconformity</label>
+        <value>disconformity</value>
+      </item>
+      <item>
+        <label>volcanic</label>
+        <value>volcanic</value>
+      </item>
+      <item>
+        <label>other depositional</label>
+        <value>other_depositional_contact</value>
+      </item>
+      <item>
+        <label>dike</label>
+        <value>dike</value>
+      </item>
+      <item>
+        <label>sill</label>
+        <value>sill</value>
+      </item>
+      <item>
+        <label>pluton</label>
+        <value>pluton</value>
+      </item>
+      <item>
+        <label>migmatite</label>
+        <value>migmatite</value>
+      </item>
+      <item>
+        <label>injectite</label>
+        <value>injectite</value>
+      </item>
+      <item>
+        <label>other igneous</label>
+        <value>other_igneous</value>
+      </item>
+      <item>
+        <label>boundary of metamorphic rock</label>
+        <value>boundary_of_metamorphic_rocks</value>
+      </item>
+      <item>
+        <label>isograd</label>
+        <value>isograd</value>
+      </item>
+      <item>
+        <label>other metamorphic</label>
+        <value>other_metamorp</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/other_contact_type">
+      <label>Other Contact Type</label>
+    </input>
+    <input ref="/planar_orientation/other_dep_contact_type">
+      <label>Other Depositional Contact Type</label>
+    </input>
+    <input ref="/planar_orientation/other_ig_contact_type">
+      <label>Other Igneous Contact Type</label>
+    </input>
+    <input ref="/planar_orientation/other_met_contact_type">
+      <label>Other Metamorphic Contact Type</label>
+    </input>
+    <select1 appearance="horizontal" ref="/planar_orientation/foliation_type">
+      <label>Foliation Type</label>
+      <hint>Specific type of foliation defined by planar and/or linear elements</hint>
+      <item>
+        <label>cleavage</label>
+        <value>cleavage</value>
+      </item>
+      <item>
+        <label>slatey cleavage</label>
+        <value>slatey_cleavage</value>
+      </item>
+      <item>
+        <label>phyllitic cleavage</label>
+        <value>phyllitic_cleavage</value>
+      </item>
+      <item>
+        <label>crenulation cleavage</label>
+        <value>crenulation_cl</value>
+      </item>
+      <item>
+        <label>phacoidal (lenticular)</label>
+        <value>phacoidal</value>
+      </item>
+      <item>
+        <label>schistosity</label>
+        <value>schistosity</value>
+      </item>
+      <item>
+        <label>planar schistosity</label>
+        <value>planar_schistosity</value>
+      </item>
+      <item>
+        <label>anastomosing schistosity</label>
+        <value>anast_schistos</value>
+      </item>
+      <item>
+        <label>gneissic foliation</label>
+        <value>gneissic_folia</value>
+      </item>
+      <item>
+        <label>mineral alignment</label>
+        <value>mineral_alignm</value>
+      </item>
+      <item>
+        <label>compositional banding</label>
+        <value>comp_banding</value>
+      </item>
+      <item>
+        <label>deformed marker</label>
+        <value>deformed_marker</value>
+      </item>
+      <item>
+        <label>mylonitic foliation</label>
+        <value>mylonitic_foliation</value>
+      </item>
+      <item>
+        <label>S plane</label>
+        <value>s_plane</value>
+      </item>
+      <item>
+        <label>C plane</label>
+        <value>c_plane</value>
+      </item>
+      <item>
+        <label>C' or extensional plane</label>
+        <value>c__or_extensional_plane</value>
+      </item>
+      <item>
+        <label>protomylonite</label>
+        <value>protomylonite</value>
+      </item>
+      <item>
+        <label>mylonite</label>
+        <value>mylonite</value>
+      </item>
+      <item>
+        <label>ultramylonite</label>
+        <value>ultramylonite</value>
+      </item>
+      <item>
+        <label>gouge</label>
+        <value>gouge</value>
+      </item>
+      <item>
+        <label>cataclasite</label>
+        <value>cataclasite</value>
+      </item>
+      <item>
+        <label>solid-state mineral alignment</label>
+        <value>solid_state_mineral_alignment</value>
+      </item>
+      <item>
+        <label>magmatic mineral alignment</label>
+        <value>magmatic_mineral_alignment</value>
+      </item>
+      <item>
+        <label>migmatite foliation</label>
+        <value>migmatitic</value>
+      </item>
+      <item>
+        <label>migmatitic mineral alignment</label>
+        <value>migmatitic_mineral_alignment</value>
+      </item>
+      <item>
+        <label>mineral elongation</label>
+        <value>mineral_elongation</value>
+      </item>
+      <item>
+        <label>compaction</label>
+        <value>compaction</value>
+      </item>
+      <item>
+        <label>soft sediment</label>
+        <value>soft_sediment</value>
+      </item>
+      <item>
+        <label>stylolites</label>
+        <value>stylolites</value>
+      </item>
+      <item>
+        <label>slickolites</label>
+        <value>slickolites</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/other_foliation_type">
+      <label>Other Foliation Type</label>
+    </input>
+    <input ref="/planar_orientation/foliation_defined_by">
+      <label>Foliation Defined by</label>
+    </input>
+    <select1 ref="/planar_orientation/fracture_type">
+      <label>Fracture Type</label>
+      <hint>Specific type of fracture: e.g., joint, shear or others</hint>
+      <item>
+        <label>joint</label>
+        <value>joint</value>
+      </item>
+      <item>
+        <label>opening mode</label>
+        <value>opening_mode</value>
+      </item>
+      <item>
+        <label>shear fracture</label>
+        <value>shear_fracture</value>
+      </item>
+      <item>
+        <label>filled fracture</label>
+        <value>filled_fractur</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/other_fracture_type">
+      <label>Other Fracture Type</label>
+    </input>
+    <input ref="/planar_orientation/fracture_defined_by">
+      <label>Fracture Defined by</label>
+    </input>
+    <select1 ref="/planar_orientation/vein_type">
+      <label>Vein Type</label>
+      <hint>Specific type: e.g., antitaxial, syntaxial, normal, oblique</hint>
+      <item>
+        <label>normal opening</label>
+        <value>normal_opening</value>
+      </item>
+      <item>
+        <label>oblique opening</label>
+        <value>oblique_openin</value>
+      </item>
+      <item>
+        <label>antitaxial</label>
+        <value>antitaxial</value>
+      </item>
+      <item>
+        <label>syntaxial</label>
+        <value>syntaxial</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <select1 appearance="likert" ref="/planar_orientation/vein_fill">
+      <label>Vein Mineral Fill</label>
+      <hint>Mineral filling veins: calcite, quartz or other</hint>
+      <item>
+        <label>quartz</label>
+        <value>quartz</value>
+      </item>
+      <item>
+        <label>calcite</label>
+        <value>calcite</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/other_vein_fill">
+      <label>Other Vein Mineral</label>
+    </input>
+    <select1 appearance="horizontal" ref="/planar_orientation/fault_or_sz_type">
+      <label>Type of Fault or Shear Zone Boundary</label>
+      <hint>Specific type: e.g., dextral, sinistral, normal, reverse, oblique</hint>
+      <item>
+        <label>dextral strike-slip</label>
+        <value>dextral</value>
+      </item>
+      <item>
+        <label>sinistral strike-slip</label>
+        <value>sinistral</value>
+      </item>
+      <item>
+        <label>normal</label>
+        <value>oblique</value>
+      </item>
+      <item>
+        <label>reverse</label>
+        <value>reverse</value>
+      </item>
+      <item>
+        <label>thrust</label>
+        <value>thrust</value>
+      </item>
+      <item>
+        <label>low-angle normal</label>
+        <value>low_angle_normal</value>
+      </item>
+      <item>
+        <label>dextral reverse</label>
+        <value>dextral_reverse</value>
+      </item>
+      <item>
+        <label>dextral normal</label>
+        <value>dextral_normal</value>
+      </item>
+      <item>
+        <label>sinistral reverse</label>
+        <value>sinistral_reverse</value>
+      </item>
+      <item>
+        <label>sinistral normal</label>
+        <value>sinistral_normal</value>
+      </item>
+      <item>
+        <label>high-angle</label>
+        <value>high_angle</value>
+      </item>
+      <item>
+        <label>low-angle</label>
+        <value>low_angle</value>
+      </item>
+      <item>
+        <label>scissor</label>
+        <value>scissor</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/other_fault_or_sz_type">
+      <label>Other Fault or Shear Zone Boundary Type</label>
+    </input>
+    <select1 ref="/planar_orientation/movement">
+      <label>Movement</label>
+      <hint>Relative movement across structure</hint>
+      <item>
+        <label>N side up</label>
+        <value>n_side_up</value>
+      </item>
+      <item>
+        <label>NE side up</label>
+        <value>ne_side_up</value>
+      </item>
+      <item>
+        <label>E side up</label>
+        <value>e_side_up</value>
+      </item>
+      <item>
+        <label>SE side up</label>
+        <value>se_side_up</value>
+      </item>
+      <item>
+        <label>S side up</label>
+        <value>s_side_up</value>
+      </item>
+      <item>
+        <label>SW side up</label>
+        <value>sw_side_up</value>
+      </item>
+      <item>
+        <label>W side up</label>
+        <value>w_side_up</value>
+      </item>
+      <item>
+        <label>NW side up</label>
+        <value>nw_side_up</value>
+      </item>
+      <item>
+        <label>top to N</label>
+        <value>top_to_n</value>
+      </item>
+      <item>
+        <label>top to NE</label>
+        <value>top_to_ne</value>
+      </item>
+      <item>
+        <label>top to E</label>
+        <value>top_to_e</value>
+      </item>
+      <item>
+        <label>top to SE</label>
+        <value>top_to_se</value>
+      </item>
+      <item>
+        <label>top to S</label>
+        <value>top_to_s</value>
+      </item>
+      <item>
+        <label>top to SW</label>
+        <value>top_to_sw</value>
+      </item>
+      <item>
+        <label>top to W</label>
+        <value>top_to_w</value>
+      </item>
+      <item>
+        <label>top to NW</label>
+        <value>top_to_nw</value>
+      </item>
+      <item>
+        <label>right-lateral</label>
+        <value>right_lateral</value>
+      </item>
+      <item>
+        <label>left-lateral</label>
+        <value>left_lateral</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/other_movement">
+      <label>Other Movement</label>
+    </input>
+    <select ref="/planar_orientation/movement_justification">
+      <label>Movement Justification</label>
+      <hint>Offset feature types used to determine relative movement</hint>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>offset bedding</label>
+        <value>offset_bedding</value>
+      </item>
+      <item>
+        <label>offset intrusion</label>
+        <value>offset_intrusion</value>
+      </item>
+      <item>
+        <label>offset foliation</label>
+        <value>offset_foliation</value>
+      </item>
+      <item>
+        <label>offset compostional banding</label>
+        <value>offset_compostional_banding</value>
+      </item>
+      <item>
+        <label>igneous feature</label>
+        <value>igneous_feature</value>
+      </item>
+      <item>
+        <label>sedimentary feature</label>
+        <value>sedimentary_fe</value>
+      </item>
+      <item>
+        <label>fossil</label>
+        <value>fossil</value>
+      </item>
+      <item>
+        <label>geomorphic feature</label>
+        <value>geomorphic_fea</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select>
+    <input ref="/planar_orientation/other_movement_justification">
+      <label>Other Movement Justification</label>
+    </input>
+    <select ref="/planar_orientation/directional_indicators">
+      <label>Directional Indicators</label>
+      <hint>Specific sense of shear indicator, such as Riedel shears, S-C fabrics, drag folds, etc.</hint>
+      <item>
+        <label>riedel shear</label>
+        <value>riedel_shear</value>
+      </item>
+      <item>
+        <label>gouge fill</label>
+        <value>gouge_fill</value>
+      </item>
+      <item>
+        <label>crescentic fractures</label>
+        <value>crescentic_fra</value>
+      </item>
+      <item>
+        <label>slickenfibers</label>
+        <value>slickenfibers</value>
+      </item>
+      <item>
+        <label>oblique gouge foliation</label>
+        <value>oblique_gouge</value>
+      </item>
+      <item>
+        <label>drag folds</label>
+        <value>drag_folds</value>
+      </item>
+      <item>
+        <label>rotated clasts</label>
+        <value>rotated_clasts</value>
+      </item>
+      <item>
+        <label>domino texture</label>
+        <value>domino_texture</value>
+      </item>
+      <item>
+        <label>vein arrays</label>
+        <value>vein_arrays</value>
+      </item>
+      <item>
+        <label>P shear array</label>
+        <value>p_shear_array</value>
+      </item>
+      <item>
+        <label>asymmetric folds</label>
+        <value>asymm_folds</value>
+      </item>
+      <item>
+        <label>microstructures</label>
+        <value>microstructure</value>
+      </item>
+      <item>
+        <label>S-C-C' fabrics</label>
+        <value>s_c_c__fabrics</value>
+      </item>
+      <item>
+        <label>foliation deflection</label>
+        <value>fol_deflect</value>
+      </item>
+      <item>
+        <label>porphyroclast system</label>
+        <value>porphyroclast_</value>
+      </item>
+      <item>
+        <label>porphyroblast system</label>
+        <value>porphyroblast_</value>
+      </item>
+      <item>
+        <label>strain assymetry</label>
+        <value>strain_assym</value>
+      </item>
+      <item>
+        <label>flanking structures</label>
+        <value>flanking_struc</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select>
+    <input ref="/planar_orientation/other_directional_indic">
+      <label>Other Directional Indicator</label>
+    </input>
+    <input ref="/planar_orientation/other_feature">
+      <label>Other Planar Feature</label>
+    </input>
+    <input ref="/planar_orientation/movement_amount_m">
+      <label>Movement Amount (m)</label>
+      <hint>How much movement?</hint>
+    </input>
+    <select1 ref="/planar_orientation/movement_amount_qualifier">
+      <label>Movement Amount Qualifier</label>
+      <item>
+        <label>maximum amount</label>
+        <value>maximum_amount</value>
+      </item>
+      <item>
+        <label>minimum amount</label>
+        <value>minimum_amount</value>
+      </item>
+      <item>
+        <label>estimate of amount</label>
+        <value>estimate_of_am</value>
+      </item>
+    </select1>
+    <input ref="/planar_orientation/thickness">
+      <label>Planar Feature Thickness (m)</label>
+    </input>
+    <input ref="/planar_orientation/length">
+      <label>Planar Feature Length (m)</label>
+    </input>
+    <input appearance="multiline" ref="/planar_orientation/notes">
+      <label>Planar Feature Notes</label>
+    </input>
+    <input ref="/planar_orientation/min_age">
+      <label>Minimum Age of Structure (Ma)</label>
+    </input>
+    <input ref="/planar_orientation/min_age_just">
+      <label>Justification of Minimum Age</label>
+    </input>
+    <input ref="/planar_orientation/max_age">
+      <label>Maximum Age of Structure (Ma)</label>
+    </input>
+    <input ref="/planar_orientation/max_age_just">
+      <label>Justification of Maximum Age</label>
+    </input>
+    <input ref="/planar_orientation/geo_age">
+      <label>Geologic Age of Structure</label>
+    </input>
+  </h:body>
+</h:html>

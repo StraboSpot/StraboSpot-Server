@@ -1,0 +1,440 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Other 3D Structure</h:title>
+    <model>
+      <instance>
+        <other_3d_structure id="other_3d_structure">
+          <label/>
+          <feature_type/>
+          <group_boudinage>
+            <approximate_scale_of_boudinage/>
+            <boudinage_geometry/>
+            <boudinage_shape/>
+            <movement/>
+            <boudinage_competent/>
+            <boudinage_incompetent/>
+            <average_width_of_boudin_neck/>
+            <number_of_necks_measured/>
+            <boudinage_wavelength_m/>
+            <boudinaged_layer_thickness_m/>
+            <group_boudin_plane>
+              <boudinage_strike/>
+              <boudinage_dip_direction/>
+              <boudinage_dip/>
+            </group_boudin_plane>
+            <group_primary_neckline>
+              <boudinage_trend/>
+              <boudinage_plunge/>
+              <boudinage_trend_uncertainty/>
+            </group_primary_neckline>
+            <group_secondary_neckline>
+              <boudinage_2nd_trend/>
+              <boudinage_2nd_plunge/>
+              <boudinage_2nd_trend_uncertaint/>
+            </group_secondary_neckline>
+            <boudin_linear_measure_quality/>
+          </group_boudinage>
+          <group_mullions>
+            <approximate_scale_of_mullions/>
+            <mullion_geometry/>
+            <mullion_symmetry/>
+            <mullion_competent_material/>
+            <mullion_incompetent_material/>
+            <mullion_wavelength_m/>
+            <mullion_layer_thickness_m/>
+            <group_ao6yo60>
+              <mullion_strike/>
+              <mullion_dip_direction/>
+              <mullion_dip/>
+            </group_ao6yo60>
+            <group_db5vg51>
+              <mullion_trend/>
+              <mullion_plunge/>
+              <mullion_uncertainty/>
+              <mullion_linear_measure_quality/>
+            </group_db5vg51>
+          </group_mullions>
+          <group_lobate>
+            <approximate_scale_m_lobate/>
+            <lobate_competent_material/>
+            <lobate_incompetent_material/>
+          </group_lobate>
+          <other_structure_description/>
+          <struct_notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </other_3d_structure>
+      </instance>
+      <bind nodeset="/other_3d_structure/label" required="false()" type="string"/>
+      <bind nodeset="/other_3d_structure/feature_type" required="true()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_boudinage" relevant=" /other_3d_structure/feature_type  = 'boudinage'"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/approximate_scale_of_boudinage" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/boudinage_geometry" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/boudinage_shape" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/movement" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/boudinage_competent" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="string"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/boudinage_incompetent" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="string"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/average_width_of_boudin_neck" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/number_of_necks_measured" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/boudinage_wavelength_m" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/boudinaged_layer_thickness_m" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_boudin_plane" relevant=" /other_3d_structure/feature_type  = 'boudinage'"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_boudin_plane/boudinage_strike" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_boudin_plane/boudinage_dip_direction" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_boudin_plane/boudinage_dip" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_primary_neckline" relevant=" /other_3d_structure/feature_type  = 'boudinage'"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_primary_neckline/boudinage_trend" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_primary_neckline/boudinage_plunge" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_primary_neckline/boudinage_trend_uncertainty" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_secondary_neckline" relevant=" /other_3d_structure/feature_type  = 'boudinage'"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_secondary_neckline/boudinage_2nd_trend" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_secondary_neckline/boudinage_2nd_plunge" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/group_secondary_neckline/boudinage_2nd_trend_uncertaint" relevant=" /other_3d_structure/feature_type  = 'boudinage'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_boudinage/boudin_linear_measure_quality" required="false()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_mullions" relevant=" /other_3d_structure/feature_type  = 'mullion'"/>
+      <bind nodeset="/other_3d_structure/group_mullions/approximate_scale_of_mullions" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_mullions/mullion_geometry" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_mullions/mullion_symmetry" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_mullions/mullion_competent_material" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="string"/>
+      <bind nodeset="/other_3d_structure/group_mullions/mullion_incompetent_material" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="string"/>
+      <bind nodeset="/other_3d_structure/group_mullions/mullion_wavelength_m" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_mullions/mullion_layer_thickness_m" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_ao6yo60" relevant=" /other_3d_structure/feature_type  = 'mullion'"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_ao6yo60/mullion_strike" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_ao6yo60/mullion_dip_direction" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_ao6yo60/mullion_dip" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_db5vg51" relevant=" /other_3d_structure/feature_type  = 'mullion'"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_db5vg51/mullion_trend" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_db5vg51/mullion_plunge" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_db5vg51/mullion_uncertainty" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/other_3d_structure/group_mullions/group_db5vg51/mullion_linear_measure_quality" relevant=" /other_3d_structure/feature_type  = 'mullion'" required="false()" type="select1"/>
+      <bind nodeset="/other_3d_structure/group_lobate" relevant=" /other_3d_structure/feature_type  = 'lobate_cuspate'"/>
+      <bind nodeset="/other_3d_structure/group_lobate/approximate_scale_m_lobate" relevant=" /other_3d_structure/feature_type  = 'lobate_cuspate'" required="false()" type="decimal"/>
+      <bind nodeset="/other_3d_structure/group_lobate/lobate_competent_material" relevant=" /other_3d_structure/feature_type  = 'lobate_cuspate'" required="false()" type="string"/>
+      <bind nodeset="/other_3d_structure/group_lobate/lobate_incompetent_material" relevant=" /other_3d_structure/feature_type  = 'lobate_cuspate'" required="false()" type="string"/>
+      <bind nodeset="/other_3d_structure/other_structure_description" relevant=" /other_3d_structure/feature_type  = 'other_3d_structure'" required="true()" type="string"/>
+      <bind nodeset="/other_3d_structure/struct_notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/other_3d_structure/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/other_3d_structure/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/other_3d_structure/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/other_3d_structure/label">
+      <label>Label</label>
+      <hint>If a label is not specified a default label will be given.</hint>
+    </input>
+    <select1 ref="/other_3d_structure/feature_type">
+      <label>3D Type</label>
+      <item>
+        <label>boudinage</label>
+        <value>boudinage</value>
+      </item>
+      <item>
+        <label>mullion</label>
+        <value>mullion</value>
+      </item>
+      <item>
+        <label>lobate-cuspate</label>
+        <value>lobate_cuspate</value>
+      </item>
+      <item>
+        <label>other 3D structure</label>
+        <value>other_3d_structure</value>
+      </item>
+    </select1>
+    <group ref="/other_3d_structure/group_boudinage">
+      <label>Boudinage</label>
+      <input ref="/other_3d_structure/group_boudinage/approximate_scale_of_boudinage">
+        <label>Approximate Scale of Boudinage (m)</label>
+      </input>
+      <select1 ref="/other_3d_structure/group_boudinage/boudinage_geometry">
+        <label>Boudinage Geometry</label>
+        <item>
+          <label>unidirectional</label>
+          <value>unidirectional</value>
+        </item>
+        <item>
+          <label>bidirectional</label>
+          <value>bidirectional</value>
+        </item>
+      </select1>
+      <select1 ref="/other_3d_structure/group_boudinage/boudinage_shape">
+        <label>Boudinage Shape</label>
+        <item>
+          <label>symmetrical</label>
+          <value>symmetrical</value>
+        </item>
+        <item>
+          <label>asymmetrical</label>
+          <value>asymmetrical</value>
+        </item>
+      </select1>
+      <select1 ref="/other_3d_structure/group_boudinage/movement">
+        <label>Movement</label>
+        <item>
+          <label>N side up</label>
+          <value>n_side_up</value>
+        </item>
+        <item>
+          <label>NE side up</label>
+          <value>ne_side_up</value>
+        </item>
+        <item>
+          <label>E side up</label>
+          <value>e_side_up</value>
+        </item>
+        <item>
+          <label>SE side up</label>
+          <value>se_side_up</value>
+        </item>
+        <item>
+          <label>S side up</label>
+          <value>s_side_up</value>
+        </item>
+        <item>
+          <label>SW side up</label>
+          <value>sw_side_up</value>
+        </item>
+        <item>
+          <label>W side up</label>
+          <value>w_side_up</value>
+        </item>
+        <item>
+          <label>NW side up</label>
+          <value>nw_side_up</value>
+        </item>
+        <item>
+          <label>top to N</label>
+          <value>top_to_n</value>
+        </item>
+        <item>
+          <label>top to NE</label>
+          <value>top_to_ne</value>
+        </item>
+        <item>
+          <label>top to E</label>
+          <value>top_to_e</value>
+        </item>
+        <item>
+          <label>top to SE</label>
+          <value>top_to_se</value>
+        </item>
+        <item>
+          <label>top to S</label>
+          <value>top_to_s</value>
+        </item>
+        <item>
+          <label>top to SW</label>
+          <value>top_to_sw</value>
+        </item>
+        <item>
+          <label>top to W</label>
+          <value>top_to_w</value>
+        </item>
+        <item>
+          <label>top to NW</label>
+          <value>top_to_nw</value>
+        </item>
+        <item>
+          <label>right-lateral</label>
+          <value>right_lateral</value>
+        </item>
+        <item>
+          <label>left-lateral</label>
+          <value>left_lateral</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/other_3d_structure/group_boudinage/boudinage_competent">
+        <label>Competent Material</label>
+      </input>
+      <input ref="/other_3d_structure/group_boudinage/boudinage_incompetent">
+        <label>Incompetent Material</label>
+      </input>
+      <input ref="/other_3d_structure/group_boudinage/average_width_of_boudin_neck">
+        <label>Average Width of Boudin Neck (m)</label>
+      </input>
+      <input ref="/other_3d_structure/group_boudinage/number_of_necks_measured">
+        <label>Number of Necks Measured</label>
+      </input>
+      <input ref="/other_3d_structure/group_boudinage/boudinage_wavelength_m">
+        <label>Wavelength (m)</label>
+      </input>
+      <input ref="/other_3d_structure/group_boudinage/boudinaged_layer_thickness_m">
+        <label>Boudinaged Layer Thickness (m)</label>
+      </input>
+      <group ref="/other_3d_structure/group_boudinage/group_boudin_plane">
+        <label>Primary Boudin Layer Plane</label>
+        <input ref="/other_3d_structure/group_boudinage/group_boudin_plane/boudinage_strike">
+          <label>Strike</label>
+        </input>
+        <input ref="/other_3d_structure/group_boudinage/group_boudin_plane/boudinage_dip_direction">
+          <label>Dip Direction</label>
+        </input>
+        <input ref="/other_3d_structure/group_boudinage/group_boudin_plane/boudinage_dip">
+          <label>Dip</label>
+        </input>
+      </group>
+      <group ref="/other_3d_structure/group_boudinage/group_primary_neckline">
+        <label>Primary Neckline Orientation</label>
+        <input ref="/other_3d_structure/group_boudinage/group_primary_neckline/boudinage_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/other_3d_structure/group_boudinage/group_primary_neckline/boudinage_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/other_3d_structure/group_boudinage/group_primary_neckline/boudinage_trend_uncertainty">
+          <label>Measured Uncertainty</label>
+        </input>
+      </group>
+      <group ref="/other_3d_structure/group_boudinage/group_secondary_neckline">
+        <label>Secondary Neckline Orientation</label>
+        <input ref="/other_3d_structure/group_boudinage/group_secondary_neckline/boudinage_2nd_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/other_3d_structure/group_boudinage/group_secondary_neckline/boudinage_2nd_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/other_3d_structure/group_boudinage/group_secondary_neckline/boudinage_2nd_trend_uncertaint">
+          <label>Uncertainty</label>
+        </input>
+      </group>
+      <select1 ref="/other_3d_structure/group_boudinage/boudin_linear_measure_quality">
+        <label>Linear Measurement Quality</label>
+        <item>
+          <label>5 - best - accurate</label>
+          <value>5</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>3 - approximate</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>1 - poor - irregular - uncertain</label>
+          <value>1</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/other_3d_structure/group_mullions">
+      <label>Mullions</label>
+      <input ref="/other_3d_structure/group_mullions/approximate_scale_of_mullions">
+        <label>Approximate Scale of Mullions (m)</label>
+      </input>
+      <select1 ref="/other_3d_structure/group_mullions/mullion_geometry">
+        <label>Mullion Geometry</label>
+        <item>
+          <label>unidirectional</label>
+          <value>unidirectional</value>
+        </item>
+        <item>
+          <label>bidirectional</label>
+          <value>bidirectional</value>
+        </item>
+      </select1>
+      <select1 ref="/other_3d_structure/group_mullions/mullion_symmetry">
+        <label>Mullion Symmetry</label>
+        <item>
+          <label>symmetrical</label>
+          <value>symmetrical</value>
+        </item>
+        <item>
+          <label>asymmetrical</label>
+          <value>asymmetrical</value>
+        </item>
+      </select1>
+      <input ref="/other_3d_structure/group_mullions/mullion_competent_material">
+        <label>Competent Material</label>
+      </input>
+      <input ref="/other_3d_structure/group_mullions/mullion_incompetent_material">
+        <label>Incompetent Material</label>
+      </input>
+      <input ref="/other_3d_structure/group_mullions/mullion_wavelength_m">
+        <label>Wavelength (m)</label>
+      </input>
+      <input ref="/other_3d_structure/group_mullions/mullion_layer_thickness_m">
+        <label>Mullion Layer Thickness (m)</label>
+      </input>
+      <group ref="/other_3d_structure/group_mullions/group_ao6yo60">
+        <label>Mullion Layer Plane</label>
+        <input ref="/other_3d_structure/group_mullions/group_ao6yo60/mullion_strike">
+          <label>Strike</label>
+        </input>
+        <input ref="/other_3d_structure/group_mullions/group_ao6yo60/mullion_dip_direction">
+          <label>Dip Direction</label>
+        </input>
+        <input ref="/other_3d_structure/group_mullions/group_ao6yo60/mullion_dip">
+          <label>Dip</label>
+        </input>
+      </group>
+      <group ref="/other_3d_structure/group_mullions/group_db5vg51">
+        <label>Mullion Neckline</label>
+        <input ref="/other_3d_structure/group_mullions/group_db5vg51/mullion_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/other_3d_structure/group_mullions/group_db5vg51/mullion_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/other_3d_structure/group_mullions/group_db5vg51/mullion_uncertainty">
+          <label>Uncertainty</label>
+        </input>
+        <select1 ref="/other_3d_structure/group_mullions/group_db5vg51/mullion_linear_measure_quality">
+          <label>Linear Measurement Quality</label>
+          <item>
+            <label>5 - best - accurate</label>
+            <value>5</value>
+          </item>
+          <item>
+            <label>4</label>
+            <value>4</value>
+          </item>
+          <item>
+            <label>3 - approximate</label>
+            <value>3</value>
+          </item>
+          <item>
+            <label>2</label>
+            <value>2</value>
+          </item>
+          <item>
+            <label>1 - poor - irregular - uncertain</label>
+            <value>1</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+    <group ref="/other_3d_structure/group_lobate">
+      <label>Lobate-Cuspate</label>
+      <input ref="/other_3d_structure/group_lobate/approximate_scale_m_lobate">
+        <label>Approximate Scale (m)</label>
+      </input>
+      <input ref="/other_3d_structure/group_lobate/lobate_competent_material">
+        <label>Competent Material</label>
+      </input>
+      <input ref="/other_3d_structure/group_lobate/lobate_incompetent_material">
+        <label>Incompetent Material</label>
+      </input>
+    </group>
+    <input ref="/other_3d_structure/other_structure_description">
+      <label>Other Structure Description</label>
+    </input>
+    <input appearance="multiline" ref="/other_3d_structure/struct_notes">
+      <label>3D Structure Notes</label>
+    </input>
+  </h:body>
+</h:html>

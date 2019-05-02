@@ -1,0 +1,38 @@
+[
+    {
+        "date_of_measurement": "12\/21\/2018",
+        "time_of_measurement": "12:18",
+        "location_1": "KU",
+        "location_1_stick_length": 200,
+        "location_1_stick_length_err": 0.1,
+        "location_1_shadow": 375.5,
+        "location_1_shadow_err": 0.1,
+        "location_1_angle": 61.959201013637,
+        "location_2": "UH",
+        "location_2_stick_length": 160.5,
+        "location_2_stick_length_err": 0.2,
+        "location_2_shadow": 206.5,
+        "location_2_shadow_err": 0.25,
+        "location_2_angle": 52.144230224611,
+        "calculated_circumference": 37558.950293788,
+        "percent_accurate": 0.93721647645136
+    },
+    {
+        "date_of_measurement": "1\/4\/2019",
+        "time_of_measurement": "12:18",
+        "location_1": "KU",
+        "location_1_stick_length": 200,
+        "location_1_stick_length_err": 0.1,
+        "location_1_shadow": 359.5,
+        "location_1_shadow_err": 0.1,
+        "location_1_angle": 60.911577123412,
+        "location_2": "UH",
+        "location_2_stick_length": 160.5,
+        "location_2_stick_length_err": 0.2,
+        "location_2_shadow": 201.5,
+        "location_2_shadow_err": 1.5,
+        "location_2_angle": 51.461764905863,
+        "calculated_circumference": 39010.298989371,
+        "percent_accurate": 0.97343228919203
+    }
+]

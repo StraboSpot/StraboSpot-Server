@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Fold</h:title>
+    <model>
+      <instance>
+        <fold id="fold">
+          <label/>
+          <feature_type/>
+          <other_dominant_fold_geometry/>
+          <fold_shape/>
+          <fold_attitude/>
+          <tightness/>
+          <vergence/>
+          <competent_material_fold/>
+          <incompetent_material_fold/>
+          <wavelength_m/>
+          <folded_layer_thickness_m/>
+          <fold_notes/>
+          <group_fold_shorten_direction>
+            <fold_shortening_dir_trend/>
+            <fold_shortening_dir_plunge/>
+            <fold_shortening_dir_uncertaint/>
+          </group_fold_shorten_direction>
+          <group_fold_foliation>
+            <fold_fol_strike/>
+            <fold_fol_dip_direction/>
+            <fold_fol_dip/>
+            <fold_fol_quality/>
+            <fold_foliation_Type/>
+            <fold_foliation_description/>
+          </group_fold_foliation>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </fold>
+      </instance>
+      <bind nodeset="/fold/label" required="false()" type="string"/>
+      <bind nodeset="/fold/feature_type" required="true()" type="select1"/>
+      <bind nodeset="/fold/other_dominant_fold_geometry" relevant=" /fold/feature_type  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/fold/fold_shape" relevant=" /fold/feature_type  != ''" required="false()" type="select1"/>
+      <bind nodeset="/fold/fold_attitude" relevant=" /fold/feature_type  != ''" required="false()" type="select1"/>
+      <bind nodeset="/fold/tightness" relevant=" /fold/feature_type  != ''" required="false()" type="select1"/>
+      <bind nodeset="/fold/vergence" relevant=" /fold/feature_type  != ''" required="false()" type="select1"/>
+      <bind nodeset="/fold/competent_material_fold" relevant=" /fold/feature_type  != ''" required="false()" type="string"/>
+      <bind nodeset="/fold/incompetent_material_fold" relevant=" /fold/feature_type  != ''" required="false()" type="string"/>
+      <bind nodeset="/fold/wavelength_m" relevant=" /fold/feature_type  != ''" required="false()" type="decimal"/>
+      <bind nodeset="/fold/folded_layer_thickness_m" relevant=" /fold/feature_type  != ''" required="false()" type="decimal"/>
+      <bind nodeset="/fold/fold_notes" relevant=" /fold/feature_type  != ''" required="false()" type="string"/>
+      <bind nodeset="/fold/group_fold_shorten_direction" relevant=" /fold/feature_type  != ''"/>
+      <bind nodeset="/fold/group_fold_shorten_direction/fold_shortening_dir_trend" relevant=" /fold/feature_type  != ''" required="false()" type="int"/>
+      <bind nodeset="/fold/group_fold_shorten_direction/fold_shortening_dir_plunge" relevant=" /fold/feature_type  != ''" required="false()" type="int"/>
+      <bind nodeset="/fold/group_fold_shorten_direction/fold_shortening_dir_uncertaint" relevant=" /fold/feature_type  != ''" required="false()" type="int"/>
+      <bind nodeset="/fold/group_fold_foliation" relevant=" /fold/feature_type  != ''"/>
+      <bind nodeset="/fold/group_fold_foliation/fold_fol_strike" relevant=" /fold/feature_type  != ''" required="false()" type="int"/>
+      <bind nodeset="/fold/group_fold_foliation/fold_fol_dip_direction" relevant=" /fold/feature_type  != ''" required="false()" type="int"/>
+      <bind nodeset="/fold/group_fold_foliation/fold_fol_dip" relevant=" /fold/feature_type  != ''" required="false()" type="int"/>
+      <bind nodeset="/fold/group_fold_foliation/fold_fol_quality" relevant=" /fold/feature_type  != ''" required="false()" type="select1"/>
+      <bind nodeset="/fold/group_fold_foliation/fold_foliation_Type" relevant=" /fold/feature_type  != ''" required="false()" type="select1"/>
+      <bind nodeset="/fold/group_fold_foliation/fold_foliation_description" relevant=" /fold/feature_type  != ''" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/fold/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/fold/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/fold/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/fold/label">
+      <label>Label</label>
+      <hint>If a label is not specified a default label will be given.</hint>
+    </input>
+    <select1 ref="/fold/feature_type">
+      <label>Fold Type</label>
+      <item>
+        <label>anticline</label>
+        <value>anticline</value>
+      </item>
+      <item>
+        <label>syncline</label>
+        <value>syncline</value>
+      </item>
+      <item>
+        <label>monocline</label>
+        <value>monocline</value>
+      </item>
+      <item>
+        <label>antiform</label>
+        <value>antiform</value>
+      </item>
+      <item>
+        <label>synform</label>
+        <value>synform</value>
+      </item>
+      <item>
+        <label>s-fold</label>
+        <value>s_fold</value>
+      </item>
+      <item>
+        <label>z-fold</label>
+        <value>z_fold</value>
+      </item>
+      <item>
+        <label>m-fold</label>
+        <value>m_fold</value>
+      </item>
+      <item>
+        <label>sheath</label>
+        <value>sheath</value>
+      </item>
+      <item>
+        <label>single-layer buckle</label>
+        <value>single_layer_b</value>
+      </item>
+      <item>
+        <label>ptygmatic</label>
+        <value>ptygmatic</value>
+      </item>
+      <item>
+        <label>crenulation</label>
+        <value>crenulation</value>
+      </item>
+      <item>
+        <label>interfolial</label>
+        <value>interfolial</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/fold/other_dominant_fold_geometry">
+      <label>Other Fold Type</label>
+    </input>
+    <select1 ref="/fold/fold_shape">
+      <label>Dominant Fold Shape</label>
+      <item>
+        <label>chevron</label>
+        <value>chevron</value>
+      </item>
+      <item>
+        <label>cuspate</label>
+        <value>cuspate</value>
+      </item>
+      <item>
+        <label>circular</label>
+        <value>circular</value>
+      </item>
+      <item>
+        <label>elliptical</label>
+        <value>elliptical</value>
+      </item>
+    </select1>
+    <select1 ref="/fold/fold_attitude">
+      <label>Dominant Fold Attitude</label>
+      <item>
+        <label>upright</label>
+        <value>upright</value>
+      </item>
+      <item>
+        <label>overturned</label>
+        <value>overturned</value>
+      </item>
+      <item>
+        <label>vertical</label>
+        <value>vertical</value>
+      </item>
+      <item>
+        <label>horizontal</label>
+        <value>horizontal</value>
+      </item>
+      <item>
+        <label>recumbent</label>
+        <value>recumbent</value>
+      </item>
+      <item>
+        <label>inclined</label>
+        <value>inclined</value>
+      </item>
+    </select1>
+    <select1 ref="/fold/tightness">
+      <label>Tightness / Interlimb Angle</label>
+      <item>
+        <label>gentle   (180º –120º)</label>
+        <value>gentle</value>
+      </item>
+      <item>
+        <label>open   (120º–70º)</label>
+        <value>open</value>
+      </item>
+      <item>
+        <label>close   (70º–30º)</label>
+        <value>close</value>
+      </item>
+      <item>
+        <label>tight   (30º–10º)</label>
+        <value>tight</value>
+      </item>
+      <item>
+        <label>isoclinal   (10º–0º)</label>
+        <value>isoclinal</value>
+      </item>
+    </select1>
+    <select1 ref="/fold/vergence">
+      <label>Vergence</label>
+      <item>
+        <label>North</label>
+        <value>north</value>
+      </item>
+      <item>
+        <label>NE</label>
+        <value>ne</value>
+      </item>
+      <item>
+        <label>East</label>
+        <value>east</value>
+      </item>
+      <item>
+        <label>SE</label>
+        <value>se</value>
+      </item>
+      <item>
+        <label>South</label>
+        <value>south</value>
+      </item>
+      <item>
+        <label>SW</label>
+        <value>sw</value>
+      </item>
+      <item>
+        <label>West</label>
+        <value>west</value>
+      </item>
+      <item>
+        <label>NW</label>
+        <value>nw</value>
+      </item>
+    </select1>
+    <input ref="/fold/competent_material_fold">
+      <label>Competent Material</label>
+    </input>
+    <input ref="/fold/incompetent_material_fold">
+      <label>Incompetent Material</label>
+    </input>
+    <input ref="/fold/wavelength_m">
+      <label>Wavelength (m)</label>
+    </input>
+    <input ref="/fold/folded_layer_thickness_m">
+      <label>Folded Layer Thickness (m)</label>
+    </input>
+    <input appearance="multiline" ref="/fold/fold_notes">
+      <label>Fold Notes</label>
+    </input>
+    <group ref="/fold/group_fold_shorten_direction">
+      <label>Shortening Direction</label>
+      <input ref="/fold/group_fold_shorten_direction/fold_shortening_dir_trend">
+        <label>Trend</label>
+      </input>
+      <input ref="/fold/group_fold_shorten_direction/fold_shortening_dir_plunge">
+        <label>Plunge</label>
+      </input>
+      <input ref="/fold/group_fold_shorten_direction/fold_shortening_dir_uncertaint">
+        <label>Uncertainty</label>
+      </input>
+    </group>
+    <group ref="/fold/group_fold_foliation">
+      <label>Foliation Associated with Fold</label>
+      <input ref="/fold/group_fold_foliation/fold_fol_strike">
+        <label>Strike</label>
+      </input>
+      <input ref="/fold/group_fold_foliation/fold_fol_dip_direction">
+        <label>Dip Direction</label>
+      </input>
+      <input ref="/fold/group_fold_foliation/fold_fol_dip">
+        <label>Dip</label>
+      </input>
+      <select1 ref="/fold/group_fold_foliation/fold_fol_quality">
+        <label>Orientation Quality</label>
+        <item>
+          <label>accurate</label>
+          <value>accurate</value>
+        </item>
+        <item>
+          <label>approximate</label>
+          <value>approximate</value>
+        </item>
+        <item>
+          <label>irregular</label>
+          <value>irregular</value>
+        </item>
+      </select1>
+      <select1 ref="/fold/group_fold_foliation/fold_foliation_Type">
+        <label>Foliation Type</label>
+        <item>
+          <label>axial planar</label>
+          <value>axial_planar</value>
+        </item>
+        <item>
+          <label>fanning-convergent</label>
+          <value>fanning_conver</value>
+        </item>
+        <item>
+          <label>fanning-divergent</label>
+          <value>fanning_diverg</value>
+        </item>
+        <item>
+          <label>transected</label>
+          <value>transected</value>
+        </item>
+      </select1>
+      <input ref="/fold/group_fold_foliation/fold_foliation_description">
+        <label>Description of Foliation</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

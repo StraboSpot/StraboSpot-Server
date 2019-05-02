@@ -1,0 +1,326 @@
+[
+    {
+        "folder1": "Basic",
+        "folder2": "BrecSimple",
+        "class1": "straboclass-4",
+        "class2": "straboclass-5"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "ChertBasic",
+        "class1": "straboclass-8",
+        "class2": "straboclass-9"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "CongSimple",
+        "class1": "straboclass-13",
+        "class2": "straboclass-14"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "DoloSimple",
+        "class1": "straboclass-17",
+        "class2": "straboclass-18"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "EvaBasic",
+        "class1": "straboclass-21",
+        "class2": "straboclass-22"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "LimeSimple",
+        "class1": "straboclass-25",
+        "class2": "straboclass-26"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "MudSimple",
+        "class1": "straboclass-30",
+        "class2": "straboclass-31"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "PhosBasic",
+        "class1": "straboclass-33",
+        "class2": "straboclass-34"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "SandSimple",
+        "class1": "straboclass-37",
+        "class2": "straboclass-38"
+    },
+    {
+        "folder1": "Basic",
+        "folder2": "VolBasic",
+        "class1": "straboclass-41",
+        "class2": "straboclass-42"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoBafBasic",
+        "class1": "straboclass-45",
+        "class2": "straboclass-46"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoBindBasic",
+        "class1": "straboclass-49",
+        "class2": "straboclass-50"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoBoBasic",
+        "class1": "straboclass-53",
+        "class2": "straboclass-54"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoFloBasic",
+        "class1": "straboclass-57",
+        "class2": "straboclass-58"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoFrBasic",
+        "class1": "straboclass-61",
+        "class2": "straboclass-62"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoGrBasic",
+        "class1": "straboclass-65",
+        "class2": "straboclass-66"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoMudBasic",
+        "class1": "straboclass-69",
+        "class2": "straboclass-70"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoPaBasic",
+        "class1": "straboclass-73",
+        "class2": "straboclass-74"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoRudBasic",
+        "class1": "straboclass-77",
+        "class2": "straboclass-78"
+    },
+    {
+        "folder1": "Dolomite",
+        "folder2": "DoWaBasic",
+        "class1": "straboclass-82",
+        "class2": "straboclass-83"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiBafBasic",
+        "class1": "straboclass-86",
+        "class2": "straboclass-87"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiBindBasic",
+        "class1": "straboclass-90",
+        "class2": "straboclass-91"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiBoBasic",
+        "class1": "straboclass-94",
+        "class2": "straboclass-95"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiFloBasic",
+        "class1": "straboclass-98",
+        "class2": "straboclass-99"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiFrBasic",
+        "class1": "straboclass-102",
+        "class2": "straboclass-103"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiGrBasic",
+        "class1": "straboclass-106",
+        "class2": "straboclass-107"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiMudBasic",
+        "class1": "straboclass-110",
+        "class2": "straboclass-111"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiPaBasic",
+        "class1": "straboclass-114",
+        "class2": "straboclass-115"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiRudBasic",
+        "class1": "straboclass-118",
+        "class2": "straboclass-119"
+    },
+    {
+        "folder1": "Limestone",
+        "folder2": "LiWaBasic",
+        "class1": "straboclass-123",
+        "class2": "straboclass-124"
+    },
+    {
+        "folder1": "Misc",
+        "folder2": "EvaBasic",
+        "class1": "straboclass-127",
+        "class2": "straboclass-128"
+    },
+    {
+        "folder1": "Misc",
+        "folder2": "EvaBasic2",
+        "class1": "straboclass-131",
+        "class2": "straboclass-132"
+    },
+    {
+        "folder1": "Misc",
+        "folder2": "PhosBasic",
+        "class1": "straboclass-134",
+        "class2": "straboclass-135"
+    },
+    {
+        "folder1": "Misc",
+        "folder2": "VolBasic",
+        "class1": "straboclass-139",
+        "class2": "straboclass-140"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "BBoBasic",
+        "class1": "straboclass-144",
+        "class2": "straboclass-145"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "BCobBasic",
+        "class1": "straboclass-149",
+        "class2": "straboclass-150"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "BGrBasic",
+        "class1": "straboclass-154",
+        "class2": "straboclass-155"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "BPebBasic",
+        "class1": "straboclass-159",
+        "class2": "straboclass-160"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "CBoBasic",
+        "class1": "straboclass-164",
+        "class2": "straboclass-165"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "CCobBasic",
+        "class1": "straboclass-169",
+        "class2": "straboclass-170"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "CGrBasic",
+        "class1": "straboclass-174",
+        "class2": "straboclass-175"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "CLBasic",
+        "class1": "straboclass-178",
+        "class2": "straboclass-179"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "CPebBasic",
+        "class1": "straboclass-183",
+        "class2": "straboclass-184"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "CUBasic",
+        "class1": "straboclass-187",
+        "class2": "straboclass-188"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "ClayBasic",
+        "class1": "straboclass-191",
+        "class2": "straboclass-192"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "FLBasic",
+        "class1": "straboclass-195",
+        "class2": "straboclass-196"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "FUBasic",
+        "class1": "straboclass-199",
+        "class2": "straboclass-200"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "MLBasic",
+        "class1": "straboclass-203",
+        "class2": "straboclass-204"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "MUBasic",
+        "class1": "straboclass-207",
+        "class2": "straboclass-208"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "MudBasic",
+        "class1": "straboclass-211",
+        "class2": "straboclass-212"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "SiltBasic",
+        "class1": "straboclass-216",
+        "class2": "straboclass-217"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "VCBasic",
+        "class1": "straboclass-220",
+        "class2": "straboclass-221"
+    },
+    {
+        "folder1": "Siliciclastics",
+        "folder2": "VFBasic",
+        "class1": "straboclass-224",
+        "class2": "straboclass-225"
+    },
+    {
+        "folder1": "Blank",
+        "folder2": "Blank",
+        "class1": "straboclass-608",
+        "class2": "straboclass-608"
+    }
+]

@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Tag (not auto-form in Strabo)</h:title>
+    <model>
+      <instance>
+        <tag id="tag">
+          <name/>
+          <type/>
+          <deformation_event/>
+          <concept_type/>
+          <other_concept_type/>
+          <documentation_type/>
+          <other_documentation_type/>
+          <other_type/>
+          <group_is3mo21>
+            <See_Rock_Unit_KoBo_Form/>
+          </group_is3mo21>
+          <notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </tag>
+      </instance>
+      <bind nodeset="/tag/name" required="true()" type="string"/>
+      <bind nodeset="/tag/type" required="false()" type="select1"/>
+      <bind nodeset="/tag/deformation_event" required="false()" type="string"/>
+      <bind nodeset="/tag/concept_type" relevant=" /tag/type  = 'concept'" required="false()" type="select1"/>
+      <bind nodeset="/tag/other_concept_type" relevant=" /tag/concept_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/tag/documentation_type" relevant=" /tag/type  = 'documentation'" required="false()" type="select1"/>
+      <bind nodeset="/tag/other_documentation_type" relevant=" /tag/documentation_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/tag/other_type" relevant=" /tag/type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/tag/group_is3mo21" relevant=" /tag/type  = 'geologic_unit'"/>
+      <bind nodeset="/tag/group_is3mo21/See_Rock_Unit_KoBo_Form" readonly="true()" required="false()" type="string"/>
+      <bind nodeset="/tag/notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/tag/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/tag/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/tag/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/tag/name">
+      <label>Name</label>
+    </input>
+    <select1 ref="/tag/type">
+      <label>Type</label>
+      <item>
+        <label>Geologic Unit</label>
+        <value>geologic_unit</value>
+      </item>
+      <item>
+        <label>Concept</label>
+        <value>concept</value>
+      </item>
+      <item>
+        <label>Documentation</label>
+        <value>documentation</value>
+      </item>
+      <item>
+        <label>Other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/tag/deformation_event">
+      <label>Deformation Event</label>
+    </input>
+    <select1 ref="/tag/concept_type">
+      <label>Concept Type</label>
+      <item>
+        <label>Geological Structure</label>
+        <value>geological_str</value>
+      </item>
+      <item>
+        <label>Marker Layer</label>
+        <value>marker_layer</value>
+      </item>
+      <item>
+        <label>Deformation Event</label>
+        <value>deformation_ev</value>
+      </item>
+      <item>
+        <label>Degree of Deformation</label>
+        <value>degree_of_defo</value>
+      </item>
+      <item>
+        <label>Mineral</label>
+        <value>mineral</value>
+      </item>
+      <item>
+        <label>Metamorphic Facies</label>
+        <value>metamorphic_fa</value>
+      </item>
+      <item>
+        <label>Other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/tag/other_concept_type">
+      <label>Other Concept Type</label>
+    </input>
+    <select1 ref="/tag/documentation_type">
+      <label>Documentation Type</label>
+      <item>
+        <label>Observation Timing</label>
+        <value>observation_ti</value>
+      </item>
+      <item>
+        <label>Type of Data</label>
+        <value>type_of_data</value>
+      </item>
+      <item>
+        <label>Other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/tag/other_documentation_type">
+      <label>Other Documentation Type</label>
+    </input>
+    <input ref="/tag/other_type">
+      <label>Other Type</label>
+    </input>
+    <group ref="/tag/group_is3mo21">
+      <label>Geologic Unit</label>
+      <input ref="/tag/group_is3mo21/See_Rock_Unit_KoBo_Form">
+        <label>See Rock Unit KoBo Form</label>
+      </input>
+    </group>
+    <input appearance="multiline" ref="/tag/notes">
+      <label>Notes</label>
+    </input>
+  </h:body>
+</h:html>

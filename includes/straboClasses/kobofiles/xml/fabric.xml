@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Fabric</h:title>
+    <model>
+      <instance>
+        <fabric id="fabric">
+          <label/>
+          <feature_type/>
+          <group_tectonite>
+            <tectonite_type/>
+            <tectonite_character/>
+          </group_tectonite>
+          <group_mullions>
+            <approximate_scale_of_mullions/>
+            <mullion_geometry/>
+            <mullion_symmetry/>
+            <mullion_competent_material/>
+            <mullion_incompetent_material/>
+            <mullion_wavelength_m/>
+            <mullion_layer_thickness_m/>
+            <group_ao6yo60>
+              <mullion_strike/>
+              <mullion_dip_direction/>
+              <mullion_dip/>
+            </group_ao6yo60>
+            <group_db5vg51>
+              <mullion_trend/>
+              <mullion_plunge/>
+              <mullion_uncertainty/>
+              <mullion_linear_measure_quality/>
+            </group_db5vg51>
+          </group_mullions>
+          <igneous_migmatite_feat_descrip/>
+          <soft_sediment_def_description/>
+          <other_fabric_description/>
+          <struct_notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </fabric>
+      </instance>
+      <bind nodeset="/fabric/label" required="false()" type="string"/>
+      <bind nodeset="/fabric/feature_type" required="true()" type="select1"/>
+      <bind nodeset="/fabric/group_tectonite" relevant=" /fabric/feature_type  = 'tectonite'"/>
+      <bind nodeset="/fabric/group_tectonite/tectonite_type" relevant=" /fabric/feature_type  = 'tectonite'" required="false()" type="select1"/>
+      <bind nodeset="/fabric/group_tectonite/tectonite_character" relevant=" /fabric/feature_type  = 'tectonite'" required="false()" type="select1"/>
+      <bind nodeset="/fabric/group_mullions" relevant=" /fabric/feature_type  = 'mullion'"/>
+      <bind nodeset="/fabric/group_mullions/approximate_scale_of_mullions" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="decimal"/>
+      <bind nodeset="/fabric/group_mullions/mullion_geometry" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="select1"/>
+      <bind nodeset="/fabric/group_mullions/mullion_symmetry" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="select1"/>
+      <bind nodeset="/fabric/group_mullions/mullion_competent_material" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="string"/>
+      <bind nodeset="/fabric/group_mullions/mullion_incompetent_material" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="string"/>
+      <bind nodeset="/fabric/group_mullions/mullion_wavelength_m" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="decimal"/>
+      <bind nodeset="/fabric/group_mullions/mullion_layer_thickness_m" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="decimal"/>
+      <bind nodeset="/fabric/group_mullions/group_ao6yo60" relevant=" /fabric/feature_type  = 'mullion'"/>
+      <bind nodeset="/fabric/group_mullions/group_ao6yo60/mullion_strike" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/fabric/group_mullions/group_ao6yo60/mullion_dip_direction" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/fabric/group_mullions/group_ao6yo60/mullion_dip" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/fabric/group_mullions/group_db5vg51" relevant=" /fabric/feature_type  = 'mullion'"/>
+      <bind nodeset="/fabric/group_mullions/group_db5vg51/mullion_trend" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/fabric/group_mullions/group_db5vg51/mullion_plunge" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/fabric/group_mullions/group_db5vg51/mullion_uncertainty" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="int"/>
+      <bind nodeset="/fabric/group_mullions/group_db5vg51/mullion_linear_measure_quality" relevant=" /fabric/feature_type  = 'mullion'" required="false()" type="select1"/>
+      <bind nodeset="/fabric/igneous_migmatite_feat_descrip" relevant=" /fabric/feature_type  = 'igneous_migmat'" required="false()" type="string"/>
+      <bind nodeset="/fabric/soft_sediment_def_description" relevant=" /fabric/feature_type  = 'soft_sediment_'" required="false()" type="string"/>
+      <bind nodeset="/fabric/other_fabric_description" relevant=" /fabric/feature_type  = 'other_fabric'" required="false()" type="string"/>
+      <bind nodeset="/fabric/struct_notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/fabric/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/fabric/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/fabric/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/fabric/label">
+      <label>Label</label>
+      <hint>If a label is not specified a default label will be given.</hint>
+    </input>
+    <select1 ref="/fabric/feature_type">
+      <label>Fabric Type</label>
+      <item>
+        <label>tectonite</label>
+        <value>tectonite</value>
+      </item>
+      <item>
+        <label>mullion</label>
+        <value>mullion</value>
+      </item>
+      <item>
+        <label>igneous/migmatite</label>
+        <value>igneous_migmat</value>
+      </item>
+      <item>
+        <label>soft sediment deformation</label>
+        <value>soft_sediment_</value>
+      </item>
+      <item>
+        <label>other fabric</label>
+        <value>other_fabric</value>
+      </item>
+    </select1>
+    <group ref="/fabric/group_tectonite">
+      <label>Tectonites</label>
+      <select1 ref="/fabric/group_tectonite/tectonite_type">
+        <label>Tectonite Type</label>
+        <item>
+          <label>S tectonite</label>
+          <value>s_tectonite</value>
+        </item>
+        <item>
+          <label>SL tectonite</label>
+          <value>sl_tectonite</value>
+        </item>
+        <item>
+          <label>LS tectonite</label>
+          <value>ls_tectonite</value>
+        </item>
+        <item>
+          <label>L tectonite</label>
+          <value>l_tectonite</value>
+        </item>
+      </select1>
+      <select1 ref="/fabric/group_tectonite/tectonite_character">
+        <label>Tectonite Character</label>
+        <item>
+          <label>S only</label>
+          <value>s_only</value>
+        </item>
+        <item>
+          <label>S &gt;&gt; L</label>
+          <value>s___l</value>
+        </item>
+        <item>
+          <label>S &gt; L</label>
+          <value>s___l_1</value>
+        </item>
+        <item>
+          <label>S = L</label>
+          <value>s___l_2</value>
+        </item>
+        <item>
+          <label>L &gt; S</label>
+          <value>l___s</value>
+        </item>
+        <item>
+          <label>L &gt;&gt; S</label>
+          <value>l___s_1</value>
+        </item>
+        <item>
+          <label>L only</label>
+          <value>l_only</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/fabric/group_mullions">
+      <label>Mullions</label>
+      <input ref="/fabric/group_mullions/approximate_scale_of_mullions">
+        <label>Approximate Scale of Mullions (m)</label>
+      </input>
+      <select1 ref="/fabric/group_mullions/mullion_geometry">
+        <label>Mullion Geometry</label>
+        <item>
+          <label>unidirectional</label>
+          <value>unidirectional</value>
+        </item>
+        <item>
+          <label>bidirectional</label>
+          <value>bidirectional</value>
+        </item>
+      </select1>
+      <select1 ref="/fabric/group_mullions/mullion_symmetry">
+        <label>Mullion Symmetry</label>
+        <item>
+          <label>symmetrical</label>
+          <value>symmetrical</value>
+        </item>
+        <item>
+          <label>asymmetrical</label>
+          <value>asymmetrical</value>
+        </item>
+      </select1>
+      <input ref="/fabric/group_mullions/mullion_competent_material">
+        <label>Competent Material</label>
+      </input>
+      <input ref="/fabric/group_mullions/mullion_incompetent_material">
+        <label>Incompetent Material</label>
+      </input>
+      <input ref="/fabric/group_mullions/mullion_wavelength_m">
+        <label>Wavelength (m)</label>
+      </input>
+      <input ref="/fabric/group_mullions/mullion_layer_thickness_m">
+        <label>Mullion Layer Thickness (m)</label>
+      </input>
+      <group ref="/fabric/group_mullions/group_ao6yo60">
+        <label>Mullion Layer Plane</label>
+        <input ref="/fabric/group_mullions/group_ao6yo60/mullion_strike">
+          <label>Strike</label>
+        </input>
+        <input ref="/fabric/group_mullions/group_ao6yo60/mullion_dip_direction">
+          <label>Dip Direction</label>
+        </input>
+        <input ref="/fabric/group_mullions/group_ao6yo60/mullion_dip">
+          <label>Dip</label>
+        </input>
+      </group>
+      <group ref="/fabric/group_mullions/group_db5vg51">
+        <label>Mullion Neckline</label>
+        <input ref="/fabric/group_mullions/group_db5vg51/mullion_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/fabric/group_mullions/group_db5vg51/mullion_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/fabric/group_mullions/group_db5vg51/mullion_uncertainty">
+          <label>Uncertainty</label>
+        </input>
+        <select1 ref="/fabric/group_mullions/group_db5vg51/mullion_linear_measure_quality">
+          <label>Linear Measurement Quality</label>
+          <item>
+            <label>5 - best - accurate</label>
+            <value>5</value>
+          </item>
+          <item>
+            <label>4</label>
+            <value>4</value>
+          </item>
+          <item>
+            <label>3 - approximate</label>
+            <value>3</value>
+          </item>
+          <item>
+            <label>2</label>
+            <value>2</value>
+          </item>
+          <item>
+            <label>1 - poor - irregular - uncertain</label>
+            <value>1</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+    <input ref="/fabric/igneous_migmatite_feat_descrip">
+      <label>Igneous/Migmatite Features Description</label>
+    </input>
+    <input ref="/fabric/soft_sediment_def_description">
+      <label>Soft Sediment Deformation Description</label>
+    </input>
+    <input ref="/fabric/other_fabric_description">
+      <label>Other Fabric Description</label>
+    </input>
+    <input appearance="multiline" ref="/fabric/struct_notes">
+      <label>Fabric Notes</label>
+    </input>
+  </h:body>
+</h:html>

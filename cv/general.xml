@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>General (Common Fields)</h:title>
+    <model>
+      <instance>
+        <general id="general">
+          <spot_name/>
+          <id/>
+          <date/>
+          <time/>
+          <location/>
+          <photos/>
+          <notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </general>
+      </instance>
+      <bind nodeset="/general/spot_name" required="true()" type="string"/>
+      <bind nodeset="/general/id" required="true()" type="string"/>
+      <bind nodeset="/general/date" required="true()" type="date"/>
+      <bind nodeset="/general/time" required="true()" type="time"/>
+      <bind nodeset="/general/location" required="true()" type="geopoint"/>
+      <bind nodeset="/general/photos" required="false()" type="binary"/>
+      <bind nodeset="/general/notes" readonly="true()" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/general/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/general/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/general/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/general/spot_name">
+      <label>Spot Name</label>
+    </input>
+    <input ref="/general/id">
+      <label>ID</label>
+    </input>
+    <input ref="/general/date">
+      <label>Date</label>
+    </input>
+    <input ref="/general/time">
+      <label>Time</label>
+    </input>
+    <input ref="/general/location">
+      <label>Location</label>
+      <hint>GPS coordinates can only be collected when outside.</hint>
+    </input>
+    <upload mediatype="image/*" ref="/general/photos">
+      <label>Photos</label>
+    </upload>
+    <input ref="/general/notes">
+      <label>Notes</label>
+    </input>
+  </h:body>
+</h:html>

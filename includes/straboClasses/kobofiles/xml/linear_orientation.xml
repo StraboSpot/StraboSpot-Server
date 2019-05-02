@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Linear Orientation</h:title>
+    <model>
+      <instance>
+        <linear_orientation id="linear_orientation">
+          <label/>
+          <trend/>
+          <plunge/>
+          <rake/>
+          <rake_calculated>no</rake_calculated>
+          <quality/>
+          <feature_type/>
+          <vorticity/>
+          <other_feature/>
+          <defined_by/>
+          <min_age/>
+          <min_age_just/>
+          <max_age/>
+          <max_age_just/>
+          <geo_age/>
+          <notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </linear_orientation>
+      </instance>
+      <bind nodeset="/linear_orientation/label" required="false()" type="string"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 360" jr:constraintMsg="Values must be between 0-360." nodeset="/linear_orientation/trend" required="false()" type="int"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 90" jr:constraintMsg="Plunge must be between 0-90." nodeset="/linear_orientation/plunge" required="false()" type="int"/>
+      <bind nodeset="/linear_orientation/rake" required="false()" type="int"/>
+      <bind nodeset="/linear_orientation/rake_calculated" relevant=" /linear_orientation/rake  != ''" required="false()" type="select1"/>
+      <bind nodeset="/linear_orientation/quality" required="false()" type="select1"/>
+      <bind nodeset="/linear_orientation/feature_type" required="false()" type="select1"/>
+      <bind nodeset="/linear_orientation/vorticity" relevant=" /linear_orientation/feature_type  = 'vorticity_axis'" required="true()" type="select1"/>
+      <bind nodeset="/linear_orientation/other_feature" relevant=" /linear_orientation/feature_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/linear_orientation/defined_by" required="false()" type="string"/>
+      <bind nodeset="/linear_orientation/min_age" required="false()" type="decimal"/>
+      <bind nodeset="/linear_orientation/min_age_just" relevant=" /linear_orientation/min_age  != ''" required="false()" type="string"/>
+      <bind nodeset="/linear_orientation/max_age" required="false()" type="decimal"/>
+      <bind nodeset="/linear_orientation/max_age_just" relevant=" /linear_orientation/max_age  != ''" required="false()" type="string"/>
+      <bind nodeset="/linear_orientation/geo_age" required="false()" type="string"/>
+      <bind nodeset="/linear_orientation/notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/linear_orientation/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/linear_orientation/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/linear_orientation/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/linear_orientation/label">
+      <label>Label</label>
+      <hint>If a label is not specified a default label will be given.</hint>
+    </input>
+    <input ref="/linear_orientation/trend">
+      <label>Trend</label>
+      <hint>Azimuth in degrees</hint>
+    </input>
+    <input ref="/linear_orientation/plunge">
+      <label>Plunge</label>
+    </input>
+    <input ref="/linear_orientation/rake">
+      <label>Rake</label>
+      <hint>down dip angle from strike on plane (0-180)?</hint>
+    </input>
+    <select1 ref="/linear_orientation/rake_calculated">
+      <label>Rake Calculated?</label>
+      <item>
+        <label>yes</label>
+        <value>yes</value>
+      </item>
+      <item>
+        <label>no</label>
+        <value>no</value>
+      </item>
+    </select1>
+    <select1 appearance="likert" ref="/linear_orientation/quality">
+      <label>Linear Measurement Quality</label>
+      <hint>Quality of linear feature or of measurement</hint>
+      <item>
+        <label>5 - best - accurate</label>
+        <value>5</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>3 - approximate</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>1 - poor - irregular - uncertain</label>
+        <value>1</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/linear_orientation/feature_type">
+      <label>Linear Feature Type</label>
+      <hint>Specific lineation type: e.g., striation, groove mark, intersection, fold hinge, alignment, many others</hint>
+      <item>
+        <label>groove marks</label>
+        <value>groove_marks</value>
+      </item>
+      <item>
+        <label>parting lineations</label>
+        <value>parting_lineat</value>
+      </item>
+      <item>
+        <label>magmatic mineral alignment</label>
+        <value>magmatic_miner_1</value>
+      </item>
+      <item>
+        <label>xenolith/enclave alignment</label>
+        <value>xenolith_encla</value>
+      </item>
+      <item>
+        <label>intersection</label>
+        <value>intersection</value>
+      </item>
+      <item>
+        <label>pencil cleavage</label>
+        <value>pencil_cleav</value>
+      </item>
+      <item>
+        <label>mineral alignment</label>
+        <value>mineral_align</value>
+      </item>
+      <item>
+        <label>deformed marker</label>
+        <value>deformed_marke</value>
+      </item>
+      <item>
+        <label>rodding</label>
+        <value>rodding</value>
+      </item>
+      <item>
+        <label>boudin</label>
+        <value>boudin</value>
+      </item>
+      <item>
+        <label>mullions</label>
+        <value>mullions</value>
+      </item>
+      <item>
+        <label>fold hinge</label>
+        <value>fold_hinge</value>
+      </item>
+      <item>
+        <label>striations</label>
+        <value>striations</value>
+      </item>
+      <item>
+        <label>slickenlines</label>
+        <value>slickenlines</value>
+      </item>
+      <item>
+        <label>slickenfibers</label>
+        <value>slickenfibers</value>
+      </item>
+      <item>
+        <label>mineral streaks</label>
+        <value>mineral_streak</value>
+      </item>
+      <item>
+        <label>vorticity axis</label>
+        <value>vorticity_axis</value>
+      </item>
+      <item>
+        <label>flow/transport direction</label>
+        <value>flow_transport</value>
+      </item>
+      <item>
+        <label>vergence</label>
+        <value>vergence</value>
+      </item>
+      <item>
+        <label>vector</label>
+        <value>vector</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <select1 ref="/linear_orientation/vorticity">
+      <label>Vorticity Type</label>
+      <hint>Clockwise or counterclockwise looking down plunge</hint>
+      <item>
+        <label>clockwise</label>
+        <value>clockwise</value>
+      </item>
+      <item>
+        <label>counterclockwise</label>
+        <value>counterclockwi</value>
+      </item>
+    </select1>
+    <input ref="/linear_orientation/other_feature">
+      <label>Other Linear Feature</label>
+    </input>
+    <input ref="/linear_orientation/defined_by">
+      <label>Lineation Defined by</label>
+    </input>
+    <input ref="/linear_orientation/min_age">
+      <label>Minimum Age of Structure (Ma)</label>
+    </input>
+    <input ref="/linear_orientation/min_age_just">
+      <label>Justification of Minimum Age</label>
+    </input>
+    <input ref="/linear_orientation/max_age">
+      <label>Maximum Age of Structure (Ma)</label>
+    </input>
+    <input ref="/linear_orientation/max_age_just">
+      <label>Justification of Maximum Age</label>
+    </input>
+    <input ref="/linear_orientation/geo_age">
+      <label>Geologic Age of Structure</label>
+    </input>
+    <input appearance="multiline" ref="/linear_orientation/notes">
+      <label>Line Notes</label>
+    </input>
+  </h:body>
+</h:html>

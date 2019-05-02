@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Sample</h:title>
+    <model>
+      <instance>
+        <sample id="sample">
+          <label/>
+          <sample_id_name/>
+          <oriented_sample/>
+          <sample_orientation_notes/>
+          <sample_description/>
+          <material_type/>
+          <other_material_type/>
+          <sample_size/>
+          <main_sampling_purpose/>
+          <other_sampling_purpose/>
+          <inplaceness_of_sample/>
+          <degree_of_weathering/>
+          <sample_notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </sample>
+      </instance>
+      <bind nodeset="/sample/label" required="false()" type="string"/>
+      <bind nodeset="/sample/sample_id_name" required="false()" type="string"/>
+      <bind nodeset="/sample/oriented_sample" required="false()" type="select1"/>
+      <bind nodeset="/sample/sample_orientation_notes" relevant=" /sample/oriented_sample  = 'yes'" required="false()" type="string"/>
+      <bind nodeset="/sample/sample_description" required="false()" type="string"/>
+      <bind nodeset="/sample/material_type" required="false()" type="select1"/>
+      <bind nodeset="/sample/other_material_type" relevant=" /sample/material_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/sample/sample_size" required="false()" type="string"/>
+      <bind nodeset="/sample/main_sampling_purpose" required="false()" type="select1"/>
+      <bind nodeset="/sample/other_sampling_purpose" relevant=" /sample/main_sampling_purpose  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/sample/inplaceness_of_sample" required="false()" type="select1"/>
+      <bind nodeset="/sample/degree_of_weathering" required="false()" type="select1"/>
+      <bind nodeset="/sample/sample_notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/sample/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/sample/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/sample/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/sample/label">
+      <label>Label</label>
+      <hint>If a label is not specified a default label will be given.</hint>
+    </input>
+    <input ref="/sample/sample_id_name">
+      <label>Sample Specific ID/Name</label>
+    </input>
+    <select1 ref="/sample/oriented_sample">
+      <label>Oriented Sample</label>
+      <item>
+        <label>Yes</label>
+        <value>yes</value>
+      </item>
+      <item>
+        <label>No</label>
+        <value>no</value>
+      </item>
+    </select1>
+    <input appearance="multiline" ref="/sample/sample_orientation_notes">
+      <label>Sample Orientation Notes</label>
+    </input>
+    <input ref="/sample/sample_description">
+      <label>Sample Description</label>
+    </input>
+    <select1 ref="/sample/material_type">
+      <label>Material Type</label>
+      <item>
+        <label>intact rock</label>
+        <value>intact_rock</value>
+      </item>
+      <item>
+        <label>fragmented rock</label>
+        <value>fragmented_roc</value>
+      </item>
+      <item>
+        <label>sediment</label>
+        <value>sediment</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/sample/other_material_type">
+      <label>Other Material Type</label>
+    </input>
+    <input ref="/sample/sample_size">
+      <label>Sample Size</label>
+    </input>
+    <select1 ref="/sample/main_sampling_purpose">
+      <label>Main Sampling Purpose</label>
+      <item>
+        <label>fabric / microstructure</label>
+        <value>fabric___micro</value>
+      </item>
+      <item>
+        <label>petrology</label>
+        <value>petrology</value>
+      </item>
+      <item>
+        <label>geochronology</label>
+        <value>geochronology</value>
+      </item>
+      <item>
+        <label>geochemistry</label>
+        <value>geochemistry</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/sample/other_sampling_purpose">
+      <label>Other Sampling Purpose</label>
+    </input>
+    <select1 ref="/sample/inplaceness_of_sample">
+      <label>Inplaceness of Sample</label>
+      <item>
+        <label>5 - definitely in place</label>
+        <value>5___definitely</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>3</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>1 - float</label>
+        <value>1___float</value>
+      </item>
+    </select1>
+    <select1 ref="/sample/degree_of_weathering">
+      <label>Degree of Weathering</label>
+      <item>
+        <label>5 - fresh</label>
+        <value>5___fresh</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>3</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>1 - highly weathered</label>
+        <value>1___highly_wea</value>
+      </item>
+    </select1>
+    <input appearance="multiline" ref="/sample/sample_notes">
+      <label>Sample Notes</label>
+    </input>
+  </h:body>
+</h:html>

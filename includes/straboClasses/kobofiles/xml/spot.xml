@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Spot (not auto-form in Strabo)</h:title>
+    <model>
+      <instance>
+        <spot id="spot">
+          <name/>
+          <latitude_and_longitude/>
+          <altitude/>
+          <rock_unit/>
+          <trace/>
+          <radius_of_spot/>
+          <spot_radius_units/>
+          <notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </spot>
+      </instance>
+      <bind nodeset="/spot/name" required="true()" type="string"/>
+      <bind nodeset="/spot/latitude_and_longitude" required="false()" type="geopoint"/>
+      <bind nodeset="/spot/altitude" required="false()" type="geopoint"/>
+      <bind nodeset="/spot/rock_unit" required="false()" type="string"/>
+      <bind nodeset="/spot/trace" required="false()" type="string"/>
+      <bind nodeset="/spot/radius_of_spot" required="false()" type="int"/>
+      <bind nodeset="/spot/spot_radius_units" required="false()" type="select1"/>
+      <bind nodeset="/spot/notes" readonly="true()" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/spot/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/spot/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/spot/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/spot/name">
+      <label>Spot Name</label>
+    </input>
+    <input ref="/spot/latitude_and_longitude">
+      <label>Latitude &amp; Longitude</label>
+      <hint>GPS coordinates can only be collected when outside.</hint>
+    </input>
+    <input ref="/spot/altitude">
+      <label>Altitude</label>
+      <hint>Height of the position in meters above the ellipsoid of the earth.</hint>
+    </input>
+    <trigger ref="/spot/rock_unit">
+      <label>Rock Unit</label>
+    </trigger>
+    <trigger ref="/spot/trace">
+      <label>Trace</label>
+    </trigger>
+    <input ref="/spot/radius_of_spot">
+      <label>Radius of Spot</label>
+    </input>
+    <select1 ref="/spot/spot_radius_units">
+      <label>Spot Radius Units</label>
+      <item>
+        <label>kilometer</label>
+        <value>kilometer</value>
+      </item>
+      <item>
+        <label>meter</label>
+        <value>meter</value>
+      </item>
+      <item>
+        <label>millimeter</label>
+        <value>millimeter</value>
+      </item>
+      <item>
+        <label>micrometer</label>
+        <value>micrometer</value>
+      </item>
+    </select1>
+    <input ref="/spot/notes">
+      <label>Notes</label>
+    </input>
+  </h:body>
+</h:html>

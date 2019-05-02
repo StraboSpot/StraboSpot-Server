@@ -1,0 +1,46 @@
+
+RewriteEngine on
+
+RewriteRule ^validate/(.*)$ validateuser.php?hash=$1 [L]
+
+RewriteRule ^passwdreset/(.*)$ passwordreset.php?hash=$1 [L]
+
+RewriteRule ^viewdataset/(.*)$ view_dataset.php?id=$1 [L]
+
+RewriteRule ^help/(.*)$ helppage.php?extra=$1 [L]
+
+RewriteRule ^map_warper_check/(.*)$ mwcheck.php?id=$1 [L]
+
+RewriteRule ^strabo_mymaps_check/(.*)$ mymapscheck.php?hash=$1 [L]
+
+RewriteRule ^help helppage.php [L]
+
+RewriteRule ^kobo.json$ kobojson.php [L]
+
+RewriteRule ^mwproxy/(.*)$ mapwarperproxy.php?data=$1 [L]
+
+RewriteRule ^pi/(.*)$ publicimage.php?id=$1 [L]
+
+RewriteRule ^randomdatasets.json$ randomdatasetsjson.php [L]
+RewriteRule ^searchdatasets.json$ searchdatasetsjson.php [L]
+RewriteRule ^searchspots.json$ searchspotsjson.php [L]
+
+RewriteRule ^includes/mapsearch/data_model.js$ jsdatamodel.php [L]
+
+RewriteRule ^search/includes/data_model.js$ jsdatamodel.php [L]
+
+RewriteRule ^mapimage/(.*).jpg$ publicimage.php?id=$1 [L]
+
+RewriteRule ^stereonetoutput/(.*)$ stereonetout.php?id=$1 [L]
+RewriteRule ^stereonet/(.*)$ stereonetout.php?id=$1 [L]
+RewriteRule ^labbook/(.*)$ exportlabbook.php?id=$1 [L]
+RewriteRule ^fieldbook/(.*)$ exportfieldbook.php?id=$1 [L]
+RewriteRule ^shapefile/(.*)$ exportshapefile?id=$1 [L]
+RewriteRule ^kml/(.*)$ exportkml?id=$1 [L]
+RewriteRule ^xls/(.*)$ datasetxls?id=$1 [L]
+
+RewriteRule ^dl/(.*)/(.*)$ searchdownload.php?type=$1&dsids=$2 [L]
+
+RewriteRule ^geimage/(.*)$ google_earth_image.php?id=$1 [L]
+
+RewriteRule ^debugproject/(.*)$ debugprojectscript.php?project_id=$1 [L]

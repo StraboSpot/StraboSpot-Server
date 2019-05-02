@@ -1,0 +1,1326 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Measurements and Observations (point)</h:title>
+    <model>
+      <instance>
+        <measurements_and_observations id="measurements_and_observations">
+          <measured_plane/>
+          <strike/>
+          <dip/>
+          <planar_surface_quality>accurate</planar_surface_quality>
+          <planar_measurement_quality>3</planar_measurement_quality>
+          <planar_feature_type/>
+          <contact_type/>
+          <other_contact_type/>
+          <depositional_contact_type/>
+          <other_depositional_type/>
+          <unconformity_type/>
+          <intruding_feature/>
+          <metamorphic_contact_type/>
+          <ohter_metamorphic_contact/>
+          <marker_layer_details>No details specified.</marker_layer_details>
+          <foliation_type>not_specified</foliation_type>
+          <other_foliation_type/>
+          <solid_state_foliation_type>not_specified</solid_state_foliation_type>
+          <other_solid_state_foliation_an/>
+          <tectonite_label>not_specified</tectonite_label>
+          <gneissic_band_spacing_cm/>
+          <average_grain_size_mm_in_gne/>
+          <cleavage_type>not_specified</cleavage_type>
+          <other_cleavage/>
+          <axial_planar_cleavage/>
+          <vein_mineral_fill/>
+          <other_vein_mineral/>
+          <shear_fracture_type/>
+          <type_of_fault_or_shear_zone>not_specified</type_of_fault_or_shear_zone>
+          <strike_slip_movement>not_specified</strike_slip_movement>
+          <dip_slip_movement>not_specified</dip_slip_movement>
+          <oblique_movement>not_specified</oblique_movement>
+          <movement_justification>not_specified</movement_justification>
+          <fault_offset_markers_0/>
+          <fault_offset_markers_1/>
+          <shear_zone_offset_markers>not_specified</shear_zone_offset_markers>
+          <offset_marker_detail>not specified</offset_marker_detail>
+          <offset_m/>
+          <fault_directional_indicators_0/>
+          <fault_directional_indicators_1/>
+          <two_shear_zone_directional_ind>not_specified</two_shear_zone_directional_ind>
+          <other_directional_indicator/>
+          <juxtaposes_rocks>not_specified</juxtaposes_rocks>
+          <against_rocks>not_specified</against_rocks>
+          <thickness_of_fault_or_shear_zo/>
+          <minimum_age_of_deformation_ma/>
+          <maximum_age_of_deformation_ma/>
+          <specific_foliation_element>not_specified</specific_foliation_element>
+          <other_planar_feature/>
+          <plane_facing>upright</plane_facing>
+          <facing_direction>u</facing_direction>
+          <measured_line/>
+          <trend/>
+          <plunge/>
+          <Rake/>
+          <rake_calculated/>
+          <linear_orientation_quality>accurate</linear_orientation_quality>
+          <linear_measurement_quality>3</linear_measurement_quality>
+          <linear_feature_type/>
+          <other_linear_feature/>
+          <fault_lineations/>
+          <other_fault_lineation/>
+          <solid_state_lineations/>
+          <other_solid_state_lineation/>
+          <pencil_cleavage/>
+          <intersection_lineation_descrip/>
+          <crenulation/>
+          <approx_amplitude/>
+          <dominant_fold_geometry/>
+          <dominant_fold_shape/>
+          <dominant_fold_attitude/>
+          <tightness_interlimb_angle/>
+          <vergence/>
+          <vector_magnitude_meters/>
+          <structure_notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </measurements_and_observations>
+      </instance>
+      <bind nodeset="/measurements_and_observations/measured_plane" required="false()" type="string"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 360" jr:constraintMsg="Strike must be between 0-360." nodeset="/measurements_and_observations/strike" relevant=" /measurements_and_observations/measured_plane  != ''" required="true()" type="int"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 90" jr:constraintMsg="Dip must be between 0-90." nodeset="/measurements_and_observations/dip" relevant=" /measurements_and_observations/measured_plane  != ''" required="true()" type="int"/>
+      <bind nodeset="/measurements_and_observations/planar_surface_quality" relevant=" /measurements_and_observations/strike  &gt; 0" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/planar_measurement_quality" relevant=" /measurements_and_observations/strike  &gt; 0" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/planar_feature_type" relevant=" /measurements_and_observations/strike  &gt; 0" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/contact_type" relevant=" /measurements_and_observations/planar_feature_type  = 'contact'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_contact_type" relevant=" /measurements_and_observations/contact_type  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/depositional_contact_type" relevant=" /measurements_and_observations/contact_type  = 'depositional'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_depositional_type" relevant=" /measurements_and_observations/depositional_contact_type  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/unconformity_type" relevant=" /measurements_and_observations/depositional_contact_type  = 'unconformity'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/intruding_feature" relevant=" /measurements_and_observations/contact_type  = 'intrusive'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/metamorphic_contact_type" relevant=" /measurements_and_observations/contact_type  = 'metamorphic'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/ohter_metamorphic_contact" readonly="true()" relevant=" /measurements_and_observations/metamorphic_contact_type  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/marker_layer_details" readonly="true()" relevant=" /measurements_and_observations/contact_type  = 'marker_layer'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/foliation_type" relevant=" /measurements_and_observations/planar_feature_type  = 'foliation'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_foliation_type" relevant=" /measurements_and_observations/foliation_type  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/solid_state_foliation_type" relevant=" /measurements_and_observations/foliation_type  = 'solid_state'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_solid_state_foliation_an" relevant=" /measurements_and_observations/solid_state_foliation_type  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/tectonite_label" relevant=" /measurements_and_observations/solid_state_foliation_type  = 'cataclastic' or  /measurements_and_observations/solid_state_foliation_type  = 'mylonitic' or  /measurements_and_observations/solid_state_foliation_type  = 'schistosity' or  /measurements_and_observations/solid_state_foliation_type  = 'gneissic_banding' or  /measurements_and_observations/solid_state_foliation_type  = 'strain_marker'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/gneissic_band_spacing_cm" relevant=" /measurements_and_observations/solid_state_foliation_type  = 'gneissic_banding'" required="false()" type="decimal"/>
+      <bind nodeset="/measurements_and_observations/average_grain_size_mm_in_gne" relevant=" /measurements_and_observations/solid_state_foliation_type  = 'gneissic_banding'" required="false()" type="int"/>
+      <bind nodeset="/measurements_and_observations/cleavage_type" relevant=" /measurements_and_observations/foliation_type  = 'cleavage'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_cleavage" relevant=" /measurements_and_observations/cleavage_type  = 'other_new'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/axial_planar_cleavage" relevant=" /measurements_and_observations/planar_feature_type  = 'axial_planar_s'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/vein_mineral_fill" relevant=" /measurements_and_observations/planar_feature_type  = 'joint'" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_vein_mineral" relevant=" /measurements_and_observations/vein_mineral_fill  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/shear_fracture_type" relevant=" /measurements_and_observations/planar_feature_type  = 'shear_fracture'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/type_of_fault_or_shear_zone" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' or  /measurements_and_observations/planar_feature_type  = 'shear_zone' or  /measurements_and_observations/planar_feature_type  = 'shear_fracture'" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/strike_slip_movement" relevant=" /measurements_and_observations/type_of_fault_or_shear_zone  = 'strike_slip'" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/dip_slip_movement" relevant=" /measurements_and_observations/type_of_fault_or_shear_zone  = 'dip_slip'" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/oblique_movement" relevant=" /measurements_and_observations/type_of_fault_or_shear_zone  = 'oblique'" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/movement_justification" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' or  /measurements_and_observations/planar_feature_type  = 'shear_fracture' or  /measurements_and_observations/planar_feature_type  = 'shear_zone'" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/fault_offset_markers_0" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' and  /measurements_and_observations/movement_justification  = 'offset'" required="true()" type="select"/>
+      <bind nodeset="/measurements_and_observations/fault_offset_markers_1" relevant=" /measurements_and_observations/planar_feature_type  = 'shear_fracture' and  /measurements_and_observations/movement_justification  = 'offset'" required="true()" type="select"/>
+      <bind nodeset="/measurements_and_observations/shear_zone_offset_markers" relevant=" /measurements_and_observations/planar_feature_type  = 'shear_zone' and  /measurements_and_observations/movement_justification  = 'offset'" required="false()" type="select"/>
+      <bind nodeset="/measurements_and_observations/offset_marker_detail" relevant=" /measurements_and_observations/movement_justification  = 'offset'" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/offset_m" relevant=" /measurements_and_observations/movement_justification  = 'offset'" required="false()" type="decimal"/>
+      <bind nodeset="/measurements_and_observations/fault_directional_indicators_0" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' and  /measurements_and_observations/movement_justification  = 'directional_indicator'" required="true()" type="select"/>
+      <bind nodeset="/measurements_and_observations/fault_directional_indicators_1" relevant=" /measurements_and_observations/planar_feature_type  = 'shear_fracture' and  /measurements_and_observations/movement_justification  = 'directional_indicator'" required="true()" type="select"/>
+      <bind nodeset="/measurements_and_observations/two_shear_zone_directional_ind" relevant=" /measurements_and_observations/planar_feature_type  = 'shear_zone' and  /measurements_and_observations/movement_justification  = 'directional_indicator'" required="true()" type="select"/>
+      <bind nodeset="/measurements_and_observations/other_directional_indicator" relevant="selected( /measurements_and_observations/fault_directional_indicators_0 , 'other') or selected( /measurements_and_observations/fault_directional_indicators_1 , 'other') or selected( /measurements_and_observations/two_shear_zone_directional_ind , 'other')" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/juxtaposes_rocks" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' or  /measurements_and_observations/planar_feature_type  = 'shear_zone'" required="false()" type="select"/>
+      <bind nodeset="/measurements_and_observations/against_rocks" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' or  /measurements_and_observations/planar_feature_type  = 'shear_zone'" required="false()" type="select"/>
+      <bind nodeset="/measurements_and_observations/thickness_of_fault_or_shear_zo" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' or  /measurements_and_observations/planar_feature_type  = 'shear_fracture' or  /measurements_and_observations/planar_feature_type  = 'shear_zone'" required="false()" type="decimal"/>
+      <bind nodeset="/measurements_and_observations/minimum_age_of_deformation_ma" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' or  /measurements_and_observations/planar_feature_type  = 'shear_fracture' or  /measurements_and_observations/planar_feature_type  = 'shear_zone'" required="false()" type="decimal"/>
+      <bind nodeset="/measurements_and_observations/maximum_age_of_deformation_ma" relevant=" /measurements_and_observations/planar_feature_type  = 'fault_plane' or  /measurements_and_observations/planar_feature_type  = 'shear_fracture' or  /measurements_and_observations/planar_feature_type  = 'shear_zone'" required="false()" type="decimal"/>
+      <bind nodeset="/measurements_and_observations/specific_foliation_element" relevant=" /measurements_and_observations/foliation_type  = 'solid_state'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_planar_feature" relevant=" /measurements_and_observations/planar_feature_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/plane_facing" relevant=" /measurements_and_observations/planar_feature_type  = 'bedding' or  /measurements_and_observations/planar_feature_type  = 'contact'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/facing_direction" relevant=" /measurements_and_observations/strike  &gt; -1 and  /measurements_and_observations/plane_facing  = 'vertical'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/measured_line" required="false()" type="string"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 360" jr:constraintMsg="Trend must be between 0-360." nodeset="/measurements_and_observations/trend" relevant=" /measurements_and_observations/measured_line  != ''" required="true()" type="int"/>
+      <bind constraint=". &gt;= 0 and . &lt;= 90" jr:constraintMsg="Plunge must be between 0-90." nodeset="/measurements_and_observations/plunge" relevant=" /measurements_and_observations/measured_line  != ''" required="true()" type="int"/>
+      <bind nodeset="/measurements_and_observations/Rake" relevant=" /measurements_and_observations/measured_line  != ''" required="false()" type="int"/>
+      <bind nodeset="/measurements_and_observations/rake_calculated" relevant=" /measurements_and_observations/measured_line  != ''" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/linear_orientation_quality" relevant=" /measurements_and_observations/measured_line  != ''" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/linear_measurement_quality" relevant=" /measurements_and_observations/measured_line  != ''" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/linear_feature_type" relevant=" /measurements_and_observations/measured_line  != ''" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_linear_feature" relevant=" /measurements_and_observations/linear_feature_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/fault_lineations" relevant=" /measurements_and_observations/linear_feature_type  = 'fault'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_fault_lineation" relevant=" /measurements_and_observations/fault_lineations  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/solid_state_lineations" relevant=" /measurements_and_observations/linear_feature_type  = 'solid_state'" required="true()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/other_solid_state_lineation" relevant=" /measurements_and_observations/solid_state_lineations  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/pencil_cleavage" relevant=" /measurements_and_observations/linear_feature_type  = 'intersection'" required="true()" type="string"/>
+      <bind nodeset="/measurements_and_observations/intersection_lineation_descrip" relevant=" /measurements_and_observations/linear_feature_type  = 'intersection'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/crenulation" relevant=" /measurements_and_observations/linear_feature_type  = 'fold_hinge'" required="false()" type="string"/>
+      <bind nodeset="/measurements_and_observations/approx_amplitude" relevant=" /measurements_and_observations/linear_feature_type  = 'fold_hinge'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/dominant_fold_geometry" relevant=" /measurements_and_observations/linear_feature_type  = 'fold_hinge'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/dominant_fold_shape" relevant=" /measurements_and_observations/linear_feature_type  = 'fold_hinge'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/dominant_fold_attitude" relevant=" /measurements_and_observations/linear_feature_type  = 'fold_hinge'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/tightness_interlimb_angle" relevant=" /measurements_and_observations/linear_feature_type  = 'fold_hinge'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/vergence" relevant=" /measurements_and_observations/linear_feature_type  = 'fold_hinge'" required="false()" type="select1"/>
+      <bind nodeset="/measurements_and_observations/vector_magnitude_meters" relevant=" /measurements_and_observations/linear_feature_type  = 'vector'" required="false()" type="decimal"/>
+      <bind nodeset="/measurements_and_observations/structure_notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/measurements_and_observations/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/measurements_and_observations/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/measurements_and_observations/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <trigger ref="/measurements_and_observations/measured_plane">
+      <label>MEASURED PLANE?</label>
+    </trigger>
+    <input ref="/measurements_and_observations/strike">
+      <label>Strike</label>
+      <hint>Azimuth in degrees</hint>
+    </input>
+    <input ref="/measurements_and_observations/dip">
+      <label>Dip</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/planar_surface_quality">
+      <label>Planar Surface Quality</label>
+      <hint>Quality of the exposed plane? Irregular means the feature is curviplanar.</hint>
+      <item>
+        <label>accurate</label>
+        <value>accurate</value>
+      </item>
+      <item>
+        <label>approximate</label>
+        <value>approximate</value>
+      </item>
+      <item>
+        <label>irregular</label>
+        <value>irregular</value>
+      </item>
+    </select1>
+    <select1 appearance="likert" ref="/measurements_and_observations/planar_measurement_quality">
+      <label>Planar Measurement Quality</label>
+      <hint>How well was this plane measured?</hint>
+      <item>
+        <label>1</label>
+        <value>1</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>3</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>5</label>
+        <value>5</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/planar_feature_type">
+      <label>Planar Feature Type</label>
+      <item>
+        <label>bedding</label>
+        <value>bedding</value>
+      </item>
+      <item>
+        <label>contact</label>
+        <value>contact</value>
+      </item>
+      <item>
+        <label>foliation</label>
+        <value>foliation</value>
+      </item>
+      <item>
+        <label>axial planar surface</label>
+        <value>axial_planar_s</value>
+      </item>
+      <item>
+        <label>fracture</label>
+        <value>fracture</value>
+      </item>
+      <item>
+        <label>joint</label>
+        <value>joint</value>
+      </item>
+      <item>
+        <label>fault plane</label>
+        <value>fault_plane</value>
+      </item>
+      <item>
+        <label>shear fracture</label>
+        <value>shear_fracture</value>
+      </item>
+      <item>
+        <label>shear zone</label>
+        <value>shear_zone</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/contact_type">
+      <label>Contact Type</label>
+      <item>
+        <label>depositional</label>
+        <value>depositional</value>
+      </item>
+      <item>
+        <label>intrusive</label>
+        <value>intrusive</value>
+      </item>
+      <item>
+        <label>metamorphic</label>
+        <value>metamorphic</value>
+      </item>
+      <item>
+        <label>marker layer</label>
+        <value>marker_layer</value>
+      </item>
+      <item>
+        <label>edge of mapping</label>
+        <value>edge_of_mappin</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_contact_type">
+      <label>Other Contact Type</label>
+    </input>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/depositional_contact_type">
+      <label>Depositional Contact Type</label>
+      <item>
+        <label>stratigraphic</label>
+        <value>stratigraphic</value>
+      </item>
+      <item>
+        <label>alluvial</label>
+        <value>alluvial</value>
+      </item>
+      <item>
+        <label>unconformity</label>
+        <value>unconformity</value>
+      </item>
+      <item>
+        <label>volcanic</label>
+        <value>volcanic</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_depositional_type">
+      <label>Other Depositional Type</label>
+    </input>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/unconformity_type">
+      <label>Unconformity Type</label>
+      <item>
+        <label>angular unconformity</label>
+        <value>angular_unconf</value>
+      </item>
+      <item>
+        <label>nonconformity</label>
+        <value>nonconformity</value>
+      </item>
+      <item>
+        <label>disconformity</label>
+        <value>disconformity</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/intruding_feature">
+      <label>Intruding Feature</label>
+      <hint>What type of feature is intruding?</hint>
+      <item>
+        <label>dike (cuts fabric)</label>
+        <value>dike</value>
+      </item>
+      <item>
+        <label>sill (conforms to fabric)</label>
+        <value>sill</value>
+      </item>
+      <item>
+        <label>pluton</label>
+        <value>pluton</value>
+      </item>
+      <item>
+        <label>migmatite</label>
+        <value>migmatite</value>
+      </item>
+      <item>
+        <label>injectite</label>
+        <value>injectite</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/metamorphic_contact_type">
+      <label>Metamorphic Contact Type</label>
+      <item>
+        <label>between different metamorphic rocks</label>
+        <value>btwn_diff_meta</value>
+      </item>
+      <item>
+        <label>isograd</label>
+        <value>isograd</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/ohter_metamorphic_contact">
+      <label>Other Metamorphic Contact</label>
+    </input>
+    <input ref="/measurements_and_observations/marker_layer_details">
+      <label>Marker Layer Details</label>
+      <hint>Notes about the marker layer</hint>
+    </input>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/foliation_type">
+      <label>Foliation Type</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>solid-state</label>
+        <value>solid_state</value>
+      </item>
+      <item>
+        <label>magmatic</label>
+        <value>magmatic</value>
+      </item>
+      <item>
+        <label>migmatitic</label>
+        <value>migmatitic</value>
+      </item>
+      <item>
+        <label>cleavage</label>
+        <value>cleavage</value>
+      </item>
+      <item>
+        <label>lava flow</label>
+        <value>lava_flow</value>
+      </item>
+      <item>
+        <label>compaction</label>
+        <value>compaction</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_foliation_type">
+      <label>Other Foliation Type</label>
+    </input>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/solid_state_foliation_type">
+      <label>Solid-state Foliation Type</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>cataclastic</label>
+        <value>cataclastic</value>
+      </item>
+      <item>
+        <label>mylonitic</label>
+        <value>mylonitic</value>
+      </item>
+      <item>
+        <label>schistosity</label>
+        <value>schistosity</value>
+      </item>
+      <item>
+        <label>lenticular</label>
+        <value>lenticular</value>
+      </item>
+      <item>
+        <label>gneissic banding</label>
+        <value>gneissic_banding</value>
+      </item>
+      <item>
+        <label>strain markers (e.g., flattened pebbles)</label>
+        <value>strain_marker</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_solid_state_foliation_an">
+      <label>Other Solid-State Foliation and Description</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/tectonite_label">
+      <label>Tectonite Label</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>S tectonite</label>
+        <value>s_tectonite</value>
+      </item>
+      <item>
+        <label>S-L tectonite</label>
+        <value>s_l_tectonite</value>
+      </item>
+      <item>
+        <label>L-S tectonite</label>
+        <value>l_s_tectonite</value>
+      </item>
+      <item>
+        <label>L tectonite</label>
+        <value>l_tectonite</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/gneissic_band_spacing_cm">
+      <label>Gneissic Band Spacing (cm)</label>
+    </input>
+    <input ref="/measurements_and_observations/average_grain_size_mm_in_gne">
+      <label>Average Grain Size (mm) in Gneissic Bands</label>
+    </input>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/cleavage_type">
+      <label>Cleavage Type</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>slatey</label>
+        <value>slatey</value>
+      </item>
+      <item>
+        <label>phyllitic</label>
+        <value>phyllitic</value>
+      </item>
+      <item>
+        <label>crenulation</label>
+        <value>crenulation</value>
+      </item>
+      <item>
+        <label>phacoidal (lensoid)</label>
+        <value>phacoidal</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other_new</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_cleavage">
+      <label>Other Cleavage</label>
+    </input>
+    <trigger ref="/measurements_and_observations/axial_planar_cleavage">
+      <label>Axial Planar Cleavage?</label>
+    </trigger>
+    <select1 appearance="likert" ref="/measurements_and_observations/vein_mineral_fill">
+      <label>Vein Mineral Fill</label>
+      <item>
+        <label>quartz</label>
+        <value>quartz</value>
+      </item>
+      <item>
+        <label>calcite</label>
+        <value>calcite</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_vein_mineral">
+      <label>Other Vein Mineral</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/shear_fracture_type">
+      <label>Shear Fracture Type</label>
+      <item>
+        <label>R</label>
+        <value>r</value>
+      </item>
+      <item>
+        <label>R'</label>
+        <value>r_1</value>
+      </item>
+      <item>
+        <label>P</label>
+        <value>p</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/type_of_fault_or_shear_zone">
+      <label>Type of Fault or Shear Zone</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>strike-slip</label>
+        <value>strike_slip</value>
+      </item>
+      <item>
+        <label>dip-slip</label>
+        <value>dip_slip</value>
+      </item>
+      <item>
+        <label>oblique-slip</label>
+        <value>oblique</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/strike_slip_movement">
+      <label>Strike-Slip Movement</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>dextral</label>
+        <value>dextral</value>
+      </item>
+      <item>
+        <label>sinistral</label>
+        <value>sinistral</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/dip_slip_movement">
+      <label>Dip-Slip Movement</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>reverse</label>
+        <value>reverse</value>
+      </item>
+      <item>
+        <label>normal</label>
+        <value>normal</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/oblique_movement">
+      <label>Oblique Movement</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>dextral reverse</label>
+        <value>dextral_reverse</value>
+      </item>
+      <item>
+        <label>dextral normal</label>
+        <value>dextral_normal</value>
+      </item>
+      <item>
+        <label>sinistral reverse</label>
+        <value>sinistral_reverse</value>
+      </item>
+      <item>
+        <label>sinistral normal</label>
+        <value>sinistral_normal</value>
+      </item>
+      <item>
+        <label>dextral</label>
+        <value>dextral</value>
+      </item>
+      <item>
+        <label>sinistral</label>
+        <value>sinistral</value>
+      </item>
+      <item>
+        <label>reverse</label>
+        <value>reverse</value>
+      </item>
+      <item>
+        <label>normal</label>
+        <value>normal</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/movement_justification">
+      <label>Movement Justification</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>offset marker</label>
+        <value>offset</value>
+      </item>
+      <item>
+        <label>directional indicators</label>
+        <value>directional_indicator</value>
+      </item>
+    </select1>
+    <select appearance="horizontal" ref="/measurements_and_observations/fault_offset_markers_0">
+      <label>Fault Offset Markers</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>bedding</label>
+        <value>bedding</value>
+      </item>
+      <item>
+        <label>intrusion</label>
+        <value>intrusion</value>
+      </item>
+      <item>
+        <label>metamorphic foliation</label>
+        <value>metamorphic_fo</value>
+      </item>
+      <item>
+        <label>compositional banding</label>
+        <value>compositional_</value>
+      </item>
+      <item>
+        <label>geomorphic feature</label>
+        <value>geomorphic_fea</value>
+      </item>
+    </select>
+    <select appearance="horizontal" ref="/measurements_and_observations/fault_offset_markers_1">
+      <label>Fault Offset Markers</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>bedding</label>
+        <value>bedding</value>
+      </item>
+      <item>
+        <label>intrusion</label>
+        <value>intrusion</value>
+      </item>
+      <item>
+        <label>metamorphic foliation</label>
+        <value>metamorphic_fo</value>
+      </item>
+      <item>
+        <label>compositional banding</label>
+        <value>compositional_</value>
+      </item>
+      <item>
+        <label>geomorphic feature</label>
+        <value>geomorphic_fea</value>
+      </item>
+    </select>
+    <select appearance="horizontal" ref="/measurements_and_observations/shear_zone_offset_markers">
+      <label>Shear Zone Offset Markers</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>bedding</label>
+        <value>bedding</value>
+      </item>
+      <item>
+        <label>intrusion</label>
+        <value>intrusion</value>
+      </item>
+      <item>
+        <label>metamorphic foliation</label>
+        <value>metamorphic_foliation</value>
+      </item>
+      <item>
+        <label>compositional banding</label>
+        <value>compositional_banding</value>
+      </item>
+      <item>
+        <label>other marker</label>
+        <value>other_marker</value>
+      </item>
+    </select>
+    <input appearance="multiline" ref="/measurements_and_observations/offset_marker_detail">
+      <label>Offset Marker Detail</label>
+      <hint>Describe marker or piercing point details</hint>
+    </input>
+    <input ref="/measurements_and_observations/offset_m">
+      <label>Offset (m)</label>
+    </input>
+    <select ref="/measurements_and_observations/fault_directional_indicators_0">
+      <label>Fault Directional Indicators</label>
+      <item>
+        <label>Riedel shear</label>
+        <value>riedel_shear</value>
+      </item>
+      <item>
+        <label>gouge fill</label>
+        <value>gouge_fill</value>
+      </item>
+      <item>
+        <label>crescentic fractures</label>
+        <value>crescentic_fra</value>
+      </item>
+      <item>
+        <label>slickenfibers</label>
+        <value>slickenfibers</value>
+      </item>
+      <item>
+        <label>oblique gouge foliation</label>
+        <value>oblique_gouge_</value>
+      </item>
+      <item>
+        <label>drag folds</label>
+        <value>drag_folds</value>
+      </item>
+      <item>
+        <label>rotated clasts</label>
+        <value>rotated_clasts</value>
+      </item>
+      <item>
+        <label>domino texture</label>
+        <value>domino_texture</value>
+      </item>
+      <item>
+        <label>tension gashes</label>
+        <value>tension_gashes</value>
+      </item>
+      <item>
+        <label>asymmetric folds</label>
+        <value>asymmetric_fol</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select>
+    <select ref="/measurements_and_observations/fault_directional_indicators_1">
+      <label>Fault Directional Indicators</label>
+      <item>
+        <label>Riedel shear</label>
+        <value>riedel_shear</value>
+      </item>
+      <item>
+        <label>gouge fill</label>
+        <value>gouge_fill</value>
+      </item>
+      <item>
+        <label>crescentic fractures</label>
+        <value>crescentic_fra</value>
+      </item>
+      <item>
+        <label>slickenfibers</label>
+        <value>slickenfibers</value>
+      </item>
+      <item>
+        <label>oblique gouge foliation</label>
+        <value>oblique_gouge_</value>
+      </item>
+      <item>
+        <label>drag folds</label>
+        <value>drag_folds</value>
+      </item>
+      <item>
+        <label>rotated clasts</label>
+        <value>rotated_clasts</value>
+      </item>
+      <item>
+        <label>domino texture</label>
+        <value>domino_texture</value>
+      </item>
+      <item>
+        <label>tension gashes</label>
+        <value>tension_gashes</value>
+      </item>
+      <item>
+        <label>asymmetric folds</label>
+        <value>asymmetric_fol</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select>
+    <select appearance="horizontal" ref="/measurements_and_observations/two_shear_zone_directional_ind">
+      <label>Two Shear Zone Directional Indicators</label>
+      <item>
+        <label>oblique foliation</label>
+        <value>oblique_foliation</value>
+      </item>
+      <item>
+        <label>drag folds</label>
+        <value>drag_folds</value>
+      </item>
+      <item>
+        <label>asymmetric folds</label>
+        <value>asymmetric_folds</value>
+      </item>
+      <item>
+        <label>domino texture</label>
+        <value>domino_clasts</value>
+      </item>
+      <item>
+        <label>rotated clasts</label>
+        <value>rotated_clasts</value>
+      </item>
+      <item>
+        <label>rotated porphyroblasts</label>
+        <value>rotated_porphyroblasts</value>
+      </item>
+      <item>
+        <label>delta porphyroclasts</label>
+        <value>delta_porphyroclasts</value>
+      </item>
+      <item>
+        <label>S-C fabric</label>
+        <value>s_c_fabric</value>
+      </item>
+      <item>
+        <label>S-C' fabric</label>
+        <value>s_c__fabric</value>
+      </item>
+      <item>
+        <label>C-C' fabric</label>
+        <value>c_c__fabric</value>
+      </item>
+      <item>
+        <label>mica fish</label>
+        <value>mica_fish</value>
+      </item>
+      <item>
+        <label>boudinage</label>
+        <value>boudinage</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select>
+    <input ref="/measurements_and_observations/other_directional_indicator">
+      <label>Other Directional Indicator</label>
+    </input>
+    <select appearance="horizontal" ref="/measurements_and_observations/juxtaposes_rocks">
+      <label>Juxtaposes __________ rocks....</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>This is a list of rock units / descriptions user has made</label>
+        <value>this_is_a_list</value>
+      </item>
+      <item>
+        <label>More in the list of rock units / descriptions user has made</label>
+        <value>more_in_the_li</value>
+      </item>
+    </select>
+    <select appearance="horizontal" ref="/measurements_and_observations/against_rocks">
+      <label>... against ________ rocks.</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>This is a list of rock units / descriptions user has made</label>
+        <value>this_is_a_list</value>
+      </item>
+      <item>
+        <label>More in the list of rock units / descriptions user has made</label>
+        <value>more_in_the_li</value>
+      </item>
+    </select>
+    <input ref="/measurements_and_observations/thickness_of_fault_or_shear_zo">
+      <label>Thickness of Fault or Shear Zone (m)</label>
+      <hint>in meters</hint>
+    </input>
+    <input ref="/measurements_and_observations/minimum_age_of_deformation_ma">
+      <label>Minimum Age of Deformation (Ma)</label>
+    </input>
+    <input ref="/measurements_and_observations/maximum_age_of_deformation_ma">
+      <label>Maximum Age of Deformation (Ma)</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/specific_foliation_element">
+      <label>Specific Foliation Element being Measured</label>
+      <item>
+        <label>not specified</label>
+        <value>not_specified</value>
+      </item>
+      <item>
+        <label>S</label>
+        <value>s</value>
+      </item>
+      <item>
+        <label>C</label>
+        <value>c</value>
+      </item>
+      <item>
+        <label>C'</label>
+        <value>c_1</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_planar_feature">
+      <label>Other Planar Feature</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/plane_facing">
+      <label>Plane Facing</label>
+      <item>
+        <label>upright</label>
+        <value>upright</value>
+      </item>
+      <item>
+        <label>overturned</label>
+        <value>overturned</value>
+      </item>
+      <item>
+        <label>vertical</label>
+        <value>vertical</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/facing_direction">
+      <label>Facing Direction</label>
+    </input>
+    <trigger ref="/measurements_and_observations/measured_line">
+      <label>MEASURED LINE?</label>
+    </trigger>
+    <input ref="/measurements_and_observations/trend">
+      <label>Trend</label>
+      <hint>Azimuth in degrees</hint>
+    </input>
+    <input ref="/measurements_and_observations/plunge">
+      <label>Plunge</label>
+    </input>
+    <input ref="/measurements_and_observations/Rake">
+      <label>Rake</label>
+      <hint>angle from strike on plane (0-180)?</hint>
+    </input>
+    <trigger ref="/measurements_and_observations/rake_calculated">
+      <label>Rake Calculated?</label>
+      <hint>Was the rake calculated, instead of measured?</hint>
+    </trigger>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/linear_orientation_quality">
+      <label>Linear Orientation Quality</label>
+      <hint>How accurate is the measurement? Irregular = curviplanar.</hint>
+      <item>
+        <label>accurate</label>
+        <value>accurate</value>
+      </item>
+      <item>
+        <label>approximate</label>
+        <value>approximate</value>
+      </item>
+      <item>
+        <label>irregular</label>
+        <value>irregular</value>
+      </item>
+    </select1>
+    <select1 appearance="likert" ref="/measurements_and_observations/linear_measurement_quality">
+      <label>Linear Measurement Quality</label>
+      <item>
+        <label>1</label>
+        <value>1</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>3</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>5</label>
+        <value>5</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/linear_feature_type">
+      <label>Linear Feature Type</label>
+      <item>
+        <label>fault</label>
+        <value>fault</value>
+      </item>
+      <item>
+        <label>solid-state</label>
+        <value>solid_state</value>
+      </item>
+      <item>
+        <label>fold hinge</label>
+        <value>fold_hinge</value>
+      </item>
+      <item>
+        <label>intersection</label>
+        <value>intersection</value>
+      </item>
+      <item>
+        <label>flow</label>
+        <value>flow</value>
+      </item>
+      <item>
+        <label>vector</label>
+        <value>vector</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_linear_feature">
+      <label>Other Linear Feature</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/fault_lineations">
+      <label>Fault Lineations</label>
+      <item>
+        <label>striations</label>
+        <value>striations</value>
+      </item>
+      <item>
+        <label>mullions</label>
+        <value>mullions</value>
+      </item>
+      <item>
+        <label>slickenfibers</label>
+        <value>slickenfibers</value>
+      </item>
+      <item>
+        <label>mineral streaks</label>
+        <value>mineral_streak</value>
+      </item>
+      <item>
+        <label>asymmetric folds</label>
+        <value>assymetric_fol</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_fault_lineation">
+      <label>Other Fault Lineation</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/solid_state_lineations">
+      <label>Solid-State Lineation</label>
+      <item>
+        <label>stretching</label>
+        <value>stretching</value>
+      </item>
+      <item>
+        <label>rodding</label>
+        <value>rodding</value>
+      </item>
+      <item>
+        <label>boudin</label>
+        <value>boudin</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/other_solid_state_lineation">
+      <label>Other Solid-State Lineation</label>
+    </input>
+    <trigger ref="/measurements_and_observations/pencil_cleavage">
+      <label>Pencil Cleavage?</label>
+    </trigger>
+    <input ref="/measurements_and_observations/intersection_lineation_descrip">
+      <label>Intersection Lineation Description</label>
+    </input>
+    <trigger ref="/measurements_and_observations/crenulation">
+      <label>Crenulation?</label>
+    </trigger>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/approx_amplitude">
+      <label>Approximate Amplitude Scale of Related Folding</label>
+      <item>
+        <label>centimeter</label>
+        <value>centimeter_sca</value>
+      </item>
+      <item>
+        <label>meter</label>
+        <value>meter_scale</value>
+      </item>
+      <item>
+        <label>kilometer</label>
+        <value>kilometer_scal</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/dominant_fold_geometry">
+      <label>Dominant Fold Geometry</label>
+      <hint>What is the shape of the fold when looking down-plunge?</hint>
+      <item>
+        <label>syncline</label>
+        <value>syncline</value>
+      </item>
+      <item>
+        <label>anticline</label>
+        <value>anticline</value>
+      </item>
+      <item>
+        <label>monocline</label>
+        <value>monocline</value>
+      </item>
+      <item>
+        <label>synform</label>
+        <value>synform</value>
+      </item>
+      <item>
+        <label>antiform</label>
+        <value>antiform</value>
+      </item>
+      <item>
+        <label>s-fold</label>
+        <value>s_fold</value>
+      </item>
+      <item>
+        <label>z-fold</label>
+        <value>z_fold</value>
+      </item>
+      <item>
+        <label>m-fold</label>
+        <value>m_fold</value>
+      </item>
+      <item>
+        <label>sheath</label>
+        <value>sheath</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/dominant_fold_shape">
+      <label>Dominant Fold Shape</label>
+      <item>
+        <label>chevron</label>
+        <value>chevron</value>
+      </item>
+      <item>
+        <label>cuspate</label>
+        <value>cuspate</value>
+      </item>
+      <item>
+        <label>circular</label>
+        <value>circular</value>
+      </item>
+      <item>
+        <label>elliptical</label>
+        <value>elliptical</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/dominant_fold_attitude">
+      <label>Dominant Fold Attitude</label>
+      <item>
+        <label>upright</label>
+        <value>upright</value>
+      </item>
+      <item>
+        <label>overturned</label>
+        <value>overturned</value>
+      </item>
+      <item>
+        <label>vertical</label>
+        <value>vertical</value>
+      </item>
+      <item>
+        <label>horizontal</label>
+        <value>horizontal</value>
+      </item>
+      <item>
+        <label>recumbent</label>
+        <value>recumbent</value>
+      </item>
+      <item>
+        <label>inclined</label>
+        <value>inclined</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/measurements_and_observations/tightness_interlimb_angle">
+      <label>Tightness / Interlimb Angle</label>
+      <item>
+        <label>gentle   (180º –120º)</label>
+        <value>gentle</value>
+      </item>
+      <item>
+        <label>open   (120º–70º)</label>
+        <value>open</value>
+      </item>
+      <item>
+        <label>close   (70º–30º)</label>
+        <value>close</value>
+      </item>
+      <item>
+        <label>tight   (30º–10º)</label>
+        <value>tight</value>
+      </item>
+      <item>
+        <label>isoclinal   (10º–0º)</label>
+        <value>isoclinal</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/measurements_and_observations/vergence">
+      <label>Vergence</label>
+      <hint>Approximate vergence fold asymmetry or other...irection from f</hint>
+      <item>
+        <label>North</label>
+        <value>north</value>
+      </item>
+      <item>
+        <label>NE</label>
+        <value>ne</value>
+      </item>
+      <item>
+        <label>East</label>
+        <value>east</value>
+      </item>
+      <item>
+        <label>SE</label>
+        <value>se</value>
+      </item>
+      <item>
+        <label>South</label>
+        <value>south</value>
+      </item>
+      <item>
+        <label>SW</label>
+        <value>sw</value>
+      </item>
+      <item>
+        <label>West</label>
+        <value>west</value>
+      </item>
+      <item>
+        <label>NW</label>
+        <value>nw</value>
+      </item>
+    </select1>
+    <input ref="/measurements_and_observations/vector_magnitude_meters">
+      <label>Vector Magnitude (meters)</label>
+    </input>
+    <input ref="/measurements_and_observations/structure_notes">
+      <label>Structure Notes</label>
+    </input>
+  </h:body>
+</h:html>

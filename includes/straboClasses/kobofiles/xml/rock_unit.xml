@@ -1,0 +1,874 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Rock Unit Description</h:title>
+    <model>
+      <instance>
+        <rock_unit id="rock_unit">
+          <unit_label_abbreviation/>
+          <map_unit_name/>
+          <member_name/>
+          <submember_name/>
+          <absolute_age_of_geologic_unit/>
+          <age_uncertainty/>
+          <group_unit_type>
+            <rock_type/>
+            <sediment_type/>
+            <other_sediment_type/>
+            <sedimentary_rock_type/>
+            <other_sedimentary_rock_type/>
+            <igneous_rock_class/>
+            <volcanic_rock_type/>
+            <other_volcanic_rock_type/>
+            <plutonic_rock_types/>
+            <other_plutonic_rock_type/>
+            <metamorphic_rock_types/>
+            <other_metamorphic_rock_type/>
+            <metamorphic_grade/>
+          </group_unit_type>
+          <other_metamorphic_grade/>
+          <group_geologic_age>
+            <epoch/>
+            <other_epoch/>
+            <period/>
+            <era/>
+            <eon/>
+            <age_modifier/>
+          </group_geologic_age>
+          <description/>
+          <notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </rock_unit>
+      </instance>
+      <bind nodeset="/rock_unit/unit_label_abbreviation" required="true()" type="string"/>
+      <bind nodeset="/rock_unit/map_unit_name" required="false()" type="string"/>
+      <bind nodeset="/rock_unit/member_name" required="false()" type="string"/>
+      <bind nodeset="/rock_unit/submember_name" required="false()" type="string"/>
+      <bind nodeset="/rock_unit/absolute_age_of_geologic_unit" required="false()" type="decimal"/>
+      <bind nodeset="/rock_unit/age_uncertainty" required="false()" type="decimal"/>
+      <bind nodeset="/rock_unit/group_unit_type/rock_type" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_unit_type/sediment_type" relevant=" /rock_unit/group_unit_type/rock_type  = 'sediment'" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_unit_type/other_sediment_type" relevant=" /rock_unit/group_unit_type/sediment_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/rock_unit/group_unit_type/sedimentary_rock_type" relevant=" /rock_unit/group_unit_type/rock_type  = 'sedimentary'" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_unit_type/other_sedimentary_rock_type" relevant=" /rock_unit/group_unit_type/sedimentary_rock_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/rock_unit/group_unit_type/igneous_rock_class" relevant=" /rock_unit/group_unit_type/rock_type  = 'igneous'" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_unit_type/volcanic_rock_type" relevant=" /rock_unit/group_unit_type/igneous_rock_class  = 'volcanic' or  /rock_unit/group_unit_type/igneous_rock_class  = 'hypabyssal'" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_unit_type/other_volcanic_rock_type" relevant=" /rock_unit/group_unit_type/volcanic_rock_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/rock_unit/group_unit_type/plutonic_rock_types" relevant=" /rock_unit/group_unit_type/igneous_rock_class  = 'plutonic'" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_unit_type/other_plutonic_rock_type" relevant=" /rock_unit/group_unit_type/plutonic_rock_types  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/rock_unit/group_unit_type/metamorphic_rock_types" relevant=" /rock_unit/group_unit_type/rock_type  = 'metamorphic'" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_unit_type/other_metamorphic_rock_type" relevant=" /rock_unit/group_unit_type/metamorphic_rock_types  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/rock_unit/group_unit_type/metamorphic_grade" relevant=" /rock_unit/group_unit_type/rock_type  = 'metamorphic'" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/other_metamorphic_grade" relevant=" /rock_unit/group_unit_type/metamorphic_grade  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/rock_unit/group_geologic_age/epoch" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_geologic_age/other_epoch" relevant=" /rock_unit/group_geologic_age/epoch  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/rock_unit/group_geologic_age/period" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_geologic_age/era" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_geologic_age/eon" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/group_geologic_age/age_modifier" required="false()" type="select1"/>
+      <bind nodeset="/rock_unit/description" required="false()" type="string"/>
+      <bind nodeset="/rock_unit/notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/rock_unit/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/rock_unit/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/rock_unit/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/rock_unit/unit_label_abbreviation">
+      <label>Unit Label (abbreviation)</label>
+    </input>
+    <input ref="/rock_unit/map_unit_name">
+      <label>Unit or Formation Name</label>
+    </input>
+    <input ref="/rock_unit/member_name">
+      <label>Member Name</label>
+    </input>
+    <input ref="/rock_unit/submember_name">
+      <label>Submember Name</label>
+    </input>
+    <input ref="/rock_unit/absolute_age_of_geologic_unit">
+      <label>Absolute Age of Geologic Unit (Ma)</label>
+    </input>
+    <input ref="/rock_unit/age_uncertainty">
+      <label>Age Uncertainty (Ma)</label>
+    </input>
+    <group ref="/rock_unit/group_unit_type">
+      <label>Unit Type</label>
+      <select1 appearance="horizontal" ref="/rock_unit/group_unit_type/rock_type">
+        <label>Rock Type</label>
+        <hint>Type: sedimentary, igneous, metamorphic, or sediment</hint>
+        <item>
+          <label>igneous</label>
+          <value>igneous</value>
+        </item>
+        <item>
+          <label>metamorphic</label>
+          <value>metamorphic</value>
+        </item>
+        <item>
+          <label>sedimentary</label>
+          <value>sedimentary</value>
+        </item>
+        <item>
+          <label>sediment</label>
+          <value>sediment</value>
+        </item>
+      </select1>
+      <select1 appearance="horizontal" ref="/rock_unit/group_unit_type/sediment_type">
+        <label>Sediment Type</label>
+        <hint>Specific type of sediment</hint>
+        <item>
+          <label>alluvium</label>
+          <value>alluvium</value>
+        </item>
+        <item>
+          <label>older alluvium</label>
+          <value>older_alluvium</value>
+        </item>
+        <item>
+          <label>colluvium</label>
+          <value>colluvium</value>
+        </item>
+        <item>
+          <label>lake deposit</label>
+          <value>lake_deposit</value>
+        </item>
+        <item>
+          <label>eolian</label>
+          <value>eolian</value>
+        </item>
+        <item>
+          <label>talus</label>
+          <value>talus</value>
+        </item>
+        <item>
+          <label>breccia</label>
+          <value>breccia</value>
+        </item>
+        <item>
+          <label>gravel</label>
+          <value>gravel</value>
+        </item>
+        <item>
+          <label>sand</label>
+          <value>sand</value>
+        </item>
+        <item>
+          <label>silt</label>
+          <value>silt</value>
+        </item>
+        <item>
+          <label>clay</label>
+          <value>clay</value>
+        </item>
+        <item>
+          <label>moraine</label>
+          <value>moraine</value>
+        </item>
+        <item>
+          <label>till</label>
+          <value>till</value>
+        </item>
+        <item>
+          <label>loess</label>
+          <value>loess</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/rock_unit/group_unit_type/other_sediment_type">
+        <label>Other Sediment Type</label>
+      </input>
+      <select1 appearance="horizontal" ref="/rock_unit/group_unit_type/sedimentary_rock_type">
+        <label>Sedimentary Rock Type</label>
+        <hint>Specific type of sedimentary rock</hint>
+        <item>
+          <label>limestone</label>
+          <value>limestone</value>
+        </item>
+        <item>
+          <label>dolostone</label>
+          <value>dolostone</value>
+        </item>
+        <item>
+          <label>travertine</label>
+          <value>travertine</value>
+        </item>
+        <item>
+          <label>evaporite</label>
+          <value>evaporite</value>
+        </item>
+        <item>
+          <label>chert</label>
+          <value>chert</value>
+        </item>
+        <item>
+          <label>conglomerate</label>
+          <value>conglomerate</value>
+        </item>
+        <item>
+          <label>breccia</label>
+          <value>breccia</value>
+        </item>
+        <item>
+          <label>sandstone</label>
+          <value>sandstone</value>
+        </item>
+        <item>
+          <label>siltstone</label>
+          <value>siltstone</value>
+        </item>
+        <item>
+          <label>mudstone</label>
+          <value>mudstone</value>
+        </item>
+        <item>
+          <label>shale</label>
+          <value>shale</value>
+        </item>
+        <item>
+          <label>claystone</label>
+          <value>claystone</value>
+        </item>
+        <item>
+          <label>coal</label>
+          <value>coal</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/rock_unit/group_unit_type/other_sedimentary_rock_type">
+        <label>Other Sedimentary Rock Type</label>
+      </input>
+      <select1 appearance="horizontal" ref="/rock_unit/group_unit_type/igneous_rock_class">
+        <label>Igneous Rock Class</label>
+        <hint>Volcanic, hypabyssal or plutonic</hint>
+        <item>
+          <label>volcanic</label>
+          <value>volcanic</value>
+        </item>
+        <item>
+          <label>plutonic</label>
+          <value>plutonic</value>
+        </item>
+        <item>
+          <label>hypabyssal</label>
+          <value>hypabyssal</value>
+        </item>
+      </select1>
+      <select1 appearance="horizontal" ref="/rock_unit/group_unit_type/volcanic_rock_type">
+        <label>Volcanic Rock Type</label>
+        <hint>Specific volcanic rock type</hint>
+        <item>
+          <label>basalt</label>
+          <value>basalt</value>
+        </item>
+        <item>
+          <label>basaltic-andesite</label>
+          <value>basaltic_andes</value>
+        </item>
+        <item>
+          <label>andesite</label>
+          <value>andesite</value>
+        </item>
+        <item>
+          <label>latite</label>
+          <value>latite</value>
+        </item>
+        <item>
+          <label>dacite</label>
+          <value>dacite</value>
+        </item>
+        <item>
+          <label>rhyolite</label>
+          <value>rhyolite</value>
+        </item>
+        <item>
+          <label>tuff</label>
+          <value>tuff</value>
+        </item>
+        <item>
+          <label>ash-fall tuff</label>
+          <value>ash_fall_tuff</value>
+        </item>
+        <item>
+          <label>ash-flow tuff</label>
+          <value>ash_flow_tuff</value>
+        </item>
+        <item>
+          <label>vitrophyre</label>
+          <value>vitrophyre</value>
+        </item>
+        <item>
+          <label>trachyte</label>
+          <value>trachyte</value>
+        </item>
+        <item>
+          <label>trachyandesite</label>
+          <value>trachyandesite</value>
+        </item>
+        <item>
+          <label>tuff breccia</label>
+          <value>tuff_breccia</value>
+        </item>
+        <item>
+          <label>lapilli tuff</label>
+          <value>lapilli_tuff</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/rock_unit/group_unit_type/other_volcanic_rock_type">
+        <label>Other Volcanic Rock Type</label>
+      </input>
+      <select1 appearance="horizontal" ref="/rock_unit/group_unit_type/plutonic_rock_types">
+        <label>Plutonic Rock Types</label>
+        <hint>Specific plutonic rock type</hint>
+        <item>
+          <label>granite</label>
+          <value>granite</value>
+        </item>
+        <item>
+          <label>alkali feldspar granite</label>
+          <value>alkali_granite</value>
+        </item>
+        <item>
+          <label>quartz monzonite</label>
+          <value>quartz_monz</value>
+        </item>
+        <item>
+          <label>syenite</label>
+          <value>syenite</value>
+        </item>
+        <item>
+          <label>granodiorite</label>
+          <value>granodiorite</value>
+        </item>
+        <item>
+          <label>monzonite</label>
+          <value>monzonite</value>
+        </item>
+        <item>
+          <label>tonalite</label>
+          <value>tonalite</value>
+        </item>
+        <item>
+          <label>diorite</label>
+          <value>diorite</value>
+        </item>
+        <item>
+          <label>gabbro</label>
+          <value>gabbro</value>
+        </item>
+        <item>
+          <label>anorthosite</label>
+          <value>anorthosite</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/rock_unit/group_unit_type/other_plutonic_rock_type">
+        <label>Other Plutonic Rock Type</label>
+      </input>
+      <select1 ref="/rock_unit/group_unit_type/metamorphic_rock_types">
+        <label>Metamorphic Rock Types</label>
+        <hint>Specific metamorphic rock type</hint>
+        <item>
+          <label>slate</label>
+          <value>slate</value>
+        </item>
+        <item>
+          <label>phyllite</label>
+          <value>phyllite</value>
+        </item>
+        <item>
+          <label>schist</label>
+          <value>schist</value>
+        </item>
+        <item>
+          <label>gneiss</label>
+          <value>gneiss</value>
+        </item>
+        <item>
+          <label>migmatite</label>
+          <value>migmatite</value>
+        </item>
+        <item>
+          <label>marble</label>
+          <value>marble</value>
+        </item>
+        <item>
+          <label>calc-silicate</label>
+          <value>calc_silicate</value>
+        </item>
+        <item>
+          <label>calc schist</label>
+          <value>calc_schist</value>
+        </item>
+        <item>
+          <label>greenschist</label>
+          <value>greenschist</value>
+        </item>
+        <item>
+          <label>amphibolite</label>
+          <value>amphibolite</value>
+        </item>
+        <item>
+          <label>blueschist</label>
+          <value>blueschist</value>
+        </item>
+        <item>
+          <label>eclogite</label>
+          <value>eclogite</value>
+        </item>
+        <item>
+          <label>hornfels</label>
+          <value>hornfels</value>
+        </item>
+        <item>
+          <label>granofels</label>
+          <value>granofels</value>
+        </item>
+        <item>
+          <label>skarn</label>
+          <value>skarn</value>
+        </item>
+        <item>
+          <label>quartzite</label>
+          <value>quartzite</value>
+        </item>
+        <item>
+          <label>serpentinite</label>
+          <value>serpentinite</value>
+        </item>
+        <item>
+          <label>jadeite</label>
+          <value>jadeite</value>
+        </item>
+        <item>
+          <label>glaucophanite</label>
+          <value>glaucophanite</value>
+        </item>
+        <item>
+          <label>garnetite</label>
+          <value>garnetite</value>
+        </item>
+        <item>
+          <label>pyroxenite</label>
+          <value>pyroxenite</value>
+        </item>
+        <item>
+          <label>cordierite-anthophyllite</label>
+          <value>cordierite-ant</value>
+        </item>
+        <item>
+          <label>cataclasite</label>
+          <value>cataclasite</value>
+        </item>
+        <item>
+          <label>mylonite</label>
+          <value>mylonite</value>
+        </item>
+        <item>
+          <label>metapelite</label>
+          <value>metapelite</value>
+        </item>
+        <item>
+          <label>metaarkose</label>
+          <value>metaarkose</value>
+        </item>
+        <item>
+          <label>metagreywacke</label>
+          <value>metagreywacke</value>
+        </item>
+        <item>
+          <label>metabasite</label>
+          <value>metabasite</value>
+        </item>
+        <item>
+          <label>metacarbonate</label>
+          <value>metacarbonate</value>
+        </item>
+        <item>
+          <label>metagranite</label>
+          <value>metagranite</value>
+        </item>
+        <item>
+          <label>metaigneous</label>
+          <value>metaigneous</value>
+        </item>
+        <item>
+          <label>metavolcanic</label>
+          <value>metavolcanic</value>
+        </item>
+        <item>
+          <label>blackwall</label>
+          <value>blackwall</value>
+        </item>
+        <item>
+          <label>metasomatite</label>
+          <value>metasomatite</value>
+        </item>
+        <item>
+          <label>meta-ultramafic</label>
+          <value>meta_ultramafi</value>
+        </item>
+        <item>
+          <label>meta-iron formation</label>
+          <value>meta-iron_form</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/rock_unit/group_unit_type/other_metamorphic_rock_type">
+        <label>Other Metamorphic Rock Type</label>
+      </input>
+      <select1 ref="/rock_unit/group_unit_type/metamorphic_grade">
+        <label>Metamorphic Grade</label>
+        <hint>Specific metamorphic grade</hint>
+        <item>
+          <label>zeolite facies</label>
+          <value>zeolite_facies</value>
+        </item>
+        <item>
+          <label>prehnite-pumpellyite facies</label>
+          <value>prehnite-pumpe</value>
+        </item>
+        <item>
+          <label>greenschist facies</label>
+          <value>greenschist_fa</value>
+        </item>
+        <item>
+          <label>amphibolite facies</label>
+          <value>amphibolite_fa</value>
+        </item>
+        <item>
+          <label>epidote amphibolite facies</label>
+          <value>epidote_amphib</value>
+        </item>
+        <item>
+          <label>granulite facies</label>
+          <value>granulite_faci</value>
+        </item>
+        <item>
+          <label>blueschist facies</label>
+          <value>blueschist_fac</value>
+        </item>
+        <item>
+          <label>eclogite facies</label>
+          <value>eclogite_facie</value>
+        </item>
+        <item>
+          <label>hornfels facies</label>
+          <value>hornfels_facie</value>
+        </item>
+        <item>
+          <label>chlorite zone</label>
+          <value>chlorite_zone</value>
+        </item>
+        <item>
+          <label>biotite zone</label>
+          <value>biotite_zone</value>
+        </item>
+        <item>
+          <label>garnet zone</label>
+          <value>garnet_zone</value>
+        </item>
+        <item>
+          <label>staurolite zone</label>
+          <value>staurolite_zon</value>
+        </item>
+        <item>
+          <label>staurolite-kyanite zone</label>
+          <value>staurolite-kya</value>
+        </item>
+        <item>
+          <label>kyanite zone</label>
+          <value>kyanite_zone</value>
+        </item>
+        <item>
+          <label>sillimanite zone</label>
+          <value>sillimanite_zo</value>
+        </item>
+        <item>
+          <label>andalusite zone</label>
+          <value>andalusite_zon</value>
+        </item>
+        <item>
+          <label>sillimanite-K feldspar zone</label>
+          <value>sillimanite-K_</value>
+        </item>
+        <item>
+          <label>garnet-cordierite zone</label>
+          <value>garnet-cordier</value>
+        </item>
+        <item>
+          <label>migmatite zone</label>
+          <value>migmatite_zone</value>
+        </item>
+        <item>
+          <label>ultra high pressure facies</label>
+          <value>ultra_high_pre</value>
+        </item>
+        <item>
+          <label>ultra high temperature facies</label>
+          <value>ultra_high_tem</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+    </group>
+    <input ref="/rock_unit/other_metamorphic_grade">
+      <label>Other Metamorphic Grade</label>
+      <hint>metamorphic grade not given in list</hint>
+    </input>
+    <group ref="/rock_unit/group_geologic_age">
+      <label>Geologic Age</label>
+      <select1 appearance="horizontal" ref="/rock_unit/group_geologic_age/epoch">
+        <label>Epoch</label>
+        <hint>Specific geologic time epoch</hint>
+        <item>
+          <label>Holocene</label>
+          <value>holocene</value>
+        </item>
+        <item>
+          <label>Pleistocene</label>
+          <value>pleistocene</value>
+        </item>
+        <item>
+          <label>Pliocene</label>
+          <value>pliocene</value>
+        </item>
+        <item>
+          <label>Miocene</label>
+          <value>miocene</value>
+        </item>
+        <item>
+          <label>Oligocene</label>
+          <value>oligocene</value>
+        </item>
+        <item>
+          <label>Eocene</label>
+          <value>eocene</value>
+        </item>
+        <item>
+          <label>Paleocene</label>
+          <value>paleocene</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/rock_unit/group_geologic_age/other_epoch">
+        <label>Other Epoch</label>
+      </input>
+      <select1 appearance="horizontal" ref="/rock_unit/group_geologic_age/period">
+        <label>Period</label>
+        <hint>Specific geologic time period</hint>
+        <item>
+          <label>Quaternary</label>
+          <value>quaternary</value>
+        </item>
+        <item>
+          <label>Tertiary</label>
+          <value>tertiary</value>
+        </item>
+        <item>
+          <label>Neogene</label>
+          <value>neogene</value>
+        </item>
+        <item>
+          <label>Paleogene</label>
+          <value>paleogene</value>
+        </item>
+        <item>
+          <label>Cretaceous</label>
+          <value>cretaceous</value>
+        </item>
+        <item>
+          <label>Jurassic</label>
+          <value>jurassic</value>
+        </item>
+        <item>
+          <label>Triassic</label>
+          <value>triassic</value>
+        </item>
+        <item>
+          <label>Permian</label>
+          <value>permian</value>
+        </item>
+        <item>
+          <label>Carboniferous</label>
+          <value>carboniferous</value>
+        </item>
+        <item>
+          <label>Pennsylvanian</label>
+          <value>pennsylvanian</value>
+        </item>
+        <item>
+          <label>Mississippian</label>
+          <value>mississippian</value>
+        </item>
+        <item>
+          <label>Devonian</label>
+          <value>devonian</value>
+        </item>
+        <item>
+          <label>Silurian</label>
+          <value>silurian</value>
+        </item>
+        <item>
+          <label>Ordovician</label>
+          <value>ordovician</value>
+        </item>
+        <item>
+          <label>Cambrian</label>
+          <value>cambrian</value>
+        </item>
+        <item>
+          <label>Ediacaran</label>
+          <value>ediacaran</value>
+        </item>
+        <item>
+          <label>Cryogenian</label>
+          <value>cryogenian</value>
+        </item>
+        <item>
+          <label>Tonian</label>
+          <value>tonian</value>
+        </item>
+        <item>
+          <label>Stenian</label>
+          <value>stenian</value>
+        </item>
+        <item>
+          <label>Ectasian</label>
+          <value>ectasian</value>
+        </item>
+        <item>
+          <label>Calymmian</label>
+          <value>calymmian</value>
+        </item>
+        <item>
+          <label>Statherian</label>
+          <value>statherian</value>
+        </item>
+        <item>
+          <label>Orosirian</label>
+          <value>orosirian</value>
+        </item>
+        <item>
+          <label>Rhyacian</label>
+          <value>rhyacian</value>
+        </item>
+        <item>
+          <label>Siderian</label>
+          <value>siderian</value>
+        </item>
+      </select1>
+      <select1 appearance="horizontal" ref="/rock_unit/group_geologic_age/era">
+        <label>Era</label>
+        <hint>Specific geologic time era</hint>
+        <item>
+          <label>Cenozoic</label>
+          <value>cenozoic</value>
+        </item>
+        <item>
+          <label>Mesozoic</label>
+          <value>mesozoic</value>
+        </item>
+        <item>
+          <label>Paleozoic</label>
+          <value>paleozoic</value>
+        </item>
+        <item>
+          <label>Neoproterozoic</label>
+          <value>neoproterozoic</value>
+        </item>
+        <item>
+          <label>Mesoproterozoic</label>
+          <value>mesoproterozoi</value>
+        </item>
+        <item>
+          <label>Paleoproterozoic</label>
+          <value>paleoproterozo</value>
+        </item>
+        <item>
+          <label>Neoarchean</label>
+          <value>neoarchean</value>
+        </item>
+        <item>
+          <label>Mesoarchean</label>
+          <value>mesoarchean</value>
+        </item>
+        <item>
+          <label>Paleoarchean</label>
+          <value>paleoarchean</value>
+        </item>
+        <item>
+          <label>Eoarchean</label>
+          <value>eoarchean</value>
+        </item>
+      </select1>
+      <select1 appearance="horizontal" ref="/rock_unit/group_geologic_age/eon">
+        <label>Eon</label>
+        <hint>Specific geologic time eon</hint>
+        <item>
+          <label>Phanerozoic</label>
+          <value>phanerozoic</value>
+        </item>
+        <item>
+          <label>Proterozoic</label>
+          <value>proterozoic</value>
+        </item>
+        <item>
+          <label>Archean</label>
+          <value>archean</value>
+        </item>
+        <item>
+          <label>Hadean</label>
+          <value>hadean</value>
+        </item>
+      </select1>
+      <select1 appearance="horizontal-compact" ref="/rock_unit/group_geologic_age/age_modifier">
+        <label>Age Modifier</label>
+        <hint>Age modifier to era, period or epoch</hint>
+        <item>
+          <label>Late</label>
+          <value>late</value>
+        </item>
+        <item>
+          <label>Middle</label>
+          <value>middle</value>
+        </item>
+        <item>
+          <label>Early</label>
+          <value>early</value>
+        </item>
+      </select1>
+    </group>
+    <input ref="/rock_unit/description">
+      <label>Description</label>
+    </input>
+    <input appearance="multiline" ref="/rock_unit/notes">
+      <label>Notes</label>
+    </input>
+  </h:body>
+</h:html>

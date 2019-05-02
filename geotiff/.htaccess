@@ -1,0 +1,11 @@
+RewriteEngine on
+
+RewriteRule ^detail/(.*)$ geotiffdetail.php?hash=$1 [L]
+RewriteRule ^delete/(.*)$ deletegeotiff.php?hash=$1 [L]
+
+
+
+RewriteRule ^tiles/(.*)/(.*)/(.*)/(.*).png$ tile.php?hash=$1&z=$2&x=$3&y=$4 [L]
+
+
+

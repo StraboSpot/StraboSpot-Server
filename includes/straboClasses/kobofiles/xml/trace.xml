@@ -1,0 +1,596 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Trace</h:title>
+    <model>
+      <instance>
+        <trace id="trace">
+          <trace_feature/>
+          <trace_quality/>
+          <other_trace_quality/>
+          <trace_type/>
+          <contact_type/>
+          <other_contact_type/>
+          <depositional_contact_type/>
+          <other_depositional_type/>
+          <intrusive_contact_type/>
+          <other_intrusive_contact/>
+          <metamorphic_contact_type/>
+          <other_metamorphic_contact/>
+          <marker_layer_details/>
+          <geologic_structure_type/>
+          <shear_sense>not_specified</shear_sense>
+          <other_shear_sense/>
+          <other_structural_zones/>
+          <other_other_structural_zone/>
+          <fold_type/>
+          <other_fold_type/>
+          <fold_attitude/>
+          <other_fold_attitude/>
+          <geomorphic_feature/>
+          <other_geomorphic_feature/>
+          <antropogenic_feature/>
+          <other_anthropogenic_feature/>
+          <other_feature/>
+          <other_other_feature/>
+          <trace_character/>
+          <other_trace_character/>
+          <tace_notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </trace>
+      </instance>
+      <bind nodeset="/trace/trace_feature" required="false()" type="string"/>
+      <bind nodeset="/trace/trace_quality" relevant=" /trace/trace_feature  != ''" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_trace_quality" relevant=" /trace/trace_quality  = 'other'" required="false()" type="string"/>
+      <bind nodeset="/trace/trace_type" relevant=" /trace/trace_feature  != ''" required="true()" type="select1"/>
+      <bind nodeset="/trace/contact_type" relevant=" /trace/trace_type  = 'contact'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_contact_type" relevant=" /trace/contact_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/depositional_contact_type" relevant=" /trace/contact_type  = 'depositional'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_depositional_type" relevant=" /trace/depositional_contact_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/intrusive_contact_type" relevant=" /trace/contact_type  = 'intrusive'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_intrusive_contact" relevant=" /trace/intrusive_contact_type  = 'unknown'" required="true()" type="string"/>
+      <bind nodeset="/trace/metamorphic_contact_type" relevant=" /trace/contact_type  = 'metamorphic'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_metamorphic_contact" relevant=" /trace/metamorphic_contact_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/marker_layer_details" relevant=" /trace/contact_type  = 'marker_layer'" required="false()" type="string"/>
+      <bind nodeset="/trace/geologic_structure_type" relevant=" /trace/trace_type  = 'geologic_struc'" required="true()" type="select1"/>
+      <bind nodeset="/trace/shear_sense" relevant=" /trace/geologic_structure_type  = 'fault' or  /trace/geologic_structure_type  = 'shear_zone' or  /trace/geologic_structure_type  = 'deformation_zo'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_shear_sense" relevant=" /trace/shear_sense  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/other_structural_zones" relevant=" /trace/geologic_structure_type  = 'other_structur'" required="true()" type="select1"/>
+      <bind nodeset="/trace/other_other_structural_zone" relevant=" /trace/other_structural_zones  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/fold_type" relevant=" /trace/geologic_structure_type  = 'fold_axial_tra'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_fold_type" relevant=" /trace/fold_type  = 'unknown'" required="true()" type="string"/>
+      <bind nodeset="/trace/fold_attitude" relevant=" /trace/geologic_structure_type  = 'fold_axial_tra'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_fold_attitude" relevant=" /trace/fold_attitude  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/geomorphic_feature" relevant=" /trace/trace_type  = 'geomorphic_fea'" required="true()" type="select1"/>
+      <bind nodeset="/trace/other_geomorphic_feature" relevant=" /trace/geomorphic_feature  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/antropogenic_feature" relevant=" /trace/trace_type  = 'anthropenic_fe'" required="true()" type="select1"/>
+      <bind nodeset="/trace/other_anthropogenic_feature" relevant=" /trace/antropogenic_feature  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/other_feature" relevant=" /trace/trace_type  = 'other_feature'" required="true()" type="select1"/>
+      <bind nodeset="/trace/other_other_feature" relevant=" /trace/other_feature  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/trace_character" relevant=" /trace/contact_type  = 'depositional' or  /trace/contact_type  = 'intrusive' or  /trace/contact_type  = 'metamorphic'" required="false()" type="select1"/>
+      <bind nodeset="/trace/other_trace_character" relevant=" /trace/trace_character  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/trace/tace_notes" relevant=" /trace/trace_feature  != ''" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/trace/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/trace/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/trace/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <trigger ref="/trace/trace_feature">
+      <label>Trace Feature</label>
+    </trigger>
+    <select1 appearance="horizontal" ref="/trace/trace_quality">
+      <label>Trace Quality</label>
+      <hint>Quality of trace? Known, approximate, inferred, concealed, questioned</hint>
+      <item>
+        <label>known</label>
+        <value>known</value>
+      </item>
+      <item>
+        <label>approximate</label>
+        <value>approximate</value>
+      </item>
+      <item>
+        <label>questionable approximate</label>
+        <value>approximate(?)</value>
+      </item>
+      <item>
+        <label>inferred</label>
+        <value>inferred</value>
+      </item>
+      <item>
+        <label>questionable inferred</label>
+        <value>inferred(?)</value>
+      </item>
+      <item>
+        <label>concealed</label>
+        <value>concealed</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_trace_quality">
+      <label>Other Trace Quality</label>
+    </input>
+    <select1 ref="/trace/trace_type">
+      <label>Trace Type</label>
+      <hint>contact, structure, geomorphic, anthropogenic, other</hint>
+      <item>
+        <label>contact</label>
+        <value>contact</value>
+      </item>
+      <item>
+        <label>geologic structure</label>
+        <value>geologic_struc</value>
+      </item>
+      <item>
+        <label>geomorphic feature</label>
+        <value>geomorphic_fea</value>
+      </item>
+      <item>
+        <label>anthropogenic feature</label>
+        <value>anthropenic_fe</value>
+      </item>
+      <item>
+        <label>other feature</label>
+        <value>other_feature</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal" ref="/trace/contact_type">
+      <label>Contact Type</label>
+      <hint>depositional, metamorphic, igneous, marker, other</hint>
+      <item>
+        <label>depositional</label>
+        <value>depositional</value>
+      </item>
+      <item>
+        <label>intrusive</label>
+        <value>intrusive</value>
+      </item>
+      <item>
+        <label>metamorphic</label>
+        <value>metamorphic</value>
+      </item>
+      <item>
+        <label>marker layer</label>
+        <value>marker_layer</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_contact_type">
+      <label>Other Contact Type</label>
+    </input>
+    <select1 appearance="horizontal" ref="/trace/depositional_contact_type">
+      <label>Depositional Contact Type</label>
+      <hint>stratigraphic, alluvial, unconformities</hint>
+      <item>
+        <label>stratigraphic</label>
+        <value>stratigraphic</value>
+      </item>
+      <item>
+        <label>alluvial</label>
+        <value>alluvial</value>
+      </item>
+      <item>
+        <label>unconformity</label>
+        <value>unconformity</value>
+      </item>
+      <item>
+        <label>angular unconformity</label>
+        <value>angular_unconf</value>
+      </item>
+      <item>
+        <label>disconformity</label>
+        <value>disconformity</value>
+      </item>
+      <item>
+        <label>nonconformity</label>
+        <value>nonconformity</value>
+      </item>
+      <item>
+        <label>volcanic</label>
+        <value>volcanic</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_depositional_type">
+      <label>Other Depositional Contact</label>
+    </input>
+    <select1 appearance="horizontal" ref="/trace/intrusive_contact_type">
+      <label>Intrusive Contact Type</label>
+      <hint>dike, sill, pluton, migmatite, injectite</hint>
+      <item>
+        <label>dike</label>
+        <value>dike</value>
+      </item>
+      <item>
+        <label>sill</label>
+        <value>sill</value>
+      </item>
+      <item>
+        <label>pluton</label>
+        <value>pluton</value>
+      </item>
+      <item>
+        <label>migmatite</label>
+        <value>migmatite</value>
+      </item>
+      <item>
+        <label>injectite</label>
+        <value>injectite</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_intrusive_contact">
+      <label>Other Intrusive Contact</label>
+    </input>
+    <select1 appearance="horizontal-compact" ref="/trace/metamorphic_contact_type">
+      <label>Metamorphic Contact Type</label>
+      <hint>between layers, isograd, other</hint>
+      <item>
+        <label>between different metamorphic rocks</label>
+        <value>btwn_2_dif_mm</value>
+      </item>
+      <item>
+        <label>isograd</label>
+        <value>isograd</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_metamorphic_contact">
+      <label>Other Metamorphic Contact</label>
+    </input>
+    <input appearance="multiline" ref="/trace/marker_layer_details">
+      <label>Marker Layer Details</label>
+    </input>
+    <select1 ref="/trace/geologic_structure_type">
+      <label>Geologic Structure Type</label>
+      <hint>fault, shear zone, axial trace</hint>
+      <item>
+        <label>fault</label>
+        <value>fault</value>
+      </item>
+      <item>
+        <label>shear zone</label>
+        <value>shear_zone</value>
+      </item>
+      <item>
+        <label>deformation zone</label>
+        <value>deformation_zo</value>
+      </item>
+      <item>
+        <label>fold axial trace</label>
+        <value>fold_axial_tra</value>
+      </item>
+      <item>
+        <label>other structural zone</label>
+        <value>other_structur</value>
+      </item>
+    </select1>
+    <select1 appearance="horizontal-compact" ref="/trace/shear_sense">
+      <label>Shear Sense</label>
+      <hint>dextral, sinistral, normal, reverse, oblique</hint>
+      <item>
+        <label>dextral strike-slip</label>
+        <value>dextral</value>
+      </item>
+      <item>
+        <label>sinistral strike-slip</label>
+        <value>sinistral</value>
+      </item>
+      <item>
+        <label>normal</label>
+        <value>normal</value>
+      </item>
+      <item>
+        <label>low-angle normal</label>
+        <value>low_angle_norm</value>
+      </item>
+      <item>
+        <label>reverse</label>
+        <value>reverse</value>
+      </item>
+      <item>
+        <label>thrust</label>
+        <value>thrust</value>
+      </item>
+      <item>
+        <label>dextral reverse</label>
+        <value>dextral_reverse</value>
+      </item>
+      <item>
+        <label>dextral normal</label>
+        <value>dextral_normal</value>
+      </item>
+      <item>
+        <label>sinistral reverse</label>
+        <value>sinistral_reverse</value>
+      </item>
+      <item>
+        <label>sinistral normal</label>
+        <value>sinistral_normal</value>
+      </item>
+      <item>
+        <label>high-angle</label>
+        <value>high_angle</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_shear_sense">
+      <label>Other Shear Sense</label>
+    </input>
+    <select1 ref="/trace/other_structural_zones">
+      <label>Other Structural Zones</label>
+      <hint>deformation band; fracture, damage, alteration zones, domain boundary</hint>
+      <item>
+        <label>deformation band</label>
+        <value>deformation_ba</value>
+      </item>
+      <item>
+        <label>fracture zone</label>
+        <value>fracture_zone</value>
+      </item>
+      <item>
+        <label>damage zone</label>
+        <value>damage_zone</value>
+      </item>
+      <item>
+        <label>alteration zone</label>
+        <value>alteration_zon</value>
+      </item>
+      <item>
+        <label>structural domain boundary</label>
+        <value>structural_dom</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_other_structural_zone">
+      <label>Other Other Structural Zone</label>
+    </input>
+    <select1 appearance="horizontal" ref="/trace/fold_type">
+      <label>Fold Type</label>
+      <hint>What is the shape of the fold when looking down-plunge?</hint>
+      <item>
+        <label>syncline</label>
+        <value>syncline</value>
+      </item>
+      <item>
+        <label>anticline</label>
+        <value>anticline</value>
+      </item>
+      <item>
+        <label>monocline</label>
+        <value>monocline</value>
+      </item>
+      <item>
+        <label>antiformal syncline</label>
+        <value>antiformal_syn</value>
+      </item>
+      <item>
+        <label>synformal anticline</label>
+        <value>synformal_anti</value>
+      </item>
+      <item>
+        <label>synform</label>
+        <value>synform</value>
+      </item>
+      <item>
+        <label>antiform</label>
+        <value>antiform</value>
+      </item>
+      <item>
+        <label>s-fold</label>
+        <value>s_fold</value>
+      </item>
+      <item>
+        <label>z-fold</label>
+        <value>z_fold</value>
+      </item>
+      <item>
+        <label>m-fold</label>
+        <value>m_fold</value>
+      </item>
+      <item>
+        <label>sheath</label>
+        <value>sheath</value>
+      </item>
+      <item>
+        <label>ptygmatic</label>
+        <value>ptygmatic</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>unknown</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_fold_type">
+      <label>Other Fold Type</label>
+    </input>
+    <select1 appearance="horizontal" ref="/trace/fold_attitude">
+      <label>Fold Attitude</label>
+      <hint>Orientation of fold: pluging, upright, overturned, etc.</hint>
+      <item>
+        <label>plunging</label>
+        <value>plunging</value>
+      </item>
+      <item>
+        <label>upright</label>
+        <value>upright</value>
+      </item>
+      <item>
+        <label>overturned</label>
+        <value>overturned</value>
+      </item>
+      <item>
+        <label>vertical</label>
+        <value>vertical</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+      <item>
+        <label>horizontal</label>
+        <value>horizontal</value>
+      </item>
+      <item>
+        <label>recumbent</label>
+        <value>recumbent</value>
+      </item>
+      <item>
+        <label>inclined</label>
+        <value>inclined</value>
+      </item>
+      <item>
+        <label>reclined</label>
+        <value>reclined</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_fold_attitude">
+      <label>Other Fold Attitude</label>
+    </input>
+    <select1 ref="/trace/geomorphic_feature">
+      <label>Geomorphic Feature</label>
+      <hint>gully, ridge, rill, striation, stream, shoreline</hint>
+      <item>
+        <label>gulley</label>
+        <value>gulley</value>
+      </item>
+      <item>
+        <label>ridge</label>
+        <value>ridge</value>
+      </item>
+      <item>
+        <label>striation</label>
+        <value>striation</value>
+      </item>
+      <item>
+        <label>rill</label>
+        <value>rill</value>
+      </item>
+      <item>
+        <label>stream bed</label>
+        <value>stream_bed</value>
+      </item>
+      <item>
+        <label>shoreline/strandline</label>
+        <value>shoreline_stra</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_geomorphic_feature">
+      <label>Other Geomorphic Feature</label>
+    </input>
+    <select1 ref="/trace/antropogenic_feature">
+      <label>Antropogenic Feature</label>
+      <hint>fence, property line, road, trail, other</hint>
+      <item>
+        <label>fence line</label>
+        <value>fence_line</value>
+      </item>
+      <item>
+        <label>property line</label>
+        <value>property_line</value>
+      </item>
+      <item>
+        <label>road</label>
+        <value>road</value>
+      </item>
+      <item>
+        <label>trail</label>
+        <value>trail</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_anthropogenic_feature">
+      <label>Other Anthropogenic Feature</label>
+    </input>
+    <select1 ref="/trace/other_feature">
+      <label>Other Feature</label>
+      <hint>extent of mapping or biological marker</hint>
+      <item>
+        <label>extent of mapping</label>
+        <value>extent_of_mapp</value>
+      </item>
+      <item>
+        <label>extent of biological marker</label>
+        <value>extent_of_biol</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_other_feature">
+      <label>Other Other Features</label>
+    </input>
+    <select1 appearance="horizontal" ref="/trace/trace_character">
+      <label>Trace Character</label>
+      <hint>sharp, gradational, chilled, brecciated, other</hint>
+      <item>
+        <label>sharp</label>
+        <value>sharp</value>
+      </item>
+      <item>
+        <label>gradational</label>
+        <value>gradational</value>
+      </item>
+      <item>
+        <label>chilled</label>
+        <value>chilled</value>
+      </item>
+      <item>
+        <label>brecciated</label>
+        <value>brecciated</value>
+      </item>
+      <item>
+        <label>unknown</label>
+        <value>unknown</value>
+      </item>
+      <item>
+        <label>other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/trace/other_trace_character">
+      <label>Other Trace Character</label>
+    </input>
+    <input appearance="multiline" ref="/trace/tace_notes">
+      <label>Trace Notes</label>
+    </input>
+  </h:body>
+</h:html>

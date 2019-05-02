@@ -1,0 +1,138 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -110.97338602646,
+                        29.078900537205
+                    ],
+                    [
+                        -113.68267626593,
+                        53.597436366882
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Line Measure"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -95.251755628573,
+                        38.957172998064
+                    ],
+                    [
+                        -95.345616037514,
+                        29.723224501147
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "UH -KU"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -73.19576039687,
+                        44.477140055805
+                    ],
+                    [
+                        -73.126232750838,
+                        40.912864800562
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Line Measure"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -90.120802001778,
+                        29.940267975421
+                    ],
+                    [
+                        -89.412747161293,
+                        43.072870890735
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Line Measure"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -97.153175163807,
+                        49.878077830593
+                    ],
+                    [
+                        -96.804037840139,
+                        32.768942062111
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Line Measure"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -106.63372068846,
+                        52.126612928884
+                    ],
+                    [
+                        -106.74938589211,
+                        32.286415750388
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Line Measure"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -103.65098019753,
+                        30.363544224578
+                    ],
+                    [
+                        -103.20574930161,
+                        44.074876210193
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Line Measure"
+            }
+        }
+    ]
+}

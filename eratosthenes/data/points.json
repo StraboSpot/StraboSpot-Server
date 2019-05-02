@@ -1,0 +1,252 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -111.64931562284,
+                    40.25184400479
+                ]
+            },
+            "properties": {
+                "name": "BYU"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -106.7490603157,
+                    32.283194100916
+                ]
+            },
+            "properties": {
+                "name": "NMSU"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -97.077763929166,
+                    47.921125306603
+                ]
+            },
+            "properties": {
+                "name": "UND"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -96.925338100818,
+                    42.788301501973
+                ]
+            },
+            "properties": {
+                "name": "USD"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.127485724702,
+                    40.910522806899
+                ]
+            },
+            "properties": {
+                "name": "Stony Brook"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.196463795463,
+                    44.477852135588
+                ]
+            },
+            "properties": {
+                "name": "Vermont"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -106.6358043027,
+                    52.127881861452
+                ]
+            },
+            "properties": {
+                "name": "Saskatchewan"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -111.65381720521,
+                    35.180702750356
+                ]
+            },
+            "properties": {
+                "name": "NAU"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -95.25158128249,
+                    38.957001570377
+                ]
+            },
+            "properties": {
+                "name": "KU"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -95.345621296567,
+                    29.723206140726
+                ]
+            },
+            "properties": {
+                "name": "UH"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -106.62277635698,
+                    35.082386599851
+                ]
+            },
+            "properties": {
+                "name": "UNM"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -96.887332891448,
+                    32.766348546544
+                ]
+            },
+            "properties": {
+                "name": "SMU"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -89.938735913232,
+                    35.116760187572
+                ]
+            },
+            "properties": {
+                "name": "Memphis"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -97.153423684344,
+                    49.890380479721
+                ]
+            },
+            "properties": {
+                "name": "Winnepeg"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -113.50598998614,
+                    53.547347678077
+                ]
+            },
+            "properties": {
+                "name": "Alberta"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -90.129058004581,
+                    29.917229490209
+                ]
+            },
+            "properties": {
+                "name": "Tulane"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -103.20581561714,
+                    44.074831843407
+                ]
+            },
+            "properties": {
+                "name": "SDSM"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -103.65103035762,
+                    30.363511947463
+                ]
+            },
+            "properties": {
+                "name": "Sul Ross"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -110.96975467269,
+                    29.082881161101
+                ]
+            },
+            "properties": {
+                "name": "Hermosillio"
+            }
+        }
+    ]
+}

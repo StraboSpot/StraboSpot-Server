@@ -1,0 +1,534 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Tensor</h:title>
+    <model>
+      <instance>
+        <tensor id="tensor">
+          <label/>
+          <feature_type/>
+          <group_ellipsoidal>
+            <ellipsoid_type/>
+            <other_ellipsoid_type/>
+            <group_ln3xr02>
+              <ellipsoid_max_value/>
+              <ellipsoid_max_uncertainty/>
+              <ellipsoid_max_trend/>
+              <ellipsoid_max_trend_uncertaint/>
+              <ellipsoid_max_plunge/>
+              <ellipsoid_max_plunge_uncertain/>
+              <ellipsoid_max_orient_uncertain/>
+            </group_ln3xr02>
+            <group_ellipsoidal_intermediate>
+              <ellipsoid_int_value/>
+              <ellipsoid_int_value_uncertaint/>
+              <ellipsoid_int_trend/>
+              <ellipsoid_int_trend_uncertaint/>
+              <ellipsoid_int_plunge/>
+              <ellipsoid_int_plunge_uncertain/>
+              <ellipsoid_int_orient_uncertain/>
+            </group_ellipsoidal_intermediate>
+            <group_ad28l86>
+              <ellipsoid_min_value/>
+              <ellipsoid_min_value_uncertaint/>
+              <ellipsoid_min_trend/>
+              <ellipsoid_min_trend_uncertaint/>
+              <ellipsoid_min_plunge/>
+              <ellipsoid_min_plunge_uncertain/>
+              <ellipsoid_min_orient_uncertain/>
+            </group_ad28l86>
+            <ellipsoidal_tensor_notes/>
+            <ellipsoid_quality/>
+          </group_ellipsoidal>
+          <group_nonellipsoidal>
+            <non_ellipsoidal_type/>
+            <other_non_ellipsoidal_type/>
+            <group_em45k44>
+              <nonellipsoidal_max_value/>
+              <nonellipsoidal_max_value_uncer/>
+              <nonellipsoidal_max_trend/>
+              <nonellipsoidal_max_trend_uncer/>
+              <nonellipsoidal_max_plunge/>
+              <nonellipsoidal_max_plunge_unce/>
+              <nonellipsoidal_max_orient_Unce/>
+            </group_em45k44>
+            <group_tr21q83>
+              <nonellipsoidal_int_value/>
+              <nonellipsoidal_int_value_uncer/>
+              <nonellipsoidal_int_trend/>
+              <nonellipsoidal_int_uncertainty/>
+              <nonellipsoidal_int_plunge/>
+              <nonellipsoidal_int_plunge_unce/>
+              <nonellipsoidal_int_orient_unce/>
+            </group_tr21q83>
+            <group_uj8et01>
+              <nonellipsoidal_min_value/>
+              <nonellipsoidal_min_value_uncer/>
+              <nonellipsoidal_min_trend/>
+              <nonellipsoidal_min_trend_uncer/>
+              <nonellipsoidal_min_plunge/>
+              <nonellipsoidal_min_plunge_unce/>
+              <nonellipsoidal_min_orient_Unce/>
+            </group_uj8et01>
+            <non_ellipsoidal_tensor_notes/>
+            <nonellipsoidal_quality_of_meas/>
+          </group_nonellipsoidal>
+          <group_elliptical>
+            <ellipse_type/>
+            <other_ellipse_type/>
+            <elliptical_strike/>
+            <elliptical_dip/>
+            <elliptical_dip_direction/>
+            <elliptical_rake/>
+            <elliptical_quality/>
+            <elliptical_ratio/>
+            <elliptical_value_uncertainty/>
+            <elliptical_orientation_uncerta/>
+            <elliptical_quality_of_measurem/>
+            <elliptical_notes/>
+          </group_elliptical>
+          <struct_notes/>
+          <start/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </tensor>
+      </instance>
+      <bind nodeset="/tensor/label" required="false()" type="string"/>
+      <bind nodeset="/tensor/feature_type" required="true()" type="select1"/>
+      <bind nodeset="/tensor/group_ellipsoidal" relevant=" /tensor/feature_type  = 'ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_ellipsoidal/ellipsoid_type" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="select1"/>
+      <bind nodeset="/tensor/group_ellipsoidal/other_ellipsoid_type" relevant=" /tensor/group_ellipsoidal/ellipsoid_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02" relevant=" /tensor/feature_type  = 'ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_value" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_uncertainty" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_trend" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_trend_uncertaint" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_plunge" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_plunge_uncertain" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_orient_uncertain" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate" relevant=" /tensor/feature_type  = 'ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_value" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_value_uncertaint" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_trend" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_trend_uncertaint" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_plunge" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_plunge_uncertain" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_orient_uncertain" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86" relevant=" /tensor/feature_type  = 'ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_value" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_value_uncertaint" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_trend" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_trend_uncertaint" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_plunge" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_plunge_uncertain" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_orient_uncertain" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_ellipsoidal/ellipsoidal_tensor_notes" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="string"/>
+      <bind nodeset="/tensor/group_ellipsoidal/ellipsoid_quality" relevant=" /tensor/feature_type  = 'ellipsoidal_data'" required="false()" type="select1"/>
+      <bind nodeset="/tensor/group_nonellipsoidal" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/non_ellipsoidal_type" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="select1"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/other_non_ellipsoidal_type" relevant=" /tensor/group_nonellipsoidal/non_ellipsoidal_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_value" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_value_uncer" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_trend" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_trend_uncer" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_plunge" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_plunge_unce" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_orient_Unce" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_value" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_value_uncer" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_trend" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_uncertainty" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_plunge" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_plunge_unce" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_orient_unce" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_value" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_value_uncer" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_trend" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_trend_uncer" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_plunge" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_plunge_unce" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_orient_Unce" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/non_ellipsoidal_tensor_notes" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="string"/>
+      <bind nodeset="/tensor/group_nonellipsoidal/nonellipsoidal_quality_of_meas" relevant=" /tensor/feature_type  = 'non_ellipsoidal_data'" required="false()" type="select1"/>
+      <bind nodeset="/tensor/group_elliptical" relevant=" /tensor/feature_type  = 'elliptical_data'"/>
+      <bind nodeset="/tensor/group_elliptical/ellipse_type" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="select1"/>
+      <bind nodeset="/tensor/group_elliptical/other_ellipse_type" relevant=" /tensor/group_elliptical/ellipse_type  = 'other'" required="true()" type="string"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_strike" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="int"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_dip" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="int"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_dip_direction" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="int"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_rake" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="int"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_quality" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="select1"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_ratio" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_value_uncertainty" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_orientation_uncerta" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="decimal"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_quality_of_measurem" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="select1"/>
+      <bind nodeset="/tensor/group_elliptical/elliptical_notes" relevant=" /tensor/feature_type  = 'elliptical_data'" required="false()" type="string"/>
+      <bind nodeset="/tensor/struct_notes" required="false()" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/tensor/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/tensor/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/tensor/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/tensor/label">
+      <label>Label</label>
+      <hint>If a label is not specified a default label will be given.</hint>
+    </input>
+    <select1 ref="/tensor/feature_type">
+      <label>Tensor Type</label>
+      <item>
+        <label>ellipsoidal data</label>
+        <value>ellipsoidal_data</value>
+      </item>
+      <item>
+        <label>non-ellipsoidal data</label>
+        <value>non_ellipsoidal_data</value>
+      </item>
+      <item>
+        <label>elliptical data</label>
+        <value>elliptical_data</value>
+      </item>
+    </select1>
+    <group ref="/tensor/group_ellipsoidal">
+      <label>Ellipsoidal Tensor Data</label>
+      <select1 ref="/tensor/group_ellipsoidal/ellipsoid_type">
+        <label>Ellipsoid Type</label>
+        <item>
+          <label>finite strain</label>
+          <value>finite_strain</value>
+        </item>
+        <item>
+          <label>shape preferred orientation</label>
+          <value>shape_preferred_orientation</value>
+        </item>
+        <item>
+          <label>anisotropy of magnetic suspectibility</label>
+          <value>anisotropy_of_magnetic_suspect</value>
+        </item>
+        <item>
+          <label>stress</label>
+          <value>stress</value>
+        </item>
+        <item>
+          <label>infinitesimal strain</label>
+          <value>infinitesimal_strain</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/tensor/group_ellipsoidal/other_ellipsoid_type">
+        <label>Other Ellipsoid Type</label>
+      </input>
+      <group ref="/tensor/group_ellipsoidal/group_ln3xr02">
+        <label>Maximum Axis Data</label>
+        <input ref="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_value">
+          <label>Value</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_uncertainty">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_trend_uncertaint">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_plunge_uncertain">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ln3xr02/ellipsoid_max_orient_uncertain">
+          <label>Orientation Uncertainty</label>
+        </input>
+      </group>
+      <group ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate">
+        <label>Intermediate Axis Data</label>
+        <input ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_value">
+          <label>Value</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_value_uncertaint">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_trend_uncertaint">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_plunge_uncertain">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ellipsoidal_intermediate/ellipsoid_int_orient_uncertain">
+          <label>Orientation Uncertainty</label>
+        </input>
+      </group>
+      <group ref="/tensor/group_ellipsoidal/group_ad28l86">
+        <label>Minimum Axis Data</label>
+        <input ref="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_value">
+          <label>Value</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_value_uncertaint">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_trend_uncertaint">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_plunge_uncertain">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_ellipsoidal/group_ad28l86/ellipsoid_min_orient_uncertain">
+          <label>Orientation Uncertainty</label>
+        </input>
+      </group>
+      <input appearance="multiline" ref="/tensor/group_ellipsoidal/ellipsoidal_tensor_notes">
+        <label>Ellipsoidal Tensor Notes</label>
+      </input>
+      <select1 ref="/tensor/group_ellipsoidal/ellipsoid_quality">
+        <label>Quality of Measurement</label>
+        <item>
+          <label>5 - best</label>
+          <value>5___best</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>1 - worst</label>
+          <value>1___worst</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/tensor/group_nonellipsoidal">
+      <label>Non-Ellipsoidal Tensor Data</label>
+      <select1 ref="/tensor/group_nonellipsoidal/non_ellipsoidal_type">
+        <label>Non-ellipsoidal Type</label>
+        <item>
+          <label>flow apophyses</label>
+          <value>flow_apophyses</value>
+        </item>
+        <item>
+          <label>displacements</label>
+          <value>displacements</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/tensor/group_nonellipsoidal/other_non_ellipsoidal_type">
+        <label>Other Non-ellipsoidal Type</label>
+      </input>
+      <group ref="/tensor/group_nonellipsoidal/group_em45k44">
+        <label>Maximum Axis</label>
+        <input ref="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_value">
+          <label>Value</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_value_uncer">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_trend_uncer">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_plunge_unce">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_em45k44/nonellipsoidal_max_orient_Unce">
+          <label>Orientation Uncertainty</label>
+        </input>
+      </group>
+      <group ref="/tensor/group_nonellipsoidal/group_tr21q83">
+        <label>Intermediate Axis</label>
+        <input ref="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_value">
+          <label>Value</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_value_uncer">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_uncertainty">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_plunge_unce">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_tr21q83/nonellipsoidal_int_orient_unce">
+          <label>Orientation Uncertainty</label>
+        </input>
+      </group>
+      <group ref="/tensor/group_nonellipsoidal/group_uj8et01">
+        <label>Minimum Axis</label>
+        <input ref="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_value">
+          <label>Value</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_value_uncer">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_trend">
+          <label>Trend</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_trend_uncer">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_plunge">
+          <label>Plunge</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_plunge_unce">
+          <label>Uncertainty</label>
+        </input>
+        <input ref="/tensor/group_nonellipsoidal/group_uj8et01/nonellipsoidal_min_orient_Unce">
+          <label>Orientation Uncertainty</label>
+        </input>
+      </group>
+      <input appearance="multiline" ref="/tensor/group_nonellipsoidal/non_ellipsoidal_tensor_notes">
+        <label>Non-ellipsoidal Tensor Notes</label>
+      </input>
+      <select1 ref="/tensor/group_nonellipsoidal/nonellipsoidal_quality_of_meas">
+        <label>Quality of Measurement</label>
+        <item>
+          <label>5 - best</label>
+          <value>5___best</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>1 - worst</label>
+          <value>1___worst</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/tensor/group_elliptical">
+      <label>Elliptical Data</label>
+      <select1 ref="/tensor/group_elliptical/ellipse_type">
+        <label>Ellipse Type</label>
+        <item>
+          <label>finite strain</label>
+          <value>finite_strain</value>
+        </item>
+        <item>
+          <label>preferred shape orientation</label>
+          <value>preferred_shap</value>
+        </item>
+        <item>
+          <label>other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/tensor/group_elliptical/other_ellipse_type">
+        <label>Other Ellipse Type</label>
+      </input>
+      <input ref="/tensor/group_elliptical/elliptical_strike">
+        <label>Strike</label>
+      </input>
+      <input ref="/tensor/group_elliptical/elliptical_dip">
+        <label>Dip</label>
+      </input>
+      <input ref="/tensor/group_elliptical/elliptical_dip_direction">
+        <label>Dip Direction</label>
+      </input>
+      <input ref="/tensor/group_elliptical/elliptical_rake">
+        <label>Rake</label>
+      </input>
+      <select1 ref="/tensor/group_elliptical/elliptical_quality">
+        <label>Quality</label>
+        <item>
+          <label>accurate</label>
+          <value>accurate</value>
+        </item>
+        <item>
+          <label>approximate</label>
+          <value>approximate</value>
+        </item>
+        <item>
+          <label>irregular</label>
+          <value>irregular</value>
+        </item>
+      </select1>
+      <input ref="/tensor/group_elliptical/elliptical_ratio">
+        <label>Elliptical Ratio</label>
+      </input>
+      <input ref="/tensor/group_elliptical/elliptical_value_uncertainty">
+        <label>Value Uncertainty</label>
+      </input>
+      <input ref="/tensor/group_elliptical/elliptical_orientation_uncerta">
+        <label>Orientation Uncertainty</label>
+      </input>
+      <select1 ref="/tensor/group_elliptical/elliptical_quality_of_measurem">
+        <label>Quality of Measurement</label>
+        <item>
+          <label>5 - best</label>
+          <value>5___best</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>1 - worst</label>
+          <value>1___worst</value>
+        </item>
+      </select1>
+      <input appearance="multiline" ref="/tensor/group_elliptical/elliptical_notes">
+        <label>Elliptical Data Notes</label>
+      </input>
+    </group>
+    <input appearance="multiline" ref="/tensor/struct_notes">
+      <label>Tensor Notes</label>
+    </input>
+  </h:body>
+</h:html>
