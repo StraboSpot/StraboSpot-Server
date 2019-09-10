@@ -1877,12 +1877,26 @@ class StraboSpot
 	public function getDatasetName($feature_id){
 
 		$querystring = "match (a:Dataset) where a.userpkey=$this->userpkey and a.id=$feature_id RETURN a.name;";
+
 		$datasetname = $this->neodb->get_var($querystring);
 
 		return $datasetname;
 	
 	}
 
+
+	public function getDailyNotesFromDatasetID($dataset_id){
+		
+		$querystring = "match(p:Project)-[HAS_DATASET]->(d:Dataset) where p.userpkey=$this->userpkey and d.id=$dataset_id return p.desc_daily_setup";
+		
+		$dailynotes = $this->neodb->get_var($querystring);
+		
+		if($dailynotes != ""){
+			$dailynotes = json_decode($dailynotes);
+		}
+		
+		return $dailynotes;
+	}
 
 
 	public function getFeatureCollection($querystring){

@@ -1,5 +1,5 @@
 <?
-
+include("logincheck.php");
 include("prepare_connections.php");
 
 include("includes/straboClasses/straboOutputClass.php");
@@ -21,7 +21,7 @@ if($type=="shapefile"){
 }elseif($type=="fieldbook"){
 	$straboOut->fieldbookOut();
 }elseif($type=="fieldbookdev"){
-	$straboOut->fieldbookOutdev();
+	$straboOut->newfieldbookOut();
 }
 
 

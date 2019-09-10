@@ -111,18 +111,33 @@ class PDF_MemImage extends FPDF
         $this->MemImage($data, $x, $y, $w, $h, $link);
     }
 
-	function spotTitle($spotname){
+	function spotTitle($spotname,$xpos=15){
 	
+		if($xpos){
+			$this->SetX($xpos);
+		}
 		//$this->SetX(0);
-		$this->SetFont('Arial','B',10);
-		$this->cell(0,5,"Spot Name: $spotname",'B',1,'L');
+		$this->SetFont('Arial','B',12);
+		$this->cell(0,5,"Spot Name: $spotname",'',1,'L');
 		$this->cell(0,2,'','',1,L);
+	
+	}
+	
+	function dayTitle($datestring,$xpos){
+	
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		//$this->SetX(0);
+		$this->SetFont('Arial','B',14);
+		$this->cell(0,5,"$datestring",'B',1,'L');
+		$this->cell(0,3,'','',1,L);
 	
 	}
 
 	function datasetTitle($datasetname,$thisdate){
 	
-		$this->SetFont('Arial','B',15);
+		$this->SetFont('Arial','B',12);
 		$this->Cell(null,null,"Dataset: $datasetname",0,2,'C');
 		$this->Ln(5);
 		if($thisdate){
@@ -160,8 +175,141 @@ class PDF_MemImage extends FPDF
 		//$this->Ln(5);
 
 	}
+	
+	function notesRow($label,$value,$xpos){
+	
+		$this->Ln(1);
+	
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		
+		//$height = $numrows * 1;
+		
+		$height = 100;
+		
+		//$this->SetFont('Arial','B',8);
+		//$this->cell(0,4,"$label:",'',0,'');
+		$this->SetFont('Arial','B',8);
+		$this->cell(0,5,"$label:",'',1,'L');
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		$this->MultiCell( 180, 4, "$value", 1);
+		$this->Ln(1);
+		//$this->Ln(5);
+
+	}
+	
+	function imageCaptionRow($label,$value,$xpos){
+	
+		$this->Ln(1);
+	
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		
+		//$height = $numrows * 1;
+		
+		$height = 100;
+		
+		//$this->SetFont('Arial','B',8);
+		//$this->cell(0,4,"$label:",'',0,'');
+		$this->SetFont('Arial','B',8);
+		$this->cell(0,5,"$label:",'',1,'L');
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		$this->MultiCell( 100, 4, "$value", 0);
+		$this->Ln(1);
+		//$this->Ln(5);
+
+	}
+	
+
+	function dailyNotesRow($label,$value,$xpos){
+	
+		//$this->Ln(1);
+	
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		
+		//$height = $numrows * 1;
+		
+		$height = 100;
+		
+		//$this->SetFont('Arial','B',8);
+		//$this->cell(0,4,"$label:",'',0,'');
+		$this->SetFont('Arial','B',8);
+		$this->cell(0,5,"$label:",'',1,'L');
+		if($xpos){
+			$this->SetX($xpos+2);
+		}
+		$this->MultiCell( 190, 4, "$value", 1);
+		$this->Ln(1);
+		$this->Ln(1);
+		//$this->Ln(5);
+
+	}
 
 
+
+	function WordWrap(&$text, $maxwidth)
+	{
+		$text = trim($text);
+		if ($text==='')
+			return 0;
+		$space = $this->GetStringWidth(' ');
+		$lines = explode("\n", $text);
+		$text = '';
+		$count = 0;
+
+		foreach ($lines as $line)
+		{
+			$words = preg_split('/ +/', $line);
+			$width = 0;
+
+			foreach ($words as $word)
+			{
+				$wordwidth = $this->GetStringWidth($word);
+				if ($wordwidth > $maxwidth)
+				{
+					// Word is too long, we cut it
+					for($i=0; $i<strlen($word); $i++)
+					{
+						$wordwidth = $this->GetStringWidth(substr($word, $i, 1));
+						if($width + $wordwidth <= $maxwidth)
+						{
+							$width += $wordwidth;
+							$text .= substr($word, $i, 1);
+						}
+						else
+						{
+							$width = $wordwidth;
+							$text = rtrim($text)."\n".substr($word, $i, 1);
+							$count++;
+						}
+					}
+				}
+				elseif($width + $wordwidth <= $maxwidth)
+				{
+					$width += $wordwidth + $space;
+					$text .= $word.' ';
+				}
+				else
+				{
+					$width = $wordwidth + $space;
+					$text = rtrim($text)."\n".$word.' ';
+					$count++;
+				}
+			}
+			$text = rtrim($text)."\n";
+			$count++;
+		}
+		$text = rtrim($text);
+		return $count;
+	}
 
 
 

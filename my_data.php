@@ -1,6 +1,8 @@
 <?
 include("logincheck.php");
 
+//print_r($_SESSION);
+
 include("prepare_connections.php");
 
 $credentials = $_SESSION['credentials'];
@@ -148,6 +150,12 @@ input:checked + .slider:before {
 			//window.location='/dl/fieldbook/'+id;
 			//window.location='/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id;
 			window.location='/dataset_strat_sections?dataset_id='+id;
+			//var win = window.open('/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id, '_blank');
+			//win.focus();
+		}else if(selected=="fieldbookdev"){
+			//window.location='/dl/fieldbook/'+id;
+			//window.location='/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id;
+			window.location='/searchdownload?type=fieldbookdev&userpkey=<?=$userpkey?>&dsids='+id;
 			//var win = window.open('/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id, '_blank');
 			//win.focus();
 		}else if(selected=="debug"){
@@ -327,6 +335,13 @@ if(count($projectrows)==0){
 						<option value="stereonet">Stereonet</option>
 						<option value="fieldbook">Field Book</option>
 						<option value="strat_sections">Strat Section(s)</option>
+						<?
+						if($userpkey==3){
+						?>
+						<option value="fieldbookdev">Field Book Dev</option>
+						<?
+						}
+						?>
 						<!--<option value="debug">Debug</option>-->
 					</select>
 
