@@ -674,7 +674,14 @@ class StraboSpot
 					//********************************************************************
 					// Now, load images...
 					//********************************************************************
+					
+					//$fooimages = json_encode($images);
+					
+					//$this->logToFile($fooimages,"Loading Images");
+					
 					$this->loadImages($spotid,$images);
+					
+					
 
 
 					$upload->properties->self="https://strabospot.org/db/feature/$thisid";
@@ -926,7 +933,9 @@ class StraboSpot
 
 					foreach($body as $key=>$value){
 						if($value != ""){
-							eval("\$injson['$key'] = \$value;");
+							if($key!="caption" && $key!="title"){
+								eval("\$injson['$key'] = \$value;");
+							}
 							//echo "$key : $value \n";
 						}
 					}

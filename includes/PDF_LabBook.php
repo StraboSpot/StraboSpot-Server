@@ -176,6 +176,20 @@ class PDF_MemImage extends FPDF
 
 	}
 	
+	function lowValueRow($label,$value,$xpos){
+	
+		if($xpos){
+			$this->SetX($xpos);
+		}
+
+		//$this->SetFont('Arial','B',8);
+		//$this->cell(0,4,"$label:",'',0,'');
+		$this->SetFont('Arial','',8);
+		$this->cell(0,3,"$label",'',1,'L');
+		//$this->Ln(5);
+
+	}
+	
 	function notesRow($label,$value,$xpos){
 	
 		$this->Ln(1);
@@ -196,6 +210,31 @@ class PDF_MemImage extends FPDF
 			$this->SetX($xpos);
 		}
 		$this->MultiCell( 180, 4, "$value", 1);
+		$this->Ln(1);
+		//$this->Ln(5);
+
+	}
+
+	function petNotesRow($label,$value,$xpos){
+	
+		$this->Ln(1);
+	
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		
+		//$height = $numrows * 1;
+		
+		$height = 100;
+		
+		//$this->SetFont('Arial','B',8);
+		//$this->cell(0,4,"$label:",'',0,'');
+		//$this->SetFont('Arial','B',8);
+		//$this->cell(0,5,"$label:",'',1,'L');
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		$this->MultiCell( 160, 4, "$value", 1);
 		$this->Ln(1);
 		//$this->Ln(5);
 

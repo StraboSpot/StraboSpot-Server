@@ -2359,6 +2359,521 @@ class straboOutputClass
 
 
 
+
+
+
+
+
+
+
+
+	public function newfieldbookOut(){
+
+		//include_once("straboModelClass/straboModelClass.php");
+		//$sm = new straboModelClass();
+
+		if($this->get['dsids']!=""){
+
+			$dsids=$this->get['dsids'];
+			$this->alltags = $this->strabo->getTagsFromDatasetIds($dsids);
+
+			$json = $this->strabo->getDatasetSpotsSearch(null,$this->get);
+			
+			$dsname = $this->strabo->getDatasetName($dsids);
+			
+			$dailynotes = $this->strabo->getDailyNotesFromDatasetID($dsids);
+
+			$spots = $json['features'];
+			
+			//$this->dumpVar($spots);exit();
+			
+			//unix time 1567364734  10 digits
+			//id 15609769344266     14 digits
+			
+			//get day for each spot
+			
+			//create date array to loop over
+
+			
+			//$this->dumpVar($spotdates);
+
+
+			//$datestring = date("l, F j, Y", $ut);
+			
+			//$this->dumpVar($spots);exit();
+
+
+			if(count($spots)>0){
+	
+				$spotdates = [];
+				$founddates = [];
+				foreach($spots as $spot){
+			
+					$ut = substr($spot['properties']['id'], 0 ,10);
+				
+					$datestring = date("l, F j, Y", $ut);
+				
+					if(!in_array($datestring, $founddates)){
+						$founddates[] = $datestring;
+						$showformat = date("l, F j, Y", $ut);
+						$lookformat = date("Y-m-d", $ut);
+						$thisobj = new stdClass();
+						$thisobj->showformat = $showformat;
+						$thisobj->lookformat = $lookformat;
+						$spotdates[] = $thisobj;
+					}
+					
+
+				
+					//echo $spot['properties']['id']." $datestring<br>";
+			
+				}
+				
+				//$this->dumpVar($spotdates);exit();
+	
+				require('includes/PDF_LabBook.php');
+
+				$pdf = new PDF_MemImage('P','mm','Letter');
+				$pdf->AddPage();
+
+				if($dsname != ""){
+					$pdf->datasetTitle($dsname);
+				}
+
+				//$this->dumpVar($spotdates);exit();
+				
+				foreach($spotdates as $spotdate){
+				
+					$showdate = $spotdate->showformat;
+					$pdf->dayTitle($showdate);
+					
+					//look for daily notes (format in data is YYYY-MM-DD)
+					$lookdate = $spotdate->lookformat;
+					
+					//$this->dumpVar($dailynotes);exit();
+					
+					if($dailynotes!=""){
+						foreach($dailynotes as $dn){
+							$dndate = substr($dn->date,0,10);
+							
+							//echo $dndate;exit();
+							
+							if($dndate == $lookdate){
+								$pdf->dailyNotesRow("Daily Setup Notes",$dn->notes,10);
+							}
+						}
+					}
+					
+					
+					
+					foreach($spots as $spot){
+		
+						$rawspot = $spot;
+						
+						$spot = $spot['properties'];
+		
+						$id = $spot['id'];
+						
+						$ut = substr($id, 0 ,10);
+
+						$thisspotdate = date("l, F j, Y", $ut);
+
+						if($thisspotdate == $spotdate->showformat){
+
+							$spotname = $spot['name'];
+							if($spot['geometrytype']){
+								$spotname .= " (".$spot['geometrytype'].")";
+							}
+			
+							$pdf->spotTitle($spotname);
+			
+							//$strabo->dumpVar($spot);
+							$modified = (string) $spot['id'];
+							$modified = substr($modified,0,10);
+							$modified = date("F j, Y",$modified);
+							$pdf->valueRow("Created",$modified,15);
+
+							$modified = (string) $spot['modified_timestamp'];
+							$modified = substr($modified,0,10);
+							$modified = date("F j, Y",$modified);
+							$pdf->valueRow("Last Modified",$modified,15);
+
+							//$this->dumpVar($rawspot['geometry']->type);exit();
+							
+							if($rawspot['geometry']->type=="Point"){
+								$pdf->valueRow("Longitude",$rawspot['geometry']->coordinates[0],15);
+								$pdf->valueRow("Latitude",$rawspot['geometry']->coordinates[1],15);
+							}else{
+								//$pdf->valueRow("foo","bar",15);
+							}
+							
+							if($spot['notes']){
+								$notes = $spot['notes'];
+								$pdf->notesRow("Notes",$notes,15);
+							}
+							
+							if($spot['surface_feature']){
+								foreach($spot['surface_feature'] as $key=>$value){
+									$key = $this->fixLabel($key);
+									if(is_string($value)){
+										$value = $this->fixLabel($value);
+									}
+									$pdf->valueRow($key,$value,15);
+								}
+							}
+
+							if($spot['orientation_data']){
+								$pdf->valueRow("Orientations","",15);
+								foreach($spot['orientation_data'] as $o){
+									$pdf->valueTitle($this->fixLabel($o->type).": ",20);
+									foreach($o as $key=>$value){
+										if($key!="id" && $key!="associated_orientation" && $key!="type"){
+											$key = $this->fixLabel($key);
+											if(is_string($value)){
+												$value = $this->fixLabel($value);
+											}
+											$pdf->valueRow($key,$value,20);
+										}
+									}
+
+
+									if($o->associated_orientation){
+										$pdf->valueRow("Associated Orientation Data:","",20);
+										foreach($o->associated_orientation as $ao){
+											$pdf->valueTitle($this->fixLabel($ao->type).": ",30);
+											foreach($ao as $key=>$value){
+												if($key!="id" && $key!="associated_orientation" && $key!="type"){
+													$key = $this->fixLabel($key);
+													if(is_string($value)){
+														$value = $this->fixLabel($value);
+													}
+													$pdf->valueRow($key,$value,30);
+												}
+											}
+											//$pdf->Ln(5);
+											$pdf->Ln(1);
+										}
+									}
+
+
+
+
+
+									$pdf->Ln(1);
+								}
+							}
+
+							if($spot['_3d_structures']){
+								$pdf->valueRow("3D Structures","",15);
+								foreach($spot['_3d_structures'] as $o){
+									$pdf->valueTitle($this->fixLabel($o->type).": ",20);
+									foreach($o as $key=>$value){
+										if($key!="id" && $key!="type"){
+											$key = $this->fixLabel($key);
+											if(is_string($value)){
+												$value = $this->fixLabel($value);
+											}
+											$pdf->valueRow($key,$value,20);
+										}
+									}
+
+									$pdf->Ln(1);
+								}
+							}
+
+
+							if($spot['samples']){
+								$pdf->valueRow("Samples","",15);
+								foreach($spot['samples'] as $o){
+									$pdf->valueTitle($this->fixLabel($o->label).": ",20);
+									foreach($o as $key=>$value){
+										if($key!="id" && $key!="label"){
+											$key = $this->fixLabel($key);
+											if(is_string($value)){
+												$value = $this->fixLabel($value);
+											}
+											$pdf->valueRow($key,$value,20);
+										}
+									}
+
+									$pdf->Ln(1);
+								}
+							}
+
+							if($spot['other_features']){
+								$pdf->valueRow("Other Features","",15);
+								foreach($spot['other_features'] as $o){
+									$pdf->valueTitle($this->fixLabel($o->label).": ",20);
+									foreach($o as $key=>$value){
+										if($key!="id" && $key!="label"){
+											$key = $this->fixLabel($key);
+											if(is_string($value)){
+												$value = $this->fixLabel($value);
+											}
+											$pdf->valueRow($key,$value,20);
+										}
+									}
+
+									$pdf->Ln(1);
+								}
+							}
+
+							if($project->tags){
+								foreach($project->tags as $tag){
+									$found = "no";
+									if($tag->spots){
+										foreach($tag->spots as $spotid){
+											if($spotid == $id){
+												$found = "yes";
+											}
+										}
+									}
+			
+									if($found == "yes"){
+										if($tag->type=="geologic_unit"){
+							
+											$pdf->valueRow("Rock Unit","",15);
+							
+											foreach($tag as $key=>$value){
+												if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){ 
+													$key = $this->fixLabel($key);
+													if(is_string($value)){
+														$value = $this->fixLabel($value);
+													}
+													$pdf->valueRow($key,$value,20);
+												}
+											}
+										}
+									}
+								}
+							}
+			
+							$hastags = "no";
+			
+							if($this->alltags){
+								foreach($this->alltags as $tag){
+									$found = "no";
+									if($tag->spots){
+										if($tag->type!="geologic_unit"){
+											foreach($tag->spots as $spotid){
+												if($spotid == $id){
+													$hastags = "yes";
+												}
+											}
+										}
+									}
+
+								}
+							}
+			
+							if($hastags == "yes"){
+				
+								$pdf->valueRow("Tags","");
+			
+								if($this->alltags){
+									foreach($this->alltags as $tag){
+										$found = "no";
+										if($tag->spots){
+											if($tag->type!="geologic_unit"){
+												foreach($tag->spots as $spotid){
+													if($spotid == $id){
+														$found = "yes";
+													}
+												}
+											}
+										}
+			
+										if($found == "yes"){
+
+											$pdf->valueTitle($tag->name,20);
+											foreach($tag as $key=>$value){
+								
+												if($key != "date" && $key != "spots" && $key != "features" && $key != "id" && $key != "name" ){ 
+													$key = $this->fixLabel($key);
+													if(is_string($value)){
+														$value = $this->fixLabel($value);
+													}
+													$pdf->valueRow($key,$value,20);
+												}
+								
+											}
+
+											$pdf->Ln(1);
+
+										}
+									}
+								}
+			
+							}
+
+							if($spot['images']){
+								$pdf->valueRow("Images","",15);
+								$pdf->Ln(1);
+								foreach($spot['images'] as $o){
+									if($o['title']){
+										$thistitle = $this->fixLabel($o['title']);
+										$pdf->valueTitle($thistitle.": ",20);
+									}else{
+										$thistitle = $o['id'];
+									}
+									
+									foreach($o as $key=>$value){
+										if($key!="id" && $key!="self" && $key!="annotated" && $key!="title" && $key!="width" && $key!="height" && $key!="image_type" && $key!="caption" ){
+											$key = $this->fixLabel($key);
+											if(is_string($value)){
+												$value = $this->fixLabel($value);
+											}
+											$pdf->valueRow($key,$value,20);
+										}
+									}
+									
+
+									
+									//$this->dumpVar($o);
+
+									$pdf->Ln(1);
+
+									$filename = $this->strabo->getImageFilename($o['id']);
+									//$pdf->valueRow("Found Filename",$filename,15);
+									if($filename){
+										$gdimage = $this->gdThumb($filename);
+										if($gdimage){
+											$pdf->GDImage($gdimage, 20, null, 60);
+											//$pdf->cell(0,2,'','',1,L);
+										}
+									}
+									
+									if($o['caption'] != ""){
+										$pdf->imageCaptionRow("Caption", $o['caption'], 20);
+									}
+
+									$pdf->Ln(1);
+									$pdf->Ln(1);
+									$pdf->Ln(1);
+									$pdf->Ln(1);
+									$pdf->Ln(1);
+
+								}
+							}
+							
+							if($spot['pet']){
+								$pdf->valueRow("IG/Met","",15);
+								$pet = (array) $spot['pet'];
+								$outlines = $this->varToPDF($spot['pet'], 20);
+								$groupedrows = $this->groupVarToPDF($outlines);
+								//$this->dumpVar($groupedrows); exit();
+								foreach($groupedrows as $gr){
+									if($gr[2]=="label"){
+										$pdf->valueRow($gr[1],"",$gr[0]);
+										$lastlabel = $gr[1];
+									}else{
+										if (strpos(strtolower($lastlabel), 'notes') !== false) {
+											$pdf->petNotesRow("",$gr[1]." notesrow",$gr[0]);
+										}else{
+											$pdf->lowValueRow($gr[1],"",$gr[0]);
+										}
+										$lastlabel = $gr[1];
+									}
+									
+								}
+							}
+							
+							
+							
+
+							$pdf->Ln(10);
+						
+						}else{ //end if date matches
+							//echo "date doesn't match<br>";
+						}
+			
+					}//end foreach spots
+
+				}// end foreach spotdates
+
+
+				$filedate = date("m_d_Y");
+				$pdfname="StraboSpot_Field_Book_$filedate.pdf";
+				//$pdf->Output($pdfname,"D");
+				$pdf->Output();
+		
+			}else{
+	
+				echo "No spots found for this search.";
+
+	
+			}
+
+		} //end if dsids
+
+	}
+
+	public function varToPDF($var, $indent){
+		$rows = [];
+		if(is_array($var)){
+			foreach($var as $v){
+				$newrows = $this->varToPDF($v, $indent + 2);
+				foreach($newrows as $newrow){
+					$rows[]=$newrow;
+				}
+			}
+		}elseif(is_object($var)){
+			foreach($var as $key=>$v){
+				if($key!="id"){
+					$rows[] = array($indent, $key, 'label');
+					$newrows = $this->varToPDF($v, $indent + 2);
+					foreach($newrows as $newrow){
+						$rows[]=$newrow;
+					}
+				}
+			}
+		}else{
+			if($var != "id"){
+				$rows[] = array($indent, $var, 'value');
+			}
+		}
+		
+		return $rows;
+	}
+
+	public function groupVarToPDF($array){
+		$currentindent = $array[0][0];
+		$outrows = [];
+		$valarray = [];
+		
+		foreach($array as $row){
+			if($row[0] != $currentindent){
+				if($lasttype == "label"){
+					$thislabel = implode(", ", $valarray);
+					$thislabel = $this->fixLabel($thislabel);
+					$outrows[] = array($currentindent, $thislabel, $lasttype);
+				}else{
+					$outrows[] = array($currentindent, implode(", ", $valarray), $lasttype);
+				}
+				
+				$valarray = [];
+				$currentindent = $row[0];
+			}
+			$valarray[] = $row[1];
+			$lasttype = $row[2];
+		}
+		
+		$outrows[] = array($currentindent, implode(", ", $valarray), $lasttype);
+		
+		return $outrows;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	public function old09052019fieldbookOut(){
 
 		//include_once("straboModelClass/straboModelClass.php");
