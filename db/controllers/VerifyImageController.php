@@ -19,8 +19,12 @@ class VerifyImageController extends MyController
         	$feature_id = $request->url_elements[2];
         	
         	if($this->strabo->findImageFile($feature_id)){
+    			
+    			$modified_timestamp = $this->strabo->getImageTimestamp($feature_id);
+    			
     			header("Success", true, 200);
 				$data["Message"] = "Image file $feature_id exists.";
+				$data["modified_timestamp"] = $modified_timestamp;
         	}else{
 				header("Bad Request", true, 404);
 				$data["Error"] = "Image file $feature_id does not exist.";

@@ -1168,6 +1168,7 @@ or
 Due to a file being uploaded, this service accepts multiple POST variables:
 
 Variable Name: "id" - ID of image being uploaded. (required)
+Variable Name: "modified_timestamp" - Unix timestamp when image last modified. (optional)
 Variable Name: "image_file" - File containing image to be uploaded. (required)
 
 

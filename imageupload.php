@@ -4,6 +4,10 @@ $id=time().rand(0,9);
 
 include("logincheck.php");
 include("includes/header.php");
+
+
+
+
 ?>
 
 
@@ -12,7 +16,8 @@ include("includes/header.php");
 <div style="width:600px;">
 Use the form below to test image upload into the StraboSpot Database.<br>
 Form Method: POST<br>
-Form enctype: multipart/form-data
+Form enctype: multipart/form-data<br>
+Endpoint: https://strabospot.org/db/image
 </div>
 
 <br><br>
@@ -21,7 +26,9 @@ Form enctype: multipart/form-data
 
 <table>
 
-	<tr><td>id</td><td><input type="text" name="id" value="14734278979675"></td></tr>
+	<tr><td>id</td><td><input type="text" name="id" value="<?=$id?>"></td></tr>
+
+	<tr><td>modified_timestamp</td><td><input type="text" name="modified_timestamp" value=""></td></tr>
 
 	<tr><td>image_file</td><td><input type="file" name="image_file"></td></tr>
 	

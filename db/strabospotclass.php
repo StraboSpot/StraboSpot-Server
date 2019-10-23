@@ -2286,6 +2286,7 @@ class StraboSpot
 		$error="";
 		
 		$id=(int)$post['id'];
+		$modified_timestamp = $post['modified_timestamp'];
 
 		if($imagefiletmp_name==""){
 			$error.="No image file provided. ";
@@ -2344,6 +2345,7 @@ class StraboSpot
 				$injson['userpkey']=$this->userpkey;
 				$injson['imagesha1']=$imagesha1;
 				$injson['id']=$id;
+				$injson['modified_timestamp']=$modified_timestamp;
 
 				$injson = json_encode($injson);
 
@@ -2375,6 +2377,8 @@ class StraboSpot
 				$injson['userpkey']=$this->userpkey;
 				$injson['imagesha1']=$imagesha1;
 				$injson['id']=$id;
+				$injson['modified_timestamp']=$modified_timestamp;
+
 
 				$imagefiletype=explode("/",$imagefiletype);
 				$imagefiletype=$imagefiletype[1];
@@ -3431,6 +3435,17 @@ match (p:Project)
 
 			return $newdata;
 		}
+	
+	}
+
+
+	public function getImageTimestamp($feature_id){
+	
+		$querystring = "MATCH (n:Image) WHERE n.id = $feature_id and n.userpkey = $this->userpkey RETURN n.modified_timestamp;";
+		
+		$modified_timestamp = $this->neodb->get_var($querystring);
+
+		return $modified_timestamp;
 	
 	}
 
