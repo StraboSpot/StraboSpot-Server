@@ -104,7 +104,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/feature</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/feature</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -159,7 +159,7 @@ will eventually require more attributes determined by a set of contrained vocabu
     "date" : "2014-11-20",
     "name" : "My Test Feature Polygon Name",
     "modified_timestamp": "14561720041234"
-    "self" : "http://strabospot.org/db/feature/246"
+    "self" : "https://strabospot.org/db/feature/246"
   },
   "type" : "Feature"
   
@@ -181,7 +181,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong>http://strabospot.org/db/datasetspots/12345</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong>https://strabospot.org/db/datasetspots/12345</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Where:</strong> 12345 is the dataset id.</code></span>
@@ -413,7 +413,7 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "new image here",
             "width": 720,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788991"
+            "self": "https://strabospot.org/image/1122334455667788991"
           },
           {
             "height": 999,
@@ -422,7 +422,7 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "title of image here",
             "width": 720,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788992"
+            "self": "https://strabospot.org/image/1122334455667788992"
           },
           {
             "height": 669,
@@ -431,12 +431,12 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "",
             "width": 500,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788993"
+            "self": "https://strabospot.org/image/1122334455667788993"
           }
         ],
         "time": "2016-02-18T21:10:35.000Z",
         "id": 12345678901,
-        "self": "http://strabospot.org/feature/12345678901",
+        "self": "https://strabospot.org/feature/12345678901",
         "orientation_data": [
           {
             "dip_direction": 65,
@@ -477,7 +477,7 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "new image here",
             "width": 720,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788994"
+            "self": "https://strabospot.org/image/1122334455667788994"
           },
           {
             "height": 999,
@@ -486,7 +486,7 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "title of image here",
             "width": 720,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788995"
+            "self": "https://strabospot.org/image/1122334455667788995"
           },
           {
             "height": 669,
@@ -495,12 +495,12 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "",
             "width": 500,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788996"
+            "self": "https://strabospot.org/image/1122334455667788996"
           }
         ],
         "time": "2016-02-18T21:10:35.000Z",
         "id": 12345678902,
-        "self": "http://strabospot.org/feature/12345678902",
+        "self": "https://strabospot.org/feature/12345678902",
         "orientation_data": [
           {
             "dip_direction": 65,
@@ -541,7 +541,7 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "new image here",
             "width": 720,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788997"
+            "self": "https://strabospot.org/image/1122334455667788997"
           },
           {
             "height": 999,
@@ -550,7 +550,7 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "title of image here",
             "width": 720,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788998"
+            "self": "https://strabospot.org/image/1122334455667788998"
           },
           {
             "height": 669,
@@ -559,12 +559,12 @@ will eventually require more attributes determined by a set of contrained vocabu
             "title": "",
             "width": 500,
             "caption": "caption here",
-            "self": "http://strabospot.org/image/1122334455667788999"
+            "self": "https://strabospot.org/image/1122334455667788999"
           }
         ],
         "time": "2016-02-18T21:10:35.000Z",
         "id": 12345678903,
-        "self": "http://strabospot.org/feature/12345678903",
+        "self": "https://strabospot.org/feature/12345678903",
         "orientation_data": [
           {
             "dip_direction": 65,
@@ -611,7 +611,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/feature/14309503161234,</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/feature/14309503161234,</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -646,7 +646,7 @@ will eventually require more attributes determined by a set of contrained vocabu
     "id": 14309503161234,
     "date" : "2014-11-20",
     "name" : "My Test Feature Polygon Name",
-    "self" : "http://strabospot.org/db/feature/1234"
+    "self" : "https://strabospot.org/db/feature/1234"
   },
   "type" : "Feature"
   
@@ -668,7 +668,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/feature/14309503161234,</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/feature/14309503161234,</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -701,7 +701,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/search</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/search</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -746,7 +746,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id": 14309503161234,
         "date" : "2014-11-20",
         "name" : "Test 3",
-        "self" : "http://strabospot.org/db/feature/1242"
+        "self" : "https://strabospot.org/db/feature/1242"
       },
       "type" : "Feature"
     },
@@ -761,7 +761,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id": 14309503161235,
         "date" : "2014-11-20",
         "name" : "Test 2",
-        "self" : "http://strabospot.org/db/feature/1241"
+        "self" : "https://strabospot.org/db/feature/1241"
       },
       "type" : "Feature"
     },
@@ -776,7 +776,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id" : 14309503161236,
         "date" : "2014-11-20",
         "name" : "Test 1",
-        "self" : "http://strabospot.org/db/feature/1240"
+        "self" : "https://strabospot.org/db/feature/1240"
       },
       "type" : "Feature"
     },
@@ -791,7 +791,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id" : 14309503161237,
         "date" : "2014-11-20",
         "name" : "Test Poly",
-        "self" : "http://strabospot.org/db/feature/1239"
+        "self" : "https://strabospot.org/db/feature/1239"
       },
       "type" : "Feature"
     }
@@ -815,7 +815,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://www.strabospot.org/db/myFeatures</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://www.strabospot.org/db/myFeatures</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -852,7 +852,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id" : 14309503161234,
         "date" : "2014-11-20",
         "name" : "Test 3",
-        "self" : "http://strabospot.org/db/feature/1242"
+        "self" : "https://strabospot.org/db/feature/1242"
       },
       "type" : "Feature"
     },
@@ -867,7 +867,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id": 14309503161235,
         "date" : "2014-11-20",
         "name" : "Test 2",
-        "self" : "http://strabospot.org/db/feature/1241"
+        "self" : "https://strabospot.org/db/feature/1241"
       },
       "type" : "Feature"
     },
@@ -882,7 +882,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id" : 14309503161236,
         "date" : "2014-11-20",
         "name" : "Test 1",
-        "self" : "http://strabospot.org/db/feature/1240"
+        "self" : "https://strabospot.org/db/feature/1240"
       },
       "type" : "Feature"
     },
@@ -897,7 +897,7 @@ will eventually require more attributes determined by a set of contrained vocabu
         "id" : 14309503161237,
         "date" : "2014-11-20",
         "name" : "Test Poly",
-        "self" : "http://strabospot.org/db/feature/1239"
+        "self" : "https://strabospot.org/db/feature/1239"
       },
       "type" : "Feature"
     }
@@ -924,7 +924,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/myFeatures</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/myFeatures</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -960,7 +960,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/userAuthenticate</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/userAuthenticate</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1080,7 +1080,7 @@ or
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/feature</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/feature</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1117,7 +1117,7 @@ or
 					<span class="strong"><code class="literal"><strong>Content-Type:</strong> application/json; charset=UTF-8</code></span>
 				</li>
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>Location:</strong> http://localhost:7474/db/data/node/291</code></span>
+					<span class="strong"><code class="literal"><strong>Location:</strong> https://localhost:7474/db/data/node/291</code></span>
 				</li>
 
 			</ul>
@@ -1136,7 +1136,7 @@ or
     "spotType" : "c",
     "date" : "2014-11-20",
     "name" : "My Test Feature Polygon Name",
-    "self" : "http://strabospot.org/db/feature/246"
+    "self" : "https://strabospot.org/db/feature/246"
   },
   "type" : "Feature"
 }
@@ -1156,7 +1156,7 @@ or
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/image</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/image</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1200,10 +1200,10 @@ Variable Name: "height" - Optional height of image.
 		</div>
 <div style="padding-left:30px;">
 <pre class="programlisting cm-s-default" data-lang="javascript">
-{"self":"http://strabospot.org/db/image/531","id":"531"}
+{"self":"https://strabospot.org/db/image/531","id":"531"}
 </pre>
 	Note: Due to the complexity of using multipart/form-data, a test page has been created to test this service. <br>This
-	page can be found at: <a href="http://strabospot.org/imageupload">http://strabospot.org/imageupload</a>.
+	page can be found at: <a href="https://strabospot.org/imageupload">https://strabospot.org/imageupload</a>.
 </div>
 	
 	</div>
@@ -1218,7 +1218,7 @@ Variable Name: "height" - Optional height of image.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/image/527</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/image/527</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1260,7 +1260,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/image/1234</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/image/1234</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1292,7 +1292,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/verifyimage/1234</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/verifyimage/1234</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1328,7 +1328,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/featureImages/12345</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/featureImages/12345</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1355,15 +1355,15 @@ File content of image is returned.
   "images": [
     {
       "caption": "caption here",
-      "self": "http://strabospot.org/db/image/57162"
+      "self": "https://strabospot.org/db/image/57162"
     },
     {
       "caption": "another caption here",
-      "self": "http://strabospot.org/db/image/57163"
+      "self": "https://strabospot.org/db/image/57163"
     },
     {
       "caption": "caption three",
-      "self": "http://strabospot.org/db/image/57164"
+      "self": "https://strabospot.org/db/image/57164"
     }
   ]
 }
@@ -1386,7 +1386,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/dataset</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/dataset</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1422,7 +1422,7 @@ File content of image is returned.
 	"datasettype" : "app",
 	"name": "MyDatasetName",
 	"id": 14573623121234,
-	"self" : "http://strabospot.org/db/dataset/123456",
+	"self" : "https://strabospot.org/db/dataset/123456",
 	"modified_timestamp": 1457377455,
 	"date": "03/08/2016"
 }
@@ -1441,7 +1441,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/dataset/14573623121234</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/dataset/14573623121234</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1478,7 +1478,7 @@ File content of image is returned.
 	"datasettype" : "app",
 	"name": "MyNewDatasetName",
 	"id": 14573623121234,
-	"self" : "http://strabospot.org/db/dataset/14573623121234",
+	"self" : "https://strabospot.org/db/dataset/14573623121234",
 	"modified_timestamp": 1457377455,
 	"date": "03/08/2016"
 }
@@ -1499,7 +1499,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/dataset/"id": 14573623121234,</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/dataset/"id": 14573623121234,</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1527,7 +1527,7 @@ File content of image is returned.
 	"datasettype" : "app",
 	"name": "MyNewDatasetName",
 	"id": 14573623121234,
-	"self" : "http://strabospot.org/db/dataset/123456",
+	"self" : "https://strabospot.org/db/dataset/123456",
 	"modified_timestamp": 1457377455,
 	"date": "03/08/2016"
 }
@@ -1548,7 +1548,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/dataset/123456</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/dataset/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1579,7 +1579,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://www.strabospot.org/db/myDatasets</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://www.strabospot.org/db/myDatasets</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1606,7 +1606,7 @@ File content of image is returned.
   "datasets" : [
     {
 		"datasettype" : "app",
-		"self" : "http://strabospot.org/db/dataset/14573623121234",
+		"self" : "https://strabospot.org/db/dataset/14573623121234",
 		"id" : 14573623121234,
 		"name" : "MyNewDatasetName",
 		"modified_timestamp": 1457362312,
@@ -1614,7 +1614,7 @@ File content of image is returned.
     },
     {
 		"datasettype" : "app",
-		"self" : "http://strabospot.org/db/dataset/14573623121235",
+		"self" : "https://strabospot.org/db/dataset/14573623121235",
 		"id" : 14573623121235,
 		"name" : "Second Dataset",
 		"modified_timestamp": 1457362312,
@@ -1622,7 +1622,7 @@ File content of image is returned.
     },
     {
 		"datasettype" : "app",
-		"self" : "http://strabospot.org/db/dataset/14573623121236",
+		"self" : "https://strabospot.org/db/dataset/14573623121236",
 		"id" : 14573623121236,
 		"name" : "ThirdDataset",
 		"modified_timestamp": 1457362312,
@@ -1630,7 +1630,7 @@ File content of image is returned.
     },
     {
 		"datasettype" : "app",
-		"self" : "http://strabospot.org/db/dataset/14573623121237",
+		"self" : "https://strabospot.org/db/dataset/14573623121237",
 		"id" : 14573623121237,
 		"name" : "FourthDataset",
 		"modified_timestamp": 1457362312,
@@ -1658,7 +1658,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/datasetSpots/123456</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/datasetSpots/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Where:</strong> 123456 is the dataset id.</code></span>
@@ -1709,7 +1709,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://www.strabospot.org/db/datasetSpots/123456</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://www.strabospot.org/db/datasetSpots/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1746,7 +1746,7 @@ File content of image is returned.
         "id" : 14309503161234,
         "date" : "2014-11-20",
         "name" : "Test 3",
-        "self" : "http://strabospot.org/db/feature/1242"
+        "self" : "https://strabospot.org/db/feature/1242"
       },
       "type" : "Feature"
     },
@@ -1761,7 +1761,7 @@ File content of image is returned.
         "id": 14309503161235,
         "date" : "2014-11-20",
         "name" : "Test 2",
-        "self" : "http://strabospot.org/db/feature/1241"
+        "self" : "https://strabospot.org/db/feature/1241"
       },
       "type" : "Feature"
     },
@@ -1776,7 +1776,7 @@ File content of image is returned.
         "id" : 14309503161236,
         "date" : "2014-11-20",
         "name" : "Test 1",
-        "self" : "http://strabospot.org/db/feature/1240"
+        "self" : "https://strabospot.org/db/feature/1240"
       },
       "type" : "Feature"
     },
@@ -1791,7 +1791,7 @@ File content of image is returned.
         "id" : 14309503161237,
         "date" : "2014-11-20",
         "name" : "Test Poly",
-        "self" : "http://strabospot.org/db/feature/1239"
+        "self" : "https://strabospot.org/db/feature/1239"
       },
       "type" : "Feature"
     }
@@ -1816,7 +1816,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://www.strabospot.org/db/datasetFields/123456</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://www.strabospot.org/db/datasetFields/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1863,8 +1863,8 @@ File content of image is returned.
 
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Optional:</strong> An optional point/line/polygon can be added to this request
-														to limit the output to a specific feature type, e.g., <br>http://www.strabospot.org/db/datasetFields/123456/point
-														<br>or<br>http://www.strabospot.org/db/datasetFields/123456/polygon</code></span>
+														to limit the output to a specific feature type, e.g., <br>https://www.strabospot.org/db/datasetFields/123456/point
+														<br>or<br>https://www.strabospot.org/db/datasetFields/123456/polygon</code></span>
 				</li>
 
 
@@ -1889,7 +1889,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/datasetSpots/123456</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/datasetSpots/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -1928,7 +1928,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/project</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/project</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2139,7 +2139,7 @@ File content of image is returned.
     "student_mode": false
   },
   "projecttype": "app",
-  "self": "http://strabospot.org/db/project/14573774551234",
+  "self": "https://strabospot.org/db/project/14573774551234",
   "id": 14573774551234,
   "date": "03/08/2016",
   "modified_timestamp": 1457377455
@@ -2164,7 +2164,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/project/14573774551234</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/project/14573774551234</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2377,7 +2377,7 @@ File content of image is returned.
     "student_mode": false
   },
   "projecttype": "app",
-  "self": "http://strabospot.org/db/project/204006",
+  "self": "https://strabospot.org/db/project/204006",
   "id": 14573774551234,
   "date": "03/08/2016",
   "modified_timestamp": 1457377455
@@ -2399,7 +2399,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/project/14573774551234</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/project/14573774551234</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2514,7 +2514,7 @@ File content of image is returned.
     "student_mode": false
   },
   "projecttype": "app",
-  "self": "http://strabospot.org/db/project/14573774551234",
+  "self": "https://strabospot.org/db/project/14573774551234",
   "id": 14573774551234,
   "date": "03/08/2016",
   "modified_timestamp": 1457377455
@@ -2536,7 +2536,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/project/123456</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/project/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2567,7 +2567,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://www.strabospot.org/db/myProjects</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://www.strabospot.org/db/myProjects</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2595,7 +2595,7 @@ File content of image is returned.
     {
       "projecttype": "app",
       "name": "My Project Name",
-      "self": "http://strabospot.org/db/project/14573774551234",
+      "self": "https://strabospot.org/db/project/14573774551234",
       "id": 14573774551234,
 	  "date": "03/08/2016",
 	  "modified_timestamp": 1457377455
@@ -2603,7 +2603,7 @@ File content of image is returned.
     {
       "projecttype": "app",
       "name": "new project name",
-      "self": "http://strabospot.org/db/project/14573774551235",
+      "self": "https://strabospot.org/db/project/14573774551235",
       "id": 14573774551235,
 	  "date": "03/08/2016",
 	  "modified_timestamp": 1457377455
@@ -2630,7 +2630,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/projectDatasets/123456</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/projectDatasets/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Where:</strong> 123456 is the project id.</code></span>
@@ -2681,7 +2681,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://www.strabospot.org/db/projectDatasets/123456</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://www.strabospot.org/db/projectDatasets/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2709,7 +2709,7 @@ File content of image is returned.
     {
       "datasettype": "app",
       "name": "My Dataset Name",
-      "self": "http://strabospot.org/db/dataset/14573774551234",
+      "self": "https://strabospot.org/db/dataset/14573774551234",
       "id": 14573774551234,
 	  "date": "03/08/2016",
 	  "modified_timestamp": 1457377455
@@ -2717,7 +2717,7 @@ File content of image is returned.
     {
       "datasettype": "app",
       "name": "My New Dataset Name",
-      "self": "http://strabospot.org/db/dataset/14573774551235",
+      "self": "https://strabospot.org/db/dataset/14573774551235",
       "id": 14573774551235,
 	  "date": "03/08/2016",
 	  "modified_timestamp": 1457377455
@@ -2725,7 +2725,7 @@ File content of image is returned.
     {
       "datasettype": "app",
       "name": "Another Dataset Name",
-      "self": "http://strabospot.org/db/dataset/14573774551236",
+      "self": "https://strabospot.org/db/dataset/14573774551236",
       "id": 14573774551236,
 	  "date": "03/08/2016",
 	  "modified_timestamp": 1457377455
@@ -2752,7 +2752,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/projectDatasets/123456</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/projectDatasets/123456</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2803,7 +2803,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/profile</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/profile</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2855,7 +2855,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/profile</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/profile</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2912,7 +2912,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/profile</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/profile</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -2957,7 +2957,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/profile</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/profile</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -3021,7 +3021,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>POST:</strong> http://strabospot.org/db/profileimage</code></span>
+					<span class="strong"><code class="literal"><strong>POST:</strong> https://strabospot.org/db/profileimage</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -3053,7 +3053,7 @@ Also, please note the the encapsulation type MUST be set to "multipart/form-data
 <div style="padding-left:30px;">
 
 	Note: Due to the complexity of using multipart/form-data, a test page has been created to test this service. <br>This
-	page can be found at: <a href="http://strabospot.org/profileimageupload">http://strabospot.org/profileimageupload</a>.
+	page can be found at: <a href="https://strabospot.org/profileimageupload">https://strabospot.org/profileimageupload</a>.
 </div>
 	
 	</div>
@@ -3068,7 +3068,7 @@ Also, please note the the encapsulation type MUST be set to "multipart/form-data
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>GET:</strong> http://strabospot.org/db/profileimage</code></span>
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://strabospot.org/db/profileimage</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
@@ -3110,7 +3110,7 @@ File content of image is returned.
 			<ul class="itemizedlist" style="list-style-type: disc; ">
 
 				<li class="listitem">
-					<span class="strong"><code class="literal"><strong>DELETE:</strong> http://strabospot.org/db/profileimage</code></span>
+					<span class="strong"><code class="literal"><strong>DELETE:</strong> https://strabospot.org/db/profileimage</code></span>
 				</li>
 				<li class="listitem">
 					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
