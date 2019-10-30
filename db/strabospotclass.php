@@ -3272,7 +3272,33 @@ match (p:Project)
 
 	}
 	
+	public function getProjectImagesForAPI($projectid){
+
+		//get the feature from neo4j
+		$querystring = "match (p:Project {id:$projectid,userpkey:$this->userpkey})-[:HAS_DATASET]->(d:Dataset)-[r:HAS_SPOT]->(s:Spot)-[:HAS_IMAGE]->(i:Image) return i;";
+		$featuredata = $this->neodb->get_results($querystring);
+
+		$count=count($featuredata);
 	
+		if($count > 0){
+		
+			$x=0;
+			
+			foreach($featuredata as $fd){
+			
+				$id=$fd->get("i")->values();
+
+				$data['images'][$x]['id']=$id['id'];
+				$data['images'][$x]['modified_timestamp']=$id['modified_timestamp'];
+
+				$x++;
+			}
+
+		}
+	
+		return $data;
+
+	}
 	
 	public function findProject($feature_id){
 	
