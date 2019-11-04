@@ -70,6 +70,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 <a href="#getproject">Get Project</a><br>
 <a href="#deleteproject">Delete Project</a><br>
 <a href="#getmyprojects">Get My Projects</a><br>
+<a href="#getallimagesforgivenproject">Get All Images for a Given Project</a><br>
 <a href="#adddatasettoproject">Add Dataset to Project</a><br>
 <a href="#getalldatasetsforgivenproject">Get All Datasets for Given Project</a><br>
 <a href="#deletealldatasetsforgivenproject">Delete All Datasets for Given Project</a><br>
@@ -2776,23 +2777,76 @@ File content of image is returned.
 
 
 
+<!-- ******************************************************************************** -->
 
+<!-- ******************************************************************************** -->
 
+	<A name="getallimagesforgivenproject"></A>
+	<h2 class="wsite-content-title">Get all Images for Given Project</h2>
+	<div style="padding-left:20px;padding-bottom:30px;">	
+		<span class="emphasis"><em>Example request</em></span>
+		<div class="itemizedlist">
+			<ul class="itemizedlist" style="list-style-type: disc; ">
 
+				<li class="listitem">
+					<span class="strong"><code class="literal"><strong>GET:</strong> https://www.strabospot.org/db/projectImages/123456</code></span>
+				</li>
+				<li class="listitem">
+					<span class="strong"><code class="literal"><strong>Accept:</strong> application/json; charset=UTF-8</code></span>
+				</li>
+			</ul>
+		</div>
 
+		<span class="emphasis"><em>Example response</em></span>
+		<div class="itemizedlist">
+			<ul class="itemizedlist" style="list-style-type: disc; ">
 
+				<li class="listitem">
+					<span class="strong"><code class="literal"><strong>200:</strong> OK</code></span>
+				</li>
+				<li class="listitem">
+					<span class="strong"><code class="literal"><strong>Content-Type:</strong> application/json; charset=UTF-8</code></span>
+				</li>
 
-
-
-
-
-
+			</ul>
+		</div>
+<div style="padding-left:30px;">
+<pre class="programlisting cm-s-default" data-lang="javascript">
+{
+  "images": [
+    {
+      "id": 14761235708763,
+      "modified_timestamp": 1476123123
+    },
+    {
+      "id": 14761235603555,
+      "modified_timestamp": 1476123134
+    },
+    {
+      "id": 14759541269574,
+      "modified_timestamp": 1476123234
+    },
+    {
+      "id": 14759526677778,
+      "modified_timestamp": 1476123345
+    },
+    {
+      "id": 14759532056864,
+      "modified_timestamp": 1476123456
+    }
+  ]
+}
+</pre>
+</div>
+	</div>
 
 
 
 
 
 <!-- ******************************************************************************** -->
+
+
 
 <A name="profileFunctions"></A>
 
