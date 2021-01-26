@@ -40,13 +40,15 @@ will eventually require more attributes determined by a set of contrained vocabu
 <a href="#createfeature">Create/Update Feature</a><br>
 -->
 
-<a href="#createmultiplefeatures">Upload Feature(s)</a><br>
+<a href="#createmultiplefeatures">Upload Spot(s)</a><br>
 
-<a href="#getfeature">Get Feature</a><br>
-<a href="#deletefeature">Delete Feature</a><br>
+<a href="#getfeature">Get Spot</a><br>
+<a href="#deletefeature">Delete Spot</a><br>
+<!--
 <a href="#search">Search</a><br>
-<a href="#getmyfeatures">Get My Features</a><br>
-<a href="#deleteallofmyfeatures">Delete All of My Features</a><br>
+-->
+<a href="#getmyfeatures">Get My Spots</a><br>
+<a href="#deleteallofmyfeatures">Delete All of My Spots</a><br>
 <a href="#authenticateuser">Authenticate User</a><br>
 <a href="#uploadimage">Upload Image</a><br>
 <a href="#getimage">Get Image</a><br>
@@ -175,7 +177,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 <!-- ******************************************************************************** -->
 	<A name="createmultiplefeatures"></A>
 	<A name="updateFeature"></A>
-	<h2 class="wsite-content-title">Upload Feature(s)</h2>
+	<h2 class="wsite-content-title">Upload Spots(s)</h2>
 	<div style="padding-left:20px;padding-bottom:30px;">	
 		<span class="emphasis"><em>Example request</em></span>
 		<div class="itemizedlist">
@@ -605,7 +607,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 <!-- ******************************************************************************** -->
 
 	<A name="getfeature"></A>
-	<h2 class="wsite-content-title">Get Feature</h2>
+	<h2 class="wsite-content-title">Get Spot</h2>
 	<div style="padding-left:20px;padding-bottom:30px;">	
 		<span class="emphasis"><em>Example request</em></span>
 		<div class="itemizedlist">
@@ -662,7 +664,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 <!-- ******************************************************************************** -->
 
 	<A name="deletefeature"></A>
-	<h2 class="wsite-content-title">Delete Feature</h2>
+	<h2 class="wsite-content-title">Delete Spot</h2>
 	<div style="padding-left:20px;padding-bottom:30px;">	
 		<span class="emphasis"><em>Example request</em></span>
 		<div class="itemizedlist">
@@ -692,7 +694,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 
 
 
-<!-- ******************************************************************************** -->
+<!-- ******************************************************************************** 
 
 	<A name="search"></A>
 	<h2 class="wsite-content-title">Search (BBOX only for now)</h2>
@@ -803,13 +805,13 @@ will eventually require more attributes determined by a set of contrained vocabu
 </div>
 	</div>
 
-
+-->
 
 
 <!-- ******************************************************************************** -->
 
 	<A name="getmyfeatures"></A>
-	<h2 class="wsite-content-title">Get My Features (Return all samples of authorized user)</h2>
+	<h2 class="wsite-content-title">Get My Spots (Return all spots of authorized user)</h2>
 	<div style="padding-left:20px;padding-bottom:30px;">	
 		<span class="emphasis"><em>Example request</em></span>
 		<div class="itemizedlist">
@@ -918,7 +920,7 @@ will eventually require more attributes determined by a set of contrained vocabu
 <!-- ******************************************************************************** -->
 	<A name="deleteallofmyfeatures"></A>
 	<A name="deleteMyFeatures"></A>
-	<h2 class="wsite-content-title">Delete All of My Features (Delete all samples of authorized user)</h2>
+	<h2 class="wsite-content-title">Delete All of My Spots (Delete all spots of authorized user)</h2>
 	<div style="padding-left:20px;padding-bottom:30px;">	
 		<span class="emphasis"><em>Example request</em></span>
 		<div class="itemizedlist">
