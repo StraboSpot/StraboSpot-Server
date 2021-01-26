@@ -9,8 +9,6 @@ Description: This codebase allows end-users to communicate with
 ******************************************************************
 */
 
-
-
 //Initialize Databases
 include_once "../includes/config.inc.php";
 include "../db.php";
@@ -38,8 +36,7 @@ $username=$_SERVER['PHP_AUTH_USER'];
 $password=$_SERVER['PHP_AUTH_PW'];
 $userpkey=$db->get_var("select pkey from users where email='$username'");
 $userpkey=(int)$userpkey;
-//$userpkey=3;
-//Initialize StraboSpot class
+
 $strabo = new StraboSpot($neodb,$userpkey,$db);
 
 //pass along uuid class
@@ -48,29 +45,16 @@ $strabo->setuuid($uuid);
 
 $request = new Request();
 
-
-
 //log raw input for debug
 
 if(file_exists("log.txt")){
 	$rawinput = file_get_contents("php://input");
 	file_put_contents ("log.txt", "\n\n************************************************************************************************************************\n\n", FILE_APPEND);
 	file_put_contents ("log.txt", "REQUEST: ".ucfirst($request->url_elements[1])."\n\n", FILE_APPEND);
-	
-	
 	file_put_contents ("log.txt", "REQUEST_URI: ".$_SERVER["REQUEST_URI"]."\n\n", FILE_APPEND);
-	
-	//$thispost = print_r($_POST,true);
-	//file_put_contents ("log.txt", "POST: $thispost", FILE_APPEND);
-	
-	//file_put_contents ("log.txt", "username: $username password: $password\n\n", FILE_APPEND);
 	file_put_contents ("log.txt", "username: $username\n\n", FILE_APPEND);
-	
 	file_put_contents ("log.txt", "Raw Input:\n".$rawinput, FILE_APPEND);
 }
-
-
-
 
 // route the request to the right place
 $controller_name = ucfirst($request->url_elements[1]) . 'Controller';

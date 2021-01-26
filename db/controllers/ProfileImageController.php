@@ -17,8 +17,6 @@ class ProfileImageController extends MyController
 
 		$imagename = $this->strabo->getProfileImageName();
 
-		//echo $imagename;exit();
-
 		if($imagename != ""){
 
 			$extension = end(explode(".",$imagename));
@@ -42,9 +40,7 @@ class ProfileImageController extends MyController
     public function deleteAction($request) {
     	
 		$this->strabo->deleteProfileImage();
-		
 
-		
 		header("Profile image deleted", true, 204);
 		$data['message']="Profile image deleted.";
         

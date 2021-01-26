@@ -21,8 +21,7 @@ class ProjectController extends MyController
 				// do nothing, this is not a supported action
 				header("Bad Request", true, 400);
 				$data["Error"] = $request->url_elements[3]." not supported.";
-            	//update here
-            	
+
             } else {
             	
             	$data = $this->strabo->getProject($feature_id);

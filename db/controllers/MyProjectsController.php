@@ -17,14 +17,7 @@ class MyProjectsController extends MyController
         if(!isset($request->url_elements[2])) {
 
 			$data = $this->strabo->getMyProjects();
-			
-			/*
-			if($data==""){
-				header("No Projects Found", true, 404);
-				exit();
-			}
-			*/
-			
+
         } else {
         
         	header("Bad Request", true, 400);

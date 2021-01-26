@@ -42,8 +42,6 @@ class ProjectDatasetsController extends MyController
 			if($this->strabo->findProject($feature_id)){
 
 				$upload = $request->parameters;
-				
-				//$this->strabo->dumpVar($upload);exit();
 
 				unset($upload['apiformat']);
 			
