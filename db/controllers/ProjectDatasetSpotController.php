@@ -102,6 +102,9 @@ class ProjectDatasetSpotController extends MyController
 			if($datasetid!=""){
 				$this->strabo->buildDatasetRelationships($datasetid);
 				$this->strabo->setDatasetCenter($datasetid);
+				
+				//also add dataset to Postgres Database here.
+				$this->strabo->buildPgDataset($datasetid); //need to re-implement JMA 02282020
 			}
 
 			$this->strabo->setProjectCenter($projectid);

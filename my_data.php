@@ -158,6 +158,21 @@ input:checked + .slider:before {
 			window.location='/searchdownload?type=fieldbookdev&userpkey=<?=$userpkey?>&dsids='+id;
 			//var win = window.open('/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id, '_blank');
 			//win.focus();
+		}else if(selected=="shapefiledev"){
+			//window.location='/dl/fieldbook/'+id;
+			//window.location='/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id;
+			window.location='/searchdownload?type=shapefiledev&userpkey=<?=$userpkey?>&dsids='+id;
+			//var win = window.open('/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id, '_blank');
+			//win.focus();
+		}else if(selected=="landing_page"){
+			//window.location='/dl/fieldbook/'+id;
+			//window.location='/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id;
+			window.location='/landingpage?dsid='+id;
+			//var win = window.open('/dataset_strat_sections?userpkey=<?=$userpkey?>&dataset_id='+id, '_blank');
+			//win.focus();
+		}else if(selected=="xlsdev"){
+			//window.location='/dl/xls/'+id;
+			window.location='/searchdownload?type=xlsdev&userpkey=<?=$userpkey?>&dsids='+id;
 		}else if(selected=="debug"){
 			alert(id);
 		}
@@ -332,13 +347,16 @@ if(count($projectrows)==0){
 						<option value="shapefile">Shapefile</option>
 						<option value="kml">KMZ</option>
 						<option value="xls">XLS</option>
-						<option value="stereonet">Stereonet</option>
+						<option value="stereonet">Stereonet Mobile</option>
 						<option value="fieldbook">Field Book</option>
 						<option value="strat_sections">Strat Section(s)</option>
+						<option value="landing_page">Landing Page</option>
 						<?
-						if($userpkey==3){
+						if($userpkey==3 || $userpkey == 21004444){
 						?>
 						<option value="fieldbookdev">Field Book Dev</option>
+						<option value="shapefiledev">Shapefile Dev</option>
+						<option value="xlsdev">XLS Dev</option>
 						<?
 						}
 						?>

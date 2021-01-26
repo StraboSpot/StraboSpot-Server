@@ -1,8 +1,14 @@
 //Map Interface Building
 var zoomres=40; //where to switch to spots view
-var datasetsurl = 'searchdatasets.json';
-var lastdatasetsurl ='searchdatasets.json';
+var datasetsurl = '/search/searchdatasets.json';
+var lastdatasetsurl ='/search/searchdatasets.json';
 var allDatasets = [];
+var newSearchFeatures = "";
+var ctx = null;
+var pixelRatio = null;
+var currentMode = "mainMap"; //stratMap
+var currentStratSection = null;
+var currentStratSectionId = null;
 
 var newibextent = [0, 0, 400, 300];
 var imageBasemapLayer = new ol.layer.Image({
@@ -12,7 +18,7 @@ var imageBasemapLayer = new ol.layer.Image({
 		'html': '&copy; <a href="">Need image source here.</a>'
 	  })
 	],
-	'url': 'images/nophoto.jpg',
+	'url': '/search/images/nophoto.jpg',
 	'projection': new ol.proj.Projection({
 	  'code': 'map-image',
 	  'units': 'pixels',
@@ -21,8 +27,6 @@ var imageBasemapLayer = new ol.layer.Image({
 	'imageExtent': newibextent
   })
 });
-
-
 
 /*
 var datasetPointsSource = new ol.source.Vector({
@@ -42,6 +46,12 @@ var datasetPointsLayer = new ol.layer.Vector({
 	name: 'datasetpoints'
 	//title: 'Dataset Points',
 
+});
+
+var stratSectionLayer = new ol.layer.Group({
+	name: 'featureLayer',
+	title: 'Strat Section',
+	layers: []
 });
 
 var featureLayer = new ol.layer.Group({
@@ -121,6 +131,42 @@ map.addLayer(featureLayer);
 
 
 
+
+
+
+
+
+
+map.on('precompose', function (event) {
+	//Set up global variable to determine if we are currently on strat-section page
+	
+	if(currentMode == "stratMap"){
+	
+		//console.log("Setting CTX here!!!");
+	
+		ctx = event.context;
+		pixelRatio = event.frameState.pixelRatio;
+		drawAxes(ctx, pixelRatio, currentStratSection);
+		
+		//console.log("Pixel Ratio: " + pixelRatio);
+		//StratSectionFactory.drawAxes(ctx, pixelRatio, stratSection);
+
+		//var mapSize = map.getSize();
+		//var mapExtent = map.getView().calculateExtent(map.getSize());
+	
+	}
+
+});
+
+
+
+
+
+
+
+
+
+
 map.on('moveend', updateMapDiv);
 
 var layerSwitcher = new ol.control.LayerSwitcher({
@@ -181,7 +227,7 @@ map.on('click', function (evt) {
 		
 		}else{
 		
-			//console.log(feature.getProperties());
+			//console.log(feature.getProperties()); //15246069817544
 			clickedDatasetId = feature.get('id');
 			
 			expandDataset(feature);
@@ -224,6 +270,75 @@ var showZoomedOut = function(){
 	datasetsLayer.set('title',null);
 	layerSwitcher.renderPanel();
 
+}
+
+var newSearchRebuildDatasetsLayer = function(){
+
+	var stringFeatures = JSON.stringify(newSearchFeatures);
+	console.log(stringFeatures);
+	
+	
+	$("#datasetswaiting").show();
+	
+	
+	
+	console.log("in newSearchRebuildDatasetsLayer");
+
+	const newSearchFormat = new ol.format.GeoJSON();
+	const newFeatures = newSearchFormat.readFeatures(JSON.parse(JSON.stringify(newSearchFeatures)));
+	
+	/*
+	var newFeatures = (new ol.format.GeoJSON()).readFeatures(newSearchFeatures, {
+	dataProjection : 'EPSG:4326',
+	featureProjection: 'EPSG:3857'
+	});
+	*/
+	
+	console.log(newFeatures);
+	
+	datasetPointsSource = new ol.source.Vector({
+		features: newFeatures
+	});
+	
+	/*
+	datasetPointsSource = new ol.source.Vector({
+	url: datasetsurl,
+	format: new ol.format.GeoJSON()
+	});
+	*/
+
+	var listenerKey = datasetPointsSource.on('change', function(e) {
+		if (datasetPointsSource.getState() == 'ready') {
+			$("#datasetswaiting").hide();
+			
+			//remove those features in expandedDatasets
+			_.each(expandedDatasets, function(exdat){
+				exid = exdat.get('id');
+				newDatasets = datasetPointsSource.getFeatures();
+				_.each(newDatasets, function(newds){
+					newid = newds.get('id');
+					if(newds.get('id')==exid){
+						datasetPointsSource.removeFeature(newds);
+					}
+				});
+			});
+			
+			console.log("allDatasets:");
+			console.log(allDatasets);
+
+			ol.Observable.unByKey(listenerKey);
+		}
+	});
+
+
+	datasetPointsLayer.setSource(datasetPointsSource);
+	
+
+
+	
+	
+	
+	
 }
 
 var rebuildDatasetsLayer = function(){

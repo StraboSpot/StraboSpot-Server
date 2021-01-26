@@ -14,6 +14,14 @@
  	color: #484848;
  	padding: .3em 0;
  }
+ .medHeader { 
+ 	/*font-family: 'Alice', sans-serif;*/
+ 	font-family: 'Raleway', sans-serif;
+ 	font-size: 18px;
+ 	font-weight: normal;
+ 	color: #484848;
+ 	padding: .3em 0;
+ }
  div.paragraph, div.paragraph { padding: .5em 0; }
  p, div.paragraph { padding: .25em 0; }
  hr.styled-hr { background-color: #d0d0d0; }

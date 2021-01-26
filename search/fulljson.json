@@ -1,0 +1,23 @@
+{
+  "params": [
+    {
+      "constraints": [
+        {
+          "constraintType": "imageType", 
+          "constraintValue": "photo"
+        }
+      ], 
+      "num": 0, 
+      "qualifier": "and"
+    }, 
+    {
+      "constraints": [
+        {
+          "constraintType": "orientationExists"
+        }
+      ], 
+      "num": 1, 
+      "qualifier": "or"
+    }
+  ]
+}

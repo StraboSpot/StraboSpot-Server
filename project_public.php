@@ -36,6 +36,8 @@ if($_SESSION['loggedin']=="yes"){
 				$p->modified_timestamp=(int)$strabo->createId();
 				$p = json_encode($p,JSON_PRETTY_PRINT);
 				$strabo->insertProject($p);
+				$db->query("update project set ispublic = true where strabo_project_id='$projectid' and user_pkey = $userpkey");
+				
 			}
 		}else{
 			if($p->preferences->public){
@@ -45,6 +47,7 @@ if($_SESSION['loggedin']=="yes"){
 				$p->modified_timestamp=(int)$strabo->createId();
 				$p = json_encode($p,JSON_PRETTY_PRINT);
 				$strabo->insertProject($p);
+				$db->query("update project set ispublic = false where strabo_project_id='$projectid' and user_pkey = $userpkey");
 			}
 		}
 

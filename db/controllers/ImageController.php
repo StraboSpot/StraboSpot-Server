@@ -35,7 +35,7 @@ class ImageController extends MyController
 						$extension = $imageinfo->extension;
 
 						header("Content-type:image/$extension");
-						readfile("dbimages/$filename");
+						readfile("/srv/app/www/dbimages/$filename");
 						exit();
 					
 					}else{
@@ -105,6 +105,12 @@ class ImageController extends MyController
 
     public function postAction($request) {
 
+		//$this->strabo->dumpVar($_FILES['image_file']);
+		//header("Content-type:image/jpeg");
+		//readfile($_FILES['image_file']['tmp_name']);exit();
+		//exit();
+		
+		
 		$data = $this->strabo->insertImage($_POST,$_FILES['image_file']);
 		
 		if($data->Error != ""){

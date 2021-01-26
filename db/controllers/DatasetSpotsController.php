@@ -170,7 +170,9 @@ class DatasetSpotsController extends MyController
 						
 						$totalspottime = microtime(true)-$spotstarttime;
 						$this->strabo->logToFile("Relationships done in $totalspottime seconds ...");
-					
+						
+						//also add dataset to Postgres Database here.
+						$this->strabo->buildPgDataset($feature_id); //need to re-implement JMA 02282020
 					}
 					
 				}else{

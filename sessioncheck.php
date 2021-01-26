@@ -12,6 +12,7 @@ Date: 02/03/2017
 
 ******************************************************
 */
+include_once("adminkeys.php");
 session_start();
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {

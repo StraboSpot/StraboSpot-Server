@@ -1,6 +1,6 @@
 <?
 
-$id=time().rand(0,9);
+$id=time().rand(1111,9999);
 
 include("logincheck.php");
 include("includes/header.php");
@@ -22,13 +22,13 @@ Endpoint: https://strabospot.org/db/image
 
 <br><br>
 
-<form method="POST" action="/db/image" enctype="multipart/form-data">
+<form method="post" action="/db/image" enctype="multipart/form-data">
 
 <table>
 
 	<tr><td>id</td><td><input type="text" name="id" value="<?=$id?>"></td></tr>
 
-	<tr><td>modified_timestamp</td><td><input type="text" name="modified_timestamp" value=""></td></tr>
+	<tr><td>modified_timestamp</td><td><input type="text" name="modified_timestamp" value="<?=substr($id,0,10)?>"></td></tr>
 
 	<tr><td>image_file</td><td><input type="file" name="image_file"></td></tr>
 	

@@ -1,0 +1,7 @@
+
+RewriteEngine on
+
+RewriteRule ^searchdatasets.json$ searchdatasetsjson.php [L]
+RewriteRule ^searchmaps.json$ searchmapsjson.php [L]
+RewriteRule ^searchspots.json$ searchspotsjson.php [L]
+RewriteRule ^includes/data_model.js$ ../jsdatamodel.php [L]

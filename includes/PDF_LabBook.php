@@ -123,7 +123,7 @@ class PDF_MemImage extends FPDF
 	
 	}
 	
-	function dayTitle($datestring,$xpos){
+	function dayTitle($datestring,$xpos=null){
 	
 		if($xpos){
 			$this->SetX($xpos);
@@ -135,7 +135,7 @@ class PDF_MemImage extends FPDF
 	
 	}
 
-	function datasetTitle($datasetname,$thisdate){
+	function datasetTitle($datasetname,$thisdate=null){
 	
 		$this->SetFont('Arial','B',12);
 		$this->Cell(null,null,"Dataset: $datasetname",0,2,'C');
@@ -148,7 +148,7 @@ class PDF_MemImage extends FPDF
 	
 	}
 
-	function valueTitle($text,$xpos){
+	function valueTitle($text,$xpos=null){
 	
 		if($xpos){
 			$this->SetX($xpos);
@@ -161,8 +161,22 @@ class PDF_MemImage extends FPDF
 		$this->Ln(1);
 
 	}
+	
+	function httpLink($text,$xpos=null,$href=null){
+	
+		if($xpos){
+			$this->SetX($xpos);
+		}
+		
+		$width = $this->GetStringWidth($text);
+		
+		$this->SetFont('Arial','B',8);
+		$this->cell($width,3,"$text",'B',1,'L',false,$href); //Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
+		$this->Ln(1);
 
-	function valueRow($label,$value,$xpos){
+	}
+
+	function valueRow($label,$value=null,$xpos=null){
 	
 		if($xpos){
 			$this->SetX($xpos);
@@ -176,7 +190,7 @@ class PDF_MemImage extends FPDF
 
 	}
 	
-	function lowValueRow($label,$value,$xpos){
+	function lowValueRow($label,$value=null,$xpos=null){
 	
 		if($xpos){
 			$this->SetX($xpos);
@@ -190,7 +204,7 @@ class PDF_MemImage extends FPDF
 
 	}
 	
-	function notesRow($label,$value,$xpos){
+	function notesRow($label,$value=null,$xpos=null){
 	
 		$this->Ln(1);
 	
@@ -215,7 +229,7 @@ class PDF_MemImage extends FPDF
 
 	}
 
-	function petNotesRow($label,$value,$xpos){
+	function petNotesRow($label,$value=null,$xpos=null){
 	
 		$this->Ln(1);
 	
@@ -240,7 +254,7 @@ class PDF_MemImage extends FPDF
 
 	}
 	
-	function imageCaptionRow($label,$value,$xpos){
+	function imageCaptionRow($label,$value=null,$xpos=null){
 	
 		$this->Ln(1);
 	
@@ -266,7 +280,7 @@ class PDF_MemImage extends FPDF
 	}
 	
 
-	function dailyNotesRow($label,$value,$xpos){
+	function dailyNotesRow($label,$value=null,$xpos=null){
 	
 		//$this->Ln(1);
 	
@@ -294,7 +308,7 @@ class PDF_MemImage extends FPDF
 
 
 
-	function WordWrap(&$text, $maxwidth)
+	function WordWrap(&$text, $maxwidth=null)
 	{
 		$text = trim($text);
 		if ($text==='')

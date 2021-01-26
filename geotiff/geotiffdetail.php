@@ -1,6 +1,6 @@
 <?PHP
 
-include("../logincheck.php");
+//include("../logincheck.php");
 
 
 $hash = pg_escape_string($_GET['hash']);
@@ -9,7 +9,8 @@ $userpkey = pg_escape_string($_SESSION['userpkey']);
 include("../includes/config.inc.php");
 include("../db.php");
 
-$row = $db->get_row("select * from geotiffs where hash='$hash' and userpkey=$userpkey");
+//$row = $db->get_row("select * from geotiffs where hash='$hash' and userpkey=$userpkey");
+$row = $db->get_row("select * from geotiffs where hash='$hash'");
 
 $pkey=$row->pkey;
 $name=$row->name;
@@ -159,7 +160,7 @@ include("../includes/header.php");
 <div id="map" class="map"></div>
 <div>
 	<div align="center" style="padding-top:10px; font-size:1.7em;">
-		This code should be entered into the StraboSpot app to use this map:
+		To use this map within the StraboSpot app, use the Other Basemaps function and choose "StraboSpot MyMaps" as the map type with the following code:
 	</div>
 	<div align="center" style="padding-top:5px;">
 		<input id="copybox" style="font-size:1.8em;" type="text" value="<?=$hash?>" readonly>

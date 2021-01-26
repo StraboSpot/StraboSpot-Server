@@ -78,7 +78,7 @@ $strabo = new StraboSpot($neodb,$userpkey,$db);
 $uuid = new UUID();
 $strabo->setuuid($uuid);
 
-function logtofile($string,$label){
+function logtofile($string,$label=""){
 
 	if(is_writable("log.txt")){
 		file_put_contents ("log.txt", "\n\n$label\n\n $string \n\n", FILE_APPEND);
@@ -87,7 +87,7 @@ function logtofile($string,$label){
 
 }
 
-if($_GET['env']){
+//if($_GET['env']){
 
 	if($_GET['dsets']){
 		$querydsets="where d.id in [".$_GET['dsets']."]";
@@ -113,7 +113,7 @@ if($_GET['env']){
 
 	logtofile("width: $width    height: $height");
 
-	if($width<500){ //1.5
+	//if($width<500){ //1.5
 
 		/*
 		$string = "CALL spatial.bbox('geom',{longitude:$left,latitude:$bottom},{longitude:$right, latitude:$top}) YIELD node as s
@@ -295,63 +295,49 @@ if($_GET['env']){
 							$spotvals = (object)$spotvals->values();
 							$spotwkt = $spotvals->wkt;
 							$spotstratid = $spotvals->strat_section_id;
-							//$neodb->dumpVar($spotvals);
+							$spotimagebasemapid = $spotvals->image_basemap;
+							//$spotimagebasemapid = "dd";
+							//$neodb->dumpVar($spotvals);exit();
 							
 							//if($spotwkt!=""){
-							if($spotstratid=="" && $spotwkt!=""){
+							if($spotstratid!="removehere" && $spotwkt!=""){
 							
 								//$neodb->dumpVar($spotvals);exit();
 
 								//$neodb->dumpVar($spotwkt);exit();
 							
-								$spotgeo = $geoPHP::load($spotwkt,'wkt');
+								if($spotstratid=="" && $spotimagebasemapid==""){
 								
-								//$outenvelope = $spotgeo->envelope();
-								$outenvelope = $spotgeo->asArray();
-								$outenvelope = $spotgeo->out('json');
+									$spotgeo = $geoPHP::load($spotwkt,'wkt');
+								
+									//$outenvelope = $spotgeo->envelope();
+									$outenvelope = $spotgeo->asArray();
+									$outenvelope = $spotgeo->out('json');
 								
 								
 								
-								$outenvelope = json_decode($outenvelope);
+									$outenvelope = json_decode($outenvelope);
 								
-								//$neodb->dumpVar($outenvelope);
+									//$neodb->dumpVar($outenvelope);
 								
-								$coords = $outenvelope->coordinates;
+									$coords = $outenvelope->coordinates;
 								
-								if($outenvelope->type=="Point"){
+									if($outenvelope->type=="Point"){
 								
-									$lon = $coords[0];
-									$lat = $coords[1];
+										$lon = $coords[0];
+										$lat = $coords[1];
 									
-									//echo "lon: $lon<br>";
-									//echo "lat: $lat<br>";
-									
-									if($lon > $right) $right = $lon;
-									if($lon < $left) $left = $lon;
-									if($lat > $top) $top = $lat;
-									if($lat < $bottom) $bottom = $lat;
-								
-								}elseif($outenvelope->type=="LineString"){
-								
-									foreach($coords as $coord){
-
-										$lon = $coord[0];
-										$lat = $coord[1];
-
 										//echo "lon: $lon<br>";
 										//echo "lat: $lat<br>";
-
+									
 										if($lon > $right) $right = $lon;
 										if($lon < $left) $left = $lon;
 										if($lat > $top) $top = $lat;
 										if($lat < $bottom) $bottom = $lat;
-									}
 								
-								}elseif($outenvelope->type=="Polygon"){
-
-									foreach($coords as $outercoords){
-									
-										foreach($outercoords as $coord){
+									}elseif($outenvelope->type=="LineString"){
+								
+										foreach($coords as $coord){
 
 											$lon = $coord[0];
 											$lat = $coord[1];
@@ -364,13 +350,33 @@ if($_GET['env']){
 											if($lat > $top) $top = $lat;
 											if($lat < $bottom) $bottom = $lat;
 										}
-										
-									}
+								
+									}elseif($outenvelope->type=="Polygon"){
 
+										foreach($coords as $outercoords){
+									
+											foreach($outercoords as $coord){
+
+												$lon = $coord[0];
+												$lat = $coord[1];
+
+												//echo "lon: $lon<br>";
+												//echo "lat: $lat<br>";
+
+												if($lon > $right) $right = $lon;
+												if($lon < $left) $left = $lon;
+												if($lat > $top) $top = $lat;
+												if($lat < $bottom) $bottom = $lat;
+											}
+										
+										}
+
+									}
+								
 								}
 
 								//check to see if spot in envelope
-								if($envelope->intersects($spotgeo)){
+								//if($envelope->intersects($spotgeo)){
 
 									//gather image stuff first
 							
@@ -419,7 +425,7 @@ if($_GET['env']){
 			
 									}
 
-								}//end if spot in envelope
+								//}//end if spot in envelope
 							
 							}//end if wkt is not null
 
@@ -492,9 +498,9 @@ if($_GET['env']){
 
 		}
 
-	}
+	//}
 
-}
+//}
 
 if($json==""){
 

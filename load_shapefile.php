@@ -369,7 +369,7 @@ if($_POST['columnsubmit']!=""){
 	
 	if(count($results)>0){
 		$error = implode("<br>",$results);
-		echo $error;
+		//echo $error;
 	}
 	
 	//load json
@@ -531,8 +531,9 @@ if($_POST['indsubmit']!="" || $putinone=="yes" || ($vocaberror!="" && $_POST['co
 	if(file_exists($prjfilename)){
 
 		//now we have a custom python script instead of calling a web service
-		exec("/home/jasonash/prj2epsg.py $prjfilename",$epsg);
+		exec("/srv/app/www/prj2epsg.py $prjfilename",$epsg);
 		$epsg=$epsg[0];
+		
 		
 		/*
 		echo "epsg:";
@@ -903,7 +904,7 @@ if($_POST['columnsubmit']!=""){
 	
 	if(count($results)>0){
 		$error = implode("<br>",$results);
-		echo $error;
+		//echo $error;
 	}
 	
 	
@@ -966,119 +967,170 @@ if($_POST['columnsubmit']!=""){
 
 		foreach($json as $onesample){
 
-			$thisnewid = $sm->getId();
-			
-			$putinfeature="yes";
-
-			$newshapetype=$shapetype;
-			if($newshapetype > 10){$newshapetype = $newshapetype - 10;}
-
 			$geometry = $onesample['geometry'];
-			if($geometry!=""){
-				$geometry = json_encode($geometry);
-				$myjson = geoPHP::load($geometry,"json");
-				$mywkt = $myjson->out('wkt');
-			}else{
-				$putinfeatur="no";
-			}
-
-			if($mywkt!=""){
-				$myjson = geoPHP::load($geometry,"json");
-				$mywkt = $myjson->out('wkt');
-			}
-
-			unset($injson);
-
-			$injson['type']="Feature";
 			
-			$uploaddate = time();
-			
-			$geom = $mywkt;
+			if($geometry != ""){
 
-			//blank geoms not allowed
-			if($geom==""){$putinfeature="no";}
+				$thisnewid = $sm->getId();
 			
-			//broken values from ESRI contain "+" sign
-			
-			if(strpos($geom,"+")>0){
-				$putinfeature="no";
-			}
+				$putinfeature="yes";
 
-			$fixedgeom = "";
+				$newshapetype=$shapetype;
+				if($newshapetype > 10){$newshapetype = $newshapetype - 10;}
 
-			if($geom != ""){
 			
-				if($epsg != "" && $epsg!=""){
-
-					$fixedgeom=$db->get_var("SELECT ST_AsText(ST_Transform(ST_GeomFromText('$geom',$epsg),4326)) as geom;");
-			
+				
+				//dumpVar($geometry);
+				if($geometry!=""){
+					$geometry = json_encode($geometry);
+					$myjson = geoPHP::load($geometry,"json");
+					$mywkt = $myjson->out('wkt');
 				}else{
+					$putinfeatur="no";
+				}
+				
 			
-					$fixedgeom="empty";
+				
+				if($mywkt!=""){
+					$myjson = geoPHP::load($geometry,"json");
+					$mywkt = $myjson->out('wkt');
+				}
+				
+
+				unset($injson);
+
+				$injson['type']="Feature";
+			
+				$uploaddate = time();
+			
+				$geom = $mywkt;
+
+				//blank geoms not allowed
+				if($geom==""){$putinfeature="no";}
+			
+				//broken values from ESRI contain "+" sign
+			
+				if(strpos($geom,"+")>0){
+					$putinfeature="no";
+				}
+
+				$fixedgeom = "";
+
+				//echo "epsg: $epsg<br>";
+				
+				if($geom != ""){
+			
+					if($epsg != "" && $epsg!=""){
+
+						$fixedgeom=$db->get_var("SELECT ST_AsText(ST_Transform(ST_GeomFromText('$geom',$epsg),4326)) as geom;");
+			
+					}else{
+			
+						$fixedgeom="empty";
+			
+					}
 			
 				}
-			
-			}
 
-			if($fixedgeom!=""){
-				$mywkt = geoPHP::load($fixedgeom,"wkt");
-				$mygeometry = $mywkt->out('json');
-			}
+				
+				
+				if($fixedgeom!=""){
+					$mywkt = geoPHP::load($fixedgeom,"wkt");
+					$mygeometry = $mywkt->out('json');
+				}
+				
 
-			$onesampleproperties = $onesample['properties'];
+				$onesampleproperties = $onesample['properties'];
 			
-			$sm->setSampleProperties($onesampleproperties);
+				$sm->setSampleProperties($onesampleproperties);
 			
-			//$sm->dumpVar($sm->sampleproperties);exit();
+				//$sm->dumpVar($sm->sampleproperties);exit();
 
-			/***********************************
-			    Get spot level properties
-			***********************************/
-			$spotvars = $sm->get_vars("spot");
-			foreach($spotvars as $key=>$value){
-				$value = $sm->fixCast($value);
-				eval("\$injson['properties']['$key']=\$value;");
-			}
-			
-			/***********************************
-			    Get orientation data
-			***********************************/
-			unset($planarorientation);
-			$planarorientation=array();
-			if($sm->hasPlanarOrientationData()){
-				$planarorientation["id"]=$sm->getId();
-				$planarorientation["type"]="planar_orientation";
-				$planar_orientation_vars = $sm->get_vars("planar_orientation");
-
-				foreach($planar_orientation_vars as $key=>$value){
-					if($key=="feature_type"){
-						if($newvalue = $sm->fitsControlled("planar_orientation_feature_type",$value)){
-							$planarorientation['feature_type']=$newvalue;
-						}else{
-							if(trim($value=="")){$value="not given";}$oothers.="planar value: $value<br>";
-							$planarorientation['feature_type']="other";
-							$planarorientation['other_feature']=$value;
-						}
-					}elseif($key=="movement"){
-						if($newvalue = $sm->fitsControlled("planar_orientation_movement",$value)){
-							$planarorientation['movement']=$newvalue;
-						}else{
-							$planarorientation['movement']="other";
-							$planarorientation['other_movement']=$value;
-							
-						}
+				/***********************************
+					Get spot level properties
+				***********************************/
+				$spotvars = $sm->get_vars("spot");
+				foreach($spotvars as $key=>$value){
+					if($key=="name"){
+						$value = strval($value);
 					}else{
 						$value = $sm->fixCast($value);
-						eval("\$planarorientation['$key']=\$value;");
 					}
+					
+					eval("\$injson['properties']['$key']=\$value;");
 				}
+			
+				/***********************************
+					Get orientation data
+				***********************************/
+				unset($planarorientation);
+				$planarorientation=array();
+				if($sm->hasPlanarOrientationData()){
+					$planarorientation["id"]=$sm->getId();
+					$planarorientation["type"]="planar_orientation";
+					$planar_orientation_vars = $sm->get_vars("planar_orientation");
+
+					foreach($planar_orientation_vars as $key=>$value){
+						if($key=="feature_type"){
+							if($newvalue = $sm->fitsControlled("planar_orientation_feature_type",$value)){
+								$planarorientation['feature_type']=$newvalue;
+							}else{
+								if(trim($value=="")){$value="not given";}$oothers.="planar value: $value<br>";
+								$planarorientation['feature_type']="other";
+								$planarorientation['other_feature']=$value;
+							}
+						}elseif($key=="movement"){
+							if($newvalue = $sm->fitsControlled("planar_orientation_movement",$value)){
+								$planarorientation['movement']=$newvalue;
+							}else{
+								$planarorientation['movement']="other";
+								$planarorientation['other_movement']=$value;
+							
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$planarorientation['$key']=\$value;");
+						}
+					}
 				
-				if($planarorientation['feature_type']==""){ $planarorientation['feature_type']="other"; $planarorientation['other_feature']="not given"; }
-				//if($planarorientation['label']=="") $planarorientation['label']="no label";
+					if($planarorientation['feature_type']==""){ $planarorientation['feature_type']="other"; $planarorientation['other_feature']="not given"; }
+					//if($planarorientation['label']=="") $planarorientation['label']="no label";
 				
-				//$sm->dumpVar($planarorientation);
+					//$sm->dumpVar($planarorientation);
 				
-				if($sm->hasLinearOrientationData()){
+					if($sm->hasLinearOrientationData()){
+						unset($linearorientation);
+						$linearorientation=array();
+						$linearorientation["id"]=$sm->getId();
+						$linearorientation["type"]="linear_orientation";
+						$linear_orientation_vars = $sm->get_vars("linear_orientation");
+						foreach($linear_orientation_vars as $key=>$value){
+							if($key=="feature_type"){
+								if($newvalue = $sm->fitsControlled("linear_orientation_feature_type",$value)){
+									$linearorientation['feature_type']=$newvalue;
+								}else{
+									if(trim($value=="")){$value="not given";}$oothers.="inside linear value: $value<br>";
+									$linearorientation['feature_type']="other";
+									$linearorientation['other_feature']=$value;
+								}
+							}else{
+								$value = $sm->fixCast($value);
+								eval("\$linearorientation['$key']=\$value;");
+							}
+						}
+					
+						if($linearorientation['feature_type']==""){ $linearorientation['feature_type']="other"; $linearorientation['other_feature']="not given"; }
+						//if($linearorientation['label']=="") $linearorientation['label']="no label";
+
+						//$sm->dumpVar($linearorientation);
+					
+						$planarorientation["associated_orientation"][]=$linearorientation;
+					}
+				
+					$injson['properties']["orientation_data"][]=$planarorientation;
+			
+				}elseif($sm->hasLinearOrientationData()){
+			
 					unset($linearorientation);
 					$linearorientation=array();
 					$linearorientation["id"]=$sm->getId();
@@ -1089,7 +1141,7 @@ if($_POST['columnsubmit']!=""){
 							if($newvalue = $sm->fitsControlled("linear_orientation_feature_type",$value)){
 								$linearorientation['feature_type']=$newvalue;
 							}else{
-								if(trim($value=="")){$value="not given";}$oothers.="inside linear value: $value<br>";
+								if(trim($value=="")){$value="not given";}$oothers.="outside linear value: $value<br>";
 								$linearorientation['feature_type']="other";
 								$linearorientation['other_feature']=$value;
 							}
@@ -1098,603 +1150,573 @@ if($_POST['columnsubmit']!=""){
 							eval("\$linearorientation['$key']=\$value;");
 						}
 					}
-					
+				
 					if($linearorientation['feature_type']==""){ $linearorientation['feature_type']="other"; $linearorientation['other_feature']="not given"; }
 					//if($linearorientation['label']=="") $linearorientation['label']="no label";
+				
+					$injson['properties']["orientation_data"][]=$linearorientation;
 
-					//$sm->dumpVar($linearorientation);
+				}
+			
+				unset($tabularzoneorientation);
+				$tabularzoneorientation=array();
+				if($sm->hasTabularZoneOrientationData()){
+					$tabularzoneorientation["id"]=$sm->getId();
+					$tabularzoneorientation["type"]="tabular_orientation";
+					$tabular_zone_orientation_vars = $sm->get_vars("tabular_zone_orientation");
+					foreach($tabular_zone_orientation_vars as $key=>$value){
+						if($key=="facing_defined_by"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_facing_defined_by",$value)){
+								$tabularzoneorientation['facing_defined_by']=$newvalue;
+							}else{
+								$tabularzoneorientation['facing_defined_by']="other";
+								$tabularzoneorientation['other_facing_defined_by']=$value;
+							}
+						}elseif($key=="feature_type"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_feature_type",$value)){
+								$tabularzoneorientation['feature_type']=$newvalue;
+							}else{
+								$tabularzoneorientation['feature_type']="other";
+								$tabularzoneorientation['other_feature']=$value;
+							}
+						}elseif($key=="intrusive_body_type"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_intrusive_body_type",$value)){
+								$tabularzoneorientation['intrusive_body_type']=$newvalue;
+							}else{
+								$tabularzoneorientation['intrusive_body_type']="other";
+								$tabularzoneorientation['other_intrusive_body']=$value;
+							}
+						}elseif($key=="vein_fill"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_vein_fill",$value)){
+								$tabularzoneorientation['vein_fill']=$newvalue;
+							}else{
+								$tabularzoneorientation['vein_fill']="other";
+								$tabularzoneorientation['other_vein_fill']=$value;
+							}
+						}elseif($key=="vein_array"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_vein_array",$value)){
+								$tabularzoneorientation['vein_array']=$newvalue;
+							}else{
+								$tabularzoneorientation['vein_array']="other";
+								$tabularzoneorientation['other_vein_array']=$value;
+							}
+						}elseif($key=="fault_or_sz"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_fault_or_sz",$value)){
+								$tabularzoneorientation['fault_or_sz']=$newvalue;
+							}else{
+								$tabularzoneorientation['fault_or_sz']="other";
+								$tabularzoneorientation['other_fault_or_sz']=$value;
+							}
+						}elseif($key=="movement"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_movement",$value)){
+								$tabularzoneorientation['movement']=$newvalue;
+							}else{
+								$tabularzoneorientation['movement']="other";
+								$tabularzoneorientation['other_movement']=$value;
+							}
+						}elseif($key=="movement_justification"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_movement_justification",$value)){
+								$tabularzoneorientation['movement_justification']=$newvalue;
+							}else{
+								$tabularzoneorientation['movement_justification']="other";
+								$tabularzoneorientation['other_movement_justification']=$value;
+							}
+						}elseif($key=="dir_indicators"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_dir_indicators",$value)){
+								$tabularzoneorientation['dir_indicators']=$newvalue;
+							}else{
+								$tabularzoneorientation['dir_indicators']="other";
+								$tabularzoneorientation['other_dir_indicators']=$value;
+							}
+						}elseif($key=="enveloping_surface_geometry"){
+							if($newvalue = $sm->fitsControlled("tabular_zone_orientation_enveloping_surface_geometry",$value)){
+								$tabularzoneorientation['enveloping_surface_geometry']=$newvalue;
+							}else{
+								$tabularzoneorientation['enveloping_surface_geometry']="other";
+								$tabularzoneorientation['other_surface_geometry']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$tabularzoneorientation['$key']=\$value;");
+						}
+					}
+
+					if($tabularzoneorientation['feature_type']=="") $tabularzoneorientation['feature_type']="other";
+					//if($tabularzoneorientation['label']=="") $tabularzoneorientation['label']="no label";
+
+					$injson['properties']["orientation_data"][]=$tabularzoneorientation;
+			
+				}
+
+				/***********************************
+						Get 3D Structure data
+				***********************************/
+				if($sm->has3dStructureData()){
+
+					if($sm->hasFabricData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$thisstruct["id"]=$sm->getId();
+					$thisstruct["type"]="fabric";
+					$struct_vars = $sm->get_vars("fabric");
+					foreach($struct_vars as $key=>$value){
+						if($key=="feature_type"){
+							if($newvalue = $sm->fitsControlled("fabric_feature_type",$value)){
+								$thisstruct['feature_type']=$newvalue;
+							}else{
+								$thisstruct['feature_type']="other_fabric";
+								$thisstruct['other_description']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$thisstruct['$key']=\$value;");
+						}
+					}
+					//if($thisstruct['label']=="") $thisstruct['label']="no label";
+					$injson['properties']["_3d_structures"][]=$thisstruct;
+					}
+
+					if($sm->hasFoldData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$thisstruct["id"]=$sm->getId();
+					$thisstruct["type"]="fold";
+					$struct_vars = $sm->get_vars("fold");
+					foreach($struct_vars as $key=>$value){
+						if($key=="feature_type"){
+							if($newvalue = $sm->fitsControlled("fold_feature_type",$value)){
+								$thisstruct['feature_type']=$newvalue;
+							}else{
+								$thisstruct['feature_type']="other";
+								$thisstruct['other_dominant_geometry']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$thisstruct['$key']=\$value;");
+						}
+					}
+					//if($thisstruct['label']=="") $thisstruct['label']="no label";
+					$injson['properties']["_3d_structures"][]=$thisstruct;
+					}
+
+					if($sm->hasTensorData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$thisstruct["id"]=$sm->getId();
+					$thisstruct["type"]="tensor";
+					$struct_vars = $sm->get_vars("tensor");
+					foreach($struct_vars as $key=>$value){
+						if($key=="ellipsoid_type"){
+							if($newvalue = $sm->fitsControlled("tensor_ellipsoid_type",$value)){
+								$thisstruct['ellipsoid_type']=$newvalue;
+							}else{
+								$thisstruct['ellipsoid_type']="other";
+								$thisstruct['other_ellipsoid_type']=$value;
+							}
+						}elseif($key=="non_ellipsoidal_type"){
+							if($newvalue = $sm->fitsControlled("tensor_non_ellipsoidal_type",$value)){
+								$thisstruct['non_ellipsoidal_type']=$newvalue;
+							}else{
+								$thisstruct['non_ellipsoidal_type']="other";
+								$thisstruct['other_non_ellipsoidal_type']=$value;
+							}
+						}elseif($key=="ellipse_type"){
+							if($newvalue = $sm->fitsControlled("tensor_ellipse_type",$value)){
+								$thisstruct['ellipse_type']=$newvalue;
+							}else{
+								$thisstruct['ellipse_type']="other";
+								$thisstruct['other_ellipse_type']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$thisstruct['$key']=\$value;");
+						}
+					}
+					//if($thisstruct['label']=="") $thisstruct['label']="no label";
+					$injson['properties']["_3d_structures"][]=$thisstruct;
+					}
+
+					if($sm->hasOther3dStructureData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$thisstruct["id"]=$sm->getId();
+					$thisstruct["type"]="other";
+					$struct_vars = $sm->get_vars("other_3d_structure");
+					foreach($struct_vars as $key=>$value){
+						if($key=="feature_type"){
+							if($newvalue = $sm->fitsControlled("other_3d_structure_feature_type",$value)){
+								$thisstruct['feature_type']=$newvalue;
+							}else{
+								$thisstruct['feature_type']="other_3d_structure";
+								$thisstruct['other_structure_description']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$thisstruct['$key']=\$value;");
+						}
+					}
+					//if($thisstruct['label']=="") $thisstruct['label']="no label";
+					$injson['properties']["_3d_structures"][]=$thisstruct;
+					}
+
+
+				}
+
+				/***********************************
+						Get Rock Unit data
+				***********************************/
+				if($sm->hasRockUnitData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$struct_vars = $sm->get_vars("rock_unit");
+					foreach($struct_vars as $key=>$value){
+						if($key=="sediment_type"){
+							if($newvalue = $sm->fitsControlled("rock_unit_sediment_type",$value)){
+								$thisstruct['sediment_type']=$newvalue;
+							}else{
+								$thisstruct['sediment_type']="other";
+								$thisstruct['other_sediment_type']=$value;
+							}
+						}elseif($key=="sedimentary_rock_type"){
+							if($newvalue = $sm->fitsControlled("rock_unit_sedimentary_rock_type",$value)){
+								$thisstruct['sedimentary_rock_type']=$newvalue;
+							}else{
+								$thisstruct['sedimentary_rock_type']="other";
+								$thisstruct['other_sedimentary_rock_type']=$value;
+							}
+						}elseif($key=="volcanic_rock_type"){
+							if($newvalue = $sm->fitsControlled("rock_unit_volcanic_rock_type",$value)){
+								$thisstruct['volcanic_rock_type']=$newvalue;
+							}else{
+								$thisstruct['volcanic_rock_type']="other";
+								$thisstruct['other_volcanic_rock_type']=$value;
+							}
+						}elseif($key=="plutonic_rock_types"){
+							if($newvalue = $sm->fitsControlled("rock_unit_plutonic_rock_types",$value)){
+								$thisstruct['plutonic_rock_types']=$newvalue;
+							}else{
+								$thisstruct['plutonic_rock_types']="other";
+								$thisstruct['other_plutonic_rock_type']=$value;
+							}
+						}elseif($key=="metamorphic_rock_types"){
+							if($newvalue = $sm->fitsControlled("rock_unit_metamorphic_rock_types",$value)){
+								$thisstruct['metamorphic_rock_types']=$newvalue;
+							}else{
+								$thisstruct['metamorphic_rock_types']="other";
+								$thisstruct['other_metamorphic_rock_type']=$value;
+							}
+						}elseif($key=="metamorphic_grade"){
+							if($newvalue = $sm->fitsControlled("rock_unit_metamorphic_grade",$value)){
+								$thisstruct['metamorphic_grade']=$newvalue;
+							}else{
+								$thisstruct['metamorphic_grade']="other";
+								$thisstruct['other_metamorphic_grade']=$value;
+							}
+						}elseif($key=="epoch"){
+							if($newvalue = $sm->fitsControlled("rock_unit_epoch",$value)){
+								$thisstruct['epoch']=$newvalue;
+							}else{
+								$thisstruct['epoch']="other";
+								$thisstruct['other_epoch']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$thisstruct['$key']=\$value;");
+						}
+					}
+				
+					if($thisstruct['rock_type']=="igneous"){
+						if($thisstruct['igneous_rock_class']==""){
+							$thisstruct['igneous_rock_class']="";
+						}
+					}
+				
+					if($putinfeature=="yes"){
+						$sm->addRockUnitTag($thisstruct,$thisnewid);
+						$tagsfound="yes";
+					}
+				}
+			
+				/***********************************
+					  Get Trace data
+				***********************************/
+				if($sm->hasTraceData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					//$thisstruct["id"]=$sm->getId(); //no id needed for trace?
+					$thisstruct["trace_feature"]=true;
+					$struct_vars = $sm->get_vars("trace");
+				
+					//$sm->dumpVar($struct_vars);
+				
+					foreach($struct_vars as $key=>$value){
+						if($key=="quality"){
+							if($newvalue = $sm->fitsControlled("trace_trace_quality",$value)){
+								$thisstruct['trace_quality']=$newvalue;
+							}else{
+								$thisstruct['trace_quality']="other";
+								$thisstruct['other_trace_quality']=$value;
+							}
+						}elseif($key=="contact_type"){
+							if($newvalue = $sm->fitsControlled("trace_contact_type",$value)){
+								$thisstruct['contact_type']=$newvalue;
+							}else{
+								$thisstruct['contact_type']="other";
+								$thisstruct['other_contact_type']=$value;
+							}
+						}elseif($key=="depositional_contact_type"){
+							if($newvalue = $sm->fitsControlled("trace_depositional_contact_type",$value)){
+								$thisstruct['depositional_contact_type']=$newvalue;
+							}else{
+								$thisstruct['depositional_contact_type']="other";
+								$thisstruct['other_depositional_type']=$value;
+							}
+						}elseif($key=="intrusive_contact_type"){
+							if($newvalue = $sm->fitsControlled("trace_intrusive_contact_type",$value)){
+								$thisstruct['intrusive_contact_type']=$newvalue;
+							}else{
+								$thisstruct['intrusive_contact_type']="other";
+								$thisstruct['other_intrusive_contact']=$value;
+							}
+						}elseif($key=="metamorphic_contact_type"){
+							if($newvalue = $sm->fitsControlled("trace_metamorphic_contact_type",$value)){
+								$thisstruct['metamorphic_contact_type']=$newvalue;
+							}else{
+								$thisstruct['metamorphic_contact_type']="other";
+								$thisstruct['other_metamorphic_contact']=$value;
+							}
+						}elseif($key=="shear_sense"){
+							if($newvalue = $sm->fitsControlled("trace_shear_sense",$value)){
+								$thisstruct['shear_sense']=$newvalue;
+							}else{
+								$thisstruct['shear_sense']="other";
+								$thisstruct['other_shear_sense']=$value;
+							}
+						}elseif($key=="other_structural_zones"){
+							if($newvalue = $sm->fitsControlled("trace_other_structural_zones",$value)){
+								$thisstruct['other_structural_zones']=$newvalue;
+							}else{
+								$thisstruct['other_structural_zones']="other";
+								$thisstruct['other_other_structural_zone']=$value;
+							}
+						}elseif($key=="fold_type"){
+							if($newvalue = $sm->fitsControlled("trace_fold_type",$value)){
+								$thisstruct['fold_type']=$newvalue;
+							}else{
+								$thisstruct['fold_type']="other";
+								$thisstruct['other_fold_type']=$value;
+							}
+						}elseif($key=="attitude"){
+							if($newvalue = $sm->fitsControlled("trace_fold_attitude",$value)){
+								$thisstruct['attitude']=$newvalue;
+							}else{
+								$thisstruct['attitude']="other";
+								$thisstruct['other_attitude']=$value;
+							}
+						}elseif($key=="geomorphic_feature"){
+							if($newvalue = $sm->fitsControlled("trace_geomorphic_feature",$value)){
+								$thisstruct['geomorphic_feature']=$newvalue;
+							}else{
+								$thisstruct['geomorphic_feature']="other";
+								$thisstruct['other_geomorphic_feature']=$value;
+							}
+						}elseif($key=="antropogenic_feature"){
+							if($newvalue = $sm->fitsControlled("trace_antropogenic_feature",$value)){
+								$thisstruct['antropogenic_feature']=$newvalue;
+							}else{
+								$thisstruct['antropogenic_feature']="other";
+								$thisstruct['other_antropogenic_feature']=$value;
+							}
+						}elseif($key=="other_feature"){
+							if($newvalue = $sm->fitsControlled("trace_other_feature",$value)){
+								$thisstruct['other_feature']=$newvalue;
+							}else{
+								$thisstruct['other_feature']="other";
+								$thisstruct['other_other_feature']=$value;
+							}
+						}elseif($key=="character"){
+							if($newvalue = $sm->fitsControlled("trace_trace_character",$value)){
+								$thisstruct['character']=$newvalue;
+							}else{
+								$thisstruct['character']="other";
+								$thisstruct['other_character']=$value;
+							}
+						}elseif($key=="type"){
+							if($newvalue = $sm->fitsControlled("trace_trace_type",$value)){
+								$thisstruct['trace_type']=$newvalue;
+							}else{
+								$thisstruct['trace_type']="other_feature";
+								$thisstruct['other_feature']="other";
+								$thisstruct['other_other_feature']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$thisstruct['$key']=\$value;");
+						}
 					
-					$planarorientation["associated_orientation"][]=$linearorientation;
-				}
-				
-				$injson['properties']["orientation_data"][]=$planarorientation;
-			
-			}elseif($sm->hasLinearOrientationData()){
-			
-				unset($linearorientation);
-				$linearorientation=array();
-				$linearorientation["id"]=$sm->getId();
-				$linearorientation["type"]="linear_orientation";
-				$linear_orientation_vars = $sm->get_vars("linear_orientation");
-				foreach($linear_orientation_vars as $key=>$value){
-					if($key=="feature_type"){
-						if($newvalue = $sm->fitsControlled("linear_orientation_feature_type",$value)){
-							$linearorientation['feature_type']=$newvalue;
-						}else{
-							if(trim($value=="")){$value="not given";}$oothers.="outside linear value: $value<br>";
-							$linearorientation['feature_type']="other";
-							$linearorientation['other_feature']=$value;
-						}
-					}else{
-						$value = $sm->fixCast($value);
-						eval("\$linearorientation['$key']=\$value;");
 					}
-				}
-				
-				if($linearorientation['feature_type']==""){ $linearorientation['feature_type']="other"; $linearorientation['other_feature']="not given"; }
-				//if($linearorientation['label']=="") $linearorientation['label']="no label";
-				
-				$injson['properties']["orientation_data"][]=$linearorientation;
 
-			}
-			
-			unset($tabularzoneorientation);
-			$tabularzoneorientation=array();
-			if($sm->hasTabularZoneOrientationData()){
-				$tabularzoneorientation["id"]=$sm->getId();
-				$tabularzoneorientation["type"]="tabular_orientation";
-				$tabular_zone_orientation_vars = $sm->get_vars("tabular_zone_orientation");
-				foreach($tabular_zone_orientation_vars as $key=>$value){
-					if($key=="facing_defined_by"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_facing_defined_by",$value)){
-							$tabularzoneorientation['facing_defined_by']=$newvalue;
-						}else{
-							$tabularzoneorientation['facing_defined_by']="other";
-							$tabularzoneorientation['other_facing_defined_by']=$value;
-						}
-					}elseif($key=="feature_type"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_feature_type",$value)){
-							$tabularzoneorientation['feature_type']=$newvalue;
-						}else{
-							$tabularzoneorientation['feature_type']="other";
-							$tabularzoneorientation['other_feature']=$value;
-						}
-					}elseif($key=="intrusive_body_type"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_intrusive_body_type",$value)){
-							$tabularzoneorientation['intrusive_body_type']=$newvalue;
-						}else{
-							$tabularzoneorientation['intrusive_body_type']="other";
-							$tabularzoneorientation['other_intrusive_body']=$value;
-						}
-					}elseif($key=="vein_fill"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_vein_fill",$value)){
-							$tabularzoneorientation['vein_fill']=$newvalue;
-						}else{
-							$tabularzoneorientation['vein_fill']="other";
-							$tabularzoneorientation['other_vein_fill']=$value;
-						}
-					}elseif($key=="vein_array"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_vein_array",$value)){
-							$tabularzoneorientation['vein_array']=$newvalue;
-						}else{
-							$tabularzoneorientation['vein_array']="other";
-							$tabularzoneorientation['other_vein_array']=$value;
-						}
-					}elseif($key=="fault_or_sz"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_fault_or_sz",$value)){
-							$tabularzoneorientation['fault_or_sz']=$newvalue;
-						}else{
-							$tabularzoneorientation['fault_or_sz']="other";
-							$tabularzoneorientation['other_fault_or_sz']=$value;
-						}
-					}elseif($key=="movement"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_movement",$value)){
-							$tabularzoneorientation['movement']=$newvalue;
-						}else{
-							$tabularzoneorientation['movement']="other";
-							$tabularzoneorientation['other_movement']=$value;
-						}
-					}elseif($key=="movement_justification"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_movement_justification",$value)){
-							$tabularzoneorientation['movement_justification']=$newvalue;
-						}else{
-							$tabularzoneorientation['movement_justification']="other";
-							$tabularzoneorientation['other_movement_justification']=$value;
-						}
-					}elseif($key=="dir_indicators"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_dir_indicators",$value)){
-							$tabularzoneorientation['dir_indicators']=$newvalue;
-						}else{
-							$tabularzoneorientation['dir_indicators']="other";
-							$tabularzoneorientation['other_dir_indicators']=$value;
-						}
-					}elseif($key=="enveloping_surface_geometry"){
-						if($newvalue = $sm->fitsControlled("tabular_zone_orientation_enveloping_surface_geometry",$value)){
-							$tabularzoneorientation['enveloping_surface_geometry']=$newvalue;
-						}else{
-							$tabularzoneorientation['enveloping_surface_geometry']="other";
-							$tabularzoneorientation['other_surface_geometry']=$value;
-						}
-					}else{
-						$value = $sm->fixCast($value);
-						eval("\$tabularzoneorientation['$key']=\$value;");
-					}
-				}
-
-				if($tabularzoneorientation['feature_type']=="") $tabularzoneorientation['feature_type']="other";
-				//if($tabularzoneorientation['label']=="") $tabularzoneorientation['label']="no label";
-
-				$injson['properties']["orientation_data"][]=$tabularzoneorientation;
-			
-			}
-
-			/***********************************
-			        Get 3D Structure data
-			***********************************/
-			if($sm->has3dStructureData()){
-
-				if($sm->hasFabricData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$thisstruct["id"]=$sm->getId();
-				$thisstruct["type"]="fabric";
-				$struct_vars = $sm->get_vars("fabric");
-				foreach($struct_vars as $key=>$value){
-					if($key=="feature_type"){
-						if($newvalue = $sm->fitsControlled("fabric_feature_type",$value)){
-							$thisstruct['feature_type']=$newvalue;
-						}else{
-							$thisstruct['feature_type']="other_fabric";
-							$thisstruct['other_description']=$value;
-						}
-					}else{
-						$value = $sm->fixCast($value);
-						eval("\$thisstruct['$key']=\$value;");
-					}
-				}
-				//if($thisstruct['label']=="") $thisstruct['label']="no label";
-				$injson['properties']["_3d_structures"][]=$thisstruct;
-				}
-
-				if($sm->hasFoldData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$thisstruct["id"]=$sm->getId();
-				$thisstruct["type"]="fold";
-				$struct_vars = $sm->get_vars("fold");
-				foreach($struct_vars as $key=>$value){
-					if($key=="feature_type"){
-						if($newvalue = $sm->fitsControlled("fold_feature_type",$value)){
-							$thisstruct['feature_type']=$newvalue;
-						}else{
-							$thisstruct['feature_type']="other";
-							$thisstruct['other_dominant_geometry']=$value;
-						}
-					}else{
-						$value = $sm->fixCast($value);
-						eval("\$thisstruct['$key']=\$value;");
-					}
-				}
-				//if($thisstruct['label']=="") $thisstruct['label']="no label";
-				$injson['properties']["_3d_structures"][]=$thisstruct;
-				}
-
-				if($sm->hasTensorData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$thisstruct["id"]=$sm->getId();
-				$thisstruct["type"]="tensor";
-				$struct_vars = $sm->get_vars("tensor");
-				foreach($struct_vars as $key=>$value){
-					if($key=="ellipsoid_type"){
-						if($newvalue = $sm->fitsControlled("tensor_ellipsoid_type",$value)){
-							$thisstruct['ellipsoid_type']=$newvalue;
-						}else{
-							$thisstruct['ellipsoid_type']="other";
-							$thisstruct['other_ellipsoid_type']=$value;
-						}
-					}elseif($key=="non_ellipsoidal_type"){
-						if($newvalue = $sm->fitsControlled("tensor_non_ellipsoidal_type",$value)){
-							$thisstruct['non_ellipsoidal_type']=$newvalue;
-						}else{
-							$thisstruct['non_ellipsoidal_type']="other";
-							$thisstruct['other_non_ellipsoidal_type']=$value;
-						}
-					}elseif($key=="ellipse_type"){
-						if($newvalue = $sm->fitsControlled("tensor_ellipse_type",$value)){
-							$thisstruct['ellipse_type']=$newvalue;
-						}else{
-							$thisstruct['ellipse_type']="other";
-							$thisstruct['other_ellipse_type']=$value;
-						}
-					}else{
-						$value = $sm->fixCast($value);
-						eval("\$thisstruct['$key']=\$value;");
-					}
-				}
-				//if($thisstruct['label']=="") $thisstruct['label']="no label";
-				$injson['properties']["_3d_structures"][]=$thisstruct;
-				}
-
-				if($sm->hasOther3dStructureData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$thisstruct["id"]=$sm->getId();
-				$thisstruct["type"]="other";
-				$struct_vars = $sm->get_vars("other_3d_structure");
-				foreach($struct_vars as $key=>$value){
-					if($key=="feature_type"){
-						if($newvalue = $sm->fitsControlled("other_3d_structure_feature_type",$value)){
-							$thisstruct['feature_type']=$newvalue;
-						}else{
-							$thisstruct['feature_type']="other_3d_structure";
-							$thisstruct['other_structure_description']=$value;
-						}
-					}else{
-						$value = $sm->fixCast($value);
-						eval("\$thisstruct['$key']=\$value;");
-					}
-				}
-				//if($thisstruct['label']=="") $thisstruct['label']="no label";
-				$injson['properties']["_3d_structures"][]=$thisstruct;
-				}
-
-
-			}
-
-			/***********************************
-			        Get Rock Unit data
-			***********************************/
-			if($sm->hasRockUnitData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$struct_vars = $sm->get_vars("rock_unit");
-				foreach($struct_vars as $key=>$value){
-					if($key=="sediment_type"){
-						if($newvalue = $sm->fitsControlled("rock_unit_sediment_type",$value)){
-							$thisstruct['sediment_type']=$newvalue;
-						}else{
-							$thisstruct['sediment_type']="other";
-							$thisstruct['other_sediment_type']=$value;
-						}
-					}elseif($key=="sedimentary_rock_type"){
-						if($newvalue = $sm->fitsControlled("rock_unit_sedimentary_rock_type",$value)){
-							$thisstruct['sedimentary_rock_type']=$newvalue;
-						}else{
-							$thisstruct['sedimentary_rock_type']="other";
-							$thisstruct['other_sedimentary_rock_type']=$value;
-						}
-					}elseif($key=="volcanic_rock_type"){
-						if($newvalue = $sm->fitsControlled("rock_unit_volcanic_rock_type",$value)){
-							$thisstruct['volcanic_rock_type']=$newvalue;
-						}else{
-							$thisstruct['volcanic_rock_type']="other";
-							$thisstruct['other_volcanic_rock_type']=$value;
-						}
-					}elseif($key=="plutonic_rock_types"){
-						if($newvalue = $sm->fitsControlled("rock_unit_plutonic_rock_types",$value)){
-							$thisstruct['plutonic_rock_types']=$newvalue;
-						}else{
-							$thisstruct['plutonic_rock_types']="other";
-							$thisstruct['other_plutonic_rock_type']=$value;
-						}
-					}elseif($key=="metamorphic_rock_types"){
-						if($newvalue = $sm->fitsControlled("rock_unit_metamorphic_rock_types",$value)){
-							$thisstruct['metamorphic_rock_types']=$newvalue;
-						}else{
-							$thisstruct['metamorphic_rock_types']="other";
-							$thisstruct['other_metamorphic_rock_type']=$value;
-						}
-					}elseif($key=="metamorphic_grade"){
-						if($newvalue = $sm->fitsControlled("rock_unit_metamorphic_grade",$value)){
-							$thisstruct['metamorphic_grade']=$newvalue;
-						}else{
-							$thisstruct['metamorphic_grade']="other";
-							$thisstruct['other_metamorphic_grade']=$value;
-						}
-					}elseif($key=="epoch"){
-						if($newvalue = $sm->fitsControlled("rock_unit_epoch",$value)){
-							$thisstruct['epoch']=$newvalue;
-						}else{
-							$thisstruct['epoch']="other";
-							$thisstruct['other_epoch']=$value;
-						}
-					}else{
-						$value = $sm->fixCast($value);
-						eval("\$thisstruct['$key']=\$value;");
-					}
-				}
-				
-				if($thisstruct['rock_type']=="igneous"){
-					if($thisstruct['igneous_rock_class']==""){
-						$thisstruct['igneous_rock_class']="";
-					}
-				}
-				
-				if($putinfeature=="yes"){
-					$sm->addRockUnitTag($thisstruct,$thisnewid);
-					$tagsfound="yes";
-				}
-			}
-			
-			/***********************************
-			      Get Trace data
-			***********************************/
-			if($sm->hasTraceData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				//$thisstruct["id"]=$sm->getId(); //no id needed for trace?
-				$thisstruct["trace_feature"]=true;
-				$struct_vars = $sm->get_vars("trace");
-				
-				//$sm->dumpVar($struct_vars);
-				
-				foreach($struct_vars as $key=>$value){
-					if($key=="quality"){
-						if($newvalue = $sm->fitsControlled("trace_trace_quality",$value)){
-							$thisstruct['trace_quality']=$newvalue;
-						}else{
-							$thisstruct['trace_quality']="other";
-							$thisstruct['other_trace_quality']=$value;
-						}
-					}elseif($key=="contact_type"){
-						if($newvalue = $sm->fitsControlled("trace_contact_type",$value)){
-							$thisstruct['contact_type']=$newvalue;
-						}else{
-							$thisstruct['contact_type']="other";
-							$thisstruct['other_contact_type']=$value;
-						}
-					}elseif($key=="depositional_contact_type"){
-						if($newvalue = $sm->fitsControlled("trace_depositional_contact_type",$value)){
-							$thisstruct['depositional_contact_type']=$newvalue;
-						}else{
-							$thisstruct['depositional_contact_type']="other";
-							$thisstruct['other_depositional_type']=$value;
-						}
-					}elseif($key=="intrusive_contact_type"){
-						if($newvalue = $sm->fitsControlled("trace_intrusive_contact_type",$value)){
-							$thisstruct['intrusive_contact_type']=$newvalue;
-						}else{
-							$thisstruct['intrusive_contact_type']="other";
-							$thisstruct['other_intrusive_contact']=$value;
-						}
-					}elseif($key=="metamorphic_contact_type"){
-						if($newvalue = $sm->fitsControlled("trace_metamorphic_contact_type",$value)){
-							$thisstruct['metamorphic_contact_type']=$newvalue;
-						}else{
-							$thisstruct['metamorphic_contact_type']="other";
-							$thisstruct['other_metamorphic_contact']=$value;
-						}
-					}elseif($key=="shear_sense"){
-						if($newvalue = $sm->fitsControlled("trace_shear_sense",$value)){
-							$thisstruct['shear_sense']=$newvalue;
-						}else{
-							$thisstruct['shear_sense']="other";
-							$thisstruct['other_shear_sense']=$value;
-						}
-					}elseif($key=="other_structural_zones"){
-						if($newvalue = $sm->fitsControlled("trace_other_structural_zones",$value)){
-							$thisstruct['other_structural_zones']=$newvalue;
-						}else{
-							$thisstruct['other_structural_zones']="other";
-							$thisstruct['other_other_structural_zone']=$value;
-						}
-					}elseif($key=="fold_type"){
-						if($newvalue = $sm->fitsControlled("trace_fold_type",$value)){
-							$thisstruct['fold_type']=$newvalue;
-						}else{
-							$thisstruct['fold_type']="other";
-							$thisstruct['other_fold_type']=$value;
-						}
-					}elseif($key=="attitude"){
-						if($newvalue = $sm->fitsControlled("trace_fold_attitude",$value)){
-							$thisstruct['attitude']=$newvalue;
-						}else{
-							$thisstruct['attitude']="other";
-							$thisstruct['other_attitude']=$value;
-						}
-					}elseif($key=="geomorphic_feature"){
-						if($newvalue = $sm->fitsControlled("trace_geomorphic_feature",$value)){
-							$thisstruct['geomorphic_feature']=$newvalue;
-						}else{
-							$thisstruct['geomorphic_feature']="other";
-							$thisstruct['other_geomorphic_feature']=$value;
-						}
-					}elseif($key=="antropogenic_feature"){
-						if($newvalue = $sm->fitsControlled("trace_antropogenic_feature",$value)){
-							$thisstruct['antropogenic_feature']=$newvalue;
-						}else{
-							$thisstruct['antropogenic_feature']="other";
-							$thisstruct['other_antropogenic_feature']=$value;
-						}
-					}elseif($key=="other_feature"){
-						if($newvalue = $sm->fitsControlled("trace_other_feature",$value)){
-							$thisstruct['other_feature']=$newvalue;
-						}else{
-							$thisstruct['other_feature']="other";
-							$thisstruct['other_other_feature']=$value;
-						}
-					}elseif($key=="character"){
-						if($newvalue = $sm->fitsControlled("trace_trace_character",$value)){
-							$thisstruct['character']=$newvalue;
-						}else{
-							$thisstruct['character']="other";
-							$thisstruct['other_character']=$value;
-						}
-					}elseif($key=="type"){
-						if($newvalue = $sm->fitsControlled("trace_trace_type",$value)){
-							$thisstruct['trace_type']=$newvalue;
+					if($thisstruct['trace_type']==""){
+					
+						if($thisstruct['contact_type']!=""){
+							$thisstruct['trace_type']="contact";
 						}else{
 							$thisstruct['trace_type']="other_feature";
 							$thisstruct['other_feature']="other";
-							$thisstruct['other_other_feature']=$value;
+							$thisstruct['other_other_feature']="not given";
 						}
-					}else{
+					}
+
+					$injson['properties']["trace"]=$thisstruct;
+				}
+
+				/***********************************
+					  Get Other Feature data
+				***********************************/
+				if($sm->hasOtherFeatureData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$thisstruct["id"]=$sm->getId();
+					$struct_vars = $sm->get_vars("other_features");
+					foreach($struct_vars as $key=>$value){
 						$value = $sm->fixCast($value);
 						eval("\$thisstruct['$key']=\$value;");
 					}
-					
+					$injson['properties']["other_features"][]=$thisstruct;
 				}
 
-				if($thisstruct['trace_type']==""){
-					
-					if($thisstruct['contact_type']!=""){
-						$thisstruct['trace_type']="contact";
-					}else{
-						$thisstruct['trace_type']="other_feature";
-						$thisstruct['other_feature']="other";
-						$thisstruct['other_other_feature']="not given";
+				/***********************************
+						Get Sample data
+				***********************************/
+				if($sm->hasSampleData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$thisstruct["id"]=$sm->getId();	
+					$struct_vars = $sm->get_vars("sample");
+					foreach($struct_vars as $key=>$value){
+						if($key=="material_type"){
+							if($newvalue = $sm->fitsControlled("sample_material_type",$value)){
+								$thisstruct['material_type']=$newvalue;
+							}else{
+								$thisstruct['material_type']="other";
+								$thisstruct['other_material_type']=$value;
+							}
+						}elseif($key=="main_sampling_purpose"){
+							if($newvalue = $sm->fitsControlled("sample_main_sampling_purpose",$value)){
+								$thisstruct['main_sampling_purpose']=$newvalue;
+							}else{
+								$thisstruct['main_sampling_purpose']="other";
+								$thisstruct['other_sampling_purpose']=$value;
+							}
+						}else{
+							$value = $sm->fixCast($value);
+							eval("\$thisstruct['$key']=\$value;");
+						}
 					}
+					$injson['properties']["samples"][]=$thisstruct;
 				}
 
-				$injson['properties']["trace"]=$thisstruct;
-			}
 
-			/***********************************
-			      Get Other Feature data
-			***********************************/
-			if($sm->hasOtherFeatureData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$thisstruct["id"]=$sm->getId();
-				$struct_vars = $sm->get_vars("other_features");
-				foreach($struct_vars as $key=>$value){
-					$value = $sm->fixCast($value);
-					eval("\$thisstruct['$key']=\$value;");
+
+				/***********************************
+						 Get custom fields
+				***********************************/
+				if($sm->hasCustomFields()){
+					unset($customfields);
+					$customfields=array();
+					$customfieldvars = $sm->get_vars("sfcustom");
+					$injson['properties']["custom_fields"]=$customfieldvars;
 				}
-				$injson['properties']["other_features"][]=$thisstruct;
-			}
 
-			/***********************************
-			        Get Sample data
-			***********************************/
-			if($sm->hasSampleData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$thisstruct["id"]=$sm->getId();	
-				$struct_vars = $sm->get_vars("sample");
-				foreach($struct_vars as $key=>$value){
-					if($key=="material_type"){
-						if($newvalue = $sm->fitsControlled("sample_material_type",$value)){
-							$thisstruct['material_type']=$newvalue;
-						}else{
-							$thisstruct['material_type']="other";
-							$thisstruct['other_material_type']=$value;
-						}
-					}elseif($key=="main_sampling_purpose"){
-						if($newvalue = $sm->fitsControlled("sample_main_sampling_purpose",$value)){
-							$thisstruct['main_sampling_purpose']=$newvalue;
-						}else{
-							$thisstruct['main_sampling_purpose']="other";
-							$thisstruct['other_sampling_purpose']=$value;
-						}
-					}else{
+				/***********************************
+						Get Tag data
+				***********************************/
+				if($sm->hasTagData()){
+					unset($thisstruct);
+					$thisstruct=array();
+					$struct_vars = $sm->get_vars("tag");
+					foreach($struct_vars as $key=>$value){
 						$value = $sm->fixCast($value);
 						eval("\$thisstruct['$key']=\$value;");
 					}
-				}
-				$injson['properties']["samples"][]=$thisstruct;
-			}
-
-
-
-			/***********************************
-			         Get custom fields
-			***********************************/
-			if($sm->hasCustomFields()){
-				unset($customfields);
-				$customfields=array();
-				$customfieldvars = $sm->get_vars("sfcustom");
-				$injson['properties']["custom_fields"]=$customfieldvars;
-			}
-
-			/***********************************
-			        Get Tag data
-			***********************************/
-			if($sm->hasTagData()){
-				unset($thisstruct);
-				$thisstruct=array();
-				$struct_vars = $sm->get_vars("tag");
-				foreach($struct_vars as $key=>$value){
-					$value = $sm->fixCast($value);
-					eval("\$thisstruct['$key']=\$value;");
-				}
 				
-				if($putinfeature=="yes"){
-					$sm->addTag($thisstruct,$thisnewid);
-					$tagsfound="yes";
+					if($putinfeature=="yes"){
+						$sm->addTag($thisstruct,$thisnewid);
+						$tagsfound="yes";
+					}
 				}
-			}
 
 
 
 
 
-			$mytime=time();
-			$myrand = rand(1000,9999);
+				$mytime=time();
+				$myrand = rand(1000,9999);
 
-			$injson_straboid= $sm->getId();
-			$injson_time = date("c");
-			$injson_modified_timestamp = $mytime*1000;
-			$injson_mydate = $injson_time;
-			$injson_myname = $mytime.$myrand;
+				$injson_straboid= $sm->getId();
+				$injson_time = date("c");
+				$injson_modified_timestamp = $mytime*1000;
+				$injson_mydate = $injson_time;
+				$injson_myname = $mytime.$myrand;
 
 			
 
-			$injson['properties']['id']=$thisnewid;
-			$injson['properties']['time'] = $injson_time;
-			$injson['properties']['modified_timestamp'] = mytime();
-			$injson['properties']['date'] = $injson_mydate;
+				$injson['properties']['id']=$thisnewid;
+				$injson['properties']['time'] = $injson_time;
+				$injson['properties']['modified_timestamp'] = mytime();
+				$injson['properties']['date'] = $injson_mydate;
 			
-			if($injson['properties']['name']==""){
-				$injson['properties']['name'] = $spotnameprefix.(string)$t;
-			}
+				if($injson['properties']['name']==""){
+					$injson['properties']['name'] = $spotnameprefix.(string)$t;
+				}
 
-			$injson['geometry']=json_decode($mygeometry);
+				$injson['geometry']=json_decode($mygeometry);
 
-			$injson=json_encode($injson,JSON_PRETTY_PRINT);
+				$injson=json_encode($injson,JSON_PRETTY_PRINT);
 
-			//$sm->dumpVar($injson);
+				//$sm->dumpVar($injson);
 
-			if($putinfeature=="yes"){
+				if($putinfeature=="yes"){
 
-				$strabo->insertSpot($injson);
-				$strabo->addSpotToDataset($datasetid,$thisnewid);
+					$strabo->insertSpot($injson);
+					$strabo->addSpotToDataset($datasetid,$thisnewid);
 
-			}else{//end if putinfeature == yes
+				}else{//end if putinfeature == yes
 
-				//dprint($onesample);
+					//dprint($onesample);
 
-			}
+				}
 
-			//$neodb->dumpVar($injson);exit();
+				//$neodb->dumpVar($injson);exit();
 
-			//exit();
+				//exit();
 
-			//determine if this is 1/100 and display update if needed
-			if($t % $step == 0){
+				//determine if this is 1/100 and display update if needed
+				if($t % $step == 0){
 
-				// Calculate the percentage
-				$percent = intval($t/$totalcount * 100)."%";
+					// Calculate the percentage
+					$percent = intval($t/$totalcount * 100)."%";
 	
-				// Javascript for updating the progress bar and information
-				echo '<script language="javascript">
-				document.getElementById("progress").innerHTML="<div style=\"width:'.$percent.';background-color:#ddd;\">&nbsp;</div>";
-				document.getElementById("information").innerHTML="'.$percent.' loaded.";
-				</script>';
+					// Javascript for updating the progress bar and information
+					echo '<script language="javascript">
+					document.getElementById("progress").innerHTML="<div style=\"width:'.$percent.';background-color:#ddd;\">&nbsp;</div>";
+					document.getElementById("information").innerHTML="'.$percent.' loaded.";
+					</script>';
 	
-				// This is for the buffer achieve the minimum size in order to flush data
-				echo str_repeat(' ',1024*128);
+					// This is for the buffer achieve the minimum size in order to flush data
+					echo str_repeat(' ',1024*128);
 
-				// Send output to browser immediately
-				flush();
+					// Send output to browser immediately
+					flush();
 
-			}
+				}
 
-			//if($t > 200){ echo $oothers; break; }
+				//if($t > 200){ echo $oothers; break; }
 
-			$t++;
-		}
+				$t++;
+
+			}//end if geometry 
+		}//end foreach json
 		
 
 		if($tagsfound=="yes"){
@@ -1717,6 +1739,14 @@ if($_POST['columnsubmit']!=""){
 			$strabo->buildProjectRelationships($projectid);
 		}
 		
+		//now find centers for dataset and project
+		//$projectid
+		//$datasetid
+		$strabo->setProjectCenter($projectid);
+		$strabo->setDatasetCenter($datasetid);
+		
+		//also build PG dataset
+		$strabo->buildPgDataset($datasetid); //need to re-implement JMA 02282020 
 		
 		$percent = 100;
 
@@ -1735,7 +1765,7 @@ if($_POST['columnsubmit']!=""){
 	
 	$persamp = $timetook/$totalcount;
 	
-	echo '<script language="javascript">document.getElementById("information").innerHTML="Shapefile Load Complete. '.$totalcount.' spots loaded in '.$timetook.' seconds. ('.$persamp.' per spot)"</script>';
+	echo '<script language="javascript">document.getElementById("information").innerHTML="Shapefile Load Complete. '.$t.' spots loaded in '.$timetook.' seconds. ('.$persamp.' per spot)"</script>';
 
 	if($shapefilearray!=""){
 	

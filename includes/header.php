@@ -11,6 +11,22 @@ if($_SESSION['loggedin']=="yes"){
 	$bartext="";
 }
 
+include_once("prepare_connections.php");
+
+$showinstrumentmenu = false;
+if($_SESSION['userpkey']!=""){
+	if($db){
+		$instcount = $db->get_var("
+			select count(*) from instrument_users where users_pkey = ".$_SESSION['userpkey']."
+		");
+	
+
+		if(in_array($userpkey, $admin_pkeys) || $instcount > 0){
+			$showinstrumentmenu = true;
+		}
+	}
+}
+
 $scriptname=$_SERVER['SCRIPT_NAME'];
 
 if($scriptname=="/index.php"){
@@ -28,18 +44,24 @@ if($scriptname=="/index.php"){
 		$scriptname=="/view_project.php"||
 		$scriptname=="/edit_project.php"||
 		$scriptname=="/change_password.php"||
-		$scriptname=="/versioning.php"
+		$scriptname=="/versioning.php" ||
+		$scriptname=="/instrumentcatalog.php"
 		){
 	$accountactive="active";
 }elseif($scriptname=="/api.php"){
 	$apiactive="active";
 }elseif($scriptname=="/downloadapp.php" || $scriptname=="/requestaccess.php"){
 	$appactive="active";
-}elseif($scriptname=="/helppage.php"){
+}elseif($scriptname=="/help.php"){
 	$helpactive="active";
+}elseif($scriptname=="/strabotoolsdownload.php"){
+	$toolsactive="active";
+}elseif($scriptname=="/teaching.php"){
+	$teachingactive="active";
 }else{
 	$homeactive="active";
 }
+
 
 ?><!DOCTYPE html>
 <html>
@@ -480,7 +502,13 @@ if($scriptname=="/index.php"||$scriptname=="/index2.php"||$scriptname=="/indexde
 							<li id=''><a href='/logout' ><span class='wsite-menu-title'>Logout</span></a></li>
 							<li id=''><a href='/load_shapefile' ><span class='wsite-menu-title'>Load Shapefile</span></a></li>
 							<li id=''><a href='/my_data' ><span class='wsite-menu-title'>My Data</span></a></li>
-
+					<?
+					if($showinstrumentmenu){
+					?>
+							<li id=''><a href='/instrumentcatalog' ><span class='wsite-menu-title'>My Instruments</span></a></li>
+					<?
+					}
+					?>
 							<li id=''><a href='/geotiff' ><span class='wsite-menu-title'>My Maps</span></a></li>
 
 							<!--<li id=''><a href='/koboforms' ><span class='wsite-menu-title'>Kobo Forms</span></a></li>-->
@@ -504,7 +532,7 @@ if($scriptname=="/index.php"||$scriptname=="/index2.php"||$scriptname=="/indexde
 				</li>
 				<li id='<?=$apiactive?>'><a href="/api" data-membership-required="0" >API</a></li>
 				<li id='<?=$appactive?>'>
-					<a href="downloadapp" data-membership-required="0" >Strabo-App</a>
+					<a href="downloadapp" data-membership-required="0" >StraboSpot</a>
 					<!--
 					<div class='wsite-menu-wrap' style='display:none'>
 						<ul class='wsite-menu'>
@@ -516,8 +544,18 @@ if($scriptname=="/index.php"||$scriptname=="/index2.php"||$scriptname=="/indexde
 					</div>
 					-->
 				</li>
+				<li id='<?=$toolsactive?>'>
+					<a href="strabotoolsdownload" data-membership-required="0" >StraboTools</a>
+					<div class='wsite-menu-wrap' style='display:none'>
+						<ul class='wsite-menu'>
+							<li id=''><a href='strabotoolsdownload' ><span class='wsite-menu-title'>Download StraboTools</span></a></li>
+							<li id=''><a href='https://strabospot.wordpress.com/strabotools-faq/' target="_blank"><span class='wsite-menu-title'>StraboTools FAQ</span></a></li>
+						</ul>
+					</div>
+				</li>
 				<li id='<?=$searchactive?>'><a href="/search" data-membership-required="0" >Search</a></li>
-				<li id='<?=$helpactive?>'><a href="/files/Strabo_Help_Guide.pdf" data-membership-required="0" target="_blank">Help</a></li>
+				<li id='<?=$helpactive?>'><a href="/help" data-membership-required="0">Help</a></li>
+				<li id='<?=$teachingactive?>'><a href="/teaching" data-membership-required="0" >Teaching</a></li>
 			</ul>
 		</div>
 

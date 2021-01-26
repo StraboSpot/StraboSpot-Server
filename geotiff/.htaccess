@@ -2,6 +2,9 @@ RewriteEngine on
 
 RewriteRule ^detail/(.*)$ geotiffdetail.php?hash=$1 [L]
 RewriteRule ^delete/(.*)$ deletegeotiff.php?hash=$1 [L]
+RewriteRule ^edit/(.*)$ editgeotiff.php?hash=$1 [L]
+RewriteRule ^setname/(.*)$ setmapname.php?hash=$1 [L]
+RewriteRule ^bbox/(.*)$ getbbox.php?hash=$1 [L]
 
 
 

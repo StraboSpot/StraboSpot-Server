@@ -227,7 +227,15 @@ html, body, #map {
 }
 
 .sidebar_value_row_value {
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word; 
 }
 
 .sidebar_value_row_title {
@@ -647,7 +655,7 @@ html, body, #map {
 	text-align: center;
 	font-size: 11px;
 	padding: 3px;
-	width: 100px;
+	width: 120px;
 	transition: all 0.2s;
 	cursor: pointer;
 	margin: 1px;
@@ -768,6 +776,6 @@ table.downloadTable td{
 }
 
 .sidebarOverflow {
-	height: 800px;
-	overflow-y: scroll;
+	height: 600px;
+	/*overflow-y: scroll;*/
 }

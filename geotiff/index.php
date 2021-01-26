@@ -67,6 +67,74 @@ table.mymaps td {
 	margin-bottom:10px;
 }
 
+ /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 14px;
+  border: 1px solid #333;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f00;
+  -webkit-transition: .4s;
+  transition: .4s;
+  
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 6px;
+  width: 6px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #79b22e;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #79b22e;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.selecty {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding: 1px;
+}
+
 
 </style>
 
@@ -81,7 +149,7 @@ table.mymaps td {
 			<td valign="top">
 				<div style="padding-left:10px;font-family: 'Raleway', sans-serif;font-size:16px;">
 					The StraboSpot My Maps interface allows you to upload your own custom GeoTIFF map files for inclusion in the StraboSpot mobile and desktop apps.
-					Files are accepted in .tif rectified GeoTIFF format up to 500MB in size. The preferred coordinate system for uploaded files is WGS 84. If another
+					Files are accepted in .tif rectified GeoTIFF format up to 1024MB in size. The preferred coordinate system for uploaded files is WGS 84. If another
 					coordinate system is provided, the file will be automatically converted which may result in undesirable map appearance.
 				</div>
 			</td>
@@ -131,7 +199,24 @@ table.mymaps td {
 
 		e.clearSelection();
 	});
-	
+
+	function  mapPub(maphash){
+		
+		//console.log(maphash);
+		
+		
+		if(document.getElementById('switch_'+maphash).checked){
+			//console.log("switch "+projectid+" checked");
+			console.log("https://strabospot.org/map_public?maphash="+maphash+"&state=public");
+			$.get("/map_public?maphash="+maphash+"&state=public");
+		}else{
+			//console.log("switch "+projectid+" not checked");
+			console.log("https://strabospot.org/map_public?maphash="+maphash+"&state=private");
+			$.get("/map_public?maphash="+maphash+"&state=private");
+		}
+		
+	}
+
 </script>
 
 <div id="successmessage"></div>
@@ -148,6 +233,7 @@ if(count($rows)>0){
 	<table class="mymaps">
 		<tr>
 			<th>&nbsp;</th>
+			<th>Public?</th>
 			<th>Map Name</th>
 			<th>Map Code</th>
 			<th>File Size</th>
@@ -162,15 +248,31 @@ foreach($rows as $row){
 	$uploaddate=$row->uploaddate;
 	$filesize=$row->filesize;
 	$filesize = $filesize/1000000;
+	
+	//$db->dumpVar($row);exit();
+	
+	if($row->ispublic=="t"){
+		$checked=" checked";
+	}else{
+		$checked="";
+	}
+	
+	
 	?>
 	<tr>
 		<td>
-			<div align="center"><a href="detail/<?=$hash?>">VIEW</a> | <a href="delete/<?=$hash?>" onclick="return confirm('Are you sure?')">DELETE</a></div>
+			<div align="center"><a href="detail/<?=$hash?>">VIEW</a>
+				 | <a href="edit/<?=$hash?>">EDIT</a>
+				 | <a href="delete/<?=$hash?>" onclick="return confirm('Are you sure?')">DELETE</a>
+			</div>
+		</td>
+		<td>
+			<label class="switch"><input type="checkbox" name="switch_<?=$hash?>" id="switch_<?=$hash?>" onclick="mapPub('<?=$hash?>')"<?=$checked?>><div class="slider"></div></label>
 		</td>
 		<td><?=$name?></td>
 		<td>
 		
-			<input id="<?=$hash?>" value="<?=$hash?>">
+			<input id="<?=$hash?>" value="<?=$hash?>" readonly>
 
 			<button class="btn" data-clipboard-text="<?=$hash?>">
 				<img class="clippy" src="/includes/images/clippy.svg" alt="Copy to clipboard" width="13">

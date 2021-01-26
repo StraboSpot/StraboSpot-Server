@@ -1,4 +1,6 @@
 <?
+include_once("adminkeys.php");
+
 session_start();
 
 //print_r($_SERVER);exit();

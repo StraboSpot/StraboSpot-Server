@@ -3,11 +3,19 @@
 session_start();
 $userlevel = $_SESSION['userlevel'];
 
+if($_GET['datasetid']!=""){
+	$sitetitle = "Strabo Dataset";
+	$sitebanner = "&nbsp;&nbsp;&nbsp;Strabo Dataset";
+}else{
+	$sitetitle = "StraboSpot Search";
+	$sitebanner = "StraboSpot Search";
+}
+
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-	<title>StraboSpot Search</title>
+	<title><?=$sitetitle?></title>
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/assets/bicons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/assets/bicons/apple-icon-60x60.png">
@@ -35,7 +43,7 @@ $userlevel = $_SESSION['userlevel'];
 	<link rel="stylesheet" href="/assets/js/featherlight/featherlight.css" type="text/css">
 	<link rel="stylesheet" href="/assets/js/ionic/css/ionic.css" type="text/css">
 	<link rel="stylesheet" href="includes/map_search.css" type="text/css">
-	<link rel="stylesheet" href="includes/fancybox/src/css/core.css" type="text/css">
+	<link rel="stylesheet" href="/search/includes/fancybox/src/css/core.css" type="text/css">
 
 	<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
@@ -45,7 +53,9 @@ $userlevel = $_SESSION['userlevel'];
 	<!-- Map Search-Specific Files-->
 	<script src="includes/map_search_functions.js"></script>
 	<script src="includes/tab_builders.js"></script>
-	<script src="includes/data_model.js"></script>
+	<script src="includes/strat.js"></script>
+	
+	<script src="/search/includes/data_model.js"></script>
 	
 	<!-- External Libraries-->
 	<script src="/assets/js/underscore/underscore-min.js"></script>
@@ -54,7 +64,7 @@ $userlevel = $_SESSION['userlevel'];
 	<script src="/assets/js/jquery-ui/jquery-ui.js"></script>
 	<script src="/assets/js/featherlight/featherlight.js"></script>
 	<script src="/assets/js/turf/turf.min.js"></script>
-	<script src="includes/fancybox/src/js/core.js"></script>
+	<script src="/search/includes/fancybox/src/js/core.js"></script>
 	
 	<script>
 		$( function() {
@@ -92,8 +102,92 @@ $userlevel = $_SESSION['userlevel'];
 		*/
 	</script>
 
+
+  
+    <?
+    if($_GET['datasetid']!=""){
+    	$datasetid = $_GET['datasetid'];
+    	$onload = " onload = \"gotoDataset($datasetid)\"";
+
+		include_once "../includes/config.inc.php";
+		include "../neodb.php"; //neo4j database abstraction layer
+
+		$querystring="match (d:Dataset) where d.id = $datasetid return d limit 1";
+
+		$rows = $neodb->get_results("$querystring");
+		$row = $rows[0];
+		$row = $row->get("d");
+		$d=$row->values();
+
+		$datasetid = $d['id'];
+		$centroid = $d['centroid'];
+		$datasetname = $d['name'];
+		$centroid = str_replace("POINT (","",$centroid);
+		$centroid = str_replace(")","",$centroid);
+		$centroid = explode(" ",$centroid);
+		$longitude = $centroid[0];
+		$latitude = $centroid[1];
+
+		echo '<script type="application/ld+json">
+		{  
+		  "@context": {
+			"@vocab": "http://schema.org/",
+			"re3data": "http://example.org/re3data/0.1/",
+			"earthcollab": "https://library.ucar.edu/earthcollab/schema#",
+			"geolink": "http://schema.geolink.org/1.0/base/main#",
+			"geolink-vocab": "http://schema.geolink.org/1.0/voc/local#",
+			"vivo": "http://vivoweb.org/ontology/core#",
+			"dcat": "http://www.w3.org/ns/dcat#",
+			"dbpedia": "http://dbpedia.org/resource/",
+			"geo-upper": "http://www.geoscienceontology.org/geo-upper#"
+		  },  
+		  "@type": "Dataset",
+		  "isAccessibleForFree": true,
+		  "description": "'.$datasetname.'",
+		  "includedInDataCatalog": {
+			"url": "https://strabospot.org",
+			"@id": "https://strabospot.org"
+		  },
+		  "keywords": "strabospot, structure, tectonics",
+		  "name": "'.$datasetname.'",
+		  "url": "https://strabospot.org/search/ds/'.$datasetid.'",
+		  "provider": {
+			"@type": "Organization",
+			"legalName": "StraboSpot",
+			"name": "StraboSpot",
+			"url": "https://strabospot.org",
+			"@id": "https://strabospot.org"
+		  },
+		  "publisher": {
+			"@type": "Organization",
+			"description": "StraboSpot",
+			"url": "https://strabospot.org",
+			"name": "StraboSpot",
+			"@id": "https://strabospot.org"
+		  },
+		  "spatialCoverage": [
+			{
+			  "@type": "Place",
+			  "geo": {
+				"latitude": '.$latitude.',
+				"longitude": '.$longitude.',
+				"@type": "GeoCoordinates"
+			  }
+			}
+		  ],
+		  "measurementTechnique": [],
+		  "@id": "https://strabospot.org/search/ds/'.$datasetid.'"
+		}
+		</script> ';
+
+
+
+    }
+    ?>
+
   </head>
-  <body>
+
+  <body<?=$onload?>>
     <div id="map" class="map"></div>
     <div id="toptext">
     	<button style="display:none;" onclick='zoomToCenterAndExtent("LTEwODkwNDUwLjA3Mjc2NDE1OHg0NjUzMTcyLjIxNDA5Mjc5M3gxMw==");'>Zoom Test</button>
@@ -111,12 +205,13 @@ $userlevel = $_SESSION['userlevel'];
 		<button style="display:none;" onclick="openSideBar();">Open</button>
 		<button style="display:none;" onclick="closeSideBar();">Close</button>
 		<button style="display:none;" onclick="toggleSideBar();">Toggle</button>
+		<button style="display:none;" onclick="gotoDataset(15246069817544);">Go To Dataset</button>
 		<div id="myres" style="display:none">span</div>
 		<span class="siteTitle">&nbsp;</span>
     </div>
 
 	<div id="toptexttitle">
-		StraboSpot Search
+		<?=$sitebanner?>
 	</div>
 
 	<img id="toptextlogo" src="/includes/images/strabo_icon_web.png"/>
@@ -161,11 +256,11 @@ $userlevel = $_SESSION['userlevel'];
 	<div id="download_map"><button class="download_map_button tooltip" onClick="openDownloadWindow();"/><span class="tooltiptext">Download Options</span></div>
 	
 	<?
-	if($userlevel >=5){
+	//if($userlevel >=5){
 	?>
 	<div id="link_map"><button class="link_map_button" onClick="showStaticUrl();"/></div>
 	<?
-	}
+	//}
 	?>
 
 	<div id="map_home"><button class="map_home_button tooltip" onClick="zoomHome();"/><span class="tooltiptext">Original Zoom Level</span></div>
@@ -240,6 +335,14 @@ $userlevel = $_SESSION['userlevel'];
 						</td>
 						<td>
 							Download StraboSpot data in PDF Field Book format.
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<button class="downloadsubmit" onclick="downloadData('stratsection');"><span>Strat Section(s)</span></button>
+						</td>
+						<td>
+							Download StraboSpot strat section SVG file(s).
 						</td>
 					</tr>
 
@@ -323,13 +426,14 @@ $userlevel = $_SESSION['userlevel'];
 	</div>
 
 
-	<div class="sidebar right">
+	<div class="sidebar right" style="overflow-y: scroll;">
 
 		<div id="sidebarspot">
 			<div id="sidebar_spot_name" align="center">foofoo</div>
 			<div id="tabs">
 				<ul>
 					<li><a href="#spot_tab">SPOT</a></li>
+					<li><a href="#notes_tab">NOTES</a></li>
 					<li><a href="#orientations_tab">ORIENTATIONS</a></li>
 					<li><a href="#_3d_structures_tab">3D STRUCTURES</a></li>
 					<li><a href="#images_tab">IMAGES</a></li>
@@ -337,8 +441,17 @@ $userlevel = $_SESSION['userlevel'];
 					<li><a href="#samples_tab">SAMPLES</a></li>
 					<li><a href="#other_features_tab">OTHER FEATURES</a></li>
 					<li><a href="#tags_tab">TAGS</a></li>
+					<li><a href="#igmet_tab">IG/MET</a></li>
+					<li><a href="#strat_section_tab">STRAT SECTION</a></li>
+					<li><a href="#sed_lithologies_tab">SED LITHOLOGIES</a></li>
+					<li><a href="#sed_bedding_tab">SED BEDDING</a></li>
+					<li><a href="#sed_structures_tab">SED STRUCTURES</a></li>
+					<li><a href="#sed_diagenesis_tab">SED DIAGENESIS</a></li>
+					<li><a href="#sed_fossils_tab">SED FOSSILS</a></li>
+					<li><a href="#sed_interpretations_tab">SED INTERPRETATIONS</a></li>
 				</ul>
 				<div id="spot_tab" class="sidebarOverflow"></div>
+				<div id="notes_tab" class="sidebarOverflow"></div>
 				<div id="orientations_tab" class="sidebarOverflow"></div>
 				<div id="_3d_structures_tab" class="sidebarOverflow"></div>
 				<div id="images_tab" class="sidebarOverflow"></div>
@@ -346,6 +459,14 @@ $userlevel = $_SESSION['userlevel'];
 				<div id="samples_tab" class="sidebarOverflow"></div>
 				<div id="other_features_tab" class="sidebarOverflow"></div>
 				<div id="tags_tab" class="sidebarOverflow"></div>
+				<div id="igmet_tab" class="sidebarOverflow"></div>
+				<div id="strat_section_tab" class="sidebarOverflow"></div>
+				<div id="sed_lithologies_tab" class="sidebarOverflow"></div>
+				<div id="sed_bedding_tab" class="sidebarOverflow"></div>
+				<div id="sed_structures_tab" class="sidebarOverflow"></div>
+				<div id="sed_diagenesis_tab" class="sidebarOverflow"></div>
+				<div id="sed_fossils_tab" class="sidebarOverflow"></div>
+				<div id="sed_interpretations_tab" class="sidebarOverflow"></div>
 			</div>
 		</div>
 
@@ -376,5 +497,17 @@ $userlevel = $_SESSION['userlevel'];
     <?
     }
     ?>
+
+    <?
+    if($_GET['datasetid']!=""){
+    	$c = $_GET['datasetid'];
+    ?>
+    <script>
+    	gotoDataset(<?=$c?>);
+    </script>
+    <?
+    }
+    ?>
+
   </body>
 </html>

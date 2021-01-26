@@ -39,13 +39,17 @@ class StraboSpot
  	public function setuuid($uuid){
  		$this->uuid=$uuid;
  	}
+ 	
+ 	public function setrowbuilder($rowbuilder){
+ 		$this->rowbuilder=$rowbuilder;
+ 	}
 
-	public function logToFile($string,$label){
+	public function logToFile($string,$label=null){
 		if(is_writable("log.txt")){
 			if($label==""){$label="LogToFile";}
 			file_put_contents ("log.txt", "\n\n$label $string \n", FILE_APPEND);
-			//file_put_contents ("/var/www/db/log.txt", $string, FILE_APPEND);
-			//file_put_contents ("/var/www/db/log.txt", "\n\n************************************************************************************************************************\n\n", FILE_APPEND);
+			//file_put_contents ("/srv/app/www/db/log.txt", $string, FILE_APPEND);
+			//file_put_contents ("/srv/app/www/db/log.txt", "\n\n************************************************************************************************************************\n\n", FILE_APPEND);
 		}
 	}
 
@@ -105,6 +109,29 @@ class StraboSpot
 	public function getSingleSpot($feature_id){
 
 		$querystring="MATCH (s:Spot {id:$feature_id,userpkey:$this->userpkey}) optional match (s)-[b:HAS_IMAGE]-(i:Image) with s, collect(i) as i RETURN s,i;";
+
+		$records = $this->neodb->get_results($querystring);
+
+		$count=count($records);
+		
+		if($count > 0){
+		
+			$record = $records[0];
+			$data = $this->singleSpotJSON($record);
+
+		}else{
+			//Error, sample not found
+			$data = new StdClass();
+			$data->Error = "Feature $feature_id not found.";
+		}
+	
+		return $data;
+
+	}
+
+	public function getPublicSingleSpot($feature_id){
+
+		$querystring="MATCH (s:Spot {id:$feature_id}) optional match (s)-[b:HAS_IMAGE]-(i:Image) with s, collect(i) as i RETURN s,i;";
 
 		$records = $this->neodb->get_results($querystring);
 
@@ -411,6 +438,106 @@ class StraboSpot
 
 	}
 
+	public function singleSpotPGJSONFromFeatureData($featuredata,$imagedata){
+
+		//print_r($imagedata);exit();
+		
+		if(count($imagedata) > 0){
+			$imagecount=0;
+			$imagestuff=array();
+			foreach($imagedata as $id){
+				foreach($id as $key=>$value){
+					if($key!="userpkey" && $key!="origfilename" && $key!="filename" && $key!="imagesha1" ){
+						$imagestuff[$imagecount][$key]=$value;
+					}
+				}
+				if($id->annotated=="1"){
+					$imagestuff[$imagecount]['annotated']=true;
+				}else{
+					$imagestuff[$imagecount]['annotated']=false;
+				}
+				$imagestuff[$imagecount]['self']="https://strabospot.org/db/image/".$id->id;
+				$imagecount++;
+			}
+			$data['properties']['images']=$imagestuff;
+		}
+
+		
+		/*
+		if($this->isarc){
+			if($featuredata->origwkt!=""){
+				$mywkt = geoPHP::load($featuredata->origwkt,"wkt");
+				$newjson = $mywkt->out('json');
+				$newjson = json_decode($newjson);
+				$data['original_geometry']=$newjson;
+				$wkt=$featuredata->wkt;
+			}
+		}else{
+			
+		}
+		*/
+
+		$gtype=$featuredata->gtype;
+		$date=$featuredata->date;
+
+		$name=$featuredata->name;
+
+
+		$userpkey=$featuredata->userpkey;
+		$feature_id=$featuredata->id;
+
+
+		//geometry -- can be real or pixel
+		$wkt=$featuredata->origwkt;
+
+		if($wkt!=""){
+			$mywkt = geoPHP::load($wkt,"wkt");
+			$newjson = $mywkt->out('json');
+			$newjson = json_decode($newjson);
+			$data['geometry']=$newjson;
+		}
+
+		//call this one real world -- store with spot
+		$wkt=$featuredata->wkt;
+
+		if($wkt!=""){
+			$mywkt = geoPHP::load($wkt,"wkt");
+			$newjson = $mywkt->out('json');
+			$newjson = json_decode($newjson);
+			$data['real_world_geometry']=$newjson;
+		}
+
+
+
+		foreach($featuredata as $key=>$value){
+		
+			if(	$key != "wkt" &&
+				$key != "origwkt" &&
+				$key != "gtype" &&
+				$key != "bbox" &&
+				$key != "geometrytype" &&
+				$key != "userpkey"
+				){
+
+				$key=str_replace("json_","",$key);
+
+				if(is_array(json_decode($value)) || is_object(json_decode($value))){
+				
+					$value=json_decode($value);
+				
+				}
+				
+				eval("\$data['properties']['$key']=\$value;");	
+			
+			}
+
+		}
+
+		$data['type']="Feature";
+		$data['properties']['self']="https://strabospot.org/db/feature/$feature_id";
+
+		return $data;
+	}
 
 	public function insertSpot($injson,$thisid=null){
 
@@ -1289,11 +1416,16 @@ class StraboSpot
 	
 		$foundfilename="";
 		//$filename = $this->neodb->get_var("match (i:Image {userpkey:$this->userpkey,id:$imageid}) return i.filename");
-		$filenames = $this->neodb->get_results("match (i:Image {id:$imageid}) return i.filename"); //open up due to search
+		//$filenames = $this->neodb->get_results("match (i:Image {id:$imageid}) return i.filename"); //open up due to search
+		
+		$filenames = $this->neodb->get_results("match (i:Image {id:$imageid}) where i.filename <> \"\" return i.filename"); //open up due to search
+		
+		
 
 		foreach($filenames as $fn){
 			$foundfile = $fn->get("i.filename");
-			if(file_exists("/var/www/dbimages/$foundfile")){
+			//echo "foundfile $foundfile";exit();
+			if(file_exists("/srv/app/www/dbimages/$foundfile")){
 				$foundfilename=$foundfile;
 			}
 		}
@@ -1333,7 +1465,7 @@ class StraboSpot
 				$image=(object)$image->values();
 				//print_r($image);
 				$filename=$image->filename;
-				//unlink("/var/www/dbimages/$filename");
+				//unlink("/srv/app/www/dbimages/$filename");
 			}
 		}
 
@@ -1362,6 +1494,8 @@ class StraboSpot
 						
 						
 						");
+						
+		$this->deletePGDataset($datasetid);
 
 	}
 
@@ -1527,6 +1661,15 @@ class StraboSpot
 		return $json;
 
 	}
+	
+	public function getPublicDatasetSpots($feature_id){
+
+		//get the features from neo4j
+		$querystring = "match (a:Dataset)-[r:HAS_SPOT]->(s:Spot) where a.id=$feature_id optional match (s)-[c:HAS_IMAGE]-(i:Image) with s, collect(i) as i RETURN s,i;";
+		$json = $this->getFeatureCollection($querystring);
+		return $json;
+
+	}
 
 	public function getDatasetSpotsLabBook($feature_id){
 
@@ -1582,8 +1725,254 @@ class StraboSpot
 
 
 
+	public function newSearchGetDatasetSpotsSearch($geotype = "", $get){
+
+		//$this->dumpVar($get);exit();
+		/*
+		Array
+		(
+			[type] => xls
+			[dsids] => 15646806674121,15474778823653
+			[range] => all
+			[envelope] => -98.56459370507812,39.14903316290301,-96.79304829492186,38.00137082675752
+			[querystring] => {"params":[{"num":0,"qualifier":"and","constraints":[{"constraintType":"stratColumnExists"}]}]}
+		)
+		
+		env = left+','+top+','+right+','+bottom;
+		POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))
+		
+		and ST_Contains(st_geomfromtext('$polygon'),spot.location) 
+		
+		*/
+		
+		//$this->dumpVar($get['querystring']);exit();
 
 
+		$type = $get['type'];
+		$dsids = $get['dsids'];
+		$range = $get['range'];
+		$envelope = $get['envelope'];
+		$querystring = $get['querystring'];
+
+				
+		
+		//$this->dumpVar($get);
+		
+		
+		if($range == "envelope"){
+			//build polygon and make row for search
+			$parts = explode(",", $envelope);
+			$left = $parts[0];
+			$top = $parts[1];
+			$right = $parts[2];
+			$bottom = $parts[3];
+
+			$polygon = "POLYGON(($left $top, $right $top, $right $bottom, $left $bottom, $left $top))";
+			$polygonrow = "and ST_Contains(st_geomfromtext('$polygon'),spot.location) ";
+		}
+		
+		
+		
+		//exit();
+		
+		
+
+		$searchrows = $this->rowbuilder->buildSearchQueryRows($querystring);
+		
+		if($geotype!=""){
+			$geotype = strtolower($geotype);
+			$searchrows .= "\nand geotype='$geotype'\n";
+		}
+		
+		//$this->dumpVar($dsids);exit();
+		//$this->dumpVar($searchrows);exit();
+
+
+
+
+
+
+
+
+
+
+		$ids = explode(",", $dsids);
+		
+		//$this->dumpVar($ids);
+		
+		$dsidparts = [];
+		
+		foreach($ids as $thisid){
+			$parts = explode("-", $thisid);
+			if($parts[1]!=""){
+				$partuserpkey = $parts[0];
+				$partdatasetid = $parts[1];
+				$dsidparts[] = "( dataset.strabo_dataset_id = '$partdatasetid' and dataset.user_pkey = $partuserpkey)";
+			}else{
+				$partdatasetid = $parts[0];
+				$dsidparts[] = "( dataset.strabo_dataset_id = $partdatasetid )";
+			}
+			
+		}
+		
+		
+		
+		$dsidparts = implode(" or ", $dsidparts);
+
+
+		//$this->dumpVar($dsidparts);exit();
+
+
+
+
+	
+
+
+		$spotsquery = "select
+				spot.spotjson,
+				users.pkey,
+				dataset.strabo_dataset_id,
+				st_astext(spot.location) as spotlocation,
+				real_world_geometry
+				from 
+				users
+				FULL OUTER JOIN project ON users.pkey = project.user_pkey
+				FULL OUTER JOIN dataset on project.project_pkey = dataset.project_pkey
+				FULL OUTER JOIN spot on dataset.dataset_pkey = spot.dataset_pkey
+				FULL OUTER JOIN image on spot.spot_pkey = image.spot_pkey
+				FULL OUTER JOIN sample on spot.spot_pkey = sample.spot_pkey
+				FULL OUTER JOIN rock_type on spot.spot_pkey = rock_type.spot_pkey
+				where
+				(
+					(project.ispublic = true or project.user_pkey = $this->userpkey)
+				) and (
+				
+				
+				($dsidparts)
+				
+				
+				
+				$polygonrow
+				
+				
+				$searchrows
+				)
+				group by
+				spot.spotjson,
+				users.pkey,
+				dataset.strabo_dataset_id,
+				spotlocation,
+				real_world_geometry
+				order by users.pkey, strabo_dataset_id
+				";
+
+		//$this->dumpVar($spotsquery);exit();
+
+		//exit();
+
+		$spotrows = $this->db->get_results($spotsquery);
+	
+		//$this->dumpVar($spotrows);exit();
+	
+		$out['type'] = "FeatureCollection";
+		$allfeatures = [];
+		
+		foreach($spotrows as $sp){
+			$decodedspot = (array)json_decode($sp->spotjson,true);
+			
+			$rwg = json_decode($sp->real_world_geometry);
+			$decodedspot['original_geometry'] = $rwg;
+			
+			//$decodedspot['properties'] = (array)$decodedspot['properties'];
+			
+			//$this->dumpVar($decodedspot);
+			$allfeatures[]=$decodedspot;
+		}
+		
+		if(count($allfeatures)>0){
+			$out['features'] = $allfeatures;
+			return $out;
+		}else{
+			return "";
+		}
+		
+
+		
+		
+		//$this->dumpVar($out);exit();
+
+		//exit();
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	}
 
 
 
@@ -1947,6 +2336,44 @@ class StraboSpot
 	
 	}
 
+	public function getPGFeatureCollection($querystring){ //additional stuff
+
+		$rows = $this->neodb->get_results($querystring);
+		
+		$featuredata = $this->recordsToFeatureData($rows);
+
+		$count=count($rows);
+
+		if($count > 0){
+		
+			$data['type']="FeatureCollection";
+			
+			$x=0;
+			
+			//fix features with image basemaps
+			/*
+			if($this->isarc==true){
+				$featuredata = $this->fixBasemaps($featuredata);
+			}
+			*/
+			
+			foreach($featuredata as $fd){
+			
+				$imagedata=$fd->row[1];
+				$fd=$fd->row[0];
+
+				$data['features'][$x]=$this->singleSpotPGJSONFromFeatureData($fd,$imagedata);
+			
+				$x++;
+			}
+			
+			return $data;
+
+		}else{
+			
+		}
+	
+	}
 
 	public function recordsToFeatureData($records){
 
@@ -2354,11 +2781,18 @@ class StraboSpot
 				//********************************************************************
 				// Now move image to folder
 				//********************************************************************
-				move_uploaded_file ( $imagefiletmp_name , "dbimages/$filename" );
+				
+				//echo "$imagefiletmp_name";exit();
+				//header("Content-type:image/jpeg");
+				//readfile("$imagefiletmp_name");exit();
+				
+				//move_uploaded_file ( $imagefiletmp_name , "/srv/app/www/dbimages/$filename" );
+				copy ( $imagefiletmp_name , "/srv/app/www/dbimages/$filename" );
 
 				header("Image updated", true, 201);
 				$data['self']="https://strabospot.org/db/image/$id";
 				$data['id']=$id;
+				$data['filename']=$filename;
 
 			}else{
 
@@ -2395,11 +2829,12 @@ class StraboSpot
 				//********************************************************************
 				// Now move image to folder
 				//********************************************************************
-				move_uploaded_file ( $imagefiletmp_name , "dbimages/$newfilename" );
+				move_uploaded_file ( $imagefiletmp_name , "/srv/app/www/dbimages/$newfilename" );
 
 				header("Image created", true, 201);
 				$data['self']="https://strabospot.org/db/image/$id";
 				$data['id']=$id;
+				$data['filename']=$newfilename;
 
 			}
 
@@ -2450,7 +2885,7 @@ class StraboSpot
 	public function getMyProjects(){
 	
 		//get the feature from neo4j
-		$querystring = "MATCH (n:Project) WHERE n.userpkey = $this->userpkey RETURN n;";
+		$querystring = "MATCH (n:Project) WHERE n.userpkey = $this->userpkey RETURN n order by n.modified_timestamp desc;";
 		$rows = $this->neodb->get_results($querystring);
 	
 		$count=count($rows);
@@ -2771,7 +3206,7 @@ Array
 				$image=$row->get("img");
 				$image=(object)$image->values();
 				$filename=$image->filename;
-				//unlink("/var/www/dbimages/$filename");
+				//unlink("/srv/app/www/dbimages/$filename");
 			}
 		}
 
@@ -2807,6 +3242,7 @@ Array
 						
 						
 						");
+		$this->deletePGProject($project_id);
 	
 	}
 
@@ -3130,6 +3566,8 @@ match (p:Project)
 		if($dbaction=="update"){
 			$this->buildProjectRelationships($thisid);
 		}
+		
+		$this->setProjectCenter($thisid);
 
 		$totalprojecttime = microtime(true)-$projectstarttime;
 		$this->logToFile("buildprojectrelationships took: ".$totalprojecttime." secs","Project Time");
@@ -3213,6 +3651,70 @@ match (p:Project)
 		
 		//get the feature from neo4j
 		$querystring = "MATCH (n:Project)-[HAS_DATASET]->(d:Dataset) WHERE d.id in [$feature_ids] RETURN distinct(n);";
+
+		$records = $this->neodb->query($querystring);
+
+		//$this->dumpVar($records);exit();
+		
+		$count=count($records);
+		
+		if($count > 0){
+
+			foreach($records as $record){
+			
+				$project = $record->get("n");
+				$properties = $project->values();
+
+				if($properties["json_tags"]!=""){
+					$thistags=json_decode($properties["json_tags"]);
+					foreach($thistags as $thistag){
+						array_push($tags,$thistag);
+					}
+				}
+				
+			}
+		}
+
+		if(count($tags)==0) $tags="";
+		
+		return $tags;
+	
+	}
+
+	public function newSearchGetTagsFromDatasetIds($feature_ids){
+
+		$ids = explode(",", $feature_ids);
+		
+		//$this->dumpVar($ids);
+		
+		$dsidparts = [];
+		
+		foreach($ids as $thisid){
+			$parts = explode("-", $thisid);
+			if($parts[1]!=""){
+				$partuserpkey = $parts[0];
+				$partdatasetid = $parts[1];
+				$dsidparts[] = "( d.id = $partdatasetid and d.userpkey = $partuserpkey)";
+			}else{
+				$partdatasetid = $parts[0];
+				$dsidparts[] = "( d.id = $partdatasetid )";
+			}
+			
+		}
+		
+		//$this->dumpVar($dsidparts);exit();
+		
+		$dsidparts = implode(" or ", $dsidparts);
+		
+		$querystring = "MATCH (n:Project)-[HAS_DATASET]->(d:Dataset) WHERE 1=1 and ($dsidparts) RETURN distinct(n);";
+		//$this->dumpVar($querystring);exit();
+
+		$tags = [];
+
+		$data = new stdClass();
+		
+		//get the feature from neo4j
+		//$querystring = "MATCH (n:Project)-[HAS_DATASET]->(d:Dataset) WHERE d.id in [$feature_ids] RETURN distinct(n);";
 
 		$records = $this->neodb->query($querystring);
 
@@ -3481,8 +3983,10 @@ match (p:Project)
 		$querystring = "MATCH (n:Image) WHERE n.id = $feature_id and n.userpkey = $this->userpkey RETURN n.filename;";
 		
 		$filename = $this->neodb->get_var($querystring);
+		
+		//echo "filename: $filename";
 
-		if($filename!="" && file_exists("dbimages/$filename")){
+		if($filename!="" && file_exists("/srv/app/www/dbimages/$filename")){
 			return true;
 		}else{
 			return false;
@@ -3502,7 +4006,7 @@ match (p:Project)
 
 	public function switchVersion($uuid){ //switches project to saved version
 		
-		if(file_exists("/var/www/versions/$uuid")){
+		if(file_exists("/srv/app/www/versions/$uuid")){
 			
 			$row=$this->db->get_row("select * from versions where uuid='$uuid' and userpkey=$this->userpkey");
 			$projectid = $row->projectid;
@@ -3516,8 +4020,9 @@ match (p:Project)
 
 				//first, delete project
 				$this->deleteProject($projectid);
+				$this->deletePGProject($projectid);
 			
-				$json = file_get_contents("/var/www/versions/$uuid");
+				$json = file_get_contents("/srv/app/www/versions/$uuid");
 				$json = gzdecode($json);
 				$project = json_decode($json);
 			
@@ -3561,7 +4066,7 @@ match (p:Project)
 								$imageid = $i->id;
 							
 								$filename = $this->db->get_var("select nextval('image_seq')");
-								$imagesha1 = sha1_file("/var/www/versions/images/$imageid");
+								$imagesha1 = sha1_file("/srv/app/www/versions/images/$imageid");
 							
 								$i->userpkey=$this->userpkey;
 								$i->origfilename = "image.jpeg";
@@ -3570,7 +4075,12 @@ match (p:Project)
 
 								$imagejson=json_encode($i);
 								$newid = $this->neodb->createNode($imagejson,"Image");
-								copy("/var/www/versions/images/$imageid","/var/www/dbimages/$filename");
+								
+								//echo "/srv/app/www/versions/images/$imageid     /srv/app/www/dbimages/$filename";exit();
+								
+								///srv/app/www/versions/images/16043541156514 /srv/app/www/dbimages/86106
+								
+								copy("/srv/app/www/versions/images/$imageid","/srv/app/www/dbimages/$filename");
 
 							}
 						}
@@ -3589,6 +4099,7 @@ match (p:Project)
 					$this->buildDatasetRelationships($datasetid);	
 					$this->setDatasetCenter($datasetid);
 					$this->setProjectCenter($projectid);
+					$this->buildPgDataset($datasetid);
 				}
 				
 			}else{
@@ -3625,8 +4136,8 @@ match (p:Project)
 					$id = $i->id;
 					$filename = $i->filename;
 
-					if(!file_exists("/var/www/versions/images/$id")){
-						copy("/var/www/dbimages/$filename","/var/www/versions/images/$id");
+					if(!file_exists("/srv/app/www/versions/images/$id")){
+						copy("/srv/app/www/dbimages/$filename","/srv/app/www/versions/images/$id");
 					}
 				}
 			}
@@ -3659,7 +4170,7 @@ match (p:Project)
 		
 			$uuid = $this->uuid->v4();
 			
-			file_put_contents ("/var/www/versions/$uuid", $project);
+			file_put_contents ("/srv/app/www/versions/$uuid", $project);
 			
 			$this->db->query("	insert into versions (	projectid,
 														datecreated,
@@ -3703,8 +4214,9 @@ match (p:Project)
 
 			$wkt = $s['wkt'];
 			$strat_section_id = $s['strat_section_id'];
+			$image_basemap = $s['image_basemap'];
 
-			if($wkt!="" && $strat_section_id==""){
+			if($wkt!="" && $strat_section_id=="" && $image_basemap==""){
 
 				$mywkt = geoPHP::load($wkt,"wkt");
 				$centroid = $mywkt->centroid();
@@ -3728,10 +4240,12 @@ match (p:Project)
 
 			
 			//echo "center: $center";exit();
-			
+			$this->logToFile($center, "Project Center");
+			$this->logToFile("match (p:Project {id:$projectid, userpkey:$this->userpkey}) set p.centroid='$center'", "Center Query");
 			
 			if($center!=""){
 				$this->neodb->query("match (p:Project {id:$projectid, userpkey:$this->userpkey}) set p.centroid='$center'");
+				$this->db->query("update project set location = ST_GeomFromText('$center') where strabo_project_id = '$projectid' and user_pkey = $this->userpkey");
 			}
 		
 		}
@@ -3754,8 +4268,9 @@ match (p:Project)
 
 			$wkt = $s['wkt'];
 			$strat_section_id = $s['strat_section_id'];
+			$image_basemap = $s['image_basemap'];
 
-			if($wkt!="" && $strat_section_id==""){
+			if($wkt!="" && $strat_section_id=="" && $image_basemap==""){
 
 				$mywkt = geoPHP::load($wkt,"wkt");
 				$centroid = $mywkt->centroid();
@@ -3781,10 +4296,758 @@ match (p:Project)
 
 			if($center!=""){
 				$this->neodb->query("match (d:Dataset {id:$datasetid, userpkey:$this->userpkey}) set d.centroid='$center'");
+				$this->db->query("update dataset set location = ST_GeomFromText('$center') where strabo_dataset_id = '$datasetid' and user_pkey = $this->userpkey");
 			}
 		
 		}
 	
 	}
+
+
+	public function buildPgDataset($datasetid){
+		
+		//add neo4j dataset to postgres for search
+
+		$thisuserpkey = $this->userpkey;
+		
+		//$neo_project = (object)$this->neodb->getNode("match (p:Project {userpkey:$thisuserpkey})-[HAS_DATASET]->(d:Dataset {id:$datasetid})-[HAS_SPOT]->(s:Spot) WHERE EXISTS(s.wkt) AND EXISTS(p.centroid) AND NOT EXISTS(s.strat_section_id)  return p limit 1");
+		$neo_project = (object)$this->neodb->getNode("match (p:Project {userpkey:$thisuserpkey})-[HAS_DATASET]->(d:Dataset {id:$datasetid})-[HAS_SPOT]->(s:Spot) WHERE EXISTS(s.wkt) AND EXISTS(p.centroid)  return p limit 1");
+
+		$projectid = $neo_project->id;
+		
+		$tags = $neo_project->json_tags;
+		if($tags!=""){
+			$tags = json_decode($tags);
+		}
+		
+		$project_public = "false";
+		
+		
+		$prefs = $neo_project->preferences;
+		if($prefs != ""){
+			$prefs = json_decode($prefs);
+			//$this->dumpVar($prefs);
+			if($prefs->public){
+				$project_public = "true";
+			}
+		}
+		
+		//echo $project_public;
+		
+		//$this->dumpVar($neo_project->preferences);
+
+		if($projectid){
+			//echo("project id set<br>");
+			//first, check postgres to see if project for this dataset exists
+			$pg_project = $this->db->get_row("select * from project where strabo_project_id='$projectid' and user_pkey = $thisuserpkey limit 1");
+
+			$project_pkey = $pg_project->project_pkey;
+			$project_name = $pg_project->project_name;
+			
+			if($project_pkey == ""){
+				
+				//project doesn't exist, we need to put it in.
+				$project_pkey = $this->db->get_var("select nextval('project_project_pkey_seq')");
+				$project_name = pg_escape_string($neo_project->desc_project_name);
+				$strabo_project_id = $neo_project->id;
+				$project_location = trim($neo_project->centroid);
+				
+				if($neo_project->public == 1){
+					$ispublic = "true";
+				}else{
+					$ispublic = "false";
+				}
+				
+				if($project_location!=""){
+					$project_location = "ST_GeomFromText('$project_location')";
+				}else{
+					$project_location = "null";
+				}
+				
+				
+				$this->db->query("insert into project values
+										(	$project_pkey,
+											$thisuserpkey,
+											'$project_name',
+											'$strabo_project_id',
+											$project_location,
+											$ispublic
+										)
+									");
+			}
+			
+			//OK, now we have project and project_pkey... let's move on to dataset
+			//first, delete existing.
+			$this->db->query("delete from dataset where user_pkey = $thisuserpkey and strabo_dataset_id = '$datasetid'");
+			
+			//get dataset from neo4j
+			$neo_dataset = (object)$this->neodb->getNode("match (p:Project {userpkey:$thisuserpkey})-[HAS_DATASET]->(d:Dataset {id:$datasetid}) return d limit 1");
+
+			$dataset_pkey = $this->db->get_var("select nextval('dataset_dataset_pkey_seq')");
+			$dataset_name = pg_escape_string($neo_dataset->name);
+			$strabo_dataset_id = $neo_dataset->id;
+			$dataset_location = trim($neo_dataset->centroid);
+			
+			if($dataset_location!=""){
+				$dataset_location = "ST_GeomFromText('$dataset_location')";
+			}else{
+				$dataset_location = "null";
+			}
+			
+			$this->db->query("insert into dataset values
+						(	$dataset_pkey,
+							$project_pkey,
+							$thisuserpkey,
+							$dataset_location,
+							'$dataset_name',
+							'$strabo_dataset_id'
+						)
+					");
+					
+			//now get spots for this dataset
+			$querystring = "match (a:Dataset)-[r:HAS_SPOT]->(s:Spot) where a.userpkey=$thisuserpkey and a.id=$datasetid optional match (s)-[c:HAS_IMAGE]-(i:Image) with s, collect(i) as i RETURN s,i;";
+			$json = $this->getPGFeatureCollection($querystring);
+
+			//$this->dumpVar($json);exit();
+			
+			$spots = $json['features'];
+			
+			foreach($spots as $spot){
+
+				//$this->dumpVar($spot);exit();
+				$strabo_spot_id = $spot['properties']['id'];
+
+				//need to set location from wkt instead??????????????????????????
+				
+				
+				if($spot['geometry']->type!=""){
+					$locjson = json_encode($spot['geometry']);
+					$mywkt=geoPHP::load($locjson,"json");
+					$spotlocation = $mywkt->out('wkt');
+					$spotlocation = "ST_GeomFromText('$spotlocation')";
+				}else{
+					$spotlocation="null";
+				}
+				
+				
+				/*
+				if($spot['wkt']!=""){
+					$spotlocation = $spot['wkt'];
+					$spotlocation = "ST_GeomFromText('$spotlocation')";
+				}else{
+					$spotlocation="null";
+				}
+				*/
+				
+				//check for strat_section_id
+				$strat_section_id = $spot['properties']['strat_section_id'];
+				
+				//if($spotlocation == null || $strat_section_id != ""){
+				if($spotlocation == null || $strat_section_id == "foo"){
+				
+					//don't put these in
+				
+				}else{
+				
+					$rwg="";
+					$micro_exists = "FALSE";
+					$orientation_exists = "FALSE";
+					$sample_exists = "FALSE";
+					$strat_exists = "FALSE";
+				
+					if($spot['properties']['sed']) $strat_exists = "TRUE";
+					if($spot['properties']['samples']) $sample_exists = "TRUE";
+					if($spot['properties']['orientation_data']) $orientation_exists = "TRUE";
+					if($spot['properties']['microstructure_data']) $micro_exists = "TRUE";
+
+					//$this->dumpVar($spot);exit();
+					
+					$geotype = strtolower($spot['geometry']->type);
+					
+					$rwg = $spot['real_world_geometry'];
+					if($rwg!=""){
+						$rwg = json_encode($spot['real_world_geometry']);
+						
+						//$rwg=geoPHP::load($rwg,"json");
+						//$rwg = $rwg->out('wkt');
+					}
+					
+					unset($spot['real_world_geometry']);
+					
+					//$this->dumpVar($spot);exit();
+					
+					//$this->dumpVar($rwg);exit();
+					
+					$spotjson = json_encode($spot, JSON_PRETTY_PRINT);
+					$spotjson = pg_escape_string($spotjson);
+
+					$spotunixtime = substr($spot['properties']['id'], 0, 10);
+
+					$properties = (object)$spot['properties'];
+
+					$keywords = $this->getKeywords($spot['properties']);
+				
+					//now add tags to keywords
+					if($tags){
+						foreach($tags as $tag){
+							foreach($tag->spots as $tagspotid){
+								if($tagspotid == $strabo_spot_id){
+									foreach($tag as $key=>$value){
+										if($key!="id" && $key!="spots"){
+											if(is_array($value)){
+												//echo "array tag found here $strabo_spot_id<br>";
+												//$this->dumpVar($value);
+												foreach($value as $valpart){
+													$keywords .= " ".$valpart;
+												}
+											}elseif(is_object($value)){
+												//echo "object tag found here $strabo_spot_id<br>";
+												//$this->dumpVar($value);
+											}else{
+												$keywords .= " ".$value;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					$keywords .= " ".$project_name;
+					$keywords .= " ".$dataset_name;
+				
+					$keywords = trim($keywords);
+					$keywords = pg_escape_string($keywords);
+
+					if($keywords!=""){
+						$vectors = "to_tsvector('$keywords')";
+					}else{
+						$vectors = "null";
+					}
+
+					$spot_pkey = $this->db->get_var("select nextval('spot_spot_pkey_seq')");
+				
+					$query ="insert into spot values (	$spot_pkey,
+																$dataset_pkey,
+																$project_pkey,
+																$thisuserpkey,
+																$micro_exists,
+																$orientation_exists,
+																$sample_exists,
+																$strat_exists,
+																$spotlocation,
+																TO_TIMESTAMP($spotunixtime),
+																$vectors,
+																'$spotjson',
+																'$strabo_spot_id',
+																'$rwg',
+																'$geotype'
+															)";
+
+					$this->db->query($query);
+				
+					//Now, check for images and put in
+					if($properties->images){
+						$images = $properties->images;
+						foreach($images as $image){
+							$image_pkey = $this->db->get_var("select nextval('image_image_pkey_seq')");
+							$image_type = $image['image_type'];
+							$strabo_image_id = $image['id'];
+						
+							$imagequery = "insert into image values (	$image_pkey,
+														$spot_pkey,
+														$dataset_pkey,
+														$project_pkey,
+														$thisuserpkey,
+														'$image_type',
+														'$strabo_image_id'
+														)";
+
+							$this->db->query($imagequery);
+						}
+					}
+				
+					//Now, check for images and put in
+					if($properties->samples){
+						//echo "samples found!<br>";
+						$samples = $properties->samples;
+
+						foreach($samples as $sample){
+							$sample_pkey = $this->db->get_var("select nextval('sample_sample_pkey_seq')");
+							$sample_id = pg_escape_string($sample->label); //sample_id_name
+							if($sample_id==""){
+								$sample_id = pg_escape_string($sample->label);
+							}
+							$rock_type = $sample->material_type;
+							$strabo_sample_id = pg_escape_string($sample->id);
+						
+							$sample_query = "insert into sample values (	$sample_pkey,
+																			$spot_pkey,
+																			$dataset_pkey,
+																			$project_pkey,
+																			$thisuserpkey,
+																			'$sample_id',
+																			'$rock_type',
+																			'$strabo_sample_id'
+																		)";
+							$this->db->query($sample_query);
+						}
+					}
+
+/*
+    [3] => stdClass Object
+        (
+            [unit_label_abbreviation] => Unit two
+            [rock_type] => metamorphic
+            [metamorphic_rock_types] => slate
+            [metamorphic_grade] => epidote_amphib
+            [id] => 15856878922118
+            [type] => geologic_unit
+            [name] => Unit two
+            [spots] => Array
+                (
+                    [0] => 15856877822400
+                    [1] => 15856884980863
+                    [2] => 15856885409362
+                )
+
+        )
+*/
+
+
+					//Now check for rock type and metamorphic facies
+					//$this->dumpVar($tags);
+
+					foreach($tags as $tag){
+						//$strabo_spot_id
+						foreach($tag->spots as $thisspotnum){
+						
+							if($thisspotnum == $strabo_spot_id){
+							
+								$saverocktype = "";
+								$savemetamorphic = "";
+								if($tag->rock_type!=""){
+									$rock_type = $tag->rock_type;
+									if($rock_type=="igneous"){
+										$saverocktype="igneous";
+										if($tag->igneous_rock_class!="") $saverocktype.=":".$tag->igneous_rock_class;
+										if($tag->plutonic_rock_types!="") $saverocktype.=":".$tag->plutonic_rock_types;
+									}elseif($rock_type=="metamorphic"){
+										$saverocktype="metamorphic";
+										if($tag->metamorphic_rock_types!="") $saverocktype.=":".$tag->metamorphic_rock_types;
+										if($tag->metamorphic_grade!="") $savemetamorphic = $tag->metamorphic_grade;
+									}elseif($rock_type=="sedimentary"){
+										$saverocktype="sedimentary";
+										if($tag->sedimentary_rock_type!="") $saverocktype.=":".$tag->sedimentary_rock_type;
+									}elseif($rock_type=="sediment"){
+										$saverocktype="sediment";
+										if($tag->sediment_type!="") $saverocktype.=":".$tag->sediment_type;
+									}
+								}
+
+								if($saverocktype!=""){
+									$this->db->query("
+											insert into rock_type (
+																	spot_pkey,
+																	dataset_pkey,
+																	project_pkey,
+																	user_pkey,
+																	strabo_rock_type,
+																	metamorphic_facies
+																) values (
+																	$spot_pkey,
+																	$dataset_pkey,
+																	$project_pkey,
+																	$thisuserpkey,
+																	'$saverocktype',
+																	'$savemetamorphic'																
+																);
+									");
+									
+								}
+
+							}
+
+						}
+
+					}
+					
+
+					
+
+				}//end if strat section
+				
+				
+			}//end foreach spot
+
+		}else{
+			//echo "project not found.";
+		}
+		
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+public function bkupbuildPgDataset03252020($datasetid){
+		
+		//add neo4j dataset to postgres for search
+
+		$thisuserpkey = $this->userpkey;
+		
+		$neo_project = (object)$this->neodb->getNode("match (p:Project {userpkey:$thisuserpkey})-[HAS_DATASET]->(d:Dataset {id:$datasetid})-[HAS_SPOT]->(s:Spot) WHERE EXISTS(s.wkt) AND EXISTS(p.centroid) AND NOT EXISTS(s.strat_section_id)  return p limit 1");
+
+		$projectid = $neo_project->id;
+		
+		$tags = $neo_project->json_tags;
+		if($tags!=""){
+			$tags = json_decode($tags);
+		}
+		
+		$project_public = "false";
+		
+		
+		$prefs = $neo_project->preferences;
+		if($prefs != ""){
+			$prefs = json_decode($prefs);
+			//$this->dumpVar($prefs);
+			if($prefs->public){
+				$project_public = "true";
+			}
+		}
+		
+		//echo $project_public;
+		
+		//$this->dumpVar($neo_project->preferences);
+
+		if($projectid){
+			//first, check postgres to see if project for this dataset exists
+			$pg_project = $this->db->get_row("select * from project where strabo_project_id='$projectid' and user_pkey = $thisuserpkey limit 1");
+
+			$project_pkey = $pg_project->project_pkey;
+			$project_name = $pg_project->project_name;
+			
+			if($project_pkey == ""){
+				
+				//project doesn't exist, we need to put it in.
+				$project_pkey = $this->db->get_var("select nextval('project_project_pkey_seq')");
+				$project_name = pg_escape_string($neo_project->desc_project_name);
+				$strabo_project_id = $neo_project->id;
+				$project_location = trim($neo_project->centroid);
+				
+				if($neo_project->public == 1){
+					$ispublic = "true";
+				}else{
+					$ispublic = "false";
+				}
+				
+				if($project_location!=""){
+					$project_location = "ST_GeomFromText('$project_location')";
+				}else{
+					$project_location = "null";
+				}
+				
+				
+				$this->db->query("insert into project values
+										(	$project_pkey,
+											$thisuserpkey,
+											'$project_name',
+											'$strabo_project_id',
+											$project_location,
+											$ispublic
+										)
+									");
+			}
+			
+			//OK, now we have project and project_pkey... let's move on to dataset
+			//first, delete existing.
+			$this->db->query("delete from dataset where user_pkey = $thisuserpkey and strabo_dataset_id = '$datasetid'");
+			
+			//get dataset from neo4j
+			$neo_dataset = (object)$this->neodb->getNode("match (p:Project {userpkey:$thisuserpkey})-[HAS_DATASET]->(d:Dataset {id:$datasetid}) return d limit 1");
+
+			$dataset_pkey = $this->db->get_var("select nextval('dataset_dataset_pkey_seq')");
+			$dataset_name = pg_escape_string($neo_dataset->name);
+			$strabo_dataset_id = $neo_dataset->id;
+			$dataset_location = trim($neo_dataset->centroid);
+			
+			if($dataset_location!=""){
+				$dataset_location = "ST_GeomFromText('$dataset_location')";
+			}else{
+				$dataset_location = "null";
+			}
+			
+			$this->db->query("insert into dataset values
+						(	$dataset_pkey,
+							$project_pkey,
+							$thisuserpkey,
+							$dataset_location,
+							'$dataset_name',
+							'$strabo_dataset_id'
+						)
+					");
+					
+			//now get spots for this dataset
+			$querystring = "match (a:Dataset)-[r:HAS_SPOT]->(s:Spot) where a.userpkey=$thisuserpkey and a.id=$datasetid optional match (s)-[c:HAS_IMAGE]-(i:Image) with s, collect(i) as i RETURN s,i;";
+			$json = $this->getFeatureCollection($querystring);
+
+			$this->dumpVar($json);exit();
+			
+			$spots = $json['features'];
+			
+			foreach($spots as $spot){
+
+				//$this->dumpVar($spot);exit();
+				$strabo_spot_id = $spot['properties']['id'];
+
+				//need to set location from wkt instead??????????????????????????
+				
+				
+				if($spot['geometry']->type!=""){
+					$locjson = json_encode($spot['geometry']);
+					$mywkt=geoPHP::load($locjson,"json");
+					$spotlocation = $mywkt->out('wkt');
+					$spotlocation = "ST_GeomFromText('$spotlocation')";
+				}else{
+					$spotlocation="null";
+				}
+				
+				
+				/*
+				if($spot['wkt']!=""){
+					$spotlocation = $spot['wkt'];
+					$spotlocation = "ST_GeomFromText('$spotlocation')";
+				}else{
+					$spotlocation="null";
+				}
+				*/
+				
+				//check for strat_section_id
+				$strat_section_id = $spot['properties']['strat_section_id'];
+				
+				if($spotlocation == null || $strat_section_id != ""){
+				
+					//don't put these in
+				
+				}else{
+				
+					$micro_exists = "FALSE";
+					$orientation_exists = "FALSE";
+					$sample_exists = "FALSE";
+					$strat_exists = "FALSE";
+				
+					if($spot['properties']['sed']) $strat_exists = "TRUE";
+					if($spot['properties']['samples']) $sample_exists = "TRUE";
+					if($spot['properties']['orientation_data']) $orientation_exists = "TRUE";
+					if($spot['properties']['microstructure_data']) $micro_exists = "TRUE";
+
+					$spotjson = json_encode($spot, JSON_PRETTY_PRINT);
+					$spotjson = pg_escape_string($spotjson);
+
+					$spotunixtime = substr($spot['properties']['id'], 0, 10);
+
+					$properties = (object)$spot['properties'];
+
+					$keywords = $this->getKeywords($spot['properties']);
+				
+					//now add tags to keywords
+					if($tags){
+						foreach($tags as $tag){
+							foreach($tag->spots as $tagspotid){
+								if($tagspotid == $strabo_spot_id){
+									foreach($tag as $key=>$value){
+										if($key!="id" && $key!="spots"){
+											if(is_array($value)){
+												//echo "array tag found here $strabo_spot_id<br>";
+												//$this->dumpVar($value);
+												foreach($value as $valpart){
+													$keywords .= " ".$valpart;
+												}
+											}elseif(is_object($value)){
+												//echo "object tag found here $strabo_spot_id<br>";
+												//$this->dumpVar($value);
+											}else{
+												$keywords .= " ".$value;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					$keywords .= " ".$project_name;
+					$keywords .= " ".$dataset_name;
+				
+					$keywords = trim($keywords);
+					$keywords = pg_escape_string($keywords);
+
+					if($keywords!=""){
+						$vectors = "to_tsvector('$keywords')";
+					}else{
+						$vectors = "null";
+					}
+
+					$spot_pkey = $this->db->get_var("select nextval('spot_spot_pkey_seq')");
+				
+					$query ="insert into spot values (	$spot_pkey,
+																$dataset_pkey,
+																$project_pkey,
+																$thisuserpkey,
+																$micro_exists,
+																$orientation_exists,
+																$sample_exists,
+																$strat_exists,
+																$spotlocation,
+																TO_TIMESTAMP($spotunixtime),
+																$vectors,
+																'$spotjson',
+																'$strabo_spot_id'
+															)";
+
+					$this->db->query($query);
+				
+					//Now, check for images and put in
+					if($properties->images){
+						$images = $properties->images;
+						foreach($images as $image){
+							$image_pkey = $this->db->get_var("select nextval('image_image_pkey_seq')");
+							$image_type = $image['image_type'];
+							$strabo_image_id = $image['id'];
+						
+							$imagequery = "insert into image values (	$image_pkey,
+														$spot_pkey,
+														$dataset_pkey,
+														$project_pkey,
+														$thisuserpkey,
+														'$image_type',
+														'$strabo_image_id'
+														)";
+
+							$this->db->query($imagequery);
+						}
+					}
+				
+					//Now, check for images and put in
+					if($properties->samples){
+						//echo "samples found!<br>";
+						$samples = $properties->samples;
+
+						foreach($samples as $sample){
+							$sample_pkey = $this->db->get_var("select nextval('sample_sample_pkey_seq')");
+							$sample_id = pg_escape_string($sample->label); //sample_id_name
+							if($sample_id==""){
+								$sample_id = pg_escape_string($sample->label);
+							}
+							$rock_type = $sample->material_type;
+							$strabo_sample_id = pg_escape_string($sample->id);
+						
+							$sample_query = "insert into sample values (	$sample_pkey,
+																			$spot_pkey,
+																			$dataset_pkey,
+																			$project_pkey,
+																			$thisuserpkey,
+																			'$sample_id',
+																			'$rock_type',
+																			'$strabo_sample_id'
+																		)";
+							$this->db->query($sample_query);
+						}
+					}
+
+				}//end if strat section
+				
+				
+			}//end foreach spot
+
+		}else{
+			//echo "project not found.";
+		}
+		
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+	public function deletePGDataset($datasetid){
+		
+		//add neo4j dataset to postgres for search
+
+		$thisuserpkey = $this->userpkey;
+		
+		$this->db->query("delete from dataset where strabo_dataset_id='$datasetid' and user_pkey=$thisuserpkey");
+		
+	}
+	
+	public function deletePGProject($projectid){
+		
+		//add neo4j dataset to postgres for search
+
+		$thisuserpkey = $this->userpkey;
+		
+		$this->db->query("delete from project where strabo_project_id='$projectid' and user_pkey=$thisuserpkey");
+		
+	}
+
+	public function getKeywords($var){
+		//$out = "";
+		
+		if(is_object($var)){
+			foreach($var as $key=>$value){
+				//echo "objectkey: $key<br>";
+				if($key!="id" && $key!="date" && $key!="strat_section_id" && $key!="modified_timestamp" && $key!="self" && $key!="time" && $key!="image_type"){
+					//echo "putin key: $key<br>";
+					$out .= " " . $this->getKeywords($value);
+				}
+			}
+		}elseif(is_array($var)){
+			if(array_keys($var) !== range(0, count($var) - 1)){
+				//associative
+				foreach($var as $key=>$value){
+					//echo "arraykey: $key<br>";
+					if($key!="id" && $key!="date" && $key!="strat_section_id" && $key!="modified_timestamp" && $key!="self" && $key!="time" && $key!="image_type"){
+						//echo "putin key: $key<br>";
+						$out .= " " . $this->getKeywords($value);
+					}
+				}
+			}else{
+				foreach($var as $v){
+					$out .= " " . $this->getKeywords($v);
+				}
+			}
+
+		}else{
+			if(!is_numeric($var) && !is_bool($var)){
+				$out .= " " . $var;
+			}
+		}
+		
+		return $out;
+	}
+
+
+
+
+
+
+
+
+
 
 }

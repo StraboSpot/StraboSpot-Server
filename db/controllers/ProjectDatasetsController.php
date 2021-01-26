@@ -42,6 +42,8 @@ class ProjectDatasetsController extends MyController
 			if($this->strabo->findProject($feature_id)){
 
 				$upload = $request->parameters;
+				
+				//$this->strabo->dumpVar($upload);exit();
 
 				unset($upload['apiformat']);
 			
@@ -51,7 +53,7 @@ class ProjectDatasetsController extends MyController
 
 					// bad body sent, error
 					header("Bad Request", true, 400);
-					$data["Error"] = "Invalid body JSON sent.";
+					$data["Error"] = "Invalid body JSON sentt.";
 
 				}else{
 

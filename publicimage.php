@@ -25,15 +25,16 @@ if(!is_numeric($id)){
 }
 
 function showNotFound(){
+	//echo "not found."; exit();
 	header ('Content-Type: image/png');
-	$output = file_get_contents("/var/www/includes/images/image-not-found.png");
+	$output = file_get_contents("/srv/app/www/includes/images/image-not-found.png");
 	echo $output;
 	exit();
 }
 
 function oldshowFile($filename){
 	header ('Content-Type: image/jpg');
-	$output = file_get_contents("/var/www/dbimages/$filename");
+	$output = file_get_contents("/srv/app/www/dbimages/$filename");
 	echo $output;
 	exit();
 }

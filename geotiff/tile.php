@@ -8,8 +8,13 @@ $y=$_GET['y'];
 $z=$_GET['z'];
 
 
-if(file_exists("/var/www/geotiff/upload/files/$hash.tif") && file_exists("/var/www/geotiff/upload/maps/$hash.map")){
+if(file_exists("/srv/app/www/geotiff/upload/files/$hash.tif") && file_exists("/srv/app/www/geotiff/upload/maps/$hash.map")){
 
+	//echo "https://dev.strabospot.org/cgi-bin/mapserv?map=/var/www/geotiff/upload/maps/".$hash.".map&layer=geotifflayer&mode=tile&tile=".$x."+".$y."+".$z;
+	
+	//echo "https://strabospot.org/cgi-bin/mapserv?map=/var/www/geotiff/upload/maps/".$hash.".map&layer=geotifflayer&mode=tile&tile=".$x."+".$y."+".$z;exit();
+	
+	
 	$img = file_get_contents("https://strabospot.org/cgi-bin/mapserv?map=/var/www/geotiff/upload/maps/".$hash.".map&layer=geotifflayer&mode=tile&tile=".$x."+".$y."+".$z);
 	header("Content-Type: image/png");
 	echo $img;

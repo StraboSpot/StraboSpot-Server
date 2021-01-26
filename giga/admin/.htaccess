@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Authentication Required"
+AuthUserFile "/dbconfig/gigapass"
+Require valid-user
