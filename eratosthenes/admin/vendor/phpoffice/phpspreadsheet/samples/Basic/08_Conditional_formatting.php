@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 08_Conditional_formatting.php
+ * Description: Handles 08 Conditional formatting operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Color;

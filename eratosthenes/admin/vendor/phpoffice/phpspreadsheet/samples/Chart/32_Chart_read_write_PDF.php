@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 32_Chart_read_write_PDF.php
+ * Description: PDF document generation handler
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Settings;

@@ -1,4 +1,14 @@
 <?php
+/**
+ * File: Point.class.php
+ * Description: Point class definition
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
 /**
  * Point: The most basic geometry type. All other geometries
@@ -19,38 +29,38 @@ class Point extends Geometry
    */
   public function __construct($x = NULL, $y = NULL, $z = NULL) {
 
-    // Check if it's an empty point
-    if ($x === NULL && $y === NULL) {
-      $this->coords = array(NULL, NULL);
-      $this->dimension = 0;
-      return;
-    }
+	// Check if it's an empty point
+	if ($x === NULL && $y === NULL) {
+	  $this->coords = array(NULL, NULL);
+	  $this->dimension = 0;
+	  return;
+	}
 
-    // Basic validation on x and y
-    if (!is_numeric($x) || !is_numeric($y)) {
-      throw new Exception("Cannot construct Point. x and y should be numeric");
-    }
+	// Basic validation on x and y
+	if (!is_numeric($x) || !is_numeric($y)) {
+	  throw new Exception("Cannot construct Point. x and y should be numeric");
+	}
 
-    // Check to see if this is a 3D point
-    if ($z !== NULL) {
-      if (!is_numeric($z)) {
-       throw new Exception("Cannot construct Point. z should be numeric");
-      }
-      $this->dimension = 3;
-    }
+	// Check to see if this is a 3D point
+	if ($z !== NULL) {
+	  if (!is_numeric($z)) {
+	   throw new Exception("Cannot construct Point. z should be numeric");
+	  }
+	  $this->dimension = 3;
+	}
 
-    // Convert to floatval in case they are passed in as a string or integer etc.
-    $x = floatval($x);
-    $y = floatval($y);
-    $z = floatval($z);
+	// Convert to floatval in case they are passed in as a string or integer etc.
+	$x = floatval($x);
+	$y = floatval($y);
+	$z = floatval($z);
 
-    // Add poitional elements
-    if ($this->dimension == 2) {
-      $this->coords = array($x, $y);
-    }
-    if ($this->dimension == 3) {
-      $this->coords = array($x, $y, $z);
-    }
+	// Add poitional elements
+	if ($this->dimension == 2) {
+	  $this->coords = array($x, $y);
+	}
+	if ($this->dimension == 3) {
+	  $this->coords = array($x, $y, $z);
+	}
   }
 
   /**
@@ -59,7 +69,7 @@ class Point extends Geometry
    * @return float The X coordinate
    */
   public function x() {
-    return $this->coords[0];
+	return $this->coords[0];
   }
 
   /**
@@ -68,7 +78,7 @@ class Point extends Geometry
    * @return float The Y coordinate
    */
   public function y() {
-    return $this->coords[1];
+	return $this->coords[1];
   }
 
   /**
@@ -77,10 +87,10 @@ class Point extends Geometry
    * @return float The Z coordinate or NULL is not a 3D point
    */
   public function z() {
-    if ($this->dimension == 3) {
-      return $this->coords[2];
-    }
-    else return NULL;
+	if ($this->dimension == 3) {
+	  return $this->coords[2];
+	}
+	else return NULL;
   }
 
   /**
@@ -100,86 +110,86 @@ class Point extends Geometry
 
   // A point's centroid is itself
   public function centroid() {
-    return $this;
+	return $this;
   }
 
   public function getBBox() {
-    return array(
-      'maxy' => $this->getY(),
-      'miny' => $this->getY(),
-      'maxx' => $this->getX(),
-      'minx' => $this->getX(),
-    );
+	return array(
+	  'maxy' => $this->getY(),
+	  'miny' => $this->getY(),
+	  'maxx' => $this->getX(),
+	  'minx' => $this->getX(),
+	);
   }
 
   public function asArray($assoc = FALSE) {
-    return $this->coords;
+	return $this->coords;
   }
 
   public function area() {
-    return 0;
+	return 0;
   }
 
   public function length() {
-    return 0;
+	return 0;
   }
 
   public function greatCircleLength() {
-    return 0;
+	return 0;
   }
 
   public function haversineLength() {
-    return 0;
+	return 0;
   }
 
   // The boundary of a point is itself
   public function boundary() {
-    return $this;
+	return $this;
   }
 
   public function dimension() {
-    return 0;
+	return 0;
   }
 
   public function isEmpty() {
-    if ($this->dimension == 0) {
-      return TRUE;
-    }
-    else {
-      return FALSE;
-    }
+	if ($this->dimension == 0) {
+	  return TRUE;
+	}
+	else {
+	  return FALSE;
+	}
   }
 
   public function numPoints() {
-    return 1;
+	return 1;
   }
 
   public function getPoints() {
-    return array($this);
+	return array($this);
   }
 
   public function equals($geometry) {
-    if (get_class($geometry) != 'Point') {
-      return FALSE;
-    }
-    if (!$this->isEmpty() && !$geometry->isEmpty()) {
-      /**
-       * @see: http://php.net/manual/en/function.bccomp.php
-       * @see: http://php.net/manual/en/language.types.float.php
-       * @see: http://tubalmartin.github.io/spherical-geometry-php/#LatLng
-       */
-      return (abs($this->x() - $geometry->x()) <= 1.0E-9 && abs($this->y() - $geometry->y()) <= 1.0E-9);
-    }
-    else if ($this->isEmpty() && $geometry->isEmpty()) {
-      return TRUE;
-    }
-    else {
-      return FALSE;
-    }
+	if (get_class($geometry) != 'Point') {
+	  return FALSE;
+	}
+	if (!$this->isEmpty() && !$geometry->isEmpty()) {
+	  /**
+	   * @see: http://php.net/manual/en/function.bccomp.php
+	   * @see: http://php.net/manual/en/language.types.float.php
+	   * @see: http://tubalmartin.github.io/spherical-geometry-php/#LatLng
+	   */
+	  return (abs($this->x() - $geometry->x()) <= 1.0E-9 && abs($this->y() - $geometry->y()) <= 1.0E-9);
+	}
+	else if ($this->isEmpty() && $geometry->isEmpty()) {
+	  return TRUE;
+	}
+	else {
+	  return FALSE;
+	}
   }
 
   public function isSimple() {
-    return TRUE;
+	return TRUE;
   }
 
   // Not valid for this geometry type

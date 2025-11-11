@@ -163,6 +163,20 @@ var buildSamples = function(){
 	return thishtml;
 }
 
+var buildTephras = function(){
+	var thishtml = "";
+	var bordertop = false;
+	if(currentSpot.properties.tephra){
+		_.each(currentSpot.properties.tephra, function(tephra){
+			thishtml += addTephra(tephra,bordertop);
+			bordertop = true;
+		});
+	}else{
+		thishtml = "No tephra data for this spot.";
+	}
+	return thishtml;
+}
+
 var buildOtherFeatures = function(){
 	var thishtml = "";
 	var bordertop = false;
@@ -676,6 +690,41 @@ var addSample = function (samp,bordertop){
 	return thishtml;
 }
 
+var addTephra = function (tephra,bordertop){
+	var thishtml="";
+
+	//console.log(o);
+
+	var thisborderclass = "";
+	if(bordertop){
+		thisborderclass = " sidebar_value_row_border_top";
+	}
+	
+	var groupvars = tephra_vars;
+
+	thishtml += '<div class = "sidebar_value_row'+thisborderclass+'">';
+	
+	thishtml += '<div class = "sidebar_value_row_title">Interval:</div>';
+	//thishtml += '<div class = "tags_italic">'+'Tags: tag one, tag two, tag three</div>';
+	
+	thishtml += '<div class = "detail_pad">';
+	
+	_.each(groupvars, function(value, key){
+		if(tephra[key]){
+			if(key!='label'){
+				var thisval = cvFixVal(tephra.type,key,tephra[key]);
+				thishtml += addDetailValueRow(value,thisval);
+				bordertop = true;
+			}
+		}
+	});
+	
+	thishtml += '</div>';
+	thishtml += '</div>';
+	
+	return thishtml;
+}
+
 var addOtherFeature = function (otherfeature,bordertop){
 	var thishtml="";
 
@@ -1124,6 +1173,19 @@ var updateSamplesTab = function(){
 }
 
 /*
+*********** Tephra Tab ***************************
+*/
+
+var updateTephraTab = function(){
+	
+	var tabhtml = "";
+	
+	tabhtml += buildTephras();
+	
+	$("#tephra_tab").html(tabhtml);
+}
+
+/*
 *********** Other Features Tab ***************************
 */
 
@@ -1324,7 +1386,7 @@ var buildStratSection = function(){
 			var content = currentSpot.properties.sed.strat_section;
 			
 			tabhtml += '<div class="sidebar_value_row">';
-			tabhtml += '<div onClick="switchToStratSection('+currentSpot.properties.sed.strat_section.strat_section_id+');" class="map_icon"><img src="/search/includes/images/map.png" width="15" height="15"> View Strat Section</div>';
+			tabhtml += '<div onClick="switchToStratSection(\''+currentSpot.properties.sed.strat_section.strat_section_id+'\');" class="map_icon"><img src="/search/includes/images/map.png" width="15" height="15"> View Strat Section</div>';
 
 			tabhtml += '<div onClick="window.open(\'https://strabospot.org/pstrat_section?id='+currentSpot.properties.id+'&did='+getDatasetIdForSpotId(currentSpot.properties.id)+'\');" class="map_icon"><img src="/search/includes/images/download.png" width="15" height="15"> Download Strat Section</div>';
 			

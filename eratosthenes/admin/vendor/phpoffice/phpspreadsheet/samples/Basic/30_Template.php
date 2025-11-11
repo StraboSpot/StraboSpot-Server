@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 30_Template.php
+ * Description: Handles 30 Template operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Shared\Date;

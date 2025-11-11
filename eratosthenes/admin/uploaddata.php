@@ -1,32 +1,20 @@
-<?
+<?php
+/**
+ * File: uploaddata.php
+ * Description: Handles uploaddata operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 //accept xlsx file and parse it into json file.
-
-/*
-Array
-(
-    [fileToUpload] => Array
-        (
-            [name] => eratosthenes_data.xlsx
-            [type] => application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-            [tmp_name] => /tmp/phpAHkrEi
-            [error] => 0
-            [size] => 10323
-        )
-
-)
-
-Array
-(
-    [dirname] => .
-    [basename] => FInal Teams.kmz
-    [extension] => kmz
-    [filename] => FInal Teams
-)
-*/
 
 function dumpVar($var){
 	echo "<pre>\n";
@@ -37,11 +25,9 @@ function dumpVar($var){
 if(isset($_POST["submit"])){
 
 	if(!$_FILES['fileToUpload']['error']){
-	
+
 		$pathinfo = pathinfo($_FILES['fileToUpload']['name']);
 		if($pathinfo['extension']=="xlsx"){
-
-
 
 			/** Create a new Xls Reader  **/
 			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -82,13 +68,13 @@ if(isset($_POST["submit"])){
 						$measurements[]=$thismeasurement;
 					}
 				}
-				
+
 				$measurements;
 				$measurements = json_encode($measurements,JSON_PRETTY_PRINT);
 
 				move_uploaded_file($_FILES['fileToUpload']['tmp_name'], "../data/EratosthenesData.xlsx");
 				file_put_contents("../data/measurements.json", $measurements);
-				
+
 				include("adminheader.php");
 				echo "Success! XLSX file has been uploaded successfully.";
 				echo "<br><br><div class=\"linkheading\"><a href=\".\">Continue</a></div>";
@@ -98,7 +84,7 @@ if(isset($_POST["submit"])){
 				include("adminheader.php");
 				?>
 				Error: Invalid sheet. Please use the sheet found <a href="../data/EratosthenesData.xlsx">here</a>.
-				<?
+				<?php
 				echo "<br><br><div class=\"linkheading\"><a href=\".\">Continue</a></div>";
 				include("adminfooter.php");
 				exit();
@@ -118,29 +104,8 @@ if(isset($_POST["submit"])){
 		exit();
 	}
 
-
-
-
-
-
-
-
-
-
 	exit();
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 include("adminheader.php");
 ?>
@@ -152,12 +117,12 @@ spreadsheet each time data is added using this <a href="../data/EratosthenesData
 entire dataset.<br><br>
 
 <form method="post" enctype="multipart/form-data">
-    <br>
-    Select XLSX file to upload:<br><br>
-    <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-    <input type="submit" value="Upload" name="submit">
+	<br>
+	Select XLSX file to upload:<br><br>
+	<input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+	<input type="submit" value="Upload" name="submit">
 </form>
 
-<?
+<?php
 include("adminfooter.php");
 ?>

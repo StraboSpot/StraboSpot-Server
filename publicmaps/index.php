@@ -1,4 +1,15 @@
-<?
+<?php
+/**
+ * File: index.php
+ * Description: Main page or directory index
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 session_start();
 $userlevel = $_SESSION['userlevel'];
@@ -38,7 +49,6 @@ $userlevel = $_SESSION['userlevel'];
 	<link rel="stylesheet" href="includes/fancybox/src/css/core.css" type="text/css">
 
 	<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
 	<script src="/assets/js/ol4/ol.js"></script>
 	<script src="/assets/js/layerswitcher/layerswitcher.js"></script>
 
@@ -46,7 +56,7 @@ $userlevel = $_SESSION['userlevel'];
 	<script src="includes/map_search_functions.js"></script>
 	<script src="includes/tab_builders.js"></script>
 	<script src="includes/data_model.js"></script>
-	
+
 	<!-- External Libraries-->
 	<script src="/assets/js/underscore/underscore-min.js"></script>
 	<script src="/assets/js/jquery/jquery.min.js"></script>
@@ -55,7 +65,7 @@ $userlevel = $_SESSION['userlevel'];
 	<script src="/assets/js/featherlight/featherlight.js"></script>
 	<script src="/assets/js/turf/turf.min.js"></script>
 	<script src="includes/fancybox/src/js/core.js"></script>
-	
+
 	<script>
 		$( function() {
 			$( "#tabs" ).tabs({
@@ -85,23 +95,19 @@ $userlevel = $_SESSION['userlevel'];
 			});
 		} );
 
-		/*
-		$( function() {
-			$( "#toptext" ).draggable();
-		} );
-		*/
+		
 	</script>
 
   </head>
   <body>
-    <div id="map" class="map"></div>
-    <div id="toptext">
-    	<button style="display:none;" onclick='zoomToCenterAndExtent("LTEwODkwNDUwLjA3Mjc2NDE1OHg0NjUzMTcyLjIxNDA5Mjc5M3gxMw==");'>Zoom Test</button>
-    	<button style="display:none;" onclick='console.log(buildDatasetsURL());'>Get URL</button>
-    	<button style="display:none;" onclick='console.log($("#query_has_image").is(":checked"));'>Image Checkbox Value</button>
-    	<button style="display:none;" onclick='switchToSpotDiv();'>Spot</button>
-    	<button style="display:none;" onclick='switchToQueryDiv();'>Query</button>
-    	<button style="display:none;" onclick='toggleSpotQuery();'>Toggle</button>
+	<div id="map" class="map"></div>
+	<div id="toptext">
+		<button style="display:none;" onclick='zoomToCenterAndExtent("LTEwODkwNDUwLjA3Mjc2NDE1OHg0NjUzMTcyLjIxNDA5Mjc5M3gxMw==");'>Zoom Test</button>
+		<button style="display:none;" onclick='console.log(buildDatasetsURL());'>Get URL</button>
+		<button style="display:none;" onclick='console.log($("#query_has_image").is(":checked"));'>Image Checkbox Value</button>
+		<button style="display:none;" onclick='switchToSpotDiv();'>Spot</button>
+		<button style="display:none;" onclick='switchToQueryDiv();'>Query</button>
+		<button style="display:none;" onclick='toggleSpotQuery();'>Toggle</button>
 		<button style="display:none;" onclick='setSelectedSymbol(map, activeGeometry);'>Enable Geometry</button>
 		<button style="display:none;" onclick="console.log(idsNames);">log idsnames</button>
 		<button style="display:none;" onclick="saveExtent()">Save Extent</button>
@@ -113,7 +119,7 @@ $userlevel = $_SESSION['userlevel'];
 		<button style="display:none;" onclick="toggleSideBar();">Toggle</button>
 		<div id="myres" style="display:none">span</div>
 		<!--<span class="siteTitle">&nbsp;</span>-->
-    </div>
+	</div>
 
 	<div id="toptexttitle">
 		StraboSpot Public Maps
@@ -125,58 +131,57 @@ $userlevel = $_SESSION['userlevel'];
 
 	<img id="toptextlogo" src="/includes/images/strabo_icon_web.png"/>
 
-    <div id="openDatasets">
-    	<div class="openDatasetsBar">
-    		Open Datasets
-    	</div>
-    	<div id="openDatasetsList">
+	<div id="openDatasets">
+		<div class="openDatasetsBar">
+			Open Datasets
+		</div>
+		<div id="openDatasetsList">
 
-    	</div>
-    </div>
-    <div id="spotswaiting">
-    	<table>
-    		<tr>
-    			<td><img src="/assets/js/images/box.gif"></td><td nowrap>Loading Spots...</td>
-    		</tr>
-    	</table>
+		</div>
+	</div>
+	<div id="spotswaiting">
+		<table>
+			<tr>
+				<td><img src="/assets/js/images/box.gif"></td><td nowrap>Loading Spots...</td>
+			</tr>
+		</table>
 
-    	<div id="spotsProgressMessage">
-    		Gathering maps from server...
-    	</div>
+		<div id="spotsProgressMessage">
+			Gathering maps from server...
+		</div>
 
-    	<div id="spotsProgressBar">
-    		<div id="spotsProgressInnerBar">
-    			&nbsp;
-    		</div>
-    	</div>
+		<div id="spotsProgressBar">
+			<div id="spotsProgressInnerBar">
+				&nbsp;
+			</div>
+		</div>
 
-    </div>
+	</div>
 
-    <div id="datasetswaiting">
-    	<table>
-    		<tr>
-    			<td><img src="/assets/js/images/box.gif"></td><td nowrap>Rebuilding Map...</td>
-    		</tr>
-    	</table>
-    </div>
+	<div id="datasetswaiting">
+		<table>
+			<tr>
+				<td><img src="/assets/js/images/box.gif"></td><td nowrap>Rebuilding Map...</td>
+			</tr>
+		</table>
+	</div>
 
 	<div id="back_map"><button class="back_map_button" onClick="goBack();"/></div>
-	
+
 	<div id="download_map"><button class="download_map_button tooltip" onClick="openDownloadWindow();"/><span class="tooltiptext">Download Options</span></div>
-	
 
 	<div id="map_home"><button class="map_home_button tooltip" onClick="zoomHome();"/><span class="tooltiptext">Original Zoom Level</span></div>
 
-    <script src="includes/map_interface.js"></script>
-    <?
-    if($_GET['c']!=""){
-    	$c = $_GET['c'];
-    ?>
-    <script>
-    	zoomToCenterAndExtent('<?=$c?>');
-    </script>
-    <?
-    }
-    ?>
+	<script src="includes/map_interface.js"></script>
+	<?php
+	if($_GET['c']!=""){
+		$c = $_GET['c'];
+	?>
+	<script>
+		zoomToCenterAndExtent('<?php echo $c?>');
+	</script>
+	<?php
+	}
+	?>
   </body>
 </html>

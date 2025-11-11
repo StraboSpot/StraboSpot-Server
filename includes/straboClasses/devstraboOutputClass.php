@@ -1,21 +1,23 @@
 <?php
+/**
+ * File: devstraboOutputClass.php
+ * Description: straboOutputClass class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
-/*
-******************************************************************
-Strabo Output Class
-Author: Jason Ash (jasonash@ku.edu)
-Description: This class handles output options for the Strabo
-				System.
-******************************************************************
-*/
 
 class straboOutputClass
 {
 
- 	public function straboOutputClass($strabo,$get){
+	 public function straboOutputClass($strabo,$get){
 		$this->strabo=$strabo;
 		$this->get=$get;
- 	}
+	 }
 
 	public function dumpVar($var){
 		echo "<pre>";
@@ -23,27 +25,26 @@ class straboOutputClass
 		echo "</pre>";
 	}
 
-
 	public function gatherOrientations($orientations){
 
 		$this->neworientations = array();
 		$this->planar_orientation_num = 0;
 		$this->linear_orientation_num = 0;
 		$this->tabular_zone_orientation_num = 0;
-		
+
 		$returnorientations = $this->buildOrientations($orientations);
 		return $returnorientations;
-	
+
 	}
 
 	public function buildOrientations($orientations){
 
 		foreach($orientations as $or){
-	
+
 			$type = $or->type;
-		
+
 			$prefix = "foo";
-		
+
 			if($type=="planar_orientation"){
 				$this->planar_orientation_num++;
 				if($this->planar_orientation_num==1){
@@ -72,13 +73,13 @@ class straboOutputClass
 			}
 
 			foreach($or as $key=>$value){
-		
+
 				if($key != "type" && $key != "id" && $key != "associated_orientation"){
-				
+
 					$this->neworientations[$prefix.$key]=$value;
-				
+
 				}
-			
+
 			}
 
 			if($or->associated_orientation){
@@ -86,7 +87,7 @@ class straboOutputClass
 			}
 
 		}
-	
+
 		return $this->neworientations;
 
 	}
@@ -94,11 +95,11 @@ class straboOutputClass
 	public function buildStructures($structures){
 
 		foreach($structures as $struct){
-	
+
 			$type = $struct->type;
-		
+
 			$prefix = "foo";
-		
+
 			if($type=="fabric"){
 				$this->fabric_num++;
 				if($this->fabric_num==1){
@@ -136,16 +137,16 @@ class straboOutputClass
 			}
 
 			foreach($struct as $key=>$value){
-		
+
 				if($key != "type" && $key != "id" && $key != "associated_orientation"){
-				
+
 					$this->newstructures[$prefix.$key]=$value;
-				
+
 				}
 
 			}
 		}
-	
+
 		return $newstructures;
 
 	}
@@ -156,9 +157,9 @@ class straboOutputClass
 		$this->sample_num = 0;
 
 		$returnsamples = $this->buildSamples($samples);
-	
+
 		return $returnsamples;
-	
+
 	}
 
 	public function buildSamples($samples){
@@ -166,7 +167,7 @@ class straboOutputClass
 		foreach($samples as $samp){
 
 			$prefix = "foo";
-		
+
 			$sample_num++;
 			if($sample_num==1){
 				$prefix="samp_";
@@ -174,32 +175,29 @@ class straboOutputClass
 				$prefix="samp_".$sample_num."_";
 			}
 
-
 			foreach($samp as $key=>$value){
-		
+
 				if($key != "id"){
-				
+
 					$this->newsamples[$prefix.$key]=$value;
-				
+
 				}
 			}
 		}
-	
+
 		return $newsamples;
 
 	}
 
 	public function gatherOtherFeatures($otherfeatures){
 
-		//echo "here are the otherfeatures: "; $this->dumpVar($otherfeatures);
-		
 		$this->newotherfeatures = array();
 		$this->otherfeature_num = 0;
-		
+
 		$returnotherfeatures = $this->buildOtherFeatures($otherfeatures);
-	
+
 		return $returnotherfeatures;
-	
+
 	}
 
 	public function gatherStructures($structures){
@@ -209,11 +207,11 @@ class straboOutputClass
 		$this->fold_num = 0;
 		$this->tensor_num = 0;
 		$this->other_num = 0;
-		
+
 		$returnstructures = $this->buildStructures($structures);
-	
+
 		return $returnstructures;
-	
+
 	}
 
 	public function buildOtherFeatures($otherfeatures){
@@ -228,15 +226,15 @@ class straboOutputClass
 			}
 
 			foreach($of as $key=>$value){
-		
+
 				if($key != "id"){
-				
+
 					$newotherfeatures[$prefix.$key]=$value;
-				
+
 				}
 			}
 		}
-	
+
 		return $newotherfeatures;
 
 	}
@@ -244,9 +242,9 @@ class straboOutputClass
 	public function fixSpot($spot){
 
 		$id = $spot['properties']['id'];
-	
+
 		unset($spot['original_geometry']);
-	
+
 		if($spot['properties']['orientation_data']){
 			$orientations = $this->gatherOrientations($spot['properties']['orientation_data']);
 			foreach($orientations as $key=>$value){
@@ -254,16 +252,12 @@ class straboOutputClass
 			}
 		}
 
-		//dumpVar($orientations);
-	
 		if($spot['properties']['_3d_structures']){
 			$structures = $this->gatherStructures($spot['properties']['_3d_structures']);
 			foreach($structures as $key=>$value){
 				$spot['properties'][$key]=$value;
 			}
 		}
-
-		//dumpVar($structures);
 
 		if($spot['properties']['samples']){
 			$samples = $this->gatherSamples($spot['properties']['samples']);
@@ -272,15 +266,12 @@ class straboOutputClass
 			}
 		}
 
-		//dumpVar($samples);
-
 		if($spot['properties']['other_features']){
 			$otherfeatures = $this->gatherOtherFeatures($spot['properties']['other_features']);
 			foreach($otherfeatures as $key=>$value){
 				$spot['properties'][$key]=$value;
 			}
 		}
-		
 
 		//surface feature
 		if($spot['properties']['surface_feature']){
@@ -289,7 +280,7 @@ class straboOutputClass
 			}
 			unset($spot['properties']['surface_feature']);
 		}
-	
+
 		//trace
 		if($spot['properties']['trace']){
 			foreach($spot['properties']['trace'] as $key=>$value){
@@ -311,11 +302,11 @@ class straboOutputClass
 						}
 					}
 				}
-			
+
 				if($found == "yes"){
 					if($tag->type=="geologic_unit"){
 						foreach($tag as $key=>$value){
-							if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){ 
+							if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){
 								$spot['properties']['ru_'.$key]=$value;
 							}
 						}
@@ -345,21 +336,21 @@ class straboOutputClass
 		unset($spot['properties']['other_features']);
 		unset($spot['properties']['images']);
 		unset($spot['properties']['image_basemap']);
-	
+
 		$spot['properties']['spot_name']=$spot['properties']['name'];
-	
+
 		unset($spot['properties']['name']);
-	
+
 		return $spot;
 	}
-	
+
 	public function rowcol($row,$col){
 		$cols = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","AZ","BA","BB","BC","BD","BE","BF","BG","BH","BI","BJ","BK","BL","BM","BN","BO","BP","BQ","BR","BS","BT","BU","BV","BW","BX","BY","BZ","CA","CB","CC","CD","CE","CF","CG","CH","CI","CJ","CK","CL","CM","CN","CO","CP","CQ","CR","CS","CT","CU","CV","CW","CX","CY","CZ","DA","DB","DC","DD","DE","DF","DG","DH","DI","DJ","DK","DL","DM","DN","DO","DP","DQ","DR","DS","DT","DU","DV","DW","DX","DY","DZ","EA","EB","EC","ED","EE","EF","EG","EH","EI","EJ","EK","EL","EM","EN","EO","EP","EQ","ER","ES","ET","EU","EV","EW","EX","EY","EZ");
 		$colletter = $cols[$col];
 		$row=$row+1;
 		return $colletter.$row;
 	}
-	
+
 	public function fix_column_name($name){
 		$newstring="";
 		$delim="";
@@ -391,28 +382,28 @@ class straboOutputClass
 	public function gdThumb($filename){
 
 		if(file_exists("dbimages/$filename")){
-	
+
 			$thumbwidth = 300;
 
-			$src = imagecreatefromjpeg("dbimages/$filename");        
-			list($origwidth, $origheight) = getimagesize("dbimages/$filename"); 
+			$src = imagecreatefromjpeg("dbimages/$filename");
+			list($origwidth, $origheight) = getimagesize("dbimages/$filename");
 
 			$ratio = $origheight / $origwidth;
 
 			$thumbheight = round($thumbwidth * $ratio);
 
-			$tmp = imagecreatetruecolor($thumbwidth, $thumbheight); 
+			$tmp = imagecreatetruecolor($thumbwidth, $thumbheight);
 
 			$filename = '/path/to/images/' . $_FILES['file']['name'];
 
-			imagecopyresampled($tmp, $src, 0, 0, 0, 0, $thumbwidth, $thumbheight, $origwidth, $origheight); 
+			imagecopyresampled($tmp, $src, 0, 0, 0, 0, $thumbwidth, $thumbheight, $origwidth, $origheight);
 
 			return $tmp;
-	
+
 		}else{
-	
+
 			return null;
-	
+
 		}
 	}
 
@@ -433,11 +424,11 @@ class straboOutputClass
 					$spot = $this->fixSpot($spot);
 					$features[]=$spot;
 				}
-		
+
 				$newjson['features']=$features;
 				$polygonjson = json_encode($newjson,JSON_PRETTY_PRINT);
 			}
-	
+
 			$pointjson = $this->strabo->getDatasetSpotsSearch('point',$this->get);
 			if($pointjson!=""){
 				$newjson = array();
@@ -447,11 +438,11 @@ class straboOutputClass
 					$spot = $this->fixSpot($spot);
 					$features[]=$spot;
 				}
-		
+
 				$newjson['features']=$features;
 				$pointjson = json_encode($newjson,JSON_PRETTY_PRINT);
 			}
-	
+
 			$linejson = $this->strabo->getDatasetSpotsSearch('line',$this->get);
 			if($linejson!=""){
 
@@ -462,47 +453,31 @@ class straboOutputClass
 					$spot = $this->fixSpot($spot);
 					$features[]=$spot;
 				}
-		
+
 				$newjson['features']=$features;
 				$linejson = json_encode($newjson,JSON_PRETTY_PRINT);
 			}
-	
-	
-			//exit();
-	
-			/*
-			echo "polygonjson:";
-			$this->dumpVar($polygonjson);
-			echo "pointjson:";
-			$this->dumpVar($pointjson);
-			echo "linejson:";$this->dumpVar($linejson);
-			exit();
-			*/
-	
+
 			if($polygonjson!="" || $pointjson!="" || $linejson!=""){
-	
-				//get new randnum for ogrtemp
+
 				$randnum=$this->strabo->db->get_var("select nextval('file_seq')");
-		
+
 				//make directory in ogrtemp to hold data
 				mkdir("ogrtemp/$randnum");
 				mkdir("ogrtemp/$randnum/data");
-		
-				//if polygonjson != "" write json file and create shapefile
+
 				if($polygonjson!=""){
 					file_put_contents("ogrtemp/$randnum/polygon.json", $polygonjson);
 					exec("ogr2ogr -nlt POLYGON -skipfailures ogrtemp/$randnum/data/polygons.shp ogrtemp/$randnum/polygon.json OGRGeoJSON 2>&1",$results);
 					unlink("ogrtemp/$randnum/polygon.json");
 				}
 
-				//if linejson != "" write json file and create shapefile
 				if($linejson!=""){
 					file_put_contents("ogrtemp/$randnum/line.json", $linejson);
 					exec("ogr2ogr -nlt LINESTRING -skipfailures ogrtemp/$randnum/data/lines.shp ogrtemp/$randnum/line.json OGRGeoJSON 2>&1",$results);
 					unlink("ogrtemp/$randnum/line.json");
 				}
 
-				//if pointjson != "" write json file and create shapefile
 				if($pointjson!=""){
 					file_put_contents("ogrtemp/$randnum/point.json", $pointjson);
 					exec("ogr2ogr -nlt POINT -skipfailures ogrtemp/$randnum/data/points.shp ogrtemp/$randnum/point.json OGRGeoJSON 2>&1",$results);
@@ -518,21 +493,18 @@ class straboOutputClass
 				header("Content-Length: " . filesize("ogrtemp/$randnum/strabo$randnum.zip"));
 
 				readfile("ogrtemp/$randnum/strabo$randnum.zip");
-		
+
 				//remove temp directory
 				if($randnum!=""){
-					//exec("rm -rf ogrtemp/$randnum",$results);
 				}
 
 			}else{
 				echo "No data found for this dataset.";
 			}
-	
-		}
-	
-	}
-	
 
+		}
+
+	}
 
 	public function oldkmlOut(){
 
@@ -552,39 +524,31 @@ class straboOutputClass
 					$spot = $this->fixSpot($spot);
 					$features[]=$spot;
 				}
-		
+
 				$newjson['features']=$features;
 
 				$kmljson = json_encode($newjson,JSON_PRETTY_PRINT);
 			}
 
 			$filedate = date("m_d_Y");
-			
-			/*
-			echo "filedate: $filedate<br>";
-			echo "kmljson:";
-			$this->dumpVar($kmljson);
-			exit();
-			*/
-	
+
 			if($kmljson!=""){
-	
-				//get new randnum for ogrtemp
+
 				$randnum=$this->strabo->db->get_var("select nextval('file_seq')");
-		
+
 				//make directory in ogrtemp to hold data
 				mkdir("ogrtemp/$randnum");
 
 				file_put_contents("ogrtemp/$randnum/data.json", $kmljson);
 				exec("ogr2ogr -f \"KML\" ogrtemp/$randnum/strabo$randnum.kml ogrtemp/$randnum/data.json 2>&1",$results);
-		
+
 				unlink("ogrtemp/$randnum/data.json");
 
 				$filecontent = file_get_contents("ogrtemp/$randnum/strabo$randnum.kml");
 				$lines = explode("\n",$filecontent);
-		
+
 				foreach($lines as $line){
-		
+
 					$line = trim($line);
 
 					if($line=="</Schema>"){
@@ -592,22 +556,21 @@ class straboOutputClass
 					}elseif($line=="<Placemark>"){
 						$file.='<Placemark>'."\n".'<styleUrl>#exampleStyleMap</styleUrl><Style><LineStyle><color>641400FF</color><width>5</width></LineStyle><PolyStyle><color>641400FF</color><colorMode>normal</colorMode><fill>1</fill><outline>1</outline></PolyStyle></Style>'."\n";
 					}elseif(substr($line,0,7)=="<Style>"){
-			
+
 					}else{
 						$file.="$line\n";
 					}
-			
+
 				}
 
 				//force download of file
 				$datasetname = str_replace(" ","_",$datasetname);
-		
+
 				header("Content-Type: application/kml");
 				header("Content-Disposition: attachment; filename=strabo_search_$filedate.kml");
-				//header("Content-Length: " . filesize("ogrtemp/$randnum/strabo$randnum.kml"));
 
 				echo $file;
-		
+
 				//remove temp directory
 				if($randnum!=""){
 					exec("rm -rf ogrtemp/$randnum",$results);
@@ -616,11 +579,10 @@ class straboOutputClass
 			}else{
 				echo "No data found for this dataset.";
 			}
-	
-		}
-	
-	}
 
+		}
+
+	}
 
 	public function xlsOutold(){
 
@@ -644,9 +606,7 @@ class straboOutputClass
 			$columns['spot']['Latitude']=6;
 			$columns['spot']['Longitude']=7;
 
-
 			//first, roll over each feature looking for planar orientation data
-			//store in named array $columns['orientation']['planar'], colnum start with colnum 4
 
 			$colnum=8;
 
@@ -659,10 +619,10 @@ class straboOutputClass
 					foreach($orientationdatas as $orientationdata){
 
 						if($orientationdata->type=="tabular_orientation"){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-									if($key=="feature_type"){$key="tabular_feature_type";}			
+									if($key=="feature_type"){$key="tabular_feature_type";}
 									if(!$columns['orientation']['tabular'][$key]){
 										$columns['orientation']['tabular'][$key]=$colnum;
 										$colnum++;
@@ -670,15 +630,15 @@ class straboOutputClass
 								}
 							}
 						}
-		
+
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
 								if($associatedorientation->type=="planar_orientation"){
-				
+
 									foreach($associatedorientation as $key=>$value){
 										if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-											if($key=="feature_type"){$key="planar_feature_type";}			
+											if($key=="feature_type"){$key="planar_feature_type";}
 											if(!$columns['orientation']['planar'][$key]){
 												$columns['orientation']['planar'][$key]=$colnum;
 												$colnum++;
@@ -691,9 +651,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -703,10 +663,10 @@ class straboOutputClass
 					foreach($orientationdatas as $orientationdata){
 
 						if($orientationdata->type=="planar_orientation"){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-									if($key=="feature_type"){$key="planar_feature_type";}			
+									if($key=="feature_type"){$key="planar_feature_type";}
 									if(!$columns['orientation']['planar'][$key]){
 										$columns['orientation']['planar'][$key]=$colnum;
 										$colnum++;
@@ -714,15 +674,15 @@ class straboOutputClass
 								}
 							}
 						}
-		
+
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
 								if($associatedorientation->type=="planar_orientation"){
-				
+
 									foreach($associatedorientation as $key=>$value){
 										if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-											if($key=="feature_type"){$key="planar_feature_type";}			
+											if($key=="feature_type"){$key="planar_feature_type";}
 											if(!$columns['orientation']['planar'][$key]){
 												$columns['orientation']['planar'][$key]=$colnum;
 												$colnum++;
@@ -735,9 +695,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -747,10 +707,10 @@ class straboOutputClass
 					foreach($orientationdatas as $orientationdata){
 
 						if($orientationdata->type=="linear_orientation"){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-									if($key=="feature_type"){$key="linear_feature_type";}			
+									if($key=="feature_type"){$key="linear_feature_type";}
 									if(!$columns['orientation']['linear'][$key]){
 										$columns['orientation']['linear'][$key]=$colnum;
 										$colnum++;
@@ -758,15 +718,15 @@ class straboOutputClass
 								}
 							}
 						}
-		
+
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
 								if($associatedorientation->type=="linear_orientation"){
-				
+
 									foreach($associatedorientation as $key=>$value){
 										if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-											if($key=="feature_type"){$key="linear_feature_type";}			
+											if($key=="feature_type"){$key="linear_feature_type";}
 											if(!$columns['orientation']['linear'][$key]){
 												$columns['orientation']['linear'][$key]=$colnum;
 												$colnum++;
@@ -779,9 +739,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -791,7 +751,7 @@ class straboOutputClass
 					foreach($samples as $sample){
 
 						foreach($sample as $key=>$value){
-							if($key != "id"){		
+							if($key != "id"){
 								if(!$columns['samples'][$key]){
 									$columns['samples'][$key]=$colnum;
 									$colnum++;
@@ -801,9 +761,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -818,9 +778,9 @@ class straboOutputClass
 						}
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -835,9 +795,9 @@ class straboOutputClass
 						}
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			/** PHPExcel */
@@ -846,7 +806,6 @@ class straboOutputClass
 			/** PHPExcel_Writer_Excel2007 */
 			include 'PHPExcel/Writer/Excel2007.php';
 
-			// Create new PHPExcel object
 			$objPHPExcel = new PHPExcel();
 
 			// Set properties
@@ -867,11 +826,10 @@ class straboOutputClass
 			$colnum=0;
 
 			foreach($columns['spot'] as $key=>$value){
-				//$sheet->write(3,$colnum,$this->fix_column_name($key),$formatwhiteblue);
-	
+
 				if($key=="geometry"){$key="Real World Coordinates";}
 				if($key=="original_geometry"){$key="Pixel Coordinates";}
-	
+
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol(3,$value), $this->fix_column_name($key));
 
 				$thiswidth=strlen($key)-1;
@@ -973,7 +931,6 @@ class straboOutputClass
 				}
 			}
 
-
 			//write data
 			$rownum=4;
 			foreach($data['features'] as $feature){
@@ -1007,14 +964,14 @@ class straboOutputClass
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,2), $feature['properties']['self']);
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,3),$feature['properties']['notes']);
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,4),$geometry);
-	
+
 				if($geometry!=$original_geometry){
 					$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,5),$original_geometry);
 				}
 
 				$latitude = "";
 				$longitude = "";
-				
+
 				if(strtolower(substr($geometry,0,5))=="point"){
 					$lonlatgeom=$geometry;
 					$lonlatgeom=strtolower($lonlatgeom);
@@ -1025,10 +982,10 @@ class straboOutputClass
 					$longitude=$lonlatgeom[0];
 					$latitude=$lonlatgeom[1];
 				}
-				
+
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,6),$latitude);
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,7),$longitude);
-				
+
 				$rownum++;
 
 			}
@@ -1043,27 +1000,27 @@ class straboOutputClass
 						$thistype=str_replace("_orientation","",$orientationdata->type);
 
 						if($thistype!=""){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" ){
 									if($key=="feature_type"){$key=$thistype."_feature_type";}
 									$colnum = $columns['orientation'][$thistype][$key];
-				
+
 									if(is_array($value)){
 										$value = implode(", ",$value);
 									}
 
 									$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,$colnum),$value);
-				
+
 								}
 							}
-			
+
 						}
 
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
-					
+
 								$thistype=str_replace("_orientation","",$associatedorientation->type);
 
 								if($thistype!=""){
@@ -1081,14 +1038,13 @@ class straboOutputClass
 
 										}
 									}
-					
+
 								}
 
 							}
 						}
 					}
 				}
-
 
 				$samples = $feature['properties']['samples'];
 				if($samples){
@@ -1098,13 +1054,13 @@ class straboOutputClass
 							if($key != "id"){
 
 								$colnum = $columns['samples'][$key];
-			
+
 								if(is_array($value)){
 									$value = implode(", ",$value);
 								}
 
 								$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,$colnum),$value);
-			
+
 							}
 						}
 
@@ -1116,7 +1072,7 @@ class straboOutputClass
 					foreach($trace as $key=>$value){
 
 						$colnum = $columns['trace'][$key];
-	
+
 						if(is_array($value)){
 							$value = implode(", ",$value);
 						}
@@ -1131,7 +1087,7 @@ class straboOutputClass
 					foreach($customfields as $key=>$value){
 
 						$colnum = $columns['custom_fields'][$key];
-	
+
 						if(is_array($value)){
 							$value = implode(", ",$value);
 						}
@@ -1143,9 +1099,9 @@ class straboOutputClass
 
 				$x++;
 				$rownum++;
-			
+
 			} //end if dsids
-	
+
 		}
 
 		// Save Excel 2007 file
@@ -1186,9 +1142,7 @@ class straboOutputClass
 			$columns['spot']['Latitude']=6;
 			$columns['spot']['Longitude']=7;
 
-
 			//first, roll over each feature looking for planar orientation data
-			//store in named array $columns['orientation']['planar'], colnum start with colnum 4
 
 			$colnum=8;
 
@@ -1201,10 +1155,10 @@ class straboOutputClass
 					foreach($orientationdatas as $orientationdata){
 
 						if($orientationdata->type=="tabular_orientation"){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-									if($key=="feature_type"){$key="tabular_feature_type";}			
+									if($key=="feature_type"){$key="tabular_feature_type";}
 									if(!$columns['orientation']['tabular'][$key]){
 										$columns['orientation']['tabular'][$key]=$colnum;
 										$colnum++;
@@ -1212,15 +1166,15 @@ class straboOutputClass
 								}
 							}
 						}
-		
+
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
 								if($associatedorientation->type=="planar_orientation"){
-				
+
 									foreach($associatedorientation as $key=>$value){
 										if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-											if($key=="feature_type"){$key="planar_feature_type";}			
+											if($key=="feature_type"){$key="planar_feature_type";}
 											if(!$columns['orientation']['planar'][$key]){
 												$columns['orientation']['planar'][$key]=$colnum;
 												$colnum++;
@@ -1233,9 +1187,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -1245,10 +1199,10 @@ class straboOutputClass
 					foreach($orientationdatas as $orientationdata){
 
 						if($orientationdata->type=="planar_orientation"){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-									if($key=="feature_type"){$key="planar_feature_type";}			
+									if($key=="feature_type"){$key="planar_feature_type";}
 									if(!$columns['orientation']['planar'][$key]){
 										$columns['orientation']['planar'][$key]=$colnum;
 										$colnum++;
@@ -1256,15 +1210,15 @@ class straboOutputClass
 								}
 							}
 						}
-		
+
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
 								if($associatedorientation->type=="planar_orientation"){
-				
+
 									foreach($associatedorientation as $key=>$value){
 										if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-											if($key=="feature_type"){$key="planar_feature_type";}			
+											if($key=="feature_type"){$key="planar_feature_type";}
 											if(!$columns['orientation']['planar'][$key]){
 												$columns['orientation']['planar'][$key]=$colnum;
 												$colnum++;
@@ -1277,9 +1231,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -1289,10 +1243,10 @@ class straboOutputClass
 					foreach($orientationdatas as $orientationdata){
 
 						if($orientationdata->type=="linear_orientation"){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-									if($key=="feature_type"){$key="linear_feature_type";}			
+									if($key=="feature_type"){$key="linear_feature_type";}
 									if(!$columns['orientation']['linear'][$key]){
 										$columns['orientation']['linear'][$key]=$colnum;
 										$colnum++;
@@ -1300,15 +1254,15 @@ class straboOutputClass
 								}
 							}
 						}
-		
+
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
 								if($associatedorientation->type=="linear_orientation"){
-				
+
 									foreach($associatedorientation as $key=>$value){
 										if($key!="associated_orientation" && $key != "id" && $key != "type" && $key != "" ){
-											if($key=="feature_type"){$key="linear_feature_type";}			
+											if($key=="feature_type"){$key="linear_feature_type";}
 											if(!$columns['orientation']['linear'][$key]){
 												$columns['orientation']['linear'][$key]=$colnum;
 												$colnum++;
@@ -1321,9 +1275,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -1333,7 +1287,7 @@ class straboOutputClass
 					foreach($other_features as $other_feature){
 
 						foreach($other_feature as $key=>$value){
-							if($key != "id"){		
+							if($key != "id"){
 								if(!$columns['other_features'][$key]){
 									$columns['other_features'][$key]=$colnum;
 									$colnum++;
@@ -1343,9 +1297,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -1355,7 +1309,7 @@ class straboOutputClass
 					foreach($samples as $sample){
 
 						foreach($sample as $key=>$value){
-							if($key != "id"){		
+							if($key != "id"){
 								if(!$columns['samples'][$key]){
 									$columns['samples'][$key]=$colnum;
 									$colnum++;
@@ -1365,9 +1319,9 @@ class straboOutputClass
 
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -1382,9 +1336,9 @@ class straboOutputClass
 						}
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			foreach($data['features'] as $feature){
@@ -1399,9 +1353,9 @@ class straboOutputClass
 						}
 					}
 				}
-	
+
 				$x++;
-	
+
 			}
 
 			/** PHPExcel */
@@ -1410,7 +1364,6 @@ class straboOutputClass
 			/** PHPExcel_Writer_Excel2007 */
 			include 'PHPExcel/Writer/Excel2007.php';
 
-			// Create new PHPExcel object
 			$objPHPExcel = new PHPExcel();
 
 			// Set properties
@@ -1431,11 +1384,10 @@ class straboOutputClass
 			$colnum=0;
 
 			foreach($columns['spot'] as $key=>$value){
-				//$sheet->write(3,$colnum,$this->fix_column_name($key),$formatwhiteblue);
-	
+
 				if($key=="geometry"){$key="Real World Coordinates";}
 				if($key=="original_geometry"){$key="Pixel Coordinates";}
-	
+
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol(3,$value), $this->fix_column_name($key));
 
 				$thiswidth=strlen($key)-1;
@@ -1552,7 +1504,6 @@ class straboOutputClass
 				}
 			}
 
-
 			//write data
 			$rownum=4;
 			foreach($data['features'] as $feature){
@@ -1586,14 +1537,14 @@ class straboOutputClass
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,2), $feature['properties']['self']);
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,3),$feature['properties']['notes']);
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,4),$geometry);
-	
+
 				if($geometry!=$original_geometry){
 					$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,5),$original_geometry);
 				}
 
 				$latitude = "";
 				$longitude = "";
-				
+
 				if(strtolower(substr($geometry,0,5))=="point"){
 					$lonlatgeom=$geometry;
 					$lonlatgeom=strtolower($lonlatgeom);
@@ -1604,10 +1555,10 @@ class straboOutputClass
 					$longitude=$lonlatgeom[0];
 					$latitude=$lonlatgeom[1];
 				}
-				
+
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,6),$latitude);
 				$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,7),$longitude);
-				
+
 				$rownum++;
 
 			}
@@ -1622,27 +1573,27 @@ class straboOutputClass
 						$thistype=str_replace("_orientation","",$orientationdata->type);
 
 						if($thistype!=""){
-			
+
 							foreach($orientationdata as $key=>$value){
 								if($key!="associated_orientation" && $key != "id" && $key != "type" ){
 									if($key=="feature_type"){$key=$thistype."_feature_type";}
 									$colnum = $columns['orientation'][$thistype][$key];
-				
+
 									if(is_array($value)){
 										$value = implode(", ",$value);
 									}
 
 									$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,$colnum),$value);
-				
+
 								}
 							}
-			
+
 						}
 
 						$associatedorientations = $orientationdata->associated_orientation;
 						if($associatedorientations){
 							foreach($associatedorientations as $associatedorientation){
-					
+
 								$thistype=str_replace("_orientation","",$associatedorientation->type);
 
 								if($thistype!=""){
@@ -1660,7 +1611,7 @@ class straboOutputClass
 
 										}
 									}
-					
+
 								}
 
 							}
@@ -1676,13 +1627,13 @@ class straboOutputClass
 							if($key != "id"){
 
 								$colnum = $columns['other_features'][$key];
-			
+
 								if(is_array($value)){
 									$value = implode(", ",$value);
 								}
 
 								$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,$colnum),$value);
-			
+
 							}
 						}
 
@@ -1697,13 +1648,13 @@ class straboOutputClass
 							if($key != "id"){
 
 								$colnum = $columns['samples'][$key];
-			
+
 								if(is_array($value)){
 									$value = implode(", ",$value);
 								}
 
 								$objPHPExcel->getActiveSheet()->SetCellValue($this->rowcol($rownum,$colnum),$value);
-			
+
 							}
 						}
 
@@ -1715,7 +1666,7 @@ class straboOutputClass
 					foreach($trace as $key=>$value){
 
 						$colnum = $columns['trace'][$key];
-	
+
 						if(is_array($value)){
 							$value = implode(", ",$value);
 						}
@@ -1730,7 +1681,7 @@ class straboOutputClass
 					foreach($customfields as $key=>$value){
 
 						$colnum = $columns['custom_fields'][$key];
-	
+
 						if(is_array($value)){
 							$value = implode(", ",$value);
 						}
@@ -1742,9 +1693,9 @@ class straboOutputClass
 
 				$x++;
 				$rownum++;
-			
+
 			} //end if dsids
-	
+
 		}
 
 		// Save Excel 2007 file
@@ -1772,7 +1723,7 @@ class straboOutputClass
 
 			$spots = $this->strabo->getDatasetSpotsSearch(null,$this->get);
 			$spots = $spots['features'];
-			
+
 			if(count($spots)==0){
 			echo "no data found for dataset $id";exit();
 			}
@@ -1804,12 +1755,12 @@ class straboOutputClass
 			foreach($spots as $spot){
 
 				if($spot['properties']['orientation_data']){
-	
+
 					$longitude = 999;
 					$latitude = 99;
 					$trendstrike = "";
 					$plungedip = "";
-	
+
 					//check if spot is point and set lat/lon if so
 					if($spot['geometry']->type == "Point"){
 						$longitude = $spot['geometry']->coordinates[0];
@@ -1817,11 +1768,11 @@ class straboOutputClass
 					}
 
 					foreach($spot['properties']['orientation_data'] as $or){
-		
+
 						if($or->type=="planar_orientation"){
-			
+
 							if($or->strike != "" && $or->dip != ""){
-				
+
 								$trendstrike = $or->strike;
 								$plungedip = $or->dip;
 								$notes = $or->notes;
@@ -1845,11 +1796,11 @@ class straboOutputClass
 											);
 								$planes[] = $row;
 							}
-			
+
 						}elseif($or->type=="linear_orientation"){
-			
+
 							if($or->trend != "" && $or->plunge != ""){
-				
+
 								$trendstrike = $or->trend;
 								$plungedip = $or->plunge;
 								$notes = $or->notes;
@@ -1873,9 +1824,9 @@ class straboOutputClass
 											);
 								$lines[] = $row;
 							}
-			
+
 						}
-		
+
 					}
 
 				}
@@ -1901,15 +1852,15 @@ class straboOutputClass
 						$recordnum++;
 					}
 				}
-	
+
 				$out = implode("\n",$out);
-	
+
 				$filedate = date("m_d_Y");
 				$outname="StraboSpot_Search_$filedate.txt";
-	
+
 				header("Content-disposition: attachment; filename=$outname");
 				header('Content-type: text/plain');
-	
+
 				echo $out;
 
 			}else{
@@ -1924,9 +1875,6 @@ class straboOutputClass
 
 	public function fieldbookOut(){
 
-		//include_once("straboModelClass/straboModelClass.php");
-		//$sm = new straboModelClass();
-
 		if($this->get['dsids']!=""){
 
 			$dsids=$this->get['dsids'];
@@ -1937,28 +1885,25 @@ class straboOutputClass
 			$spots = $json['features'];
 
 			if(count($spots)>0){
-	
+
 				require('includes/PDF_LabBook.php');
 
 				$pdf = new PDF_MemImage('P','mm','Letter');
 				$pdf->AddPage();
 
-				//$pdf->datasetTitle($datasetname);
-
 				foreach($spots as $spot){
-		
+
 					$spot = $spot['properties'];
-			
+
 					$id = $spot['id'];
-			
+
 					$spotname = $spot['name'];
 					if($spot['geometrytype']){
 						$spotname .= " (".$spot['geometrytype'].")";
 					}
-			
+
 					$pdf->spotTitle($spotname);
-			
-					//$strabo->dumpVar($spot);
+
 					$modified = (string) $spot['id'];
 					$modified = substr($modified,0,10);
 					$modified = date("c",$modified);
@@ -1993,7 +1938,6 @@ class straboOutputClass
 								}
 							}
 
-
 							if($o->associated_orientation){
 								$pdf->valueRow("Associated Orientation Data:","",15);
 								foreach($o->associated_orientation as $ao){
@@ -2007,14 +1951,9 @@ class straboOutputClass
 											$pdf->valueRow($key,$value,25);
 										}
 									}
-									//$pdf->Ln(5);
 									$pdf->Ln(1);
 								}
 							}
-
-
-
-
 
 							$pdf->Ln(1);
 						}
@@ -2037,7 +1976,6 @@ class straboOutputClass
 							$pdf->Ln(1);
 						}
 					}
-
 
 					if($spot['samples']){
 						$pdf->valueRow("Samples","");
@@ -2085,14 +2023,14 @@ class straboOutputClass
 									}
 								}
 							}
-			
+
 							if($found == "yes"){
 								if($tag->type=="geologic_unit"){
-							
+
 									$pdf->valueRow("Rock Unit","");
-							
+
 									foreach($tag as $key=>$value){
-										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){ 
+										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){
 											$key = $this->fixLabel($key);
 											if(is_string($value)){
 												$value = $this->fixLabel($value);
@@ -2104,9 +2042,9 @@ class straboOutputClass
 							}
 						}
 					}
-			
+
 					$hastags = "no";
-			
+
 					if($this->alltags){
 						foreach($this->alltags as $tag){
 							$found = "no";
@@ -2122,11 +2060,11 @@ class straboOutputClass
 
 						}
 					}
-			
+
 					if($hastags == "yes"){
-				
+
 						$pdf->valueRow("Tags","");
-			
+
 						if($this->alltags){
 							foreach($this->alltags as $tag){
 								$found = "no";
@@ -2139,20 +2077,20 @@ class straboOutputClass
 										}
 									}
 								}
-			
+
 								if($found == "yes"){
 
 									$pdf->valueTitle($tag->name,15);
 									foreach($tag as $key=>$value){
-								
-										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" && $key != "name" ){ 
+
+										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" && $key != "name" ){
 											$key = $this->fixLabel($key);
 											if(is_string($value)){
 												$value = $this->fixLabel($value);
 											}
 											$pdf->valueRow($key,$value,15);
 										}
-								
+
 									}
 
 									$pdf->Ln(1);
@@ -2160,7 +2098,7 @@ class straboOutputClass
 								}
 							}
 						}
-			
+
 					}
 
 					if($spot['images']){
@@ -2185,7 +2123,6 @@ class straboOutputClass
 							$pdf->Ln(1);
 
 							$filename = $this->strabo->getImageFilename($o['id']);
-							//$pdf->valueRow("Found Filename",$filename,15);
 							if($filename){
 								$gdimage = $this->gdThumb($filename);
 								if($gdimage){
@@ -2199,74 +2136,25 @@ class straboOutputClass
 					}
 
 					$pdf->Ln(10);
-			
+
 				}
 
 				$filedate = date("m_d_Y");
 				$pdfname="StraboSpot_Search_$filedate.pdf";
 				$pdf->Output($pdfname,"D");
-		
+
 			}else{
-	
+
 				echo "No spots found for this search.";
 
-	
 			}
 
 		} //end if dsids
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public function fieldbookOutdev(){
 
-		//include_once("straboModelClass/straboModelClass.php");
-		//$sm = new straboModelClass();
-
 		if($this->get['dsids']!=""){
 
 			$dsids=$this->get['dsids'];
@@ -2277,28 +2165,25 @@ class straboOutputClass
 			$spots = $json['features'];
 
 			if(count($spots)>0){
-	
+
 				require('includes/PDF_LabBook.php');
 
 				$pdf = new PDF_MemImage('P','mm','Letter');
 				$pdf->AddPage();
 
-				//$pdf->datasetTitle($datasetname);
-
 				foreach($spots as $spot){
-		
+
 					$spot = $spot['properties'];
-			
+
 					$id = $spot['id'];
-			
+
 					$spotname = $spot['name'];
 					if($spot['geometrytype']){
 						$spotname .= " (".$spot['geometrytype'].")";
 					}
-			
+
 					$pdf->spotTitle($spotname);
-			
-					//$strabo->dumpVar($spot);
+
 					$modified = (string) $spot['id'];
 					$modified = substr($modified,0,10);
 					$modified = date("c",$modified);
@@ -2333,7 +2218,6 @@ class straboOutputClass
 								}
 							}
 
-
 							if($o->associated_orientation){
 								$pdf->valueRow("Associated Orientation Data:","",15);
 								foreach($o->associated_orientation as $ao){
@@ -2347,14 +2231,9 @@ class straboOutputClass
 											$pdf->valueRow($key,$value,25);
 										}
 									}
-									//$pdf->Ln(5);
 									$pdf->Ln(1);
 								}
 							}
-
-
-
-
 
 							$pdf->Ln(1);
 						}
@@ -2377,7 +2256,6 @@ class straboOutputClass
 							$pdf->Ln(1);
 						}
 					}
-
 
 					if($spot['samples']){
 						$pdf->valueRow("Samples","");
@@ -2425,14 +2303,14 @@ class straboOutputClass
 									}
 								}
 							}
-			
+
 							if($found == "yes"){
 								if($tag->type=="geologic_unit"){
-							
+
 									$pdf->valueRow("Rock Unit","");
-							
+
 									foreach($tag as $key=>$value){
-										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){ 
+										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){
 											$key = $this->fixLabel($key);
 											if(is_string($value)){
 												$value = $this->fixLabel($value);
@@ -2444,9 +2322,9 @@ class straboOutputClass
 							}
 						}
 					}
-			
+
 					$hastags = "no";
-			
+
 					if($this->alltags){
 						foreach($this->alltags as $tag){
 							$found = "no";
@@ -2462,11 +2340,11 @@ class straboOutputClass
 
 						}
 					}
-			
+
 					if($hastags == "yes"){
-				
+
 						$pdf->valueRow("Tags","");
-			
+
 						if($this->alltags){
 							foreach($this->alltags as $tag){
 								$found = "no";
@@ -2479,20 +2357,20 @@ class straboOutputClass
 										}
 									}
 								}
-			
+
 								if($found == "yes"){
 
 									$pdf->valueTitle($tag->name,15);
 									foreach($tag as $key=>$value){
-								
-										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" && $key != "name" ){ 
+
+										if($key != "date" && $key != "spots" && $key != "features" && $key != "id" && $key != "name" ){
 											$key = $this->fixLabel($key);
 											if(is_string($value)){
 												$value = $this->fixLabel($value);
 											}
 											$pdf->valueRow($key,$value,15);
 										}
-								
+
 									}
 
 									$pdf->Ln(1);
@@ -2500,7 +2378,7 @@ class straboOutputClass
 								}
 							}
 						}
-			
+
 					}
 
 					if($spot['images']){
@@ -2525,7 +2403,6 @@ class straboOutputClass
 							$pdf->Ln(1);
 
 							$filename = $this->strabo->getImageFilename($o['id']);
-							//$pdf->valueRow("Found Filename",$filename,15);
 							if($filename){
 								$gdimage = $this->gdThumb($filename);
 								if($gdimage){
@@ -2539,64 +2416,25 @@ class straboOutputClass
 					}
 
 					$pdf->Ln(10);
-			
+
 				}
 
 				$filedate = date("m_d_Y");
 				$pdfname="StraboSpot_Search_$filedate.pdf";
 				$pdf->Output($pdfname,"D");
-		
+
 			}else{
-	
+
 				echo "No spots found for this search.";
 
-	
 			}
 
 		} //end if dsids
 
 	}
 
+function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
-	
-	
 	$finalimage = imagecreatefrompng("assets/files/kmlfiles/bubbleicon/blankbubble.png");
 
 	imagealphablending($finalimage, true);
@@ -2605,7 +2443,7 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 	if($strike!="" && $strike!=0 && is_numeric($strike)){
 
 		$strike = round($strike);
-	
+
 		$arrow = imagecreatefrompng("assets/files/kmlfiles/bubbleicon/planar_bar.png");
 
 		// Transparent Background
@@ -2618,26 +2456,25 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 		$fontcolor = imagecolorallocate($arrow, 255, 255, 255);//255, 176, 0
 
 		$arrow = imagerotate($arrow, ($strike*-1), $transparency);
-		
+
 		//crop to 100x100 again
 		$sizex = imagesx($arrow);
 		$sizey = imagesy($arrow);
-		
+
 		$halfx = round($sizex/2);
 		$halfy = round($sizey/2);
-		
+
 		$locx = 50 - $halfx;
 		$locy = 40 - $halfy;
 
 		imagecopy($finalimage, $arrow, $locx, $locy, 0, 0, $sizex, $sizey);
-	
-	}
 
+	}
 
 	if($trend!="" && $trend!=0 && is_numeric($trend)){
 
 		$trend = round($trend);
-	
+
 		$trendbar = imagecreatefrompng("assets/files/kmlfiles/bubbleicon/linear_arrow.png");
 
 		// Transparent Background
@@ -2654,19 +2491,19 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 		//crop to 100x100 again
 		$sizex = imagesx($trendbar);
 		$sizey = imagesy($trendbar);
-		
+
 		$halfx = round($sizex/2);
 		$halfy = round($sizey/2);
-		
+
 		$locx = 50 - $halfx;
 		$locy = 40 - $halfy;
 
 		imagecopy($finalimage, $trendbar, $locx, $locy, 0, 0, $sizex, $sizey);
-	
+
 	}
 
 	if($showval!="" && is_numeric($showval)){
-	
+
 		$showval = round($showval);
 
 		$diplabel = imagecreatetruecolor(100, 100);
@@ -2683,22 +2520,12 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 		imagettftext($diplabel, 16, 0, 50, 85, $black, "assets/files/kmlfiles/roadway.ttf", "$showval");
 
 		imagecopy($finalimage, $diplabel, 0, 0, 0, 0, 100, 100);
-	
+
 	}
 
-
-	//header('Content-Type: image/png');
-	//imagepng($arrow);
-	//imagepng($finalimage);
-	
 	imagepng($finalimage, "ogrtemp/$randnum/data/files/$id.png");
 
 }
-
-
-
-
-
 
 	public function ffbuildKMLIcon($id,$randnum,$strike,$showval,$trend){ //outline
 		$backbox = imagecreatetruecolor(100, 100);
@@ -2734,12 +2561,10 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 						66,50,
 						55,40,
 						55,0,
-						45,0  
+						45,0
 						);
 
 			imagefilledpolygon($arrow, $whitevalues, 8, $fontcolor);
-
-
 
 			// set up array of points for arrow
 			$blackvalues = array(
@@ -2750,7 +2575,7 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 						62,50,
 						52,42,
 						52,3,
-						48,3  
+						48,3
 						);
 
 			imagefilledpolygon($arrow, $blackvalues, 8, $black);
@@ -2765,13 +2590,13 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 			$yoffset = round(($sizex-100)/2);
 
 			$arrow = imagecrop($arrow, ['x' => $xoffset, 'y' => $yoffset, 'width' => 100, 'height' => 100]);
-		
+
 			imagecopy($backbox, $arrow, 0, 0, 0, 0, 100, 100);
-	
+
 		}
-	
+
 		if($trend!="" && is_numeric($trend)){
-	
+
 			$trend = round($trend);
 
 			$trendbar = imagecreatetruecolor(100, 100);
@@ -2795,7 +2620,7 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 						55,100,
 						55,13,
 						63,18,
-						50,0  
+						50,0
 						);
 			imagefilledpolygon($trendbar, $whitevalues, 8, $fontcolor);
 
@@ -2822,13 +2647,13 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 			$yoffset = round(($sizex-100)/2);
 
 			$trendbar = imagecrop($trendbar, ['x' => $xoffset, 'y' => $yoffset, 'width' => 100, 'height' => 100]);
-		
+
 			imagecopy($backbox, $trendbar, 0, 0, 0, 0, 100, 100);
-	
+
 		}
-	
+
 		if($showval!="" && is_numeric($showval)){
-	
+
 			$showval = round($showval);
 
 			$diplabel = imagecreatetruecolor(100, 100);
@@ -2845,12 +2670,9 @@ function buildKMLIcon($id,$randnum,$strike,$showval,$trend){ //new card icon
 			imagettftext($diplabel, 24, 0, 50, 31, $fontcolor, "files/kmlfiles/roadway.ttf", "$showval");
 
 			imagecopy($backbox, $diplabel, 0, 0, 0, 0, 100, 100);
-	
+
 		}
 
-		//header('Content-Type: image/png');
-		//imagepng($arrow);
-		//imagepng($backbox);
 		imagepng($backbox, "ogrtemp/$randnum/data/files/$id.png");
 
 	}
@@ -2864,10 +2686,6 @@ trend
 plunge
 */
 
-		//$pointstyle="<Style><IconStyle><Icon><href>files/dot.png</href></Icon></IconStyle></Style>";
-		//$this->dumpVar($spot);
-		
-		
 		$id=$spot['id'];
 		foreach($spot['orientation_data'] as $od){
 			foreach($od as $key=>$value){
@@ -2877,7 +2695,7 @@ plunge
 				if($key=="plunge") $plunge=$value;
 
 			}
-			
+
 			foreach($od->associated_orientation as $ao){
 				foreach($ao as $key=>$value){
 					if($key=="strike") $strike=$value;
@@ -2886,49 +2704,32 @@ plunge
 					if($key=="plunge") $plunge=$value;
 				}
 			}
-			
+
 		}
-		
-		/*
-		echo "id: $id<br>";
-		echo "randnum: $randnum<br>";
-		echo "strike: $strike<br>";
-		echo "dip: $dip<br>";
-		echo "trend: $trend<br>";
-		echo "plunge: $plunge<br>";
-		echo "<br>";
-		*/
-		
+
 		if($strike!="" || $trend!=""){
-			
+
 			if($dip!=""){
 				$showval=$dip;
 			}elseif($plunge!=""){
 				$showval=$plunge;
 			}
-			
+
 			$this->buildKMLIcon($id,$randnum,$strike,$showval,$trend);
-			
+
 			$pointstyle="<Style><IconStyle><Icon><href>files/$id.png</href></Icon></IconStyle></Style>";
 		}else{
 			$pointstyle="";
 		}
-		
+
 		return $pointstyle;
-	
+
 	}
 
 	public function kmlOut(){
 
-
-
-		//include_once("straboModelClass/straboModelClass.php");
-		//$sm = new straboModelClass();
-
 		if($this->get['dsids']!=""){
 
-			
-			
 			$dsids=$this->get['dsids'];
 			$this->alltags = $this->strabo->getTagsFromDatasetIds($dsids);
 
@@ -2936,21 +2737,17 @@ plunge
 
 			$spots = $json['features'];
 
-			//$this->dumpVar($spots);
-			
 			if(count($spots)>0){
 
-				//get new randnum for ogrtemp
 				$randnum=$this->strabo->db->get_var("select nextval('file_seq')");
-		
+
 				//make directory in ogrtemp to hold data
 				mkdir("ogrtemp/$randnum");
 				mkdir("ogrtemp/$randnum/data");
 				mkdir("ogrtemp/$randnum/data/files");
 
 				copy("assets/files/kmlfiles/bubblehead.jpg","ogrtemp/$randnum/data/files/bubblehead.jpg");
-				
-				//copy("files/kmlfiles/dot.png","ogrtemp/$randnum/data/files/dot.png");
+
 				copy("assets/files/kmlfiles/bubbleicon/dotbubble.png","ogrtemp/$randnum/data/files/dot.png");
 
 				copy("assets/files/kmlfiles/mysavedplaces_closed.png","ogrtemp/$randnum/data/files/mysavedplaces_closed.png");
@@ -2959,34 +2756,13 @@ plunge
 				copy("assets/files/kmlfiles/rock.jpg","ogrtemp/$randnum/data/files/rock.jpg");
 
 
-/*
-
-files/kmlfiles
-
-bubblehead.jpg
-dot.png
-mysavedplaces_closed.png
-mysavedplaces_open.png
-overlay.jpg
-rock.jpg
-
-
-Polygon
-Point
-LineString
-MultiPolygon
-MultiLineString
-
-*/
-
 				foreach($spots as $spot){
 
 					//use geoPHP to get WKT
 					$mygeojson=$spot['geometry'];
-					
-					
+
 					$mygeotype = $mygeojson->type;
-					
+
 					//pick a style for KML feature
 					if($mygeotype=="Polygon" || $mygeotype=="MultiPolygon"){
 						$thisstyle="m_strabo_polygon";
@@ -2997,41 +2773,39 @@ MultiLineString
 					}else{
 						$thisstyle="m_strabo_point";
 					}
-					
+
 					if($mygeotype!=""){
-					
+
 						if($spot['properties']['name']!=""){
 							$spotname = $spot['properties']['name'];
 						}else{
 							$spotname = $spot['properties']['id'];
 						}
-						
+
 						$html.="<Placemark>\n<name>$spotname</name>\n<description>\n<![CDATA[\n";
-						
+
 						$html.="<img style=\"max-width:300px;\" src=\"files/bubblehead.jpg\">\n";
-					
+
 						$mygeojson=trim(json_encode($mygeojson));
 
 						try {
 							$mywkt=geoPHP::load($mygeojson,"json");
 							$kmlgeo = $mywkt->out('kml');
-							//echo "$kmlgeo\n\n";
 						} catch (Exception $e) {
 							$kmlgeo="";
 						}
 
 						$spot = $spot['properties'];
-			
+
 						$id = $spot['id'];
-			
+
 						$spotname = $spot['name'];
 						if($spot['geometrytype']){
 							$spotname .= " (".$spot['geometrytype'].")";
 						}
 
 						$html.="<div class=\"spotTitle\">Spot Name: $spotname</div>\n<br>\n";
-			
-						//$strabo->dumpVar($spot);
+
 						$modified = (string) $spot['id'];
 						$modified = substr($modified,0,10);
 						$modified = date("c",$modified);
@@ -3067,7 +2841,6 @@ MultiLineString
 									}
 								}
 
-
 								if($o->associated_orientation){
 									$html.="<div>Orientations:</div>\n";
 									$html.="<div class=\"leftPad\">\n";
@@ -3084,13 +2857,12 @@ MultiLineString
 										}
 
 									}
-								
+
 									$html.="</div>\n"; //end leftPad
 								}
 
-
 							}
-						
+
 							$html.="</div>\n"; //end leftPad
 						}
 
@@ -3110,7 +2882,7 @@ MultiLineString
 								}
 
 							}
-						
+
 							$html.="</div>\n"; //end leftPad
 						}
 
@@ -3129,7 +2901,7 @@ MultiLineString
 									}
 								}
 							}
-						
+
 							$html.="</div>\n"; //end leftPad
 						}
 
@@ -3149,7 +2921,7 @@ MultiLineString
 								}
 
 							}
-						
+
 							$html.="</div>\n"; //end leftPad
 						}
 
@@ -3169,7 +2941,7 @@ MultiLineString
 								}
 
 							}
-						
+
 							$html.="</div>\n"; //end leftPad
 						}
 
@@ -3183,14 +2955,14 @@ MultiLineString
 										}
 									}
 								}
-			
+
 								if($found == "yes"){
 									if($tag->type=="geologic_unit"){
-							
+
 										$html.="<div>Rock Unit:</div>\n";
 										$html.="<div class=\"leftPad\">\n";
 										foreach($tag as $key=>$value){
-											if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){ 
+											if($key != "date" && $key != "spots" && $key != "features" && $key != "id" ){
 												$key = $this->fixLabel($key);
 												if(is_string($value)){
 													$value = $this->fixLabel($value);
@@ -3198,15 +2970,15 @@ MultiLineString
 												$html.="<div>$key: $value</div>\n";
 											}
 										}
-									
+
 										$html.="</div>\n"; //end leftPad
 									}
 								}
 							}
 						}
-			
+
 						$hastags = "no";
-			
+
 						if($this->alltags){
 							foreach($this->alltags as $tag){
 								$found = "no";
@@ -3222,12 +2994,12 @@ MultiLineString
 
 							}
 						}
-			
+
 						if($hastags == "yes"){
-				
+
 							$html.="<div>Tags:</div>\n";
 							$html.="<div class=\"leftPad\">\n";
-			
+
 							if($this->alltags){
 								foreach($this->alltags as $tag){
 									$found = "no";
@@ -3240,28 +3012,28 @@ MultiLineString
 											}
 										}
 									}
-			
+
 									if($found == "yes"){
 
 										$html.="<div class=\"sectionTitle\">".$tag->name.": "."</div>\n";
 										foreach($tag as $key=>$value){
-								
-											if($key != "date" && $key != "spots" && $key != "features" && $key != "id" && $key != "name" ){ 
+
+											if($key != "date" && $key != "spots" && $key != "features" && $key != "id" && $key != "name" ){
 												$key = $this->fixLabel($key);
 												if(is_string($value)){
 													$value = $this->fixLabel($value);
 												}
 												$html.="<div>$key: $value</div>\n";
 											}
-								
+
 										}
 
 									}
 								}
 							}
-						
+
 							$html.="</div>\n"; //end leftPad
-			
+
 						}
 
 						if($spot['images']){
@@ -3285,7 +3057,7 @@ MultiLineString
 								}
 
 								$imageid = $o['id'];
-							
+
 								$filename = $this->strabo->getImageFilename($imageid);
 
 								if($filename){
@@ -3293,18 +3065,16 @@ MultiLineString
 									if($gdimage){
 										//write image to folder here (imagecreatetruecolor)
 										imagejpeg($gdimage, "ogrtemp/$randnum/data/files/$imageid.jpg");
-									
-									
-									
+
 										$html.="<div><a href=\"https://www.strabospot.org/geimage/$imageid\"><img src=\"files/$imageid.jpg\"></a></div>\n";
 									}
 								}
 
 							}
-						
+
 							$html.="</div>\n"; //end leftPad
 						}
-						
+
 						if($mygeotype=="Point"){
 							//build custom icon here if needed
 							$customstyle=$this->buildCustomPoint($spot,$randnum);
@@ -3313,17 +3083,15 @@ MultiLineString
 							}else{
 								$pointstyle="";
 							}
-							//$pointstyle="<Style><IconStyle><Icon><href>files/dot.png</href></Icon></IconStyle></Style>";
 						}else{
 							$pointstyle="";
 						}
-						
+
 						$html.="]]>\n</description>\n<styleUrl>#".$thisstyle."</styleUrl>".$pointstyle."\n$kmlgeo\n</Placemark>\n\n";
 
-					}//end if geotype != ""
-			
-				}// end foreach spot
+					}
 
+				}// end foreach spot
 
 					$stylestring = '				<html><head>
 										<style type="text/css">
@@ -3370,7 +3138,6 @@ MultiLineString
 											</Pair>
 										</StyleMap>
 
-
 										<Style id="s_strabo_point">
 											<IconStyle>
 												<scale>1.7</scale>
@@ -3412,7 +3179,6 @@ MultiLineString
 											</BalloonStyle>
 										</Style>
 
-
 										<StyleMap id="m_strabo_line">
 											<Pair>
 												<key>normal</key>
@@ -3423,7 +3189,6 @@ MultiLineString
 												<styleUrl>#s_strabo_line_hl</styleUrl>
 											</Pair>
 										</StyleMap>
-
 
 										<Style id="s_strabo_line">
 											<LineStyle>
@@ -3444,7 +3209,6 @@ MultiLineString
 											</BalloonStyle>
 										</Style>
 
-
 										<StyleMap id="m_strabo_polygon">
 											<Pair>
 												<key>normal</key>
@@ -3455,7 +3219,6 @@ MultiLineString
 												<styleUrl>#s_strabo_polygon_hl</styleUrl>
 											</Pair>
 										</StyleMap>
-
 
 										<Style id="s_strabo_polygon">
 											<LineStyle>
@@ -3527,18 +3290,15 @@ MultiLineString
 							</Folder>
 						</Document>
 						</kml>';
-				
 
 				file_put_contents("ogrtemp/$randnum/data/doc.kml", $html);
 
 				$filedate = date("m_d_Y");
-				
+
 				exec("cd ogrtemp/$randnum/data; zip -r strabo_$filedate.kmz doc.kml files 2>&1",$results);
 
 					//zip -r foo.zip doc.kml files
-				
-				
-				//exit();
+
 				//force download of file
 				header("Content-Type: application/kmz");
 				header("Content-Disposition: attachment; filename=strabo_$filedate.kmz");
@@ -3548,21 +3308,17 @@ MultiLineString
 
 				//remove temp directory
 				if($randnum!=""){
-					//exec("rm -rf ogrtemp/$randnum",$results);
 				}
-		
+
 			}else{
-	
+
 				echo "No spots found for this search.";
 
-	
 			}
 
 		} //end if dsids
 
 	}
-
-
 
 }
 ?>

@@ -1,20 +1,31 @@
-<?
+<?php
+/**
+ * File: datamodel.php
+ * Description: Handles datamodel operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 //data model array for building orientation data.
 
 function getOrientationType($key){
-	
+
 	global $datamodel;
-	
+
 	$returnval = "";
-	
+
 	foreach($datamodel as $d){
-		
+
 		if($d["var"]==$key){
 			$returnval = $d["type"];
 		}
-		
+
 	}
-	
+
 	return $returnval;
 }
 

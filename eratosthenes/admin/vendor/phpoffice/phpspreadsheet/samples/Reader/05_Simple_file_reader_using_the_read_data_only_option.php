@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 05_Simple_file_reader_using_the_read_data_only_option.php
+ * Description: Handles 05 Simple file reader using the read data only option operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

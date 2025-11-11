@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 13_Simple_file_reader_for_multiple_CSV_files.php
+ * Description: Handles 13 Simple file reader for multiple CSV files operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Authentication Required"
+AuthUserFile "/mapserv-work/apachepass"
+Require valid-user

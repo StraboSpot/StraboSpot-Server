@@ -1,0 +1,24 @@
+
+RewriteEngine on
+
+RewriteRule ^searchdatasets.json$ searchdatasetsjson.php [L]
+RewriteRule ^newsearchdatasets.json$ newsearchdatasetsjson.php [L]
+
+RewriteRule ^searchspots.json$ searchspotsjson.php [L]
+RewriteRule ^newsearchspots.json$ newsearchspotsjson.php [L]
+
+
+
+RewriteRule ^includes/data_model.js$ ../jsdatamodel.php [L]
+
+RewriteRule ^ds/(.*)$ geoJSON.php?datasetid=$1 [L]
+RewriteRule ^dsmap/(.*)$ index.php?datasetid=$1 [L]
+
+RewriteRule ^datasets.json$ searchdatasetsjson.php [L]
+RewriteRule ^datasetspots/(.*).json$ searchspotsjson.php?dsets=$1 [L]
+RewriteRule ^datasetspots/(.*)$ searchspotsjson.php?dsets=$1 [L]
+
+
+RewriteRule ^detail/(.*)$ index.php?u=$1 [L]
+
+RewriteRule ^ri_(.*).jpg rand_image?n=$1 [L]

@@ -1,14 +1,14 @@
 //Map Interface Building
-var zoomres=40; //where to switch to spots view
-var datasetsurl = 'searchdatasets.json';
-var lastdatasetsurl ='searchdatasets.json';
-var allDatasets = [];
+	let zoomres=40; //where to switch to spots view
+	let datasetsurl = 'searchdatasets.json';
+	let lastdatasetsurl ='searchdatasets.json';
+	let allDatasets = [];
 
-var newibextent = [0, 0, 400, 300];
+	let newibextent = [0, 0, 400, 300];
 
-var datasetPointStyleFunction = function() {
+	let datasetPointStyleFunction = function() {
 	return function(feature, resolution) {
-		var style = new ol.style.Style({
+	let style = new ol.style.Style({
 			image: new ol.style.Circle({
 				radius: 7,
 				fill: new ol.style.Fill({
@@ -34,9 +34,9 @@ var datasetPointStyleFunction = function() {
 	};
 };
 
-var linesStyleFunction = function() {
+	let linesStyleFunction = function() {
 	return function(feature, resolution) {
-		var style = new ol.style.Style({
+	let style = new ol.style.Style({
 			image: new ol.style.Circle({
 				radius: 7,
 				fill: new ol.style.Fill({
@@ -50,11 +50,11 @@ var linesStyleFunction = function() {
 };
 
 
-var datasetGetText = function(feature, resolution) {
+	let datasetGetText = function(feature, resolution) {
 
-	var maxResolution = 10000;
+	let maxResolution = 10000;
 	//var text = feature.get('projectname')+' - '+feature.get('name')+'\n('+feature.get('count')+' spots)';
-	var text = feature.get('name');
+	let text = feature.get('name');
 
 	if (resolution > maxResolution) {
 		text = '';
@@ -63,12 +63,12 @@ var datasetGetText = function(feature, resolution) {
 	return text;
 };
 
-var locationssource = new ol.source.Vector({
+	let locationssource = new ol.source.Vector({
 url: 'data/points.json',
 format: new ol.format.GeoJSON()
 });
 
-var locationslayer = new ol.layer.Vector({
+	let locationslayer = new ol.layer.Vector({
 	source: locationssource, //datasetPointsSource,
 	style: datasetPointStyleFunction(),
 	name: 'Locations'
@@ -76,12 +76,12 @@ var locationslayer = new ol.layer.Vector({
 
 });
 
-var linessource = new ol.source.Vector({
+	let linessource = new ol.source.Vector({
 url: 'data/lines.json',
 format: new ol.format.GeoJSON()
 });
 
-var lineslayer = new ol.layer.Vector({
+	let lineslayer = new ol.layer.Vector({
 	source: linessource, //datasetPointsSource,
 	name: 'Lines'
 	//title: 'Dataset Points',
@@ -90,7 +90,7 @@ var lineslayer = new ol.layer.Vector({
 
 
 
-var baseLayers = new ol.layer.Group({
+	let baseLayers = new ol.layer.Group({
 	'title': 'Base maps',
 	layers: [
 		new ol.layer.Tile({
@@ -130,7 +130,7 @@ var baseLayers = new ol.layer.Group({
 
 //4600000
 
-var mapView = new ol.View({
+	let mapView = new ol.View({
 	'projection': 'EPSG:3857',
 	'center': [-11000000, 5200000],
 	'zoom': 5, //5
@@ -151,7 +151,7 @@ map.addLayer(locationslayer);
 
 //map.on('moveend', updateMapDiv);
 
-var layerSwitcher = new ol.control.LayerSwitcher({
+	let layerSwitcher = new ol.control.LayerSwitcher({
 	tipLabel: 'Layers' // Optional label for button
 });
 
@@ -161,27 +161,27 @@ map.addControl(layerSwitcher);
 //datasetsLayer.set('title',null);
 layerSwitcher.renderPanel();
 
-var outextent = map.getView().calculateExtent(map.getSize());
+	let outextent = map.getView().calculateExtent(map.getSize());
 
-var outleft = ol.extent.getBottomLeft(outextent)[0];
-var outbottom = ol.extent.getBottomLeft(outextent)[1];
-var outright = ol.extent.getTopRight(outextent)[0];
-var outtop = ol.extent.getTopRight(outextent)[1];
+	let outleft = ol.extent.getBottomLeft(outextent)[0];
+	let outbottom = ol.extent.getBottomLeft(outextent)[1];
+	let outright = ol.extent.getTopRight(outextent)[0];
+	let outtop = ol.extent.getTopRight(outextent)[1];
 
-var outwkt = 'POLYGON (('+outleft+' '+outbottom+', '+outleft+' '+outtop+', '+outright+' '+outtop+', '+outright+' '+outbottom+', '+outleft+' '+outbottom+'))';
-var outformat = new ol.format.WKT();
-var outbox = outformat.readFeature(outwkt);
-var outgeometry = outbox.getGeometry();
+	let outwkt = 'POLYGON (('+outleft+' '+outbottom+', '+outleft+' '+outtop+', '+outright+' '+outtop+', '+outright+' '+outbottom+', '+outleft+' '+outbottom+'))';
+	let outformat = new ol.format.WKT();
+	let outbox = outformat.readFeature(outwkt);
+	let outgeometry = outbox.getGeometry();
 
 
 
 map.on('click', function (evt) {
 
-	var feature = getClickedFeature(map, evt);
-	var layer = getClickedLayer(map, evt);
-	
+	let feature = getClickedFeature(map, evt);
+	let layer = getClickedLayer(map, evt);
+
 	if(feature){
-	
+
 		console.log(feature.get('name'));
 		$.featherlight("locationdetails.php?id="+encodeURI(feature.get('name')));
 	}

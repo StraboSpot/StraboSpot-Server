@@ -4,7 +4,7 @@ This file contains data model representations for the map search interface
 Author: Jason Ash (jasonash@ku.edu) 04/21/2017
 */
 
-var trace_vars = {
+	let trace_vars = {
 	trace_quality: 'Trace Quality',
 	other_trace_quality: 'Other Trace Quality',
 	trace_type: 'Trace Type',

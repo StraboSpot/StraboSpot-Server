@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: CookieJar.php
+ * Description: CookieJar class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 namespace GuzzleHttp\Cookie;
 
 use Psr\Http\Message\RequestInterface;

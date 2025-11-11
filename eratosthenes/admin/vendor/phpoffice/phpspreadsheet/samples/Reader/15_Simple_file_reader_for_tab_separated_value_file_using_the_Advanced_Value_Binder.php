@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 15_Simple_file_reader_for_tab_separated_value_file_using_the_Advanced_Value_Binder.php
+ * Description: Handles 15 Simple file reader for tab separated value file using the Advanced Value Binder operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\Cell\AdvancedValueBinder;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;

@@ -1,0 +1,4460 @@
+
+
+
+LogToFile
+made it to documents.
+ 
+
+
+LogToFile
+made it to documents.
+ 
+
+
+LogToFile
+Array
+(
+    [aa7f173b-bf31-48c5-bad3-398b2ed14a12] => Array
+        (
+            [name] => Light Sabers.ai
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpxlMhfJ
+            [error] => 0
+            [size] => 1433476
+        )
+
+    [2f9aeac6-2c8e-4666-a3e6-407e6bb5103e] => Array
+        (
+            [name] => Light Sabers.ai
+            [type] => application/postscript
+            [tmp_name] => /tmp/phppZWRO2
+            [error] => 0
+            [size] => 1433476
+        )
+
+    [6b924b15-6427-44b4-adb8-046c392f2864] => Array
+        (
+            [name] => Light Sabers.eps
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpZx50Om
+            [error] => 0
+            [size] => 4689326
+        )
+
+    [7f54addb-a27e-42c9-bf55-19f74489bc1e] => Array
+        (
+            [name] => Light Sabers.pdf
+            [type] => application/pdf
+            [tmp_name] => /tmp/phpNxJzbT
+            [error] => 0
+            [size] => 374966
+        )
+
+)
+ 
+
+
+LogToFile
+Array
+(
+    [aa7f173b-bf31-48c5-bad3-398b2ed14a12] => Array
+        (
+            [name] => Light Sabers.ai
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpH9wVye
+            [error] => 0
+            [size] => 1433476
+        )
+
+    [2f9aeac6-2c8e-4666-a3e6-407e6bb5103e] => Array
+        (
+            [name] => Light Sabers.ai
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpPcN4m3
+            [error] => 0
+            [size] => 1433476
+        )
+
+    [6b924b15-6427-44b4-adb8-046c392f2864] => Array
+        (
+            [name] => Light Sabers.eps
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpnniwCS
+            [error] => 0
+            [size] => 4689326
+        )
+
+    [7f54addb-a27e-42c9-bf55-19f74489bc1e] => Array
+        (
+            [name] => Light Sabers.pdf
+            [type] => application/pdf
+            [tmp_name] => /tmp/phpJRhNLU
+            [error] => 0
+            [size] => 374966
+        )
+
+)
+ 
+
+
+LogToFile
+Array
+(
+    [aa7f173b-bf31-48c5-bad3-398b2ed14a12] => Array
+        (
+            [name] => Light Sabers.ai
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpH9wVye
+            [error] => 0
+            [size] => 1433476
+        )
+
+    [2f9aeac6-2c8e-4666-a3e6-407e6bb5103e] => Array
+        (
+            [name] => Light Sabers.ai
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpPcN4m3
+            [error] => 0
+            [size] => 1433476
+        )
+
+    [6b924b15-6427-44b4-adb8-046c392f2864] => Array
+        (
+            [name] => Light Sabers.eps
+            [type] => application/postscript
+            [tmp_name] => /tmp/phpnniwCS
+            [error] => 0
+            [size] => 4689326
+        )
+
+    [7f54addb-a27e-42c9-bf55-19f74489bc1e] => Array
+        (
+            [name] => Light Sabers.pdf
+            [type] => application/pdf
+            [tmp_name] => /tmp/phpJRhNLU
+            [error] => 0
+            [size] => 374966
+        )
+
+)
+ 
+
+
+LogToFile
+didnt find file 2e3d1e51-1b23-4679-9d95-d1c18a59457c 
+
+
+LogToFile
+didnt find file 0387daf1-acdd-4862-9fd0-b3bb2feb004c 
+
+
+LogToFile
+didnt find file 7c6ce385-3291-4ae2-9f1a-c16b2c3fdf57 
+
+
+LogToFile
+moving file: /tmp/phpA1dPuT to /srv/app/www/experimental/expimages/aa7f173b-bf31-48c5-bad3-398b2ed14a12 
+ 
+
+
+LogToFile
+			insert into straboexp.experiment values (
+				416,
+				126,
+				3,
+				'LSR1_6120',
+				now(),
+				now(),
+				'{
+    "facility": {
+        "address": {
+            "street": "",
+            "building": "",
+            "postcode": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        "contact": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "handinlab0@gmail.com",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "institute": "Texas A&M University",
+        "department": "Geology and Geophysics",
+        "name": "John W. Handin Experimental Rock Deformation Lab",
+        "type": "University Lab",
+        "other_type": "",
+        "id": "",
+        "website": "",
+        "description": "",
+        "uuid": "f83b82bd-fc73-41f6-841e-06421baf1493",
+        "created_timestamp": "Wed, Oct 18 2023 19:29:57 UTC ",
+        "modified_timestamp": "Wed, Jan 31 2024 17:17:57 UTC "
+    },
+    "apparatus": {
+        "name": "Large Sample Rig 1",
+        "type": "Triaxial (conventional)",
+        "location": "Texas A&M, Handin lab B31A",
+        "id": "LSR 1",
+        "description": "Gear-driven triaxial apparatus employs a double-yoke press designed by Handin and Logan in the 1960s so that loads due to confining pressure and differential stress are decoupled and pressure remains constant while advancing the load piston. This apparatus is uniquely suited for testing weaker rocks in triaxial compression and extension (with a stress resolution of 1 MPa) at constant strain rate or constant stress. Its capabilities include: 980-kN loading capacity, specimens up to 50 mm in diameter and 200 mm in length, strain rates from 10-3 to 10-9 s-1, and confining and pore-fluid pressures up to 250 MPa at room temperature, measurement of acoustic emissions, permeability using the transient-pulse technique, fracture under mixed tensile and compressive stress states, rock and simulated gouge friction testing, failure in thick-walled hollow cylinders, and fracture and folding in rock models. ",
+        "features": [
+            "Loading",
+            "Unloading",
+            "High Pressure",
+            "Hydrostatic Tests",
+            "HIP",
+            "Elasticity",
+            "Elastic Moduli",
+            "Yield Strength",
+            "Failure Strength",
+            "Strength",
+            "Extension",
+            "Creep",
+            "Friction",
+            "Frictional Sliding",
+            "Stepping",
+            "Pore Fluid Control",
+            "Pore Volume Compaction",
+            "Storage Capacity",
+            "Permeability",
+            "Steady-State Permeability",
+            "Drained\/Undrained Pore Fluid",
+            "Triaxial Stress\/Strain",
+            "Differential Stress",
+            "Acoustic Events",
+            "P-Wave Velocity",
+            "S-Wave Velocity"
+        ],
+        "parameters": [
+            {
+                "type": "Confining Pressure",
+                "min": "1",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Pore Pressure",
+                "min": "0",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Temperature",
+                "min": "20",
+                "max": "25",
+                "unit": "degC",
+                "prefix": "-",
+                "note": "room temperature"
+            },
+            {
+                "type": "\u03c31-Load",
+                "min": "0",
+                "max": "980",
+                "unit": "kN",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "\u03c31-Displacement",
+                "min": "0",
+                "max": "100",
+                "unit": "mm",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Displacement Rate",
+                "min": "5e-8",
+                "max": "0.2",
+                "unit": "mm\u00b7sec-1",
+                "prefix": "-",
+                "note": ""
+            }
+        ],
+        "documents": [
+            {
+                "type": "Picture",
+                "format": "jpg",
+                "path": "https:\/\/strabospot.org\/i\/0694e42f-d6b4-4594-89e1-c3159945a818\/LSR1.jpeg",
+                "id": "",
+                "uuid": "0694e42f-d6b4-4594-89e1-c3159945a818",
+                "description": ""
+            }
+        ],
+        "uuid": "f2c42390-a456-4ca4-82e7-b6da617c2fd2",
+        "created_timestamp": "Wed, Oct 18 2023 19:38:12 UTC ",
+        "modified_timestamp": "Wed, Oct 18 2023 19:38:12 UTC "
+    },
+    "daq": {
+        "name": "LSR1_2020",
+        "type": "Conventional",
+        "location": "",
+        "description": "",
+        "devices": [
+            {
+                "name": "NI 9220",
+                "channels": [
+                    {
+                        "header": {
+                            "type": "Pressure",
+                            "other_type": "",
+                            "spec_a": "Confining",
+                            "spec_b": "Vessel",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "1",
+                        "type": "Analog Input",
+                        "configuration": "Differential",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Temperature",
+                            "other_type": "",
+                            "spec_a": "Room",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": ""
+                        },
+                        "number": "2",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "Passive",
+                            "id": "",
+                            "model": "K type",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Stress",
+                            "other_type": "",
+                            "spec_a": "Differential",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Strain",
+                            "other_type": "",
+                            "spec_a": "Axial",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "%"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "sample": {
+        "name": "Carrara Marble",
+        "igsn": "",
+        "id": "Carr_6120",
+        "description": "",
+        "material": {
+            "material": {
+                "type": "Metamorphic Rock",
+                "name": "Other",
+                "state": "",
+                "note": ""
+            },
+            "composition": [],
+            "provenance": {
+                "formation": "",
+                "member": "",
+                "submember": "",
+                "source": "Surface",
+                "location": {
+                    "street": "",
+                    "building": "",
+                    "postcode": "",
+                    "city": "",
+                    "state": "",
+                    "country": "",
+                    "latitude": "",
+                    "longitude": ""
+                }
+            },
+            "texture": {
+                "bedding": "",
+                "lineation": "",
+                "foliation": "",
+                "fault": ""
+            }
+        },
+        "parameters": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/c27c1181-9dd3-42e5-95b4-10b817cb7800\/Carrara_Marble_block.jpg",
+                "id": "",
+                "uuid": "c27c1181-9dd3-42e5-95b4-10b817cb7800",
+                "description": ""
+            }
+        ]
+    },
+    "experiment": {
+        "title": "Carr_6120",
+        "id": "LSR1_6120",
+        "ieda": "",
+        "start_date": "",
+        "end_date": "",
+        "description": "",
+        "features": [
+            "Loading",
+            "Unloading"
+        ],
+        "author": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "geometry": [
+            {
+                "order": "1",
+                "type": "",
+                "geometry": "",
+                "material": "",
+                "dimensions": []
+            }
+        ],
+        "protocol": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/bb4c410e-db72-4594-9249-5b20a2a2be36\/Picture1.jpg",
+                "id": "",
+                "uuid": "bb4c410e-db72-4594-9249-5b20a2a2be36",
+                "description": ""
+            },
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "pdf",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/85d1e86e-4b42-416f-8022-4829aa558c35\/s00603-023-03725-1.pdf",
+                "id": "",
+                "uuid": "85d1e86e-4b42-416f-8022-4829aa558c35",
+                "description": ""
+            }
+        ]
+    },
+    "data": null
+}',
+				'undefined'
+			);
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq values (
+					267,
+					416,
+					3,
+					'LSR1_2020',
+					'Conventional',
+					'',
+					'',
+					'{
+    "name": "LSR1_2020",
+    "type": "Conventional",
+    "location": "",
+    "description": "",
+    "devices": [
+        {
+            "name": "NI 9220",
+            "channels": [
+                {
+                    "header": {
+                        "type": "Pressure",
+                        "other_type": "",
+                        "spec_a": "Confining",
+                        "spec_b": "Vessel",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "1",
+                    "type": "Analog Input",
+                    "configuration": "Differential",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Temperature",
+                        "other_type": "",
+                        "spec_a": "Room",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "2",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "Passive",
+                        "id": "",
+                        "model": "K type",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Stress",
+                        "other_type": "",
+                        "spec_a": "Differential",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Strain",
+                        "other_type": "",
+                        "spec_a": "Axial",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "%"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                }
+            ]
+        }
+    ]
+}'
+				)
+			
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq_device values (
+							269,
+							267,
+							3,
+							'NI 9220'
+						)
+					
+					
+					 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1159,
+									269,
+									3,
+									'Pressure',
+									'Confining',
+									'Vessel',
+									'',
+									'MPa',
+									'1',
+									'Analog Input',
+									'Differential',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1160,
+									269,
+									3,
+									'Temperature',
+									'Room',
+									'External',
+									'',
+									'',
+									'2',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'Passive',
+									'',
+									'K type',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1161,
+									269,
+									3,
+									'Stress',
+									'Differential',
+									'External',
+									'',
+									'MPa',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1162,
+									269,
+									3,
+									'Strain',
+									'Axial',
+									'External',
+									'',
+									'%',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+			insert into straboexp.experiment values (
+				417,
+				126,
+				3,
+				'LSR1_6120',
+				now(),
+				now(),
+				'{
+    "facility": {
+        "address": {
+            "street": "",
+            "building": "",
+            "postcode": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        "contact": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "handinlab0@gmail.com",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "institute": "Texas A&M University",
+        "department": "Geology and Geophysics",
+        "name": "John W. Handin Experimental Rock Deformation Lab",
+        "type": "University Lab",
+        "other_type": "",
+        "id": "",
+        "website": "",
+        "description": "",
+        "uuid": "f83b82bd-fc73-41f6-841e-06421baf1493",
+        "created_timestamp": "Wed, Oct 18 2023 19:29:57 UTC ",
+        "modified_timestamp": "Wed, Jan 31 2024 17:17:57 UTC "
+    },
+    "apparatus": {
+        "name": "Large Sample Rig 1",
+        "type": "Triaxial (conventional)",
+        "location": "Texas A&M, Handin lab B31A",
+        "id": "LSR 1",
+        "description": "Gear-driven triaxial apparatus employs a double-yoke press designed by Handin and Logan in the 1960s so that loads due to confining pressure and differential stress are decoupled and pressure remains constant while advancing the load piston. This apparatus is uniquely suited for testing weaker rocks in triaxial compression and extension (with a stress resolution of 1 MPa) at constant strain rate or constant stress. Its capabilities include: 980-kN loading capacity, specimens up to 50 mm in diameter and 200 mm in length, strain rates from 10-3 to 10-9 s-1, and confining and pore-fluid pressures up to 250 MPa at room temperature, measurement of acoustic emissions, permeability using the transient-pulse technique, fracture under mixed tensile and compressive stress states, rock and simulated gouge friction testing, failure in thick-walled hollow cylinders, and fracture and folding in rock models. ",
+        "features": [
+            "Loading",
+            "Unloading",
+            "High Pressure",
+            "Hydrostatic Tests",
+            "HIP",
+            "Elasticity",
+            "Elastic Moduli",
+            "Yield Strength",
+            "Failure Strength",
+            "Strength",
+            "Extension",
+            "Creep",
+            "Friction",
+            "Frictional Sliding",
+            "Stepping",
+            "Pore Fluid Control",
+            "Pore Volume Compaction",
+            "Storage Capacity",
+            "Permeability",
+            "Steady-State Permeability",
+            "Drained\/Undrained Pore Fluid",
+            "Triaxial Stress\/Strain",
+            "Differential Stress",
+            "Acoustic Events",
+            "P-Wave Velocity",
+            "S-Wave Velocity"
+        ],
+        "parameters": [
+            {
+                "type": "Confining Pressure",
+                "min": "1",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Pore Pressure",
+                "min": "0",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Temperature",
+                "min": "20",
+                "max": "25",
+                "unit": "degC",
+                "prefix": "-",
+                "note": "room temperature"
+            },
+            {
+                "type": "\u03c31-Load",
+                "min": "0",
+                "max": "980",
+                "unit": "kN",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "\u03c31-Displacement",
+                "min": "0",
+                "max": "100",
+                "unit": "mm",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Displacement Rate",
+                "min": "5e-8",
+                "max": "0.2",
+                "unit": "mm\u00b7sec-1",
+                "prefix": "-",
+                "note": ""
+            }
+        ],
+        "documents": [
+            {
+                "type": "Picture",
+                "format": "jpg",
+                "path": "https:\/\/strabospot.org\/i\/0694e42f-d6b4-4594-89e1-c3159945a818\/LSR1.jpeg",
+                "id": "",
+                "uuid": "0694e42f-d6b4-4594-89e1-c3159945a818",
+                "description": ""
+            }
+        ],
+        "uuid": "f2c42390-a456-4ca4-82e7-b6da617c2fd2",
+        "created_timestamp": "Wed, Oct 18 2023 19:38:12 UTC ",
+        "modified_timestamp": "Wed, Oct 18 2023 19:38:12 UTC "
+    },
+    "daq": {
+        "name": "LSR1_2020",
+        "type": "Conventional",
+        "location": "",
+        "description": "",
+        "devices": [
+            {
+                "name": "NI 9220",
+                "channels": [
+                    {
+                        "header": {
+                            "type": "Time",
+                            "other_type": "",
+                            "spec_a": "",
+                            "spec_b": "",
+                            "spec_c": "",
+                            "unit": ""
+                        },
+                        "number": "0",
+                        "type": "System Clock",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Pressure",
+                            "other_type": "",
+                            "spec_a": "Confining",
+                            "spec_b": "Vessel",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "1",
+                        "type": "Analog Input",
+                        "configuration": "Differential",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Temperature",
+                            "other_type": "",
+                            "spec_a": "Room",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": ""
+                        },
+                        "number": "2",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "Passive",
+                            "id": "",
+                            "model": "K type",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Stress",
+                            "other_type": "",
+                            "spec_a": "Differential",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Strain",
+                            "other_type": "",
+                            "spec_a": "Axial",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "%"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "sample": {
+        "name": "Carrara Marble",
+        "igsn": "",
+        "id": "Carr_6120",
+        "description": "",
+        "material": {
+            "material": {
+                "type": "Metamorphic Rock",
+                "name": "Other",
+                "state": "",
+                "note": ""
+            },
+            "composition": [],
+            "provenance": {
+                "formation": "",
+                "member": "",
+                "submember": "",
+                "source": "Surface",
+                "location": {
+                    "street": "",
+                    "building": "",
+                    "postcode": "",
+                    "city": "",
+                    "state": "",
+                    "country": "",
+                    "latitude": "",
+                    "longitude": ""
+                }
+            },
+            "texture": {
+                "bedding": "",
+                "lineation": "",
+                "foliation": "",
+                "fault": ""
+            }
+        },
+        "parameters": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/c27c1181-9dd3-42e5-95b4-10b817cb7800\/Carrara_Marble_block.jpg",
+                "id": "",
+                "uuid": "c27c1181-9dd3-42e5-95b4-10b817cb7800",
+                "description": ""
+            }
+        ]
+    },
+    "experiment": {
+        "title": "Carr_6120",
+        "id": "LSR1_6120",
+        "ieda": "",
+        "start_date": "",
+        "end_date": "",
+        "description": "",
+        "features": [
+            "Loading",
+            "Unloading"
+        ],
+        "author": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "geometry": [
+            {
+                "order": "1",
+                "type": "",
+                "geometry": "",
+                "material": "",
+                "dimensions": []
+            }
+        ],
+        "protocol": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/bb4c410e-db72-4594-9249-5b20a2a2be36\/Picture1.jpg",
+                "id": "",
+                "uuid": "bb4c410e-db72-4594-9249-5b20a2a2be36",
+                "description": ""
+            },
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "pdf",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/85d1e86e-4b42-416f-8022-4829aa558c35\/s00603-023-03725-1.pdf",
+                "id": "",
+                "uuid": "85d1e86e-4b42-416f-8022-4829aa558c35",
+                "description": ""
+            }
+        ]
+    },
+    "data": null
+}',
+				'c0857be8-97c2-43ac-9640-90344f0c70c6'
+			);
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq values (
+					268,
+					417,
+					3,
+					'LSR1_2020',
+					'Conventional',
+					'',
+					'',
+					'{
+    "name": "LSR1_2020",
+    "type": "Conventional",
+    "location": "",
+    "description": "",
+    "devices": [
+        {
+            "name": "NI 9220",
+            "channels": [
+                {
+                    "header": {
+                        "type": "Time",
+                        "other_type": "",
+                        "spec_a": "",
+                        "spec_b": "",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "0",
+                    "type": "System Clock",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Pressure",
+                        "other_type": "",
+                        "spec_a": "Confining",
+                        "spec_b": "Vessel",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "1",
+                    "type": "Analog Input",
+                    "configuration": "Differential",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Temperature",
+                        "other_type": "",
+                        "spec_a": "Room",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "2",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "Passive",
+                        "id": "",
+                        "model": "K type",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Stress",
+                        "other_type": "",
+                        "spec_a": "Differential",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Strain",
+                        "other_type": "",
+                        "spec_a": "Axial",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "%"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                }
+            ]
+        }
+    ]
+}'
+				)
+			
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq_device values (
+							270,
+							268,
+							3,
+							'NI 9220'
+						)
+					
+					
+					 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1163,
+									270,
+									3,
+									'Time',
+									'',
+									'',
+									'',
+									'',
+									'0',
+									'System Clock',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1164,
+									270,
+									3,
+									'Pressure',
+									'Confining',
+									'Vessel',
+									'',
+									'MPa',
+									'1',
+									'Analog Input',
+									'Differential',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1165,
+									270,
+									3,
+									'Temperature',
+									'Room',
+									'External',
+									'',
+									'',
+									'2',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'Passive',
+									'',
+									'K type',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1166,
+									270,
+									3,
+									'Stress',
+									'Differential',
+									'External',
+									'',
+									'MPa',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1167,
+									270,
+									3,
+									'Strain',
+									'Axial',
+									'External',
+									'',
+									'%',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+			insert into straboexp.experiment values (
+				418,
+				126,
+				3,
+				'LSR1_6120',
+				now(),
+				now(),
+				'{
+    "facility": {
+        "address": {
+            "street": "",
+            "building": "",
+            "postcode": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        "contact": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "handinlab0@gmail.com",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "institute": "Texas A&M University",
+        "department": "Geology and Geophysics",
+        "name": "John W. Handin Experimental Rock Deformation Lab",
+        "type": "University Lab",
+        "other_type": "",
+        "id": "",
+        "website": "",
+        "description": "",
+        "uuid": "f83b82bd-fc73-41f6-841e-06421baf1493",
+        "created_timestamp": "Wed, Oct 18 2023 19:29:57 UTC ",
+        "modified_timestamp": "Wed, Jan 31 2024 17:17:57 UTC "
+    },
+    "apparatus": {
+        "name": "Large Sample Rig 1",
+        "type": "Triaxial (conventional)",
+        "location": "Texas A&M, Handin lab B31A",
+        "id": "LSR 1",
+        "description": "Gear-driven triaxial apparatus employs a double-yoke press designed by Handin and Logan in the 1960s so that loads due to confining pressure and differential stress are decoupled and pressure remains constant while advancing the load piston. This apparatus is uniquely suited for testing weaker rocks in triaxial compression and extension (with a stress resolution of 1 MPa) at constant strain rate or constant stress. Its capabilities include: 980-kN loading capacity, specimens up to 50 mm in diameter and 200 mm in length, strain rates from 10-3 to 10-9 s-1, and confining and pore-fluid pressures up to 250 MPa at room temperature, measurement of acoustic emissions, permeability using the transient-pulse technique, fracture under mixed tensile and compressive stress states, rock and simulated gouge friction testing, failure in thick-walled hollow cylinders, and fracture and folding in rock models. ",
+        "features": [
+            "Loading",
+            "Unloading",
+            "High Pressure",
+            "Hydrostatic Tests",
+            "HIP",
+            "Elasticity",
+            "Elastic Moduli",
+            "Yield Strength",
+            "Failure Strength",
+            "Strength",
+            "Extension",
+            "Creep",
+            "Friction",
+            "Frictional Sliding",
+            "Stepping",
+            "Pore Fluid Control",
+            "Pore Volume Compaction",
+            "Storage Capacity",
+            "Permeability",
+            "Steady-State Permeability",
+            "Drained\/Undrained Pore Fluid",
+            "Triaxial Stress\/Strain",
+            "Differential Stress",
+            "Acoustic Events",
+            "P-Wave Velocity",
+            "S-Wave Velocity"
+        ],
+        "parameters": [
+            {
+                "type": "Confining Pressure",
+                "min": "1",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Pore Pressure",
+                "min": "0",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Temperature",
+                "min": "20",
+                "max": "25",
+                "unit": "degC",
+                "prefix": "-",
+                "note": "room temperature"
+            },
+            {
+                "type": "\u03c31-Load",
+                "min": "0",
+                "max": "980",
+                "unit": "kN",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "\u03c31-Displacement",
+                "min": "0",
+                "max": "100",
+                "unit": "mm",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Displacement Rate",
+                "min": "5e-8",
+                "max": "0.2",
+                "unit": "mm\u00b7sec-1",
+                "prefix": "-",
+                "note": ""
+            }
+        ],
+        "documents": [
+            {
+                "type": "Picture",
+                "format": "jpg",
+                "path": "https:\/\/strabospot.org\/i\/0694e42f-d6b4-4594-89e1-c3159945a818\/LSR1.jpeg",
+                "id": "",
+                "uuid": "0694e42f-d6b4-4594-89e1-c3159945a818",
+                "description": ""
+            }
+        ],
+        "uuid": "f2c42390-a456-4ca4-82e7-b6da617c2fd2",
+        "created_timestamp": "Wed, Oct 18 2023 19:38:12 UTC ",
+        "modified_timestamp": "Wed, Oct 18 2023 19:38:12 UTC "
+    },
+    "daq": {
+        "name": "LSR1_2020",
+        "type": "Conventional",
+        "location": "",
+        "description": "",
+        "devices": [
+            {
+                "name": "NI 9220",
+                "channels": [
+                    {
+                        "header": {
+                            "type": "Time",
+                            "other_type": "",
+                            "spec_a": "",
+                            "spec_b": "",
+                            "spec_c": "",
+                            "unit": ""
+                        },
+                        "number": "0",
+                        "type": "System Clock",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Pressure",
+                            "other_type": "",
+                            "spec_a": "Confining",
+                            "spec_b": "Vessel",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "1",
+                        "type": "Analog Input",
+                        "configuration": "Differential",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Temperature",
+                            "other_type": "",
+                            "spec_a": "Room",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": ""
+                        },
+                        "number": "2",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "Passive",
+                            "id": "",
+                            "model": "K type",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Stress",
+                            "other_type": "",
+                            "spec_a": "Differential",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Strain",
+                            "other_type": "",
+                            "spec_a": "Axial",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "%"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "sample": {
+        "name": "Carrara Marble",
+        "igsn": "",
+        "id": "Carr_6120",
+        "description": "",
+        "material": {
+            "material": {
+                "type": "Metamorphic Rock",
+                "name": "Other",
+                "state": "",
+                "note": ""
+            },
+            "composition": [],
+            "provenance": {
+                "formation": "",
+                "member": "",
+                "submember": "",
+                "source": "Surface",
+                "location": {
+                    "street": "",
+                    "building": "",
+                    "postcode": "",
+                    "city": "",
+                    "state": "",
+                    "country": "",
+                    "latitude": "",
+                    "longitude": ""
+                }
+            },
+            "texture": {
+                "bedding": "",
+                "lineation": "",
+                "foliation": "",
+                "fault": ""
+            }
+        },
+        "parameters": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/c27c1181-9dd3-42e5-95b4-10b817cb7800\/Carrara_Marble_block.jpg",
+                "id": "",
+                "uuid": "c27c1181-9dd3-42e5-95b4-10b817cb7800",
+                "description": ""
+            }
+        ]
+    },
+    "experiment": {
+        "title": "Carr_6120",
+        "id": "LSR1_6120",
+        "ieda": "",
+        "start_date": "",
+        "end_date": "",
+        "description": "",
+        "features": [
+            "Loading",
+            "Unloading"
+        ],
+        "author": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "geometry": [
+            {
+                "order": "1",
+                "type": "",
+                "geometry": "",
+                "material": "",
+                "dimensions": []
+            }
+        ],
+        "protocol": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/bb4c410e-db72-4594-9249-5b20a2a2be36\/Picture1.jpg",
+                "id": "",
+                "uuid": "bb4c410e-db72-4594-9249-5b20a2a2be36",
+                "description": ""
+            },
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "pdf",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/85d1e86e-4b42-416f-8022-4829aa558c35\/s00603-023-03725-1.pdf",
+                "id": "",
+                "uuid": "85d1e86e-4b42-416f-8022-4829aa558c35",
+                "description": ""
+            }
+        ]
+    },
+    "data": null
+}',
+				'a7a5f63d-09ed-40e1-b0af-a4f7f22bf824'
+			);
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq values (
+					269,
+					418,
+					3,
+					'LSR1_2020',
+					'Conventional',
+					'',
+					'',
+					'{
+    "name": "LSR1_2020",
+    "type": "Conventional",
+    "location": "",
+    "description": "",
+    "devices": [
+        {
+            "name": "NI 9220",
+            "channels": [
+                {
+                    "header": {
+                        "type": "Time",
+                        "other_type": "",
+                        "spec_a": "",
+                        "spec_b": "",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "0",
+                    "type": "System Clock",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Pressure",
+                        "other_type": "",
+                        "spec_a": "Confining",
+                        "spec_b": "Vessel",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "1",
+                    "type": "Analog Input",
+                    "configuration": "Differential",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Temperature",
+                        "other_type": "",
+                        "spec_a": "Room",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "2",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "Passive",
+                        "id": "",
+                        "model": "K type",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Stress",
+                        "other_type": "",
+                        "spec_a": "Differential",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Strain",
+                        "other_type": "",
+                        "spec_a": "Axial",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "%"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                }
+            ]
+        }
+    ]
+}'
+				)
+			
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq_device values (
+							271,
+							269,
+							3,
+							'NI 9220'
+						)
+					
+					
+					 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1168,
+									271,
+									3,
+									'Time',
+									'',
+									'',
+									'',
+									'',
+									'0',
+									'System Clock',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1169,
+									271,
+									3,
+									'Pressure',
+									'Confining',
+									'Vessel',
+									'',
+									'MPa',
+									'1',
+									'Analog Input',
+									'Differential',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1170,
+									271,
+									3,
+									'Temperature',
+									'Room',
+									'External',
+									'',
+									'',
+									'2',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'Passive',
+									'',
+									'K type',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1171,
+									271,
+									3,
+									'Stress',
+									'Differential',
+									'External',
+									'',
+									'MPa',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1172,
+									271,
+									3,
+									'Strain',
+									'Axial',
+									'External',
+									'',
+									'%',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+			insert into straboexp.experiment values (
+				420,
+				126,
+				3,
+				'LSR1_6120',
+				now(),
+				now(),
+				'{
+    "facility": {
+        "address": {
+            "street": "",
+            "building": "",
+            "postcode": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        "contact": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "handinlab0@gmail.com",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "institute": "Texas A&M University",
+        "department": "Geology and Geophysics",
+        "name": "John W. Handin Experimental Rock Deformation Lab",
+        "type": "University Lab",
+        "other_type": "",
+        "id": "",
+        "website": "",
+        "description": "",
+        "uuid": "f83b82bd-fc73-41f6-841e-06421baf1493",
+        "created_timestamp": "Wed, Oct 18 2023 19:29:57 UTC ",
+        "modified_timestamp": "Wed, Jan 31 2024 17:17:57 UTC "
+    },
+    "apparatus": {
+        "name": "Large Sample Rig 1",
+        "type": "Triaxial (conventional)",
+        "location": "Texas A&M, Handin lab B31A",
+        "id": "LSR 1",
+        "description": "Gear-driven triaxial apparatus employs a double-yoke press designed by Handin and Logan in the 1960s so that loads due to confining pressure and differential stress are decoupled and pressure remains constant while advancing the load piston. This apparatus is uniquely suited for testing weaker rocks in triaxial compression and extension (with a stress resolution of 1 MPa) at constant strain rate or constant stress. Its capabilities include: 980-kN loading capacity, specimens up to 50 mm in diameter and 200 mm in length, strain rates from 10-3 to 10-9 s-1, and confining and pore-fluid pressures up to 250 MPa at room temperature, measurement of acoustic emissions, permeability using the transient-pulse technique, fracture under mixed tensile and compressive stress states, rock and simulated gouge friction testing, failure in thick-walled hollow cylinders, and fracture and folding in rock models. ",
+        "features": [
+            "Loading",
+            "Unloading",
+            "High Pressure",
+            "Hydrostatic Tests",
+            "HIP",
+            "Elasticity",
+            "Elastic Moduli",
+            "Yield Strength",
+            "Failure Strength",
+            "Strength",
+            "Extension",
+            "Creep",
+            "Friction",
+            "Frictional Sliding",
+            "Stepping",
+            "Pore Fluid Control",
+            "Pore Volume Compaction",
+            "Storage Capacity",
+            "Permeability",
+            "Steady-State Permeability",
+            "Drained\/Undrained Pore Fluid",
+            "Triaxial Stress\/Strain",
+            "Differential Stress",
+            "Acoustic Events",
+            "P-Wave Velocity",
+            "S-Wave Velocity"
+        ],
+        "parameters": [
+            {
+                "type": "Confining Pressure",
+                "min": "1",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Pore Pressure",
+                "min": "0",
+                "max": "250",
+                "unit": "MPa",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Temperature",
+                "min": "20",
+                "max": "25",
+                "unit": "degC",
+                "prefix": "-",
+                "note": "room temperature"
+            },
+            {
+                "type": "\u03c31-Load",
+                "min": "0",
+                "max": "980",
+                "unit": "kN",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "\u03c31-Displacement",
+                "min": "0",
+                "max": "100",
+                "unit": "mm",
+                "prefix": "-",
+                "note": ""
+            },
+            {
+                "type": "Displacement Rate",
+                "min": "5e-8",
+                "max": "0.2",
+                "unit": "mm\u00b7sec-1",
+                "prefix": "-",
+                "note": ""
+            }
+        ],
+        "documents": [
+            {
+                "type": "Picture",
+                "format": "jpg",
+                "path": "https:\/\/strabospot.org\/i\/0694e42f-d6b4-4594-89e1-c3159945a818\/LSR1.jpeg",
+                "id": "",
+                "uuid": "0694e42f-d6b4-4594-89e1-c3159945a818",
+                "description": ""
+            }
+        ],
+        "uuid": "f2c42390-a456-4ca4-82e7-b6da617c2fd2",
+        "created_timestamp": "Wed, Oct 18 2023 19:38:12 UTC ",
+        "modified_timestamp": "Wed, Oct 18 2023 19:38:12 UTC "
+    },
+    "daq": {
+        "name": "LSR1_2020",
+        "type": "Conventional",
+        "location": "",
+        "description": "",
+        "devices": [
+            {
+                "name": "NI 9220",
+                "channels": [
+                    {
+                        "header": {
+                            "type": "Time",
+                            "other_type": "",
+                            "spec_a": "",
+                            "spec_b": "",
+                            "spec_c": "",
+                            "unit": ""
+                        },
+                        "number": "0",
+                        "type": "System Clock",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Pressure",
+                            "other_type": "",
+                            "spec_a": "Confining",
+                            "spec_b": "Vessel",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "1",
+                        "type": "Analog Input",
+                        "configuration": "Differential",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Temperature",
+                            "other_type": "",
+                            "spec_a": "Room",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": ""
+                        },
+                        "number": "2",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "Passive",
+                            "id": "",
+                            "model": "K type",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Stress",
+                            "other_type": "",
+                            "spec_a": "Differential",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "MPa"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    },
+                    {
+                        "header": {
+                            "type": "Strain",
+                            "other_type": "",
+                            "spec_a": "Axial",
+                            "spec_b": "External",
+                            "spec_c": "",
+                            "unit": "%"
+                        },
+                        "number": "",
+                        "type": "",
+                        "configuration": "",
+                        "note": "",
+                        "resolution": "",
+                        "range_low": "",
+                        "range_high": "",
+                        "rate": "",
+                        "filter": "",
+                        "gain": "",
+                        "sensor": {
+                            "template": "",
+                            "detail": "",
+                            "type": "",
+                            "id": "",
+                            "model": "",
+                            "version": "",
+                            "number": "",
+                            "serial": ""
+                        },
+                        "calibration": {
+                            "template": "",
+                            "input": "",
+                            "unit": "",
+                            "excitation": "",
+                            "date": "",
+                            "note": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "sample": {
+        "name": "Carrara Marble",
+        "igsn": "",
+        "id": "Carr_6120",
+        "description": "",
+        "material": {
+            "material": {
+                "type": "Metamorphic Rock",
+                "name": "Other",
+                "state": "",
+                "note": ""
+            },
+            "composition": [],
+            "provenance": {
+                "formation": "",
+                "member": "",
+                "submember": "",
+                "source": "Surface",
+                "location": {
+                    "street": "",
+                    "building": "",
+                    "postcode": "",
+                    "city": "",
+                    "state": "",
+                    "country": "",
+                    "latitude": "",
+                    "longitude": ""
+                }
+            },
+            "texture": {
+                "bedding": "",
+                "lineation": "",
+                "foliation": "",
+                "fault": ""
+            }
+        },
+        "parameters": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/c27c1181-9dd3-42e5-95b4-10b817cb7800\/Carrara_Marble_block.jpg",
+                "id": "",
+                "uuid": "c27c1181-9dd3-42e5-95b4-10b817cb7800",
+                "description": ""
+            }
+        ]
+    },
+    "experiment": {
+        "title": "Carr_6120",
+        "id": "LSR1_6120",
+        "ieda": "",
+        "start_date": "",
+        "end_date": "",
+        "description": "",
+        "features": [
+            "Loading",
+            "Unloading"
+        ],
+        "author": {
+            "firstname": "",
+            "lastname": "",
+            "affiliation": "",
+            "email": "",
+            "phone": "",
+            "website": "",
+            "id": ""
+        },
+        "geometry": [
+            {
+                "order": "1",
+                "type": "",
+                "geometry": "",
+                "material": "",
+                "dimensions": []
+            }
+        ],
+        "protocol": [],
+        "documents": [
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "jpg",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/bb4c410e-db72-4594-9249-5b20a2a2be36\/Picture1.jpg",
+                "id": "",
+                "uuid": "bb4c410e-db72-4594-9249-5b20a2a2be36",
+                "description": ""
+            },
+            {
+                "type": "Manual",
+                "other_type": "",
+                "format": "pdf",
+                "other_format": "",
+                "path": "https:\/\/strabospot.org\/i\/85d1e86e-4b42-416f-8022-4829aa558c35\/s00603-023-03725-1.pdf",
+                "id": "",
+                "uuid": "85d1e86e-4b42-416f-8022-4829aa558c35",
+                "description": ""
+            }
+        ]
+    },
+    "data": null
+}',
+				'998d134a-174e-4bc1-8883-d86abe52d2ea'
+			); 
+
+
+LogToFile
+insert into straboexp.daq values (
+					272,
+					421,
+					3,
+					'LSR1_2020',
+					'Conventional',
+					'',
+					'',
+					'{
+    "name": "LSR1_2020",
+    "type": "Conventional",
+    "location": "",
+    "description": "",
+    "devices": [
+        {
+            "name": "NI 9220",
+            "channels": [
+                {
+                    "header": {
+                        "type": "Time",
+                        "other_type": "",
+                        "spec_a": "",
+                        "spec_b": "",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "0",
+                    "type": "System Clock",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Pressure",
+                        "other_type": "",
+                        "spec_a": "Confining",
+                        "spec_b": "Vessel",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "1",
+                    "type": "Analog Input",
+                    "configuration": "Differential",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Temperature",
+                        "other_type": "",
+                        "spec_a": "Room",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "2",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "Passive",
+                        "id": "",
+                        "model": "K type",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Stress",
+                        "other_type": "",
+                        "spec_a": "Differential",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Strain",
+                        "other_type": "",
+                        "spec_a": "Axial",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "%"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                }
+            ]
+        }
+    ]
+}'
+				)
+			
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq_device values (
+							274,
+							272,
+							3,
+							'NI 9220'
+						)
+					
+					
+					 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1183,
+									274,
+									3,
+									'Time',
+									'',
+									'',
+									'',
+									'',
+									'0',
+									'System Clock',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1184,
+									274,
+									3,
+									'Pressure',
+									'Confining',
+									'Vessel',
+									'',
+									'MPa',
+									'1',
+									'Analog Input',
+									'Differential',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1185,
+									274,
+									3,
+									'Temperature',
+									'Room',
+									'External',
+									'',
+									'',
+									'2',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'Passive',
+									'',
+									'K type',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1186,
+									274,
+									3,
+									'Stress',
+									'Differential',
+									'External',
+									'',
+									'MPa',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1187,
+									274,
+									3,
+									'Strain',
+									'Axial',
+									'External',
+									'',
+									'%',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+insert into straboexp.daq values (
+					273,
+					422,
+					3,
+					'LSR1_2020',
+					'Conventional',
+					'',
+					'',
+					'{
+    "name": "LSR1_2020",
+    "type": "Conventional",
+    "location": "",
+    "description": "",
+    "devices": [
+        {
+            "name": "NI 9220",
+            "channels": [
+                {
+                    "header": {
+                        "type": "Time",
+                        "other_type": "",
+                        "spec_a": "",
+                        "spec_b": "",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "0",
+                    "type": "System Clock",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Pressure",
+                        "other_type": "",
+                        "spec_a": "Confining",
+                        "spec_b": "Vessel",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "1",
+                    "type": "Analog Input",
+                    "configuration": "Differential",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Temperature",
+                        "other_type": "",
+                        "spec_a": "Room",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "2",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "Passive",
+                        "id": "",
+                        "model": "K type",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Stress",
+                        "other_type": "",
+                        "spec_a": "Differential",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Strain",
+                        "other_type": "",
+                        "spec_a": "Axial",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "%"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                }
+            ]
+        }
+    ]
+}'
+				)
+			
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq_device values (
+							275,
+							273,
+							3,
+							'NI 9220'
+						)
+					
+					
+					 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1188,
+									275,
+									3,
+									'Time',
+									'',
+									'',
+									'',
+									'',
+									'0',
+									'System Clock',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1189,
+									275,
+									3,
+									'Pressure',
+									'Confining',
+									'Vessel',
+									'',
+									'MPa',
+									'1',
+									'Analog Input',
+									'Differential',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1190,
+									275,
+									3,
+									'Temperature',
+									'Room',
+									'External',
+									'',
+									'',
+									'2',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'Passive',
+									'',
+									'K type',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1191,
+									275,
+									3,
+									'Stress',
+									'Differential',
+									'External',
+									'',
+									'MPa',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1192,
+									275,
+									3,
+									'Strain',
+									'Axial',
+									'External',
+									'',
+									'%',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+insert into straboexp.daq values (
+					274,
+					423,
+					3,
+					'LSR1_2020',
+					'Conventional',
+					'',
+					'',
+					'{
+    "name": "LSR1_2020",
+    "type": "Conventional",
+    "location": "",
+    "description": "",
+    "devices": [
+        {
+            "name": "NI 9220",
+            "channels": [
+                {
+                    "header": {
+                        "type": "Time",
+                        "other_type": "",
+                        "spec_a": "",
+                        "spec_b": "",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "0",
+                    "type": "System Clock",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Pressure",
+                        "other_type": "",
+                        "spec_a": "Confining",
+                        "spec_b": "Vessel",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "1",
+                    "type": "Analog Input",
+                    "configuration": "Differential",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Temperature",
+                        "other_type": "",
+                        "spec_a": "Room",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": ""
+                    },
+                    "number": "2",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "Passive",
+                        "id": "",
+                        "model": "K type",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Stress",
+                        "other_type": "",
+                        "spec_a": "Differential",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "MPa"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                },
+                {
+                    "header": {
+                        "type": "Strain",
+                        "other_type": "",
+                        "spec_a": "Axial",
+                        "spec_b": "External",
+                        "spec_c": "",
+                        "unit": "%"
+                    },
+                    "number": "",
+                    "type": "",
+                    "configuration": "",
+                    "note": "",
+                    "resolution": "",
+                    "range_low": "",
+                    "range_high": "",
+                    "rate": "",
+                    "filter": "",
+                    "gain": "",
+                    "sensor": {
+                        "template": "",
+                        "detail": "",
+                        "type": "",
+                        "id": "",
+                        "model": "",
+                        "version": "",
+                        "number": "",
+                        "serial": ""
+                    },
+                    "calibration": {
+                        "template": "",
+                        "input": "",
+                        "unit": "",
+                        "excitation": "",
+                        "date": "",
+                        "note": ""
+                    }
+                }
+            ]
+        }
+    ]
+}'
+				)
+			
+			
+			 
+
+
+LogToFile
+insert into straboexp.daq_device values (
+							276,
+							274,
+							3,
+							'NI 9220'
+						)
+					
+					
+					 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1193,
+									276,
+									3,
+									'Time',
+									'',
+									'',
+									'',
+									'',
+									'0',
+									'System Clock',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1194,
+									276,
+									3,
+									'Pressure',
+									'Confining',
+									'Vessel',
+									'',
+									'MPa',
+									'1',
+									'Analog Input',
+									'Differential',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1195,
+									276,
+									3,
+									'Temperature',
+									'Room',
+									'External',
+									'',
+									'',
+									'2',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'Passive',
+									'',
+									'K type',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1196,
+									276,
+									3,
+									'Stress',
+									'Differential',
+									'External',
+									'',
+									'MPa',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 
+
+
+LogToFile
+								insert into straboexp.daq_device_channel values (
+									1197,
+									276,
+									3,
+									'Strain',
+									'Axial',
+									'External',
+									'',
+									'%',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									'',
+									''
+								)
+							
+							
+							 

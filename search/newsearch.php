@@ -43,22 +43,22 @@ if($_GET['datasetid']!=""){
 	<link rel="stylesheet" href="/assets/js/jquery-ui/jquery-ui.css" type="text/css">
 	<link rel="stylesheet" href="/assets/js/featherlight/featherlight.css" type="text/css">
 	<link rel="stylesheet" href="/assets/js/ionic/css/ionic.css" type="text/css">
-	<link rel="stylesheet" href="/search/includes/new_map_search.css" type="text/css">
-	<link rel="stylesheet" href="/search/includes/fancybox/src/css/core.css" type="text/css">
+	<link rel="stylesheet" href="includes/new_map_search.css" type="text/css">
+	<link rel="stylesheet" href="includes/fancybox/src/css/core.css" type="text/css">
 	<link rel="stylesheet" href="includes/sidesearch.css" type="text/css">
 	<link rel="stylesheet" href="includes/w3.css" type="text/css">
 	<link rel="stylesheet" href="includes/js/easyautocomplete/dist/easy-autocomplete.css" type="text/css">
 
 	<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+	<!--<script src="https://cdn.polyffffill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>-->
 	<script src="/assets/js/ol4/ol.js"></script>
 	<script src="/assets/js/layerswitcher/layerswitcher.js"></script>
 
 	<!-- Map Search-Specific Files-->
-	<script src="/search/includes/map_search_functions.js"></script>
-	<script src="/search/includes/tab_builders.js"></script>
-	<script src="/search/includes/data_model.js"></script>
-	<script src="/search/includes/sidebar.js"></script>
+	<script src="includes/map_search_functions.js"></script>
+	<script src="includes/tab_builders.js"></script>
+	<script src="includes/data_model.js"></script>
+	<script src="includes/sidebar.js"></script>
 	
 	<!-- External Libraries-->
 	<script src="/assets/js/underscore/underscore-min.js"></script>
@@ -73,7 +73,7 @@ if($_GET['datasetid']!=""){
 
 	<script src="/assets/js/featherlight/featherlight.js"></script>
 	<script src="/assets/js/turf/turf.min.js"></script>
-	<script src="/search/includes/fancybox/src/js/core.js"></script>
+	<script src="includes/fancybox/src/js/core.js"></script>
 	
 	<script>
 		$( function() {
@@ -267,7 +267,7 @@ if($_GET['datasetid']!=""){
 
 
 
-
+					<!--
 					<div class="wrap-collabsible">
 						<input id="collapsible" class="toggle" type="checkbox">
 						<label for="collapsible" class="lbl-toggle">Project Name Here.</label>
@@ -289,7 +289,7 @@ if($_GET['datasetid']!=""){
 
 
 
-					<!--
+					
 					<div class="searchProjectBox">
 						<div class="searchProjectHeader"><i class="arrow right"></i> Project Title Here</div>
 						<div class="searchProjectContent">
@@ -312,7 +312,7 @@ if($_GET['datasetid']!=""){
 			
 			<div class="sideBarFooter">
 				<div id="sideDownloadButton">
-					<button>here</button>
+					<button onclick="panToDataset(15385041846501);">here</button>
 				</div>
 			</div>
 
@@ -613,7 +613,7 @@ if($_GET['datasetid']!=""){
 		});
 
     </script>
-    <script src="/search/includes/map_interface.js"></script>
+    <script src="includes/map_interface.js"></script>
     <?
     if($_GET['c']!=""){
     	$c = $_GET['c'];

@@ -1,5 +1,16 @@
-<?
-include 'includes/header.php';
+<?php
+/**
+ * File: downloadapp.php
+ * Description: StraboField App
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
+include 'includes/mheader.php';
 
 ?>
 
@@ -40,7 +51,6 @@ include 'includes/header.php';
 }
 
 .greenbutton:hover span {
-  //padding-right: 25px;
 }
 
 .greenbutton:hover span:after {
@@ -49,8 +59,6 @@ include 'includes/header.php';
 }
 
 .greenbutton:active {
-  //background-color: #3e8e41;
-  //box-shadow: 0 2px #666;
   transform: translateY(2px);
 }
 
@@ -71,7 +79,6 @@ include 'includes/header.php';
 .inlineblock{
 	display:inline-block;
 }
-
 
 .osrow {
 	padding: 20px 0px 0px 5px;
@@ -130,37 +137,41 @@ include 'includes/header.php';
 
 </style>
 
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
 
+						<header class="major">
+							<h2>StraboField App</h2>
+						</header>
 
-<h2>The StraboSpot App:</h2>
-
-<div class="osrow">
+<div>
 
 	<div align="center">
-		<img class="osimage" src="assets/js/images/apple.png"/> StraboSpot for iOS is available on the <a href="https://itunes.apple.com/us/app/strabospot/id1221659633?mt=8" target="_blank">iTunes Store</a>
+		<h3>StraboSpot for iOS is available on the <a href="https://apps.apple.com/us/app/strabospot2/id1555903455" target="_blank">Apple App Store</a></h3>
 	</div>
 </div>
 
-<div class="osrow">
+<div class="padBottom">
 
 	<div align="center">
-		<img class="osimage" src="assets/js/images/android.png"/> StraboSpot for Android is available on the <a href="https://play.google.com/store/apps/details?id=org.strabospot.strabo2&hl=en" target="_blank">Google Play Store</a>
+		<h3>StraboSpot for Android is available on the <a href="https://play.google.com/store/search?q=strabospot+2&c=apps&hl=en" target="_blank">Google Play Store</a></h3>
 	</div>
 </div>
 
-<table style="padding-top:10px;">
-	<tr>
-		<td class="appimage"><img class="appimageborder" src="assets/files/app_pics/1.jpg" width="300px" /></td>
-		<td class="appimage"><img class="appimageborder" src="assets/files/app_pics/2.jpg" width="300px" /></td>
-		<td class="appimage"><img class="appimageborder" src="assets/files/app_pics/3.jpg" width="300px" /></td>
-	</tr>
-	<tr>
-		<td class="appimage"><img class="appimageborder" src="assets/files/app_pics/4.jpg" width="300px" /></td>
-		<td class="appimage"><img class="appimageborder" src="assets/files/app_pics/6.jpg" width="300px" /></td>
-		<td class="appimage"></td>
-	</tr>
-</table>
+<div class="box alt">
+	<div class="row gtr-50 gtr-uniform">
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/app_pics_2/1.PNG" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/app_pics_2/2.PNG" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/app_pics_2/3.PNG" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/app_pics_2/4.PNG" alt=""></span></div>
+	</div>
+</div>
 
-<?
-include("includes/footer.php");
+					<div class="bottomSpacer"></div>
+
+					</div>
+				</div>
+<?php
+include("includes/mfooter.php");
 ?>

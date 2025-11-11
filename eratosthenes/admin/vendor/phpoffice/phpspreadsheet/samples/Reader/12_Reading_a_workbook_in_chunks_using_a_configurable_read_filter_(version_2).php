@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 12_Reading_a_workbook_in_chunks_using_a_configurable_read_filter_(version_2).php
+ * Description: implementing class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 namespace Samples\Sample12;
 

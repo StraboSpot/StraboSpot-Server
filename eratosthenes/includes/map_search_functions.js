@@ -6,37 +6,37 @@ Author: Jason Ash (jasonash@ku.edu) 04/19/2017
 */
 
 //global vars
-var spotNames = [];
-var layerStates = [];
-var iblayerStates = [];
-var loadedFeatures = "";
-var loadedEnvelope = "";
-var currentSpot = "";
-var savedCenterZoom = {};
+	let spotNames = [];
+	let layerStates = [];
+	let iblayerStates = [];
+	let loadedFeatures = "";
+	let loadedEnvelope = "";
+	let currentSpot = "";
+	let savedCenterZoom = {};
 //var activeFeature = {};
-var activeId = 0;
-var activeGeometry = {};
+	let activeId = 0;
+	let activeGeometry = {};
 
-var idsNames = {};
-var featureSpotIds = {};
-var featureTypes = {};
+	let idsNames = {};
+	let featureSpotIds = {};
+	let featureTypes = {};
 
-var currentlyLoading = false;
+	let currentlyLoading = false;
 
-var currentBasemapId = 0;
+	let currentBasemapId = 0;
 
-var activeTabName = "";
-var activeTabId = "";
-var baseMap = {};
-var baseMapActive = false;
-var crumbs = [];
+	let activeTabName = "";
+	let activeTabId = "";
+	let baseMap = {};
+	let baseMapActive = false;
+	let crumbs = [];
 
-var fitFeatures = [];
+	let fitFeatures = [];
 
-var expandedDatasets = [];		//datasets that are expanded (into spots) on the search interface
-var alldatasets = [];			//all datasets currently pulled from server (for putting back on map);
+	let expandedDatasets = [];		//datasets that are expanded (into spots) on the search interface
+	let alldatasets = [];			//all datasets currently pulled from server (for putting back on map);
 
-var tab_ids = [];
+	let tab_ids = [];
 tab_ids[0]="spot_tab";
 tab_ids[1]="orientations_tab";
 tab_ids[2]="_3d_structures_tab";
@@ -46,7 +46,7 @@ tab_ids[5]="samples_tab";
 tab_ids[6]="other_features_tab";
 tab_ids[7]="tags_tab";
 
-var tab_names = [];
+	let tab_names = [];
 tab_names[0]="spot";
 tab_names[1]="orientations";
 tab_names[2]="_3d_structures";
@@ -55,7 +55,7 @@ tab_names[4]="nesting";
 tab_names[5]="samples";
 tab_names[6]="other_features";
 tab_names[7]="tags";
-		
+
 function getClickedFeature(map, evt) {
 	return map.forEachFeatureAtPixel(evt.pixel, function (feat, lyr) {
 		return feat;
@@ -79,9 +79,8 @@ function getClickedLayer(map, evt) {
 function removeSelectedSymbol(map) {
 	//map.removeLayer(selectedHighlightLayer);
 
-	var mylayers = map.getLayers();
+	let mylayers = map.getLayers();
 	mylayers.forEach(function (thislayer) {
-		//console.log(thislayer.getProperties());
 		if(thislayer.get('name')=='selectedHighlightLayer'){
 			map.removeLayer(thislayer);
 		}
@@ -92,11 +91,11 @@ function removeSelectedSymbol(map) {
 // Add a feature to highlight selected Spot
 // Encompassing orange circle for a point, orange stroke for a line, and orange fill for a polygon
 function setSelectedSymbol(map, geometry) {
-	var selected = new ol.Feature({
+	let selected = new ol.Feature({
 		geometry: geometry
 	});
 
-	var style = {};
+	let style = {};
 	if (geometry.getType() === 'Point') {
 		style = new ol.style.Style({
 			image: new ol.style.Circle({
@@ -131,7 +130,7 @@ function setSelectedSymbol(map, geometry) {
 		})
 	}
 
-	var selectedHighlightSource = new ol.source.Vector({
+	let selectedHighlightSource = new ol.source.Vector({
 		features: [selected]
 	});
 
@@ -145,44 +144,42 @@ function setSelectedSymbol(map, geometry) {
 
 }
 
-var hideLayer = function(layername){
-	var mylayers = map.getLayers();
+	let hideLayer = function(layername){
+	let mylayers = map.getLayers();
 	mylayers.forEach(function (thislayer) {
-		//console.log(thislayer.getProperties());
 		if(thislayer.get('name')==layername){
 			thislayer.setVisible(false);
 		}
 	});
 }
 
-var showLayer = function(layername){
-	var mylayers = map.getLayers();
+	let showLayer = function(layername){
+	let mylayers = map.getLayers();
 	mylayers.forEach(function (thislayer) {
-		//console.log(thislayer.getProperties());
 		if(thislayer.get('name')==layername){
 			thislayer.setVisible(true);
 		}
 	});
 }
 
-var envelopeOutside = function() { //check to see if current view's data is still valid
+	let envelopeOutside = function() { //check to see if current view's data is still valid
 
-	var extent = map.getView().calculateExtent(map.getSize());
-	var bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
-	var topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
-	var left = bottomLeft[0];
-	var right = topRight[0];
-	var top = topRight[1];
-	var bottom = bottomLeft[1];
+	let extent = map.getView().calculateExtent(map.getSize());
+	let bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
+	let topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
+	let left = bottomLeft[0];
+	let right = topRight[0];
+	let top = topRight[1];
+	let bottom = bottomLeft[1];
 
 	if(loadedEnvelope!=""){
-	
-		var lb_point = turf.point([left, bottom]);
-		var lt_point = turf.point([left, top]);
-		var rt_point = turf.point([right, top]);
-		var rb_point = turf.point([right, bottom]);
 
-	
+	let lb_point = turf.point([left, bottom]);
+	let lt_point = turf.point([left, top]);
+	let rt_point = turf.point([right, top]);
+	let rb_point = turf.point([right, bottom]);
+
+
 		if( turf.inside(lb_point, loadedEnvelope) && turf.inside(lt_point, loadedEnvelope) && turf.inside(rt_point, loadedEnvelope) && turf.inside(rb_point, loadedEnvelope)  ){
 
 			return false;
@@ -190,21 +187,21 @@ var envelopeOutside = function() { //check to see if current view's data is stil
 
 			return true;
 		}
-	
+
 	}else{
 
 		return true;
-	
+
 	}
 
 }
 
 //put features from loadedFeatures onto map
-var updateMap = function() {
+	let updateMap = function() {
 
 	console.log('in updateMap');
 	console.log(loadedFeatures);
-	
+
 	spotNames = [];
 
 	//capture layer visibility states
@@ -219,7 +216,7 @@ var updateMap = function() {
 	});
 
 	setCurrentTypeVisibility(map);
-	
+
 	featureLayer.getLayers().clear();
 	datasetsLayer.getLayers().clear();
 
@@ -227,12 +224,12 @@ var updateMap = function() {
 
 		datasetsLayer.set('title','Datasets');
 		featureLayer.set('title','Spots');
-		
+
 		//add dummy layers to layer switcher to allow turning off datasets
-		var datasets = loadedFeatures.datasets;
+	let datasets = loadedFeatures.datasets;
 		_.each(datasets, function(d){
 
-			var datasetLayer = new ol.layer.Tile({
+	let datasetLayer = new ol.layer.Tile({
 				'id':d.id,
 				'title': d.name+' ('+d.spotcount+')',
 				'layergroup': 'Datasets'
@@ -246,19 +243,19 @@ var updateMap = function() {
 			datasetLayer.on('change:visible', function (e) {
 				loadFeatures();
 			});
-			
+
 			datasetsLayer.getLayers().push(datasetLayer);
 
 		});
 
-		var spots = loadedFeatures.features;
+	let spots = loadedFeatures.features;
 
-		var totalspotcount = spots.length;
-		var currentpercent = 0;
-		
+	let totalspotcount = spots.length;
+	let currentpercent = 0;
+
 		//create orientation parameters
-		var currentspotcount = 1;
-		var mappedFeatures = [];
+	let currentspotcount = 1;
+	let mappedFeatures = [];
 		_.each(spots, function (spot) {
 			if(!spot.properties.image_basemap){
 				if(spot.properties.name!=""){
@@ -266,10 +263,10 @@ var updateMap = function() {
 				}else{
 					spotNames[spot.properties.id]=spot.properties.id;
 				}
-				if(layerStates[spot.properties.datasetid]!="no" ){	//look to see whether layer is turned on				
+				if(layerStates[spot.properties.datasetid]!="no" ){	//look to see whether layer is turned on
 					if ((spot.geometry.type === 'Point' || spot.geometry.type === 'MultiPoint') && spot.properties.orientation_data) {
 						_.each(spot.properties.orientation_data, function (orientation) {
-							var feature = JSON.parse(JSON.stringify(spot));
+	let feature = JSON.parse(JSON.stringify(spot));
 							delete feature.properties.orientation_data;
 							_.each(orientation.associated_orientation, function (associatedOrientation) {
 								feature.properties.orientation = associatedOrientation;
@@ -282,16 +279,15 @@ var updateMap = function() {
 					else mappedFeatures.push(JSON.parse(JSON.stringify(spot)));
 				}
 			}
-			
+
 			currentpercent = Math.round(currentspotcount/totalspotcount*100);
-			//console.log(currentpercent);
 			//$('#spotsProgressInnerBar').css('width', currentpercent+'%');
 			currentspotcount ++;
 		});
 
 		//check for query fit here
-		
-		
+
+
 		fitFeatures = [];
 		_.each(mappedFeatures, function (spot) {
 			if(spotFitsQuery(spot)){
@@ -300,7 +296,7 @@ var updateMap = function() {
 		});
 
 		// get distinct groups and aggregate spots by group type
-		var featureGroup = _.groupBy(fitFeatures, function (feature) {
+	let featureGroup = _.groupBy(fitFeatures, function (feature) {
 			if (feature.geometry.type === 'Point' || feature.geometry.type === 'MultiPoint') {
 				if (feature.properties.orientation && feature.properties.orientation.feature_type) {
 					return getFeatureTypeLabel(
@@ -327,7 +323,7 @@ var updateMap = function() {
 			if (featureGroup.hasOwnProperty(key)) {
 
 				// Create a geojson to hold all the spots that fit the same spot type
-				var spotTypeLayer = {
+	let spotTypeLayer = {
 					'type': 'FeatureCollection',
 					'features': featureGroup[key],
 					'properties': {
@@ -335,52 +331,52 @@ var updateMap = function() {
 					}
 				};
 
-				var newlayer = geojsonToVectorLayer(spotTypeLayer, map.getView().getProjection());
+	let newlayer = geojsonToVectorLayer(spotTypeLayer, map.getView().getProjection());
 
-				featureLayer.getLayers().push(newlayer);						
-			
+				featureLayer.getLayers().push(newlayer);
+
 			}
 		}
-		
+
 		layerSwitcher.renderPanel();
-	
-	
+
+
 	}else{
-	
+
 		featureLayer.set('title',null);
 		datasetsLayer.set('title',null);
 		layerSwitcher.renderPanel();
 	}
-	
+
 	$('#spotswaiting').hide();
 
 }
 
 //put features from ibloadedFeatures onto map
-var updateImageBaseMap = function() {
+	let updateImageBaseMap = function() {
 
 	setCurrentTypeVisibility(map);
-	
+
 	ibfeatureLayer.getLayers().clear();
 
 	if(loadedFeatures!="" && loadedFeatures!=null){
 
 		ibfeatureLayer.set('title','Spots');
 
-		var spots = loadedFeatures.features;
+	let spots = loadedFeatures.features;
 
-		var mappedFeatures = [];
+	let mappedFeatures = [];
 		_.each(spots, function (spot) {
-			if(spot.properties.image_basemap == baseMap.id){			
+			if(spot.properties.image_basemap == baseMap.id){
 				if(spot.properties.name!=""){
 					spotNames[spot.properties.id]=spot.properties.name;
 				}else{
 					spotNames[spot.properties.id]=spot.properties.id;
 				}
-				if(iblayerStates[spot.properties.datasetid]!="no" ){	//look to see whether layer is turned on				
+				if(iblayerStates[spot.properties.datasetid]!="no" ){	//look to see whether layer is turned on
 					if ((spot.geometry.type === 'Point' || spot.geometry.type === 'MultiPoint') && spot.properties.orientation_data) {
 						_.each(spot.properties.orientation_data, function (orientation) {
-							var feature = JSON.parse(JSON.stringify(spot));
+	let feature = JSON.parse(JSON.stringify(spot));
 							delete feature.properties.orientation_data;
 							_.each(orientation.associated_orientation, function (associatedOrientation) {
 								feature.properties.orientation = associatedOrientation;
@@ -396,7 +392,7 @@ var updateImageBaseMap = function() {
 		});
 
 		// get distinct groups and aggregate spots by group type
-		var featureGroup = _.groupBy(mappedFeatures, function (feature) {
+	let featureGroup = _.groupBy(mappedFeatures, function (feature) {
 			if (feature.geometry.type === 'Point' || feature.geometry.type === 'MultiPoint') {
 				if (feature.properties.orientation && feature.properties.orientation.feature_type) {
 					return getFeatureTypeLabel(
@@ -423,7 +419,7 @@ var updateImageBaseMap = function() {
 			if (featureGroup.hasOwnProperty(key)) {
 
 				// Create a geojson to hold all the spots that fit the same spot type
-				var spotTypeLayer = {
+	let spotTypeLayer = {
 					'type': 'FeatureCollection',
 					'features': featureGroup[key],
 					'properties': {
@@ -432,17 +428,17 @@ var updateImageBaseMap = function() {
 				};
 
 				// Add the feature collection layer to the map
-				var newlayer = geojsonToVectorLayer(spotTypeLayer, map.getView().getProjection());
+	let newlayer = geojsonToVectorLayer(spotTypeLayer, map.getView().getProjection());
 
-				ibfeatureLayer.getLayers().push(newlayer);						
-			
+				ibfeatureLayer.getLayers().push(newlayer);
+
 			}
 		}
-		
+
 		layerSwitcher.renderPanel();
-	
+
 	}else{
-	
+
 		ibfeatureLayer.set('title',null);
 		layerSwitcher.renderPanel();
 	}
@@ -453,14 +449,14 @@ var updateImageBaseMap = function() {
 
 
 
-var spotStyleFunction = function() {
+	let spotStyleFunction = function() {
 	return function(feature, resolution) {
 
-		var thistype = feature.getGeometry().getType();
+	let thistype = feature.getGeometry().getType();
 
 		if(thistype=="Point"){
 
-			var style = new ol.style.Style({
+	let style = new ol.style.Style({
 				image: new ol.style.Circle({
 					radius: 7,
 					fill: new ol.style.Fill({
@@ -488,7 +484,7 @@ var spotStyleFunction = function() {
 
 		if(thistype=="Polygon"){
 
-			var style = new ol.style.Style({
+	let style = new ol.style.Style({
 				stroke: new ol.style.Stroke({
 					color: 'black',
 					//lineDash: [4],
@@ -505,7 +501,7 @@ var spotStyleFunction = function() {
 
 		if(thistype=="LineString"){
 
-			var style = new ol.style.Style({
+	let style = new ol.style.Style({
 			  stroke: new ol.style.Stroke({
 				color: 'black',
 				width: 2
@@ -519,28 +515,28 @@ var spotStyleFunction = function() {
 	};
 };
 
-var getFeatureTypeLabel = function(feature_type){
-	var feature_types = JSON.parse('{"groove_marks":"groove marks","parting_lineat":"parting lineations","magmatic_miner_1":"magmatic mineral alignment","xenolith_encla":"xenolith/enclave alignment","intersection":"intersection","pencil_cleav":"pencil cleavage","mineral_align":"mineral alignment","deformed_marke":"deformed marker","rodding":"rodding","boudin":"boudin","mullions":"mullions","fold_hinge":"fold hinge","striations":"striations","slickenlines":"slickenlines","slickenfibers":"slickenfibers","mineral_streak":"mineral streaks","vorticity_axis":"vorticity axis","flow_transport":"flow/transport direction","vergence":"vergence","vector":"vector","other":"other","bedding":"bedding","contact":"contact","foliation":"foliation","fracture":"fracture","vein":"vein","fault":"fault","shear_zone":"shear zone","shear_zone_bou":"shear zone boundary","fold_axial_surface":"fold axial surface","plane_of_boudinage":"plane of boudinage","plane_of_mullions":"plane of mullions","stratigraphic":"stratigraphic","intrusive":"intrusive body","injection":"injection structure","vein_array":"vein array","zone_fracturin":"zone of fracturing","zone_faulting":"zone of faulting","damage_zone":"damage zone","alteration_zone":"alteration zone","enveloping_surface":"enveloping surface","unknown":"unknown","tectonite":"tectonite","igneous_migmat":"igneous/migmatite","soft_sediment_":"soft sediment deformation","other_fabric":"other fabric","anticline":"anticline","syncline":"syncline","monocline":"monocline","antiform":"antiform","synform":"synform","s_fold":"s-fold","z_fold":"z-fold","m_fold":"m-fold","sheath":"sheath","single_layer_b":"single-layer buckle","ptygmatic":"ptygmatic","crenulation":"crenulation","interfolial":"interfolial","boudinage":"boudinage","mullion":"mullion","lobate_cuspate":"lobate-cuspate","other_3d_structure":"other 3D structure","ellipsoidal_data":"ellipsoidal data","non_ellipsoidal_data":"non-ellipsoidal data","elliptical_data":"elliptical data"}');
+	let getFeatureTypeLabel = function(feature_type){
+	let feature_types = JSON.parse('{"groove_marks":"groove marks","parting_lineat":"parting lineations","magmatic_miner_1":"magmatic mineral alignment","xenolith_encla":"xenolith/enclave alignment","intersection":"intersection","pencil_cleav":"pencil cleavage","mineral_align":"mineral alignment","deformed_marke":"deformed marker","rodding":"rodding","boudin":"boudin","mullions":"mullions","fold_hinge":"fold hinge","striations":"striations","slickenlines":"slickenlines","slickenfibers":"slickenfibers","mineral_streak":"mineral streaks","vorticity_axis":"vorticity axis","flow_transport":"flow/transport direction","vergence":"vergence","vector":"vector","other":"other","bedding":"bedding","contact":"contact","foliation":"foliation","fracture":"fracture","vein":"vein","fault":"fault","shear_zone":"shear zone","shear_zone_bou":"shear zone boundary","fold_axial_surface":"fold axial surface","plane_of_boudinage":"plane of boudinage","plane_of_mullions":"plane of mullions","stratigraphic":"stratigraphic","intrusive":"intrusive body","injection":"injection structure","vein_array":"vein array","zone_fracturin":"zone of fracturing","zone_faulting":"zone of faulting","damage_zone":"damage zone","alteration_zone":"alteration zone","enveloping_surface":"enveloping surface","unknown":"unknown","tectonite":"tectonite","igneous_migmat":"igneous/migmatite","soft_sediment_":"soft sediment deformation","other_fabric":"other fabric","anticline":"anticline","syncline":"syncline","monocline":"monocline","antiform":"antiform","synform":"synform","s_fold":"s-fold","z_fold":"z-fold","m_fold":"m-fold","sheath":"sheath","single_layer_b":"single-layer buckle","ptygmatic":"ptygmatic","crenulation":"crenulation","interfolial":"interfolial","boudinage":"boudinage","mullion":"mullion","lobate_cuspate":"lobate-cuspate","other_3d_structure":"other 3D structure","ellipsoidal_data":"ellipsoidal data","non_ellipsoidal_data":"non-ellipsoidal data","elliptical_data":"elliptical data"}');
 	return feature_types[feature_type];
 }
 
-var getTraceTypeLabel = function(feature_type){
-	var feature_types = JSON.parse('{"contact":"contact","geologic_struc":"geologic structure","geomorphic_fea":"geomorphic feature","anthropenic_fe":"anthropogenic feature","scale_bar":"scale bar","geological_cross_section":"geological cross section","geophysical_cross_section":"geophysical cross section","stratigraphic_section":"stratigraphic section","other_feature":"other feature"}');
+	let getTraceTypeLabel = function(feature_type){
+	let feature_types = JSON.parse('{"contact":"contact","geologic_struc":"geologic structure","geomorphic_fea":"geomorphic feature","anthropenic_fe":"anthropogenic feature","scale_bar":"scale bar","geological_cross_section":"geological cross section","geophysical_cross_section":"geophysical cross section","stratigraphic_section":"stratigraphic section","other_feature":"other feature"}');
 	return feature_types[feature_type];
 }
 
-var getSurfaceFeatureTypeLabel = function(feature_type){
-	var feature_types = JSON.parse('{"rock_unit":"rock unit","contiguous_outcrop":"contiguous outcrop","geologic_structure":"geologic structure","geomorphic_feature":"geomorphic feature","anthropogenic_feature":"anthropogenic feature","extent_of_mapping":"extent of mapping","extent_of_biological_marker":"extent of biological marker","subjected_to_similar_process":"subjected to similar process","gradients":"gradients","other":"other"}');
+	let getSurfaceFeatureTypeLabel = function(feature_type){
+	let feature_types = JSON.parse('{"rock_unit":"rock unit","contiguous_outcrop":"contiguous outcrop","geologic_structure":"geologic structure","geomorphic_feature":"geomorphic feature","anthropogenic_feature":"anthropogenic feature","extent_of_mapping":"extent of mapping","extent_of_biological_marker":"extent of biological marker","subjected_to_similar_process":"subjected to similar process","gradients":"gradients","other":"other"}');
 	return feature_types[feature_type];
 }
 
 // Save the current visibility for each feature type in the Spots Feature Layer
-var typeVisibility = [];
+	let typeVisibility = [];
 function setCurrentTypeVisibility(map) {
 	map.getLayers().forEach(function (layer) {
 		if (layer.get('name') === 'featureLayer') {
 			layer.getLayers().forEach(function (typeLayer) {
-				var type = typeLayer.get('title').split(' (')[0];
+	let type = typeLayer.get('title').split(' (')[0];
 				typeVisibility[type] = typeLayer.get('visible');
 			});
 		}
@@ -554,7 +550,7 @@ function toRadians(deg) {
 
 function getSymbolPath(feature_type, orientation, orientation_type) {
 
-	var symbols = {
+	let symbols = {
 		'default_point': '/assets/js/images/geology/point.png',
 
 		// Planar Feature Symbols
@@ -590,7 +586,7 @@ function getSymbolPath(feature_type, orientation, orientation_type) {
 	};
 
 	// Set a default symbol by whether feature is planar or linear
-	var default_symbol = symbols.default_point;
+	let default_symbol = symbols.default_point;
 	if (orientation_type === 'linear_orientation') default_symbol = symbols.lineation_general;
 
 	switch (true) {
@@ -638,12 +634,12 @@ function geojsonToVectorLayer(geojson, projection) {
 	}
 
 	function getStrokeStyle(feature) {
-		var color = '#663300';
-		var width = 2;
-		var lineDash = [1, 0];
+	let color = '#663300';
+	let width = 2;
+	let lineDash = [1, 0];
 
 		if (feature.get('trace')) {
-			var trace = feature.get('trace');
+	let trace = feature.get('trace');
 
 			// Set line color and weight
 			if (trace.trace_type && trace.trace_type === 'geologic_struc') color = '#FF0000';
@@ -673,11 +669,11 @@ function geojsonToVectorLayer(geojson, projection) {
 	}
 
 	function getIconForFeature(feature) {
-		var feature_type = 'none';
-		var rotation = 0;
-		var symbol_orientation = 0;
-		var orientation_type = 'none';
-		var orientation = feature.get('orientation');
+	let feature_type = 'none';
+	let rotation = 0;
+	let symbol_orientation = 0;
+	let orientation_type = 'none';
+	let orientation = feature.get('orientation');
 		if (orientation) {
 			rotation = orientation.strike || orientation.trend || rotation;
 			symbol_orientation = orientation.dip || orientation.plunge || symbol_orientation;
@@ -696,9 +692,9 @@ function geojsonToVectorLayer(geojson, projection) {
 	}
 
 	function getPolyFill(feature) {
-		var color = 'rgba(0, 0, 255, 0.4)';			 // blue
+	let color = 'rgba(0, 0, 255, 0.4)';			 // blue
 		if (feature.get('surface_feature')) {
-			var surfaceFeature = feature.get('surface_feature');
+	let surfaceFeature = feature.get('surface_feature');
 			switch (surfaceFeature.surface_feature_type) {
 				case 'rock_unit':
 					color = 'rgba(0, 255, 255, 0.4)';	 // light blue
@@ -736,28 +732,28 @@ function geojsonToVectorLayer(geojson, projection) {
 
 	// Set styles for points, lines and polygon and groups
 	function styleFunction(feature, resolution) {
-		var rotation = 0;
-		var pointText = feature.get('name');
-		var orientation = feature.get('orientation');
+	let rotation = 0;
+	let pointText = feature.get('name');
+	let orientation = feature.get('orientation');
 		if (orientation) {
 			rotation = orientation.strike || orientation.trend || rotation;
 			pointText = orientation.dip || orientation.plunge || pointText;
 		}
 
-		var pointStyle = [
+	let pointStyle = [
 			new ol.style.Style({
 				'image': getIconForFeature(feature),
 				'text': textStylePoint(pointText.toString(), rotation)
 			})
 		];
-		var lineStyle = [
+	let lineStyle = [
 			new ol.style.Style({
 				'stroke': getStrokeStyle(feature),
 				'text': textStyle(feature.get('name'))
 			})
 		];
-		var polyText = feature.get('name');
-		var polyStyle = [
+	let polyText = feature.get('name');
+	let polyStyle = [
 			new ol.style.Style({
 				'stroke': new ol.style.Stroke({
 					'color': '#000000',
@@ -767,7 +763,7 @@ function geojsonToVectorLayer(geojson, projection) {
 				'text': textStyle(polyText)
 			})
 		];
-		var styles = [];
+	let styles = [];
 		styles.Point = pointStyle;
 		styles.MultiPoint = pointStyle;
 		styles.LineString = lineStyle;
@@ -778,7 +774,7 @@ function geojsonToVectorLayer(geojson, projection) {
 		return styles[feature.getGeometry().getType()];
 	}
 
-	var features;
+	let features;
 	if (projection.getUnits() === 'pixels') {
 		features = (new ol.format.GeoJSON()).readFeatures(geojson);
 	}
@@ -799,16 +795,16 @@ function geojsonToVectorLayer(geojson, projection) {
 	});
 }
 
-var getEnvelope = function(){ //padded
-		var extent = map.getView().calculateExtent(map.getSize());
+	let getEnvelope = function(){ //padded
+	let extent = map.getView().calculateExtent(map.getSize());
 
-		var offset=0.2;
-		var bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
-		var topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
-		var left = bottomLeft[0]-offset;
-		var right = topRight[0]+offset;
-		var top = topRight[1]+offset;
-		var bottom = bottomLeft[1]-offset;
+	let offset=0.2;
+	let bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
+	let topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
+	let left = bottomLeft[0]-offset;
+	let right = topRight[0]+offset;
+	let top = topRight[1]+offset;
+	let bottom = bottomLeft[1]-offset;
 
 		loadedEnvelope = turf.polygon([[
 			[left, bottom],
@@ -819,20 +815,20 @@ var getEnvelope = function(){ //padded
 		]]);
 
 		env = left+','+top+','+right+','+bottom;
-		
+
 		return env;
 }
 
-var getCurrentViewEnvelope = function(){ //not padded
-		var extent = map.getView().calculateExtent(map.getSize());
+	let getCurrentViewEnvelope = function(){ //not padded
+	let extent = map.getView().calculateExtent(map.getSize());
 
-		var offset=0.0;
-		var bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
-		var topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
-		var left = bottomLeft[0]-offset;
-		var right = topRight[0]+offset;
-		var top = topRight[1]+offset;
-		var bottom = bottomLeft[1]-offset;
+	let offset=0.0;
+	let bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
+	let topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
+	let left = bottomLeft[0]-offset;
+	let right = topRight[0]+offset;
+	let top = topRight[1]+offset;
+	let bottom = bottomLeft[1]-offset;
 
 		loadedEnvelope = turf.polygon([[
 			[left, bottom],
@@ -843,19 +839,19 @@ var getCurrentViewEnvelope = function(){ //not padded
 		]]);
 
 		env = left+','+top+','+right+','+bottom;
-		
+
 		return env;
 }
 
 
 
 //add features from a single dataset
-var addFeatures = function(id){
+	let addFeatures = function(id){
 
 	//dsets=14849417046343
-	
+
 	currentlyLoading = true;
-	
+
 	env = getEnvelope();
 
 	//show loading animation
@@ -865,20 +861,19 @@ var addFeatures = function(id){
 	$('#spotswaiting').show();
 	//$('#spotsProgressMessage').html('Getting spots from server.');
 	//$('#spotsProgressMessage').show();
-	
+
 
 	$.getJSON('searchspots.json?env='+env+'&dsets='+id,function(result){
-		
+
 		//$('#spotsProgressMessage').html('Adding spots to map.');
 		//$('#spotsProgressMessage').show();
-		
+
 		//$('#spotsProgressInnerBar').css('width', '0%');
 		//$('#spotsProgressBar').show();
-		
-		//console.log(result);
-		
+
+
 		//add new features to loadedfeatures.features
-		
+
 		if(loadedFeatures==""){
 			loadedFeatures = {};
 			loadedFeatures.features = [];
@@ -907,23 +902,23 @@ var addFeatures = function(id){
 			newib.datasetid=id;
 			loadedFeatures.image_basemaps.push(newib);
 		});
-		
+
 		console.log(loadedFeatures);
 
 		saveIdsToNames();
-		
+
 		updateMap();
-		
+
 		//document.getElementById('spotswaiting').style.display="none";
-		
+
 		currentlyLoading = false;
-		
+
 		if(result.envelope!=""){
 			zoomToPoly(result.envelope);
 			console.log(result.envelope);
 		}
 	});
-		
+
 
 }
 
@@ -931,12 +926,12 @@ var addFeatures = function(id){
 
 
 //fetch features from database
-var loadFeatures = function(){
+	let loadFeatures = function(){
 
 	if((loadedFeatures=="" || envelopeOutside()) && !currentlyLoading){
-	
+
 		currentlyLoading = true;
-		
+
 		env = getEnvelope();
 
 		featureLayer.getLayers().clear();
@@ -946,55 +941,55 @@ var loadFeatures = function(){
 
 		$.getJSON('searchspots.json?env='+env,function(result){
 			loadedFeatures = result;
-			
+
 			saveIdsToNames();
-			
+
 			document.getElementById('spotswaiting').style.display="none";
 
 			updateMap();
 			currentlyLoading = false;
 		});
-		
+
 	}else{
 
 		updateMap();
 	}
 }
 
-var openSideBar = function(){
+	let openSideBar = function(){
 	$(".sidebar.right").trigger("sidebar:open");
 }
 
-var closeSideBar = function(){
+	let closeSideBar = function(){
 	$("#sidebarquery").hide();
 	$(".sidebar.right").trigger("sidebar:close");
 }
 
-var toggleSideBar = function(){
+	let toggleSideBar = function(){
 	$(".sidebar.right").trigger("sidebar:toggle");
 }
 
 
 
-var getCurrentSpot = function(){
+	let getCurrentSpot = function(){
 	return new Promise(function(resolve, reject){
 		currentSpot="";
 		_.each(loadedFeatures.features, function (spot) {
 			if(spot.properties.id == clickedMapFeature){
 				currentSpot = spot;
-			}	
+			}
 		});
 		resolve();
 	});
 }
 
 //get info for current spot and tab and update UI
-var updateSidebar = function(){
+	let updateSidebar = function(){
 
 	switchToSpotDiv();
 
 	$("#sidebar_spot_name").text(spotNames[clickedMapFeature]);
-	
+
 	activeTabName = tab_names[$( "#tabs" ).tabs( "option" ).active];
 	activeTabId = tab_ids[$( "#tabs" ).tabs( "option" ).active];
 
@@ -1020,44 +1015,43 @@ var updateSidebar = function(){
 
 }
 
-var cgetImageInfo = function(imageid){
-	var im = new Image();
+	let cgetImageInfo = function(imageid){
+	let im = new Image();
 	im.src = 'https://strabospot.org/mapimage/'+imageid+'.jpg';
-	
+
 	baseMap.height = im.height;
 	baseMap.width = im.width;
 	baseMap.id = imageid;
-	
+
 	baseMap.height = 55;
 	baseMap.width = 100;
 }
 
-var getImageInfo = function(imageid){
-    return new Promise(function(resolve, reject){
+	let getImageInfo = function(imageid){
+	return new Promise(function(resolve, reject){
 
-        var im = new Image()
+	let im = new Image()
 
-        im.src = 'https://strabospot.org/mapimage/'+imageid+'.jpg';
+		im.src = 'https://strabospot.org/mapimage/'+imageid+'.jpg';
 
-        im.onload = function(){
-        	//console.log("here: "+im.width+' '+im.height);
+		im.onload = function(){
 			baseMap.height = im.height;
 			baseMap.width = im.width;
 			baseMap.id = imageid;
 
-            resolve(imageid);
-        }
-        im.onerror = function(){
-            reject(imageid);
-        }
+			resolve(imageid);
+		}
+		im.onerror = function(){
+			reject(imageid);
+		}
 
-    })
+	})
 }
 
-var switchToMainMap = function(){
+	let switchToMainMap = function(){
 
 	return new Promise(function(resolve, reject){
-	
+
 		crumbs = [];
 		lastMapId = "0";
 		baseMapActive = false;
@@ -1074,13 +1068,13 @@ var switchToMainMap = function(){
 		map.removeLayer(ibfeatureLayer);
 		map.removeLayer(imageBasemapLayer);
 
-		var projection = 'EPSG:3857';
-		var center = [-11000000, 4600000];
-		var zoom = 5;
-		var minZoom = 5;
-	
+	let projection = 'EPSG:3857';
+	let center = [-11000000, 4600000];
+	let zoom = 5;
+	let minZoom = 5;
+
 		map.setView(mapView);
-	
+
 		map.addLayer(baseLayers);
 		map.addLayer(datasetPointsLayer);
 		map.addLayer(datasetsLayer);
@@ -1098,12 +1092,12 @@ var switchToMainMap = function(){
 			zoomToSavedExtent();
 			resolve();
 		});
-	
+
 	});
-	
+
 }
 
-var goBack = function(){
+	let goBack = function(){
 
 	if(crumbs.length > 1){
 		crumbs.pop();
@@ -1113,16 +1107,16 @@ var goBack = function(){
 	}
 }
 
-var switchToImageBasemap = function(imageid){
+	let switchToImageBasemap = function(imageid){
 
 	return new Promise(function(resolve, reject){
-	
+
 		if(!baseMapActive){
 			saveExtent();
 		}
-	
+
 		crumbs.push(imageid);
-	
+
 		currentBasemapId = imageid;
 
 		$("#back_map").show();
@@ -1131,22 +1125,22 @@ var switchToImageBasemap = function(imageid){
 
 
 		baseMapActive = true;
-	
+
 		closeSideBar();
-	
+
 		getImageInfo(imageid).then(function(promiseimageid){
 
-			var ibextent = [0, 0, baseMap.width, baseMap.height];
-			var ibprojection = new ol.proj.Projection({
+	let ibextent = [0, 0, baseMap.width, baseMap.height];
+	let ibprojection = new ol.proj.Projection({
 				'code': 'map-image',
 				'units': 'pixels',
 				'extent': ibextent
 			});
-			var ibcenter = ol.extent.getCenter(ibextent);
-			var ibzoom = 2;
-			var ibminZoom = 1;
+	let ibcenter = ol.extent.getCenter(ibextent);
+	let ibzoom = 2;
+	let ibminZoom = 1;
 
-			var ibView = new ol.View({
+	let ibView = new ol.View({
 			'projection': ibprojection,
 			'center': ibcenter,
 			'zoom': ibzoom,
@@ -1179,7 +1173,7 @@ var switchToImageBasemap = function(imageid){
 				'imageExtent': ibextent
 			  })
 			});
-		
+
 			map.addLayer(imageBasemapLayer);
 
 			updateImageBaseMap();
@@ -1189,36 +1183,36 @@ var switchToImageBasemap = function(imageid){
 			layerSwitcher.renderPanel();
 			resolve(imageid);
 		});
-		
+
 	});
 }
 
-var idToName = function(id){
+	let idToName = function(id){
 
 	returnid = id;
 
 	if(idsNames[id]){
 		returnid=idsNames[id];
 	}
-	
+
 	return returnid;
 }
 
-var saveIdsToNames = function(){
-	
+	let saveIdsToNames = function(){
+
 	//build idsNames array to hold all names of spots and sub-properties for later retrieval via idToName();
 	//idsNames[12341234]="foo";
-	
+
 	if(loadedFeatures){
-		var spots = loadedFeatures.features;
+	let spots = loadedFeatures.features;
 		_.each(spots, function(spot){
-		
+
 			spot=spot.properties;
-			
+
 			if(spot.name){
 				idsNames[spot.id]=spot.name;
 			}
-			
+
 			if(spot.images){
 				_.each(spot.images, function(image){
 					featureSpotIds[image.id]=spot.id;
@@ -1267,7 +1261,7 @@ var saveIdsToNames = function(){
 					}
 				});
 			}
-			
+
 			if(spot.samples){
 				_.each(spot.samples, function(sample){
 					featureSpotIds[sample.id]=spot.id;
@@ -1283,9 +1277,9 @@ var saveIdsToNames = function(){
 
 }
 
-var featureIdToSpotId = function(featureid){
+	let featureIdToSpotId = function(featureid){
 
-	var spotid=null
+	let spotid=null
 	if(featureSpotIds[featureid]){
 		spotid = featureSpotIds[featureid];
 	}
@@ -1293,9 +1287,9 @@ var featureIdToSpotId = function(featureid){
 
 }
 
-var featureIdToFeatureType = function(featureid){
+	let featureIdToFeatureType = function(featureid){
 
-	var featuretype=null
+	let featuretype=null
 	if(featureTypes[featureid]){
 		featuretype = featureTypes[featureid];
 	}
@@ -1303,40 +1297,40 @@ var featureIdToFeatureType = function(featureid){
 
 }
 
-var switchToFeature = function(featureid){
+	let switchToFeature = function(featureid){
 
-	var spotid = featureIdToSpotId(featureid);
-	var featureType = featureIdToFeatureType(featureid);
-	
+	let spotid = featureIdToSpotId(featureid);
+	let featureType = featureIdToFeatureType(featureid);
+
 	if(spotid){
 		switchToSpot(spotid,featureType);
 	}
 
 }
 
-var getSpot = function(spotid){
-	var thisSpot=null;
+	let getSpot = function(spotid){
+	let thisSpot=null;
 	_.each(loadedFeatures.features, function (spot) {
 		if(spot.properties.id == spotid){
 			thisSpot = spot;
-		}	
+		}
 	});
 	return thisSpot;
 }
 
-var getSpotFromFeatureId = function(featureid){
-	var thisspot = null;
-	var spotid = featureIdToSpotId(featureid);
+	let getSpotFromFeatureId = function(featureid){
+	let thisspot = null;
+	let spotid = featureIdToSpotId(featureid);
 	if(spotid!=null){
 		thisspot = getSpot(spotid);
 	}
 	return thisspot;
 }
 
-var switchToSpot = function(spotid,featureType){
+	let switchToSpot = function(spotid,featureType){
 
-	//check if featuretype is passed so we can switch to the right tab 
-	var tabnum = 0;
+	//check if featuretype is passed so we can switch to the right tab
+	let tabnum = 0;
 	if(featureType == "image"){
 		tabnum = 3;
 	}else if(featureType == "orientation"){
@@ -1349,19 +1343,18 @@ var switchToSpot = function(spotid,featureType){
 		tabnum = 5;
 	}
 
-	var thisspot = getSpot(spotid);
-	
+	let thisspot = getSpot(spotid);
+
 	if(thisspot){
-	
+
 		if(spotid){
 
 			clickedMapFeature = spotid;
-			//console.log(activeId);
 			getCurrentSpot().then(function(promiseimageid){
 
 				if(!thisspot.properties.image_basemap){
 
-					var spotfeature = JSON.parse(JSON.stringify(currentSpot));
+	let spotfeature = JSON.parse(JSON.stringify(currentSpot));
 
 					feature = (new ol.format.GeoJSON()).readFeature(spotfeature, {
 						'featureProjection': 'EPSG:3857'
@@ -1379,11 +1372,10 @@ var switchToSpot = function(spotid,featureType){
 							}else{
 								mapView.fit(activeGeometry, {padding: [300, 300, 300, 300], constrainResolution: false, minResolution: 20, duration: 500});
 							}
-							
+
 							$( "#tabs" ).tabs( "option", "active", tabnum );
 						});
 					}else{
-						//console.log("just zoom to feature and select");
 						removeSelectedSymbol(map)
 
 						if(currentSpot.geometry.type=="Point"){
@@ -1392,7 +1384,7 @@ var switchToSpot = function(spotid,featureType){
 						}else{
 							mapView.fit(activeGeometry, {padding: [300, 300, 300, 300], constrainResolution: false, duration: 500});
 						}
-						
+
 						setSelectedSymbol(map, feature.getGeometry());
 
 
@@ -1400,92 +1392,90 @@ var switchToSpot = function(spotid,featureType){
 						$( "#tabs" ).tabs( "option", "active", tabnum );
 
 
-						updateSidebar();	
+						updateSidebar();
 						//openSideBar();
 					}
-		
+
 				}else{
-				
-					var spotfeature = JSON.parse(JSON.stringify(currentSpot));
+
+	let spotfeature = JSON.parse(JSON.stringify(currentSpot));
 
 					feature = (new ol.format.GeoJSON()).readFeature(spotfeature);
 
-				
-					var thisbaseMapId=thisspot.properties.image_basemap;
-			
+
+	let thisbaseMapId=thisspot.properties.image_basemap;
+
 					if(!baseMapActive || (thisbaseMapId!=currentBasemapId)){
 
-						//console.log(thisspot);
-					
+
 						switchToImageBasemap(thisspot.properties.image_basemap).then(function(promiseimageid){
-					
-							//console.log("switching to image basemap");
+
 							//now create image overlay and open sidebar
 							setSelectedSymbol(map, feature.getGeometry());
 
 							$( "#tabs" ).tabs( "option", "active", tabnum );
-						
+
 							updateSidebar();
-		
+
 							//openSideBar();
-					
+
 						});
-				
+
 					}else{
-				
+
 						console.log('already on the image basemap, just set feature');
 						removeSelectedSymbol(map);
 						setSelectedSymbol(map, feature.getGeometry());
 						$( "#tabs" ).tabs( "option", "active", tabnum );
 						updateSidebar();
 						//openSideBar();
-				
-				
+
+
 					}
-		
+
 				}
-			
+
 			});
-			
+
 		}
-	
+
 	}
 }
 
-var debugMap = function(){
+	let debugMap = function(){
 
-	var extent = map.getView().calculateExtent(map.getSize());
-	var zoom = map.getView().getZoom();
+	let extent = map.getView().calculateExtent(map.getSize());
+	let zoom = map.getView().getZoom();
 
-	var offset=0.0;
-	var bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
-	var topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
-	var left = bottomLeft[0]-offset;
-	var right = topRight[0]+offset;
-	var top = topRight[1]+offset;
-	var bottom = bottomLeft[1]-offset;
-	
+	let offset=0.0;
+	let bottomLeft = ol.proj.transform(ol.extent.getBottomLeft(extent),'EPSG:3857', 'EPSG:4326');
+	let topRight = ol.proj.transform(ol.extent.getTopRight(extent),'EPSG:3857', 'EPSG:4326');
+	let left = bottomLeft[0]-offset;
+	let right = topRight[0]+offset;
+	let top = topRight[1]+offset;
+	let bottom = bottomLeft[1]-offset;
+
 	console.log("left: "+left+" right: "+right+" top: "+top+" bottom: "+bottom);
 	console.log("zoom: "+zoom);
 }
 
-var saveExtent = function(){
+	let saveExtent = function(){
 	savedCenterZoom.center = map.getView().getCenter();
 	savedCenterZoom.zoom = map.getView().getZoom();
 }
 
-var zoomToSavedExtent = function(){
+	let zoomToSavedExtent = function(){
 	mapView.setCenter(savedCenterZoom.center);
 	mapView.setZoom(savedCenterZoom.zoom);
 }
 
-var zoomToCenterAndExtent = function(encodedstring){
-	var string = atob(encodedstring);
-	var newcenter = [];
-	var newzoom = 0;
-	
-	var res = string.split("x");
-	
+	let zoomToCenterAndExtent = function(encodedstring){
+	let string = atob(encodedstring);
+	let newcenter = [];
+	let newzoom = 0;
+
+	let res = string.split("x");
+
 	newcenter[0]=Number(res[0]);
 	newcenter[1]=Number(res[1]);
 	newzoom = res[2];
@@ -1493,36 +1483,36 @@ var zoomToCenterAndExtent = function(encodedstring){
 	mapView.setCenter(newcenter);
 	mapView.setZoom(newzoom);
 
-} 
+}
 
-var showStaticUrl = function(){
-	
-	var getcenter = map.getView().getCenter();
-	var getzoom = map.getView().getZoom();
+	let showStaticUrl = function(){
+
+	let getcenter = map.getView().getCenter();
+	let getzoom = map.getView().getZoom();
 
 	console.log(getcenter);
 
-	var encodedstring = btoa(getcenter.join("x")+"x"+getzoom);
-	
+	let encodedstring = btoa(getcenter.join("x")+"x"+getzoom);
+
 	console.log(encodedstring);
-	
-	var thishtml = "<div style='padding:20px 20px 20px 20px;'>";
+
+	let thishtml = "<div style='padding:20px 20px 20px 20px;'>";
 	thishtml += "<h3>Static URL</h3>";
 	thishtml += "<div>This URL will link directly to the zoom/center of the current map view:</div>";
 	thishtml += "<div style='padding-top:5px;'>https://strabospot.org/search?c="+encodedstring+"</div>";
 	thishtml += "<div>&nbsp;</div>";
 	thishtml += "</div>";
-	
+
 	$.featherlight(thishtml);
-	
+
 }
 
-var hideEffect = "blind";//blind,drop,explode,
+	let hideEffect = "blind";//blind,drop,explode,
 
-var switchToQueryDiv = function(){
+	let switchToQueryDiv = function(){
 
 	if(sidebarState=="open"){
-	
+
 		if($("#sidebarspot").is(':visible')){
 			$( "#sidebarspot" ).effect( hideEffect, {}, 300, function(){
 				setTimeout(function() {
@@ -1530,19 +1520,19 @@ var switchToQueryDiv = function(){
 				}, 200 );
 			});
 		}
-	
+
 	}else{
-	
+
 		$("#sidebarspot").hide();
 		$("#sidebarquery").show();
-	
+
 		openSideBar();
-	
+
 	}
 }
 
-var switchToSpotDiv = function(){
-	
+	let switchToSpotDiv = function(){
+
 	if(sidebarState=="open"){
 
 		if($("#sidebarquery").is(':visible')){
@@ -1554,15 +1544,15 @@ var switchToSpotDiv = function(){
 		}
 
 	}else{
-	
+
 		$("#sidebarquery").hide();
 		$("#sidebarspot").show();
-	
+
 		openSideBar();
 	}
 }
 
-var toggleSpotQuery = function(){
+	let toggleSpotQuery = function(){
 
 	if($("#sidebarquery").is(':visible')){
 		if (typeof clickedMapFeature === 'undefined' || !clickedMapFeature) {
@@ -1576,21 +1566,21 @@ var toggleSpotQuery = function(){
 	}
 }
 
-var turnOnUpdateButton = function(){
+	let turnOnUpdateButton = function(){
 
 	updateQueryButton();
 	updateClearButton();
 }
 
-var updateQueryButton = function(){ //show button if query has changed
+	let updateQueryButton = function(){ //show button if query has changed
 	if(buildDatasetsURL()!=datasetsurl){
 		showQueryButton();
 	}else{
 		hideQueryButton();
-	}	
+	}
 }
 
-var updateClearButton = function(){ //show clear button if any query options are set.
+	let updateClearButton = function(){ //show clear button if any query options are set.
 	if(querySet()){
 		showClearButton();
 	}else{
@@ -1598,25 +1588,25 @@ var updateClearButton = function(){ //show clear button if any query options are
 	}
 }
 
-var querySet = function(){
+	let querySet = function(){
 	isset = false;
-	
+
 	if($("#query_has_image").is(":checked")){
 		isset = true;
 	}
-	
+
 	if($("#query_has_orientation").is(":checked")){
 		isset = true;
 	}
-	
+
 	if($("#query_has_sample").is(":checked")){
 		isset = true;
 	}
-	
+
 	if($("#query_has_3d_structure").is(":checked")){
 		isset = true;
 	}
-	
+
 	if($("#query_has_other_features").is(":checked")){
 		isset = true;
 	}
@@ -1624,7 +1614,7 @@ var querySet = function(){
 	return isset;
 }
 
-var clearQuery = function(){
+	let clearQuery = function(){
 
 	$('#query_has_image').attr('checked', false);
 	$('#query_has_orientation').attr('checked', false);
@@ -1636,23 +1626,23 @@ var clearQuery = function(){
 	hideClearButton();
 }
 
-var showQueryButton = function(){
+	let showQueryButton = function(){
 	$("#querybuttondiv").html('<button id="querybutton" class="querysubmit" onClick="updateQuery();"><span>Update</span></button>');
 }
 
-var hideQueryButton = function(){
+	let hideQueryButton = function(){
 	$("#querybuttondiv").html('<button id="greyquerybutton" class="greyquerysubmit"><span>Update&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></button>');
 }
 
-var showClearButton = function(){
+	let showClearButton = function(){
 	$("#clearbuttondiv").html('<button id="clearbutton" class="querysubmit" onClick="clearQuery();"><span>Clear</span></button>');
 }
 
-var hideClearButton = function(){
+	let hideClearButton = function(){
 	$("#clearbuttondiv").html('<button id="greyclearbutton" class="greyquerysubmit"><span>Clear&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></button>');
 }
 
-var updateQuery = function(){
+	let updateQuery = function(){
 
 	hideQueryButton();
 	$.fancybox.close();
@@ -1660,49 +1650,46 @@ var updateQuery = function(){
 	removeSelectedSymbol(map);
 
 	datasetsurl = buildDatasetsURL();
-	
+
 	//updateMapDiv();
-	
+
 	updateMap();
 
-	
+
 	if(lastdatasetsurl != datasetsurl){
-	
-		//console.log("rebuild datasetpoints layer here (datasetsurl: "+datasetsurl+")");
+
 
 		rebuildDatasetsLayer();
 
 		lastdatasetsurl = datasetsurl;
 	}else{
-		//console.log("Not Changed (datasetsurl: "+datasetsurl+")");
 	}
 
-	var resolution = map.getView().getResolution();
-	var zoom = map.getView().getZoom();
+	let resolution = map.getView().getResolution();
+	let zoom = map.getView().getZoom();
 	if(!baseMapActive){
-	
+
 		if(resolution < zoomres){
 
 			if(querySet()){
 				//query set and we're zoomed in. Let's zoom to features here
 
 				if(fitFeatures.length > 0){
-				
+
 					//zoomToFitFeatures();
-				
+
 				}else{
-					//console.log("no matching spots");
 				}
-				
+
 			}
 		}
 	}
 }
 
-var zoomToFitFeatures = function() {
+	let zoomToFitFeatures = function() {
 	if(fitFeatures.length > 0){
-		var fc = turf.featureCollection(fitFeatures);
-		var newSpot = {};
+	let fc = turf.featureCollection(fitFeatures);
+	let newSpot = {};
 		if (fitFeatures.length == 1) newSpot = JSON.parse(JSON.stringify(fitFeatures[0]));
 		else if (fitFeatures.length == 2
 		&& fitFeatures[0].geometry.type === 'Point' && fitFeatures[1].geometry.type === 'Point') {
@@ -1713,20 +1700,20 @@ var zoomToFitFeatures = function() {
 		// Buffer the polygon
 		newSpot = turf.buffer(newSpot, 5, 'meters');
 
-		var newfeature = (new ol.format.GeoJSON()).readFeature(newSpot, {dataProjection: 'EPSG:4326',featureProjection: 'EPSG:3857'});
+	let newfeature = (new ol.format.GeoJSON()).readFeature(newSpot, {dataProjection: 'EPSG:4326',featureProjection: 'EPSG:3857'});
 
-		var newgeometry = newfeature.getGeometry();
+	let newgeometry = newfeature.getGeometry();
 
 		mapView.fit(newgeometry, {duration: 1000});
 
 	}
 }
 
-var buildGetSearchVars = function(){
+	let buildGetSearchVars = function(){
 
-	var delim = "";	
+	let delim = "";
 
-	var newurl = "";
+	let newurl = "";
 
 	if($("#query_has_image").is(":checked")){
 		newurl += delim + 'hasimage=yes';
@@ -1752,25 +1739,24 @@ var buildGetSearchVars = function(){
 		newurl += delim + 'hasotherfeature=yes';
 		delim = '&';
 	}
-	
+
 	return newurl;
 
 }
 
-var buildDatasetsURL= function(){
+	let buildDatasetsURL= function(){
 
-	var newurl = buildGetSearchVars();
+	let newurl = buildGetSearchVars();
 
 	newurl = "searchdatasets.json?"+newurl;
 
 	return newurl;
 }
 
-var spotFitsQuery = function(spot){
+	let spotFitsQuery = function(spot){
 
-	//console.log(spot);
-	
-	var spotfits = true;
+
+	let spotfits = true;
 
 	if($("#query_has_image").is(":checked")){
 		if(!spot.properties.images){
@@ -1781,9 +1767,7 @@ var spotFitsQuery = function(spot){
 	if($("#query_has_orientation").is(":checked")){
 		if(!spot.properties.orientation && !spot.properties.orientation_data){
 			spotfits = false;
-			//console.log(spot.properties.orientation_data);
 		}else{
-			//console.log("spot does have orientation_data");
 		}
 	}
 
@@ -1809,34 +1793,34 @@ var spotFitsQuery = function(spot){
 
 }
 
-var expandDataset = function(feature){
+	let expandDataset = function(feature){
 	expandedDatasets.push(feature);
 	mapDataset(feature);
 	updateShownDatasets();
 }
 
-var mapDataset = function(feature){
+	let mapDataset = function(feature){
 	id = feature.get('id');
 	addFeatures(id);
 }
 
-var closeDataset = function(id){
-	
+	let closeDataset = function(id){
+
 	//close dataset from map and list box
 	removeDatasetFromArray(id);
 	removeDatasetFromLoadedFeatures(id);
 	restoreDatasetPoint(id);
-	
-	
+
+
 	updateShownDatasets();
 
 }
 
-var restoreDatasetPoint = function(id){
-	
+	let restoreDatasetPoint = function(id){
+
 	console.log("restoreDatasetPoints alldatasets:");
 	console.log(allDatasets);
-	
+
 	_.each(allDatasets, function(ds){
 		thisid = ds.get('id');
 		if(thisid==id){
@@ -1846,20 +1830,20 @@ var restoreDatasetPoint = function(id){
 	});
 }
 
-var removeDatasetFromArray = function(id){
-	var newArray = [];
+	let removeDatasetFromArray = function(id){
+	let newArray = [];
 	_.each(expandedDatasets, function(ds){
 		thisid = ds.get('id');
 		if(thisid!=id){
 			newArray.push(ds);
 		}
 	});
-	
+
 	expandedDatasets = newArray;
 }
 
-var removeDatasetFromLoadedFeatures = function(id){
-	var newLoadedFeatures = {};
+	let removeDatasetFromLoadedFeatures = function(id){
+	let newLoadedFeatures = {};
 	newLoadedFeatures.features = [];
 	newLoadedFeatures.datasets = [];
 	newLoadedFeatures.tags = [];
@@ -1906,17 +1890,17 @@ var removeDatasetFromLoadedFeatures = function(id){
 	console.log(loadedFeatures);
 }
 
-var updateShownDatasets = function(){
+	let updateShownDatasets = function(){
 	if(expandedDatasets.length > 0){
 		//create html and show div
-		var thishtml = '';
+	let thishtml = '';
 		_.each(expandedDatasets, function(ds){
 			name = ds.get('name');
 			id = ds.get('id');
 			count = ds.get('count');
 			owner = ds.get('owner');
 			projectname = ds.get('projectname');
-			
+
 			//thishtml += '<div class="datasetRow" onclick="closeDataset(\''+id+'\');" ><img src="includes/images/red_close_button.png" width="10px" height="10px" /> '+name+' ('+count+' spots)</div>';
 			thishtml += '<div><img class = "datasetRow" src="includes/images/red_close_button.png" width="10px" height="10px" onclick="closeDataset(\''+id+'\');" /> '+projectname + ' - ' + name+' ('+count+' spots) (Owned by '+owner+')</div>';
 		});
@@ -1932,57 +1916,56 @@ var updateShownDatasets = function(){
 	}
 }
 
-var updateAllDatasets = function(){
+	let updateAllDatasets = function(){
 	//updates allDatasets array with all dataset features from datasetPointsSource
 	allDatasets = datasetPointsSource.getFeatures();
-	//console.log(allDatasets);
 }
 
-var randomString = function(){
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	let randomString = function(){
+	let text = "";
+	let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for( var i=0; i < 10; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+	for(let i=0; i < 10; i++ )
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    return text;
+	return text;
 }
 
-var zoomToPoly = function(inwkt){
-	var newformat = new ol.format.WKT();
+	let zoomToPoly = function(inwkt){
+	let newformat = new ol.format.WKT();
 
-	var inpoly = (new ol.format.WKT()).readFeature(inwkt, {dataProjection: 'EPSG:4326',featureProjection: 'EPSG:3857'});
-	
+	let inpoly = (new ol.format.WKT()).readFeature(inwkt, {dataProjection: 'EPSG:4326',featureProjection: 'EPSG:3857'});
+
 	/*
-	var inpoly = (new ol.format.WKT()).readFeature(inwkt, {
+	let inpoly = (new ol.format.WKT()).readFeature(inwkt, {
 						'featureProjection': 'EPSG:4326'
 					});
 
-	var inpoly = (format.readFeature(inwkt, {
+	let inpoly = (format.readFeature(inwkt, {
 						'featureProjection': 'EPSG:3857'
 					});
-	
-	var inpoly = newformat.readFeature(inwkt);
+
+	let inpoly = newformat.readFeature(inwkt);
 	*/
-	
-	var newgeometry = inpoly.getGeometry();
+
+	let newgeometry = inpoly.getGeometry();
 	mapView.fit(newgeometry, {duration: 1000});
 }
 
-var openDownloadWindow = function(){
-	
+	let openDownloadWindow = function(){
+
 	console.log(expandedDatasets);
-	
-	var thishtml="";
+
+	let thishtml="";
 	_.each(expandedDatasets, function(ds){
 		name = ds.get('name');
 		id = ds.get('id');
 		count = ds.get('count');
-		
+
 		thishtml+="<div><input type=\"checkbox\" name=\"dldataset\" class=\"dldatasets\" value=\""+id+"\" checked=\"checked\"> "+name+" ("+count+" spots)</div>";
 		$("#downloadDatasets").html(thishtml);
 	});
-	
+
 	$.fancybox.open(
 		{
 			src  : '#downloadOptionsWindow',
@@ -1996,23 +1979,22 @@ var openDownloadWindow = function(){
 	);
 }
 
-var downloadData = function(datatype){
-	var boxeschecked=false;
-	var dsids = [];
+	let downloadData = function(datatype){
+	let boxeschecked=false;
+	let dsids = [];
 	$('.dldatasets:checked').each(function(){
 		dsids.push($(this).val());
 		boxeschecked=true;
 	});
 	if(boxeschecked){
 		dsids=dsids.join();
-		var range = $("#downloadscope:checked").val();	//all -or- envelope
-		var envelope = getCurrentViewEnvelope();
+	let range = $("#downloadscope:checked").val();	//all -or- envelope
+	let envelope = getCurrentViewEnvelope();
 		console.log("download "+datatype+" with ids=(s): "+dsids+" with range: "+range+" and envelope: "+envelope);
 
 		//need to add search query too
-		var getvars = buildGetSearchVars();
-		
-		//console.log("search vars: "+getvars);
+	let getvars = buildGetSearchVars();
+
 
 		window.location='/searchdownload?type='+datatype+'&dsids='+dsids+'&range='+range+'&envelope='+envelope+'&'+getvars;
 
@@ -2020,9 +2002,9 @@ var downloadData = function(datatype){
 	}else{
 		alert("Error! You must choose at least one dataset.");
 	}
-	
+
 }
 
-var zoomHome = function(){
+	let zoomHome = function(){
 	mapView.fit(outgeometry, {duration: 1000});
 }

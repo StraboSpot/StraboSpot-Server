@@ -1,37 +1,23 @@
 php_value memory_limit 4086M
-
 RewriteEngine on
-
 RewriteRule ^validate/(.*)$ validateuser.php?hash=$1 [L]
-
 RewriteRule ^passwdreset/(.*)$ passwordreset.php?hash=$1 [L]
-
 RewriteRule ^viewdataset/(.*)$ view_dataset.php?id=$1 [L]
-
 RewriteRule ^help/(.*)$ helppage.php?extra=$1 [L]
-
 RewriteRule ^map_warper_check/(.*)$ mwcheck.php?id=$1 [L]
-
 RewriteRule ^strabo_mymaps_check/(.*)$ mymapscheck.php?hash=$1 [L]
-
 #RewriteRule ^help helppage.php [L]
-
 RewriteRule ^kobo.json$ kobojson.php [L]
-
 RewriteRule ^mwproxy/(.*)$ mapwarperproxy.php?data=$1 [L]
-
 RewriteRule ^pi/(.*)$ publicimage.php?id=$1 [L]
-
+RewriteRule ^pi_thumbnail/(.*)$ publicthumbnailimage.php?id=$1 [L]
+RewriteRule ^pi_basemap/(.*)/(.*)$ publicthumbnailimage.php?thumbsize=$1&id=$2 [L]
 RewriteRule ^randomdatasets.json$ randomdatasetsjson.php [L]
 RewriteRule ^searchdatasets.json$ searchdatasetsjson.php [L]
 RewriteRule ^searchspots.json$ searchspotsjson.php [L]
-
 RewriteRule ^includes/mapsearch/data_model.js$ jsdatamodel.php [L]
-
 RewriteRule ^search/includes/data_model.js$ jsdatamodel.php [L]
-
 RewriteRule ^mapimage/(.*).jpg$ publicimage.php?id=$1 [L]
-
 RewriteRule ^stereonetoutput/(.*)$ stereonetout.php?id=$1 [L]
 RewriteRule ^stereonet/(.*)$ stereonetout.php?id=$1 [L]
 RewriteRule ^labbook/(.*)$ exportlabbook.php?id=$1 [L]
@@ -39,20 +25,38 @@ RewriteRule ^fieldbook/(.*)$ exportfieldbook.php?id=$1 [L]
 RewriteRule ^shapefile/(.*)$ exportshapefile?id=$1 [L]
 RewriteRule ^kml/(.*)$ exportkml?id=$1 [L]
 RewriteRule ^xls/(.*)$ datasetxls?id=$1 [L]
-
 RewriteRule ^dl/(.*)/(.*)$ searchdownload.php?type=$1&dsids=$2 [L]
-
+#RewriteRule ^logMicroInstall/(.*)/(.*)$ dologmicroinstall.php?p=$1&ver=$2 [L]
 RewriteRule ^geimage/(.*)$ google_earth_image.php?id=$1 [L]
-
 RewriteRule ^debugproject/(.*)$ debugprojectscript.php?project_id=$1 [L]
-
+RewriteRule ^projectgeojson/(.*)$ projectgeojsonscript.php?project_id=$1 [L]
+RewriteRule ^projectjson/(.*)$ outprojectjson.php?project_id=$1 [L]
 RewriteRule ^sitemap1.xml$ sitemapxml.php [L]
-
 RewriteRule ^sitemap1.xml$ sitemapxml.php [L]
-
 RewriteRule ^spot/(.*)$ spotjson?id=$1 [L]
-
 RewriteRule ^instrument_list.js$ instrumentlist.php [L]
-
 RewriteRule ^instrument_detail/(.*)$ instrumentdetail.php?pkey=$1 [L]
+RewriteRule ^expimageupload/(.*)/(.*)/(.*)$ experimental_image_upload.php?type=$1&pkey=$2&sensor_num=$3 [L]
+RewriteRule ^expimageupload/(.*)/(.*)$ experimental_image_upload.php?type=$1&pkey=$2 [L]
+RewriteRule ^expimagedelete/(.*)/(.*)/(.*)$ experimental_image_delete.php?type=$1&pkey=$2&sensor_num=$3 [L]
+RewriteRule ^expimagedelete/(.*)/(.*)$ experimental_image_delete.php?type=$1&pkey=$2 [L]
+RewriteRule ^sensor_calibration_file/(.*)/(.*)/(.*)$ experimental_sensor_calibration_file_download.php?type=$1&apparatus_pkey=$2&sensor_num=$3 [L]
+RewriteRule ^sensor_calibration_file/electrical/(.*)$ experimental_sensor_calibration_file_download.php?type=electrical&apparatus_pkey=$1 [L]
+RewriteRule ^assets/js/apparatus/add_apparatus_(.*).js$ add_apparatus_js.php?pkey=$1 [L]
+RewriteRule ^apparatus_photo_(.*)_small.jpg$ apparatusphoto.php?pkey=$1&size=small [L]
+RewriteRule ^apparatus_photo_(.*)_large.jpg$ apparatusphoto.php?pkey=$1&size=large [L]
+RewriteRule ^apparatus_schematic_(.*)$ apparatusschematic.php?pkey=$1 [L]
+RewriteRule ^d/(.*)$ land?h=$1 [L]
+RewriteRule ^i/(.*)/(.*)$ /experimental/view_experimental_uploaded_file.php?uuid=$1&original_filename=$2 [B]
+RewriteRule ^fdl/(.*)$ dl_field_zip.php?u=$1 [L]
+RewriteRule ^fpl/(.*)$ field_project_landing_page.php?p=$1 [L]
+RewriteRule ^mpl/(.*)$ micro_project_landing_page.php?p=$1 [L]
+RewriteRule ^epl/(.*)$ experimental_project_landing_page.php?p=$1 [L]
+RewriteRule ^manual/(.*)$ manual_download.php?t=$1 [L]
+RewriteRule ^igsn/(.*)$ igsnland.php?igsn=$1 [L]
+RewriteRule ^aidescription/(.*)$ aidesccurl.php?image_id=$1 [L]
+RewriteRule ^aidescription2/(.*)$ aidesccurl2.php?image_id=$1 [L]
+
+
+
 

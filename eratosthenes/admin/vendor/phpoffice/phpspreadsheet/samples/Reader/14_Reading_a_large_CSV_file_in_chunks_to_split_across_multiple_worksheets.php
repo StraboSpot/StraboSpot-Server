@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 14_Reading_a_large_CSV_file_in_chunks_to_split_across_multiple_worksheets.php
+ * Description: implementing class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 namespace Samples\Sample14;
 

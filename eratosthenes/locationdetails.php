@@ -1,4 +1,15 @@
-<?
+<?php
+/**
+ * File: locationdetails.php
+ * Description: Handles locationdetails operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 $id = $_GET['id'];
 
 function dumpVar($var){
@@ -9,8 +20,6 @@ function dumpVar($var){
 
 $json = file_get_contents("data/measurements.json");
 $rows = json_decode($json);
-
-//dumpVar($rows);
 
 $outrows = [];
 
@@ -24,7 +33,7 @@ if(count($outrows)>0){
 	?>
 	<div style="padding:5px;">
 		<div class="locationheading">
-			Details for <?=$id?>:
+			Details for <?php echo $id?>:
 		</div>
 		<table class="locationdetails">
 			<tr>
@@ -45,7 +54,7 @@ if(count($outrows)>0){
 				<th>Calculated Circumference</th>
 				<th>Percent Accurate</th>
 			</tr>
-		<?
+		<?php
 		foreach($rows as $row){
 			$date_of_measurement=$row->date_of_measurement;
 			$time_of_measurement=$row->time_of_measurement;
@@ -66,24 +75,24 @@ if(count($outrows)>0){
 
 		?>
 			<tr>
-				<td><?=$date_of_measurement?></td>
-				<td><?=$time_of_measurement?></td>
-				<td><?=$location_1?></td>
-				<td><?=$location_1_stick_length?></td>
-				<td><?=$location_1_stick_length_err?></td>
-				<td><?=$location_1_shadow?></td>
-				<td><?=$location_1_shadow_err?></td>
-				<td><?=$location_1_angle?></td>
-				<td><?=$location_2?></td>
-				<td><?=$location_2_stick_length?></td>
-				<td><?=$location_2_stick_length_err?></td>
-				<td><?=$location_2_shadow?></td>
-				<td><?=$location_2_shadow_err?></td>
-				<td><?=$location_2_angle?></td>
-				<td><?=$calculated_circumference?></td>
-				<td><?=$percent_accurate?></td>
+				<td><?php echo $date_of_measurement?></td>
+				<td><?php echo $time_of_measurement?></td>
+				<td><?php echo $location_1?></td>
+				<td><?php echo $location_1_stick_length?></td>
+				<td><?php echo $location_1_stick_length_err?></td>
+				<td><?php echo $location_1_shadow?></td>
+				<td><?php echo $location_1_shadow_err?></td>
+				<td><?php echo $location_1_angle?></td>
+				<td><?php echo $location_2?></td>
+				<td><?php echo $location_2_stick_length?></td>
+				<td><?php echo $location_2_stick_length_err?></td>
+				<td><?php echo $location_2_shadow?></td>
+				<td><?php echo $location_2_shadow_err?></td>
+				<td><?php echo $location_2_angle?></td>
+				<td><?php echo $calculated_circumference?></td>
+				<td><?php echo $percent_accurate?></td>
 			</tr>
-		<?
+		<?php
 		}
 		?>
 		</table>
@@ -91,13 +100,13 @@ if(count($outrows)>0){
 			<a href="data/EratosthenesData.xlsx">Download Data</a>
 		</div>
 	</div>
-	<?
+	<?php
 }else{
 	?>
 	<div style="padding:20px;">
-		Sorry, no data has been uploaded for <?=$id?> yet.
+		Sorry, no data has been uploaded for <?php echo $id?> yet.
 	</div>
-	<?
+	<?php
 }
 
 ?>

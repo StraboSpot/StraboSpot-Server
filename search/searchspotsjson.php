@@ -295,49 +295,63 @@ function logtofile($string,$label=""){
 							$spotvals = (object)$spotvals->values();
 							$spotwkt = $spotvals->wkt;
 							$spotstratid = $spotvals->strat_section_id;
-							$spotimagebasemapid = $spotvals->image_basemap;
-							//$spotimagebasemapid = "dd";
-							//$neodb->dumpVar($spotvals);exit();
+							//$neodb->dumpVar($spotvals);
 							
 							//if($spotwkt!=""){
-							if($spotstratid!="removehere" && $spotwkt!=""){
+							if($spotstratid=="" && $spotwkt!=""){
 							
 								//$neodb->dumpVar($spotvals);exit();
 
 								//$neodb->dumpVar($spotwkt);exit();
 							
-								if($spotstratid=="" && $spotimagebasemapid==""){
+								$spotgeo = $geoPHP::load($spotwkt,'wkt');
 								
-									$spotgeo = $geoPHP::load($spotwkt,'wkt');
-								
-									//$outenvelope = $spotgeo->envelope();
-									$outenvelope = $spotgeo->asArray();
-									$outenvelope = $spotgeo->out('json');
+								//$outenvelope = $spotgeo->envelope();
+								$outenvelope = $spotgeo->asArray();
+								$outenvelope = $spotgeo->out('json');
 								
 								
 								
-									$outenvelope = json_decode($outenvelope);
+								$outenvelope = json_decode($outenvelope);
 								
-									//$neodb->dumpVar($outenvelope);
+								//$neodb->dumpVar($outenvelope);
 								
-									$coords = $outenvelope->coordinates;
+								$coords = $outenvelope->coordinates;
 								
-									if($outenvelope->type=="Point"){
+								if($outenvelope->type=="Point"){
 								
-										$lon = $coords[0];
-										$lat = $coords[1];
+									$lon = $coords[0];
+									$lat = $coords[1];
 									
+									//echo "lon: $lon<br>";
+									//echo "lat: $lat<br>";
+									
+									if($lon > $right) $right = $lon;
+									if($lon < $left) $left = $lon;
+									if($lat > $top) $top = $lat;
+									if($lat < $bottom) $bottom = $lat;
+								
+								}elseif($outenvelope->type=="LineString"){
+								
+									foreach($coords as $coord){
+
+										$lon = $coord[0];
+										$lat = $coord[1];
+
 										//echo "lon: $lon<br>";
 										//echo "lat: $lat<br>";
-									
+
 										if($lon > $right) $right = $lon;
 										if($lon < $left) $left = $lon;
 										if($lat > $top) $top = $lat;
 										if($lat < $bottom) $bottom = $lat;
+									}
 								
-									}elseif($outenvelope->type=="LineString"){
-								
-										foreach($coords as $coord){
+								}elseif($outenvelope->type=="Polygon"){
+
+									foreach($coords as $outercoords){
+									
+										foreach($outercoords as $coord){
 
 											$lon = $coord[0];
 											$lat = $coord[1];
@@ -350,29 +364,9 @@ function logtofile($string,$label=""){
 											if($lat > $top) $top = $lat;
 											if($lat < $bottom) $bottom = $lat;
 										}
-								
-									}elseif($outenvelope->type=="Polygon"){
-
-										foreach($coords as $outercoords){
-									
-											foreach($outercoords as $coord){
-
-												$lon = $coord[0];
-												$lat = $coord[1];
-
-												//echo "lon: $lon<br>";
-												//echo "lat: $lat<br>";
-
-												if($lon > $right) $right = $lon;
-												if($lon < $left) $left = $lon;
-												if($lat > $top) $top = $lat;
-												if($lat < $bottom) $bottom = $lat;
-											}
 										
-										}
-
 									}
-								
+
 								}
 
 								//check to see if spot in envelope

@@ -34,6 +34,14 @@ html, body, #map {
 	text-transform: uppercase;
 }
 
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
 #toptextlogo {
 	position: absolute;
 	bottom: 39px;
@@ -157,9 +165,9 @@ html, body, #map {
 
 #spotswaiting {
 	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
+	left: 480px; /*50%*/
+	top: 10px; /*50%*/
+	/*transform: translate(-50%,-50%);*/
 	width: 290px;
 	z-index: 30000;
 	background-color: white;
@@ -228,14 +236,6 @@ html, body, #map {
 
 .sidebar_value_row_value {
 	text-transform: capitalize;
-}
-
-pre {
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
 }
 
 .sidebar_value_row_title {
@@ -339,12 +339,13 @@ pre {
 #back_map {
 	position: absolute;
 	top: 9em;
-	left: 0.5em;
+	left: 437px;
 	text-align: left;
 	background-color: rgba(55, 55, 55, .4);
 	border-radius: 8px;
 	padding: 0px;
 	display: none;
+	z-index: 10;
 }
 
 .back_map_button {
@@ -370,13 +371,14 @@ pre {
 
 #download_map {
 	position: absolute;
-	top: 15em;
-	left: 0.5em;
+	top: 12em;
+	left: 437px; /*0.5em;*/
 	text-align: left;
 	background-color: rgba(55, 55, 55, .4);
 	border-radius: 8px;
 	padding: 0px;
 	display: none;
+	z-index: 10;
 }
 
 .download_map_button {
@@ -402,13 +404,14 @@ pre {
 
 #link_map {
 	position: absolute;
-	top: 18em;
-	left: 440px;
+	top: 15em;
+	left: 437px;
 	text-align: left;
 	background-color: rgba(55, 55, 55, .4);
 	border-radius: 8px;
 	padding: 0px;
 	display: block;
+	z-index: 10;
 }
 
 .link_map_button {
@@ -466,12 +469,12 @@ pre {
 #map_home {
 	position: absolute;
 	top: 9em;
-	left: .5em;
+	left: 437px;
 	text-align: left;
 	background-color: rgba(55, 55, 55, .4);
 	border-radius: 8px;
 	padding: 0px;
-	z-index: 1;
+	z-index: 100;
 }
 
 .map_home_button {
@@ -493,6 +496,7 @@ pre {
 	text-align: center;
 	border-radius: 8px;
 	cursor: pointer;
+	z-index: 100;
 }
 
 .geometry-icon{

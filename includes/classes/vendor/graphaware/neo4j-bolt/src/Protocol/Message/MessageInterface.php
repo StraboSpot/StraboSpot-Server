@@ -1,12 +1,13 @@
 <?php
-
-/*
- * This file is part of the GraphAware Bolt package.
+/**
+ * File: MessageInterface.php
+ * Description: Handles MessageInterface operations
  *
- * (c) Graph Aware Limited <http://graphaware.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
  */
 
 namespace GraphAware\Bolt\Protocol\Message;
@@ -23,9 +24,4 @@ interface MessageInterface
 
     public function isFailure();
 
-    /*
-    public function isIgnored();
-
-    public function isRecord();
-    */
 }

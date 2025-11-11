@@ -1,4 +1,15 @@
-<?
+<?php
+/**
+ * File: loadgigadata.php
+ * Description: Handles loadgigadata operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 exit();
 include_once "../includes/config.inc.php"; //credentials, etc
 include "../db.php"; //postgres database abstraction layer
@@ -6,8 +17,6 @@ include "../db.php"; //postgres database abstraction layer
 //loadgigadata.php
 $data = file_get_contents("gigadata.json");
 $data = json_decode($data);
-
-//$db->dumpVar($data); exit();
 
 foreach($data as $row){
 
@@ -26,7 +35,7 @@ foreach($data as $row){
 	$x_gigapan_id = $row->x_gigapan_id;
 
 	$query = "
-		insert into giga 
+		insert into giga
 		(
 			image_title,
 			image_description,
@@ -57,12 +66,9 @@ foreach($data as $row){
 			'$x_gigapan_id'
 		)
 	";
-	
-	//$db->dumpVar($query);exit();
-	//GRANT USAGE, SELECT ON SEQUENCE giga_pkey_seq TO strabodbuser;
-	
+
 	$db->query($query);
-	
+
 	echo "$image_title done. <br>";
 
 }

@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 31_Document_properties_write_xls.php
+ * Description: Handles 31 Document properties write xls operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\Document\Properties;
 use PhpOffice\PhpSpreadsheet\IOFactory;

@@ -1,4 +1,15 @@
-<?
+<?php
+/**
+ * File: header.php
+ * Description: Page header template
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 include("sessioncheck.php");
 
@@ -19,10 +30,30 @@ if($_SESSION['userpkey']!=""){
 		$instcount = $db->get_var("
 			select count(*) from instrument_users where users_pkey = ".$_SESSION['userpkey']."
 		");
-	
+
 
 		if(in_array($userpkey, $admin_pkeys) || $instcount > 0){
 			$showinstrumentmenu = true;
+		}
+	}
+}
+
+$showadminmenu = false;
+if($_SESSION['userpkey']!=""){
+	if(in_array($userpkey, $admin_pkeys)){
+		$showadminmenu = true;
+	}
+}
+
+$showdois = false;
+if($_SESSION['userpkey']!=""){
+	if($db){
+		$doicount = $db->get_var("
+			select count(*) from dois where user_pkey = ".$_SESSION['userpkey']."
+		");
+
+		if($doicount > 0){
+			$showdois = true;
 		}
 	}
 }
@@ -33,10 +64,10 @@ if($scriptname=="/index.php"){
 	$homeactive="active";
 }elseif($scriptname=="/overview.php" || $scriptname=="/news.php" || $scriptname=="/privacy.php"){
 	$aboutactive="active";
-}elseif($scriptname=="/login.php" || 
-		$scriptname=="/register.php" || 
-		$scriptname=="/load_shapefile.php" || 
-		$scriptname=="/my_data.php" || 
+}elseif($scriptname=="/login.php" ||
+		$scriptname=="/register.php" ||
+		$scriptname=="/load_shapefile.php" ||
+		$scriptname=="/my_data.php" ||
 		$scriptname=="/view_dataset.php"||
 		$scriptname=="/koboforms.php"||
 		$scriptname=="/viewform.php"||
@@ -50,14 +81,23 @@ if($scriptname=="/index.php"){
 	$accountactive="active";
 }elseif($scriptname=="/api.php"){
 	$apiactive="active";
-}elseif($scriptname=="/downloadapp.php" || $scriptname=="/requestaccess.php"){
-	$appactive="active";
+}elseif($scriptname=="/downloadapp.php" ||
+		$scriptname=="/requestaccess.php"
+		){
+	$softwareactive="active";
 }elseif($scriptname=="/help.php"){
 	$helpactive="active";
-}elseif($scriptname=="/strabotoolsdownload.php"){
-	$toolsactive="active";
+}elseif($scriptname=="/strabotoolsdownload.php" ||
+		$scriptname=="/micro.php" ||
+		$scriptname=="/microchangelog.php" ||
+		$scriptname=="/whatisstrabomicro.php" ||
+		$scriptname=="/whatisstrabospotoffline.php"
+		){
+	$softwareactive="active";
 }elseif($scriptname=="/teaching.php"){
 	$teachingactive="active";
+}elseif($scriptname=="/supporteddevices.php"){
+	$hardwareactive="active";
 }else{
 	$homeactive="active";
 }
@@ -67,7 +107,6 @@ if($scriptname=="/index.php"){
 <html>
 <head>
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107694781-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -102,6 +141,7 @@ if($scriptname=="/index.php"){
 <meta name="theme-color" content="#ffffff">
 
 <link rel="stylesheet" href="/assets/files/buildtime.css" type="text/css" />
+<link rel="stylesheet" href="/assets/js/dropzone/dropzone.css" type="text/css" />
 <link rel='stylesheet' type='text/css' href='/assets/files/fancybox.css' />
 <link rel='stylesheet' type='text/css' href='/assets/files/main_style.css%3F1422559220.css' title='wsite-theme-css' />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,400italic,700italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css' />
@@ -132,27 +172,56 @@ if($scriptname=="/index.php"){
 #wsite-content h2.wsite-product-title {}
 .wsite-product .wsite-product-price a {}
 
+/*
+	padding-bottom: 40px;
+	width: 960px;
+	margin: auto;
+	text-align: center;
+	text-transform: uppercase;
+	overflow: hidden;
+	font-family: 'Raleway', sans-serif;
+	font-size: 13px;
+*/
+
+
 
 .apidoc {
 	font: 13px "PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-family: "PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: normal;
-    font-size-adjust: none;
-    font-stretch: normal;
-    -x-system-font: none;
-    -moz-font-feature-settings: normal;
-    -moz-font-language-override: normal;
+	font-family: "PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: normal;
+	font-size-adjust: none;
+	font-stretch: normal;
+	-x-system-font: none;
+	-moz-font-feature-settings: normal;
+	-moz-font-language-override: normal;
 }
 
+.footer, .push {
+	height: 42px; /* .push must be the same height as .footer */
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
+	font-size: 13px;
 
+}
+
+.footer a:link, .footer a:visited {
+	color: #333;
+}
+
+#wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -42px; /* the bottom margin is the negative value of the footer's height */
+}
 
 .apidoc h3 {
 	color: #333333;
-    font-size: 24px;
+	font-size: 24px;
 }
 
 .apidoc  code {
@@ -162,39 +231,40 @@ if($scriptname=="/index.php"){
 }
 
 pre, code {
-    font-family: "Ubuntu Mono",Menlo,Consolas,Inconsolata,monospace;
-    font-size: 14px;
+	font-family: "Ubuntu Mono",Menlo,Consolas,Inconsolata,monospace;
+	font-size: 14px;
 }
 code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #C7254E;
-    background-color: #F9F2F4;
-    border-radius: 4px;
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #C7254E;
+	background-color: #F9F2F4;
+	border-radius: 4px;
 }
 code, kbd, pre, samp {
-    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 code, kbd, pre, samp {
-    font-family: monospace,monospace;
-    font-size: 1em;
+	font-family: monospace,monospace;
+	font-size: 1em;
 }
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
 }
 
 .programlisting {
-    display: block;
-    padding: 9.5px;
-    margin: 0px 0px 10px;
-    font-size: 13px;
-    line-height: 1.42857;
-    color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
-    background-color: #F5F5F5;
-    border: 1px solid #CCC;
-    border-radius: 4px;
+	display: block;
+	padding: 9.5px;
+	margin: 0px 0px 10px;
+	font-size: 13px;
+	line-height: 1.42857;
+	color: #333;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: #F5F5F5;
+	border: 1px solid #CCC;
+	border-radius: 4px;
 }
 
 li.listitem {
@@ -205,27 +275,27 @@ li.listitem {
 .strabotable {
 	margin:0px;padding:0px;
 	width:100%;
-	box-shadow: 10px 10px 5px #888888;
+	box-shadow: 5px 5px 10px #bbb;
 	border:1px solid #000000;
-	
+
 	-moz-border-radius-bottomleft:0px;
 	-webkit-border-bottom-left-radius:0px;
 	border-bottom-left-radius:0px;
-	
+
 	-moz-border-radius-bottomright:0px;
 	-webkit-border-bottom-right-radius:0px;
 	border-bottom-right-radius:0px;
-	
+
 	-moz-border-radius-topright:0px;
 	-webkit-border-top-right-radius:0px;
 	border-top-right-radius:0px;
-	
+
 	-moz-border-radius-topleft:0px;
 	-webkit-border-top-left-radius:0px;
 	border-top-left-radius:0px;
 }.strabotable table{
-    border-collapse: collapse;
-        border-spacing: 0;
+	border-collapse: collapse;
+		border-spacing: 0;
 	width:100%;
 	height:100%;
 	margin:0px;padding:0px;
@@ -248,13 +318,13 @@ li.listitem {
 	-webkit-border-bottom-left-radius:0px;
 	border-bottom-left-radius:0px;
 }.strabotable tr:hover td{
-	
+
 }
 .strabotable tr:nth-child(odd){ background-color:#e5e5e5; }
 .strabotable tr:nth-child(even)    { background-color:#ffffff; }.strabotable td{
 	vertical-align:middle;
-	
-	
+
+
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;
@@ -342,28 +412,39 @@ li.listitem {
 	padding-bottom:15px;
 }
 
+.aboutmessage2{
+	font-family: 'Raleway', sans-serif;
+	/*background-color:#FFF;*/
+	font-size:24px;
+	position: relative;
+	/*left: 50%;*/
+	top: 70px;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
 .btn {
-    position: relative;
-    display: inline-block;
-    padding: 3px 3px;
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 10px;
-    color: #333;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    background-color: #eee;
-    background-image: linear-gradient(#fcfcfc,#eee);
-    border: 1px solid #d5d5d5;
-    border-radius: 3px;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-appearance: none;
+	position: relative;
+	display: inline-block;
+	padding: 3px 3px;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 10px;
+	color: #333;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #eee;
+	background-image: linear-gradient(#fcfcfc,#eee);
+	border: 1px solid #d5d5d5;
+	border-radius: 3px;
+		border-top-left-radius: 3px;
+		border-bottom-left-radius: 3px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-appearance: none;
 }
 
 
@@ -401,10 +482,10 @@ li.listitem {
 
 </style>
 <style>
-<?
+<?php
 $num = rand(1,22);
 ?>
-.wsite-background {background-image: url('/assets/files/bannerpics/<?=$num?>.jpg') !important;background-repeat: no-repeat !important;background-position: 50% 50% !important;background-size: cover !important;background-color: transparent !important;background: inherit;}
+.wsite-background {background-image: url('/assets/files/bannerpics/<?php echo $num?>.jpg') !important;background-repeat: no-repeat !important;background-position: 50% 50% !important;background-size: cover !important;background-color: transparent !important;background: inherit;}
 body.wsite-background {background-attachment: fixed !important;}
 </style>
 <script><!--
@@ -412,12 +493,14 @@ var STYLE_PREFIX = 'wsite';
 //-->
 </script>
 
-<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>-->
 <script src='/assets/js/jquery/jquery.min.js'></script>
+<script src='/assets/js/k/k.js'></script>
+<link rel="stylesheet" href="/assets/js/k/k.css" type="text/css" />
 <script src="/assets/js/featherlight/featherlight.js"></script>
 <script src="/assets/js/clipboardjs/clipboard.js"></script>
 
-
+<!--<link rel="stylesheet" href="/assets/js/micro-ui/jquery-ui.css">
+<script src="/assets/js/micro-ui/jquery-ui.js"></script>-->
 
 <script src='/assets/files/main.js'></script>
 <script>_W.relinquish && _W.relinquish()</script>
@@ -440,24 +523,24 @@ else document.observe('dom:loaded', initFlyouts);
 //-->
 </script>
 
-<?
+<?php
 if($_SERVER['PHP_SELF']=="/register.php"){
 ?>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<?
+<?php
 }
 ?>
 
 </head>
-<?
+<?php
 if($scriptname=="/index.php"||$scriptname=="/index2.php"||$scriptname=="/indexdev.php"){
 ?>
 <body class="tall-header  wsite-theme-light wsite-page-index">
-<?
+<?php
 }else{
 ?>
 <body class='  wsite-theme-light wsite-page-minutes '>
-<?
+<?php
 }
 ?>
 <!-- <body class="tall-header  wsite-theme-light wsite-page-index"> with banner--->
@@ -473,112 +556,246 @@ if($scriptname=="/index.php"||$scriptname=="/index2.php"||$scriptname=="/indexde
 			</div>
 		</div>
 		<div id="navigation">
-			
+
 			<!-- login here -->
-			<?=$bartext?>
-			
-			
+			<?php echo $bartext?>
+
+
 			<ul class='wsite-menu-default'>
-				<li id='<?=$homeactive?>'><a href="/" data-membership-required="0" >Home</a></li>
-				<li id='<?=$aboutactive?>'>
-					<a href="/overview" data-membership-required="0" >About</a>
+				<li id='<?php echo $homeactive?>'><a href="/" data-membership-required="0" >Home</a></li>
+				<li id='<?php echo $aboutactive?>'>
+					<a href="#" data-membership-required="0" >About</a>
 					<div class='wsite-menu-wrap' style='display:none'>
 						<ul class='wsite-menu'>
 							<li id=''><a href='/overview' ><span class='wsite-menu-title'>Overview</span></a></li>
-							
-							<li id=''><a href='https://strabospot.wordpress.com' target='_blank'><span class='wsite-menu-title'>News</span></a></li>
-							
+
+
 							<li id=''><a href='/privacy' ><span class='wsite-menu-title'>Privacy Policy</span></a></li>
 						</ul>
 					</div>
 				</li>
-				<li id='<?=$accountactive?>'>
+				<li id='<?php echo $accountactive?>'>
 					<a href="#" data-membership-required="0" >Account</a>
 					<div class='wsite-menu-wrap' style='display:none'>
 						<ul class='wsite-menu'>
-					<?
+					<?php
 					if($_SESSION['loggedin']=="yes"){
-					?> 
+					?>
 							<li id=''><a href='/logout' ><span class='wsite-menu-title'>Logout</span></a></li>
+							<li id=''><a href='/delete_account' ><span class='wsite-menu-title'>Delete Account</span></a></li>
 							<li id=''><a href='/load_shapefile' ><span class='wsite-menu-title'>Load Shapefile</span></a></li>
-							<li id=''><a href='/my_data' ><span class='wsite-menu-title'>My Data</span></a></li>
-					<?
-					if($showinstrumentmenu){
+<?php
+if($_SESSION['userpkey']=="3"){
+?>
+<li id=''><a href='/load_shapefile_dev' ><span class='wsite-menu-title'>Dev Load Shapefile</span></a></li>
+<?php
+}
+?>
+							<li id=''><a href='/my_field_data' ><span class='wsite-menu-title'>My Field Data</span></a></li>
+							<li id=''><a href='/my_micro_data' ><span class='wsite-menu-title'>My Micro Data</span></a></li>
+							<li id=''><a href='/my_experimental_data' ><span class='wsite-menu-title'>My Experimental Data</span></a></li>
+
+
+					<?php
+					if($showdois){
+					?>
+							<li id=''><a href='/my_dois' ><span class='wsite-menu-title'>My DOIs</span></a></li>
+					<?php
+					}
+					if(in_array($userpkey, array(3, 7217))){
+					?>
+							<li id=''><a href='/mailusers' ><span class='wsite-menu-title'>Strabo Users List</span></a></li>
+					<?php
+					}
+					?>
+
+					<?php
+					if($showinstrumentmenuu){
 					?>
 							<li id=''><a href='/instrumentcatalog' ><span class='wsite-menu-title'>My Instruments</span></a></li>
-					<?
+					<?php
+					}
+
+					if($showadminmenuu){
+					?>
+							<li id=''><a href='/institutes' ><span class='wsite-menu-title'>Institutes</span></a></li>
+					<?php
+					}
+					if($_SESSION['userpkey']=="3"){
+					?>
+							<li id=''><a href='/microErrorReports' ><span class='wsite-menu-title'>Micro Error Reports</span></a></li>
+							<li id=''><a href='#' onclick="acc();"><span class='wsite-menu-title'>Blink</span></a></li>
+					<?php
 					}
 					?>
 							<li id=''><a href='/geotiff' ><span class='wsite-menu-title'>My Maps</span></a></li>
 
-							<!--<li id=''><a href='/koboforms' ><span class='wsite-menu-title'>Kobo Forms</span></a></li>-->
 							<li id=''><a href='/change_password' ><span class='wsite-menu-title'>Change Password</span></a></li>
 							<li id=''><a href='/versioning' ><span class='wsite-menu-title'>Versioning</span></a></li>
-					<?
+					<?php
 					}else{
 					?>
 							<li id=''><a href='/login' ><span class='wsite-menu-title'>Login</span></a></li>
-					<?
+					<?php
 					}
 
 					if($_SESSION['loggedin']!="yes"){
-					?> 
+					?>
 							<li id=''><a href='/register' ><span class='wsite-menu-title'>Register</span></a></li>
-					<?
+					<?php
 					}
 					?>
 						</ul>
 					</div>
 				</li>
-				<li id='<?=$apiactive?>'><a href="/api" data-membership-required="0" >API</a></li>
-				<li id='<?=$appactive?>'>
-					<a href="downloadapp" data-membership-required="0" >StraboSpot</a>
-					<!--
+				<li id='<?php echo $apiactive?>'><a href="/api" data-membership-required="0" >API</a></li>
+
+				<li id='<?php echo $softwareactive?>'>
+					<a href="#" data-membership-required="0" >Software</a>
 					<div class='wsite-menu-wrap' style='display:none'>
 						<ul class='wsite-menu'>
-							<li id=''><a href='download' ><span class='wsite-menu-title'>Download App</span></a></li>
-							<li id=''><a href='https://build.phonegap.com/apps/1289076/share' target="_blank" ><span class='wsite-menu-title'>Download App</span></a></li>
-							<li id=''><a href='/downloadapp'><span class='wsite-menu-title'>Download</span></a></li>
-							<li id=''><a href='https://app.strabospot.org/' target="_blank" ><span class='wsite-menu-title'>Online App</span></a></li>
+
+							<li id=''>
+								<a href='/downloadapp' ><span class='wsite-menu-title'>StraboSpot Mobile</span></a>
+								<div class='wsite-menu-wrap' style='display:none'>
+									<ul class='wsite-menu'>
+										<li id=''><a href='/supporteddevices' ><span class='wsite-menu-title'>Supported Devices</span></a></li>
+										<li id=''><a href='/downloadapp' ><span class='wsite-menu-title'>Download StraboSpot Mobile</span></a></li>
+
+									</ul>
+								</div>
+							</li>
+
+							<li id=''>
+								<a href='/strabotoolsdownload'><span class='wsite-menu-title'>StraboTools</span></a>
+								<div class='wsite-menu-wrap' style='display:none'>
+									<ul class='wsite-menu'>
+										<li id=''><a href='/strabotoolsdownload' ><span class='wsite-menu-title'>Download StraboTools</span></a></li>
+										<li id=''><a href='https://strabospot.wordpress.com/strabotools-faq/' ><span class='wsite-menu-title'>StraboTools FAQ</span></a></li>
+									</ul>
+								</div>
+							</li>
+
+							<li id=''>
+								<a href='/whatisstrabomicro' ><span class='wsite-menu-title'>StraboMicro</span></a>
+								<div class='wsite-menu-wrap' style='display:none'>
+									<ul class='wsite-menu'>
+										<li id=''><a href='/whatisstrabomicro' ><span class='wsite-menu-title'>What is StraboMicro?</span></a></li>
+										<li id=''><a href='/micro' ><span class='wsite-menu-title'>Download StraboMicro</span></a></li>
+										<li id=''><a href='/microchangelog' ><span class='wsite-menu-title'>Changelog</span></a></li>
+									</ul>
+								</div>
+							</li>
+
+
+							<li id=''>
+								<a href='/experimental' ><span class='wsite-menu-title'>StraboExperimental (Beta)</span></a>
+
+								<!--
+								<div class='wsite-menu-wrap' style='display:none'>
+									<ul class='wsite-menu'>
+										<li id=''><a href='/whatisstrabomicro' ><span class='wsite-menu-title'>What is StraboMicro?</span></a></li>
+										<li id=''><a href='/micro' ><span class='wsite-menu-title'>Download StraboMicro</span></a></li>
+										<li id=''><a href='/microchangelog' ><span class='wsite-menu-title'>Changelog</span></a></li>
+									</ul>
+								</div>
+								-->
+							</li>
+
+
+							<li id=''>
+								<a href='/whatisstrabospotoffline' ><span class='wsite-menu-title'>StraboSpot Offline</span></a>
+								<div class='wsite-menu-wrap' style='display:none'>
+									<ul class='wsite-menu'>
+										<li id=''><a href='/whatisstrabospotoffline' ><span class='wsite-menu-title'>What is StraboSpot Offline?</span></a></li>
+										<li id=''><a href='/StraboSpotOffline.zip' ><span class='wsite-menu-title'>Download StraboSpot Offline</span></a></li>
+									</ul>
+								</div>
+							</li>
+
+<!--
+							<li id=''>
+								<a href='/micro' ><span class='wsite-menu-title'>StraboMicro</span></a>
+							</li>
+ -->
+
 						</ul>
 					</div>
-					-->
 				</li>
-				<li id='<?=$toolsactive?>'>
-					<a href="strabotoolsdownload" data-membership-required="0" >StraboTools</a>
+
+				<li id='<?php echo $hardwareactive?>'><a href="/supporteddevices" data-membership-required="0" >Hardware</a></li>
+
+				<li id='<?php echo $searchactive?>'>
+					<a href="#" data-membership-required="0" >Search</a>
 					<div class='wsite-menu-wrap' style='display:none'>
 						<ul class='wsite-menu'>
-							<li id=''><a href='strabotoolsdownload' ><span class='wsite-menu-title'>Download StraboTools</span></a></li>
-							<li id=''><a href='https://strabospot.wordpress.com/strabotools-faq/' target="_blank"><span class='wsite-menu-title'>StraboTools FAQ</span></a></li>
+							<li id=''><a href='/search' ><span class='wsite-menu-title'>Search Strabo Field Data</span></a></li>
+							<li id=''><a href='/publicmaps' ><span class='wsite-menu-title'>Search Public Maps</span></a></li>
 						</ul>
 					</div>
 				</li>
-				<li id='<?=$searchactive?>'><a href="/search" data-membership-required="0" >Search</a></li>
-				<li id='<?=$helpactive?>'><a href="/help" data-membership-required="0">Help</a></li>
-				<li id='<?=$teachingactive?>'><a href="/teaching" data-membership-required="0" >Teaching</a></li>
+				<li id='<?php echo $helpactive?>'><a href="/help" data-membership-required="0">Help</a></li>
+				<li id='<?php echo $teachingactive?>'><a href="/teaching" data-membership-required="0" >Teaching</a></li>
 			</ul>
 		</div>
 
-<?
+
+
+<?php
+
+if(in_array($userpkey, array(30000000))){
+?>
+		<div class="kon konblink">
+			<img src="/assets/js/k/go.png" width="300px">
+		</div>
+<?php
+}
+?>
+
+
+
+
+
+
+
+<?php
 if($scriptname=="/index.php"||$scriptname=="/index2.php"||$scriptname=="/indexdev.php"){
 ?>
 		<div class="banner-wrap wsite-background wsite-custom-background">
 			<div id="strabologo"><img src="/includes/images/strabo_icon_web.png" width="256" height="256"/></div>
-		
-<?
-if($scriptname=="/index2.php"){
+
+<?php
+if($scriptname=="/index2.php"||$scriptname=="/index.php"){
 ?>
 
-<div class="aboutmessage">COLLECT, STORE AND SHARE GEOLOGIC DATA</div>
+<div class="aboutmessage"><!--aboutmessage2-->
+	<!--<a href="/helpdesk">StraboSpot help desk - every Thursday 11am-1pm CDT. Click for more details and to join</a><br>-->
+	<!--<a href="https://apps.apple.com/us/app/strabospot2/id1555903455" target="_blank">StraboSpot2 Now Available at the App Store. Click for more details</a>-->
 
-<?
+	<!-- 2024/09/02 JMA -->
+	<a href="january2024announcement">StraboSpot2 Now Available for Phones. Click for more details</a><br>
+	<a href="/publicmaps" target="_blank">Visit the Collection of Geologic Map Images (Georeferenced) Available to use with StraboSpot</a>
+
+
+	<!--
+	<a href="https://mailchi.mp/4136844ebc22/strabospot-at-gsa" target="_blank">StraboSpot will be at GSA Connects 2024 in Anaheim, CA.<br>Click for more details.</a>
+	-->
+
+	<!--
+	<a href="https://mailchi.mp/c0157fb58f98/funding-opportunity" target="_blank">
+		<img src="/assets/micro_banner_front.png">
+	</a>
+	-->
+</div>
+
+<?php
 }
 ?>
 
 
 		</div>
-		
-<?
+
+<?php
 }
 ?>
 

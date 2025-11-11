@@ -1,12 +1,13 @@
 <?php
-
-/*
- * This file is part of the GraphAware Bolt package.
+/**
+ * File: Driver.php
+ * Description: Driver class definition
  *
- * (c) Graph Aware Limited <http://graphaware.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
  */
 
 namespace GraphAware\Bolt;
@@ -59,26 +60,6 @@ class Driver implements DriverInterface
     {
         $this->credentials = (null !== $configuration && null !== $configuration->getCredentials()) ? $configuration->getCredentials() : array();
         $ctx = stream_context_create(array());
-        /*
-        define('CERTS_PATH',
-        '/Users/ikwattro/dev/_graphs/3.0-M02-NIGHTLY/conf');
-        $ssl_options = array(
-            'cafile' => CERTS_PATH . '/cacert.pem',
-            'local_cert' => CERTS_PATH . '/ssl/snakeoil.pem',
-            'peer_name' => 'example.com',
-            'allow_self_signed' => true,
-            'verify_peer' => true,
-            'capture_peer_cert' => true,
-            'capture_peer_cert_chain' => true,
-            'disable_compression' => true,
-            'SNI_enabled' => true,
-            'verify_depth' => 1
-        );
-        foreach ($ssl_options as $k => $v) {
-            stream_context_set_option($ctx, 'ssl', $k, $v);
-        }
-        */
-
         $this->io = new StreamSocket($uri, self::DEFAULT_TCP_PORT);
         $this->dispatcher = new EventDispatcher();
         $this->sessionRegistry = new SessionRegistry($this->io, $this->dispatcher);

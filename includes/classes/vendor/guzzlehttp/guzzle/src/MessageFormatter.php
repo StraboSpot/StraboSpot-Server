@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: MessageFormatter.php
+ * Description: MessageFormatter class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 namespace GuzzleHttp;
 
 use Psr\Http\Message\MessageInterface;

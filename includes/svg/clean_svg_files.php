@@ -1,7 +1,14 @@
-<?
-/*
-build pattern files for Strabo SVGs
-*/
+<?php
+/**
+ * File: clean_svg_files.php
+ * Description: read svg file and fix here
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
 function dumpVar($var){
 	echo "<pre>\n";
@@ -21,23 +28,23 @@ $patternarraynum = 0;
 foreach($folders as $folder){
 	if(substr($folder,0,1)!="."){
 		mkdir("cleaned/$folder");
-		
+
 		$svgfiles = scandir("origsvgfiles/$folder");
-		
+
 		foreach($svgfiles as $svgfile){
-		
+
 			if(substr($svgfile,0,1)!="."){
-			
+
 				//read svg file and fix here
 				$svgout = "";
 				$classes = array();
-				
+
 				$xmldata = simplexml_load_file("origsvgfiles/$folder/$svgfile") or die("Failed to load");
 
 				$style = $xmldata->defs->style->asXML();
 
 				//dumpVar($style);
-				
+
 				// find original class names so we can replace them later
 				$rectclasses=[];
 				$classes=[];
@@ -48,10 +55,9 @@ foreach($folders as $folder){
 				$workstyle = str_replace(",","\n",$workstyle);
 				$workstyle = str_replace("}","\n",$workstyle);
 				$oldclasses = explode("\n",$workstyle);
-				
-				//echo "\n\n\n";
+
 				//dumpVar($oldclasses);
-				
+
 				$classnum=0;
 				foreach($oldclasses as $oldclass){
 					if($oldclass!=""){
@@ -65,7 +71,7 @@ foreach($folders as $folder){
 							$oldclass = substr($oldclass,0,strpos($oldclass, "{"));
 						}
 						$oldclass = str_replace(".","",$oldclass);
-						
+
 						if(!in_array($oldclass,$foundclasses)){
 							$foundclasses[]=$oldclass;
 							$classes[$classnum]['oldname']=$oldclass;
@@ -75,11 +81,10 @@ foreach($folders as $folder){
 						}
 					}
 				}
-				
+
 				//dumpVar($classes);
 				//dumpVar($foundclasses);
-				//echo "pnum: $pnum";
-				
+
 				$rects = count($xmldata->rect);
 				for($x=0; $x<count($xmldata->rect); $x++){
 					//$classes[] = (string) $xmldata->rect[$x]['class'];
@@ -103,25 +108,25 @@ foreach($folders as $folder){
 
 				$pattern = $xmldata->defs->pattern;
 				$pattern = prettyXML($pattern);
-				
+
 				$svgout = $style . "\n" . $pattern . "\n";
-				
+
 				foreach($classes as $c){
 					$svgout = str_replace($c['oldname'],$c['newname'],$svgout);
 				}
-				
+
 				$svgout = str_replace("#_$pnum","#_$strabopatternnum",$svgout);
 				$svgout = str_replace("id=\"_$pnum\"","id=\"_$strabopatternnum\"",$svgout);
 				$svgout = str_replace("data-name=\"$pnum\"","data-name=\"$strabopatternnum\"",$svgout);
-				
+
 				$strabopatternnum++;
 
 				file_put_contents("cleaned/$folder/$svgfile",$svgout);
 
 			}
-		
+
 		}
-		
+
 	}
 }
 

@@ -1,0 +1,1438 @@
+{
+	"facility": {
+		"address": {
+			"street": "77 Massachusetts Avenue",
+			"building": "Bldg.54-715",
+			"postcode": "02139",
+			"city": "Cambridge",
+			"state": "MA",
+			"country": "USA",
+			"latitude": "42.3601",
+			"longitude": "71.0942"
+		},
+		"contact": {
+			"firstname": "Matej",
+			"lastname": "Pec",
+			"affiliation": "Professor",
+			"email": "mpec@mit.edu",
+			"phone": "617-324-7279",
+			"website": "https://mpec.scripts.mit.edu/peclab/",
+			"id": "Pec_111111"
+		},
+		"institute": "Massachusetts Institute of Technology",
+		"department": "Earth and Planetary Sciences (EAPS)",
+		"name": "Rock Physics Laboratory",
+		"type": "University Lab",
+		"id": "ETH_54_715",
+		"website": "https://eapsweb.mit.edu/",
+		"description": "Rock Deformation Lab (formerly Prof Brian Evan's Lab)"
+	},
+	"apparatus": {
+		"name": "Paterson Rig #5",
+		"type": "Paterson Apparatus",
+		"location": "E54-715",
+		"id": "Pat_#5",
+		"description": "This apparatus is capable of reaching confining pressures up to 500 MPa and temperatures up to 1300˚C with Argon gas serving as the confining medium. It was designed by Prof. Mervyn Paterson and is one of 13 existing apparatus of this type world-wide. This apparatus is uniquely suited for high-resolution deformation experiments of relatively large samples up to 15 mm in diameter and 30 mm in length thanks to its internal load cell and compensated piston design which eliminates any seal friction from load measurements. The apparatus has a three-zone furnace with temperature gradients of <1 ˚C/mm and a hot-zone ~40 mm in length.  Furthermore, it is equipped with a pore pressure system which allows for permeability measurements during deformation as well as introduction of various fluids into the deforming rocks at high pressures and temperatures. Recently the Paterson Apparatus was upgraded to allow acoustic velocity and acoustic emission (AE) measurements. Currently we are limited to low temperature experiments (<300oC) for AE measurements.",
+		"features": [
+			"Loading",
+			"Unloading",
+			"Heating",
+			"High Temperature",
+			"HIP",
+			"Synthesis",
+			"Mineral Reactions",
+			"Yield Strength",
+			"Failure Strength",
+			"Strength",
+			"Creep",
+			"Reactive Flow",
+			"Pore Fluid Control",
+			"Permeability",
+			"Steady-State Permeability",
+			"Transient Permeability",
+			"Drained/Undrained Pore Fluid",
+			"P-Wave Velocity",
+			"S-Wave Velocity"
+		],
+		"parameters": [
+			{
+				"type": "Confining Pressure",
+				"min": "1",
+				"max": "700",
+				"unit": "MPa",
+				"prefix": "-",
+				"note": "Nominal 400MPa"
+			},
+			{
+				"type": "Temperature",
+				"min": "23",
+				"max": "1250",
+				"unit": "degC",
+				"prefix": "-",
+				"note": "Furnace dependent"
+			},
+			{
+				"type": "Pore Pressure",
+				"min": "1",
+				"max": "300",
+				"unit": "MPa",
+				"prefix": "-",
+				"note": "Gas or Water"
+			},
+			{
+				"type": "σ1-Displacement",
+				"min": "20",
+				"max": "49",
+				"unit": "mm",
+				"prefix": "-",
+				"note": "Dependent on Sample Assembly"
+			},
+			{
+				"type": "σ1-Load",
+				"min": "0",
+				"max": "100",
+				"unit": "kN",
+				"prefix": "-",
+				"note": ""
+			},
+			{
+				"type": "Stiffness",
+				"min": "",
+				"max": "75.19",
+				"unit": "kN·mm-1",
+				"prefix": "-",
+				"note": "Spring Calibrated Stiffness"
+			},
+			{
+				"type": "Sample Diameter",
+				"min": "6",
+				"max": "15",
+				"unit": "mm",
+				"prefix": "-",
+				"note": ""
+			},
+			{
+				"type": "Sample Length",
+				"min": "10",
+				"max": "26",
+				"unit": "mm",
+				"prefix": "-",
+				"note": ""
+			}
+		],
+		"documents": [
+			{
+				"type": "Picture",
+				"format": "jpg",
+				"path": "https://strabospot.org/i/e1ee8211-0fcc-48e9-8d8a-0c85d9fb5fd9/2018-10-09_15.31.07.jpg",
+				"id": "Pat#5_LoadCell",
+				"uuid": "4ed3c371-0635-419e-8b6f-4c06fe70e313",
+				"description": "Paterson Internal LoadCell Assembly"
+			},
+			{
+				"type": "Picture",
+				"format": "jpg",
+				"path": "https://strabospot.org/i/bd7dfcfb-466c-4a4d-9754-b96394aeef09/DSCF0001a.jpg",
+				"id": "Pat#5_Photo1",
+				"uuid": "d78d654a-121f-4084-8145-aeb15b2eccc5",
+				"description": "Brian Evans + Sergio Vinciguerra with the Paterson#5 rig"
+			},
+			{
+				"type": "Diagram",
+				"format": "pdf",
+				"path": "https://strabospot.org/i/0bd44f43-2004-45c9-9e98-76300b35b241/Paterson_Rig-Drawings.pdf",
+				"id": "Pat#5_Drawings",
+				"uuid": "c729c4c3-ef82-4cf9-a948-ad70e81884a7",
+				"description": "Drawings Paterson#5 (Parts)"
+			},
+			{
+				"type": "Manual",
+				"format": "docx",
+				"path": "https://strabospot.org/i/8f55a626-89ef-48c9-84af-40243b545dc2/Paterson_Rig-Manual.docx",
+				"id": "Pat#5_Manual Sort",
+				"uuid": "8f55a626-89ef-48c9-84af-40243b545dc2",
+				"description": "Short version of Manual"
+			}
+		]
+	},
+	"daq": {
+		"name": "Standard",
+		"type": "Standard",
+		"location": "E54-715",
+		"description": "This is the standard DAQ configuration without Acoustic Measurements using Built in Sensors and Actuators.",
+		"devices": [
+			{
+				"name": "National Instrument PCI-MIO-16XE-10",
+				"channels": [
+					{
+						"header": {
+							"type": "Load",
+							"spec_a": "Axial",
+							"spec_b": "Internal",
+							"spec_c": "",
+							"unit": "KN"
+						},
+						"number": "0",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "Internal Axial Load",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "none",
+						"gain": "x1",
+						"sensor": {
+							"template": "",
+							"detail": "Capacitive Load Cell",
+							"type": "Active",
+							"id": "none",
+							"model": "custom",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "Volt",
+							"unit": "kN",
+							"excitation": "10",
+							"date": "",
+							"note": "100kN max"
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "0.10473398"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Displacement",
+							"spec_a": "Axial",
+							"spec_b": "External",
+							"spec_c": "High Gain",
+							"unit": "mm"
+						},
+						"number": "1",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "High Gain External LVDT",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1KHz",
+						"filter": "",
+						"gain": "x20",
+						"sensor": {
+							"template": "LVDT/RVDT Sensors",
+							"detail": "LVDT",
+							"type": "Active",
+							"id": "Luchs/Schaewitz",
+							"model": "7DCDT-50",
+							"version": "LS_105",
+							"number": "1.05",
+							"serial": "7DCDT-50"
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "Volt",
+							"unit": "mm",
+							"excitation": "10",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "-8.60585"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Displacement",
+							"spec_a": "Axial",
+							"spec_b": "External",
+							"spec_c": "Low Gain",
+							"unit": "mm"
+						},
+						"number": "2",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "low Gain",
+						"gain": "x1",
+						"sensor": {
+							"template": "LVDT/RVDT Sensors",
+							"detail": "LVDT",
+							"type": "Active",
+							"id": "Luchs/Schaewitz",
+							"model": "24DCDT-50",
+							"version": "",
+							"number": "1.05",
+							"serial": "24DCDT-50"
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "degC",
+							"unit": "mm",
+							"excitation": "10",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "-0.408998"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Displacement",
+							"spec_a": "Volumetric",
+							"spec_b": "Pore Pressure Intensifier",
+							"spec_c": "Upstream",
+							"unit": "mm"
+						},
+						"number": "3",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "LVDT/RVDT Sensors",
+							"detail": "LVDT",
+							"type": "Active",
+							"id": "",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "Volt",
+							"unit": "mm",
+							"excitation": "10",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "-0.408998"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Pressure",
+							"spec_a": "Pore",
+							"spec_b": "Upstream",
+							"spec_c": "",
+							"unit": "MPa"
+						},
+						"number": "4",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "Bridge Sensors",
+							"detail": "Pressure Transducer",
+							"type": "Active",
+							"id": "Precise Sensor; Monrovia, CA",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "Volt",
+							"unit": "MPa",
+							"excitation": "10",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "0.02087683"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Pressure",
+							"spec_a": "Pore",
+							"spec_b": "Downstream",
+							"spec_c": "",
+							"unit": "MPa"
+						},
+						"number": "5",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "Bridge Sensors",
+							"detail": "Pressure Transducer",
+							"type": "Active",
+							"id": "Precise Sensor, Monrovia, CA",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "Volt",
+							"unit": "MPa",
+							"excitation": "10",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "0.01985703"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Load",
+							"spec_a": "Axial",
+							"spec_b": "External",
+							"spec_c": "",
+							"unit": "KN"
+						},
+						"number": "6",
+						"type": "Analog Input",
+						"configuration": "Referenced Single Ended",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "Bridge Sensors",
+							"detail": "Load Cell",
+							"type": "Active",
+							"id": "",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "Volt",
+							"unit": "kN",
+							"excitation": "10",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "0.1.140959"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Pressure",
+							"spec_a": "Confining",
+							"spec_b": "Vessel",
+							"spec_c": "",
+							"unit": "MPa"
+						},
+						"number": "7",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "Bridge Sensors",
+							"detail": "Pressure Transducer",
+							"type": "Active",
+							"id": "",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "Volt",
+							"unit": "MPa",
+							"excitation": "10",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "0",
+								"b": "0.01444043"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Temperature",
+							"spec_a": "Sample",
+							"spec_b": "Top",
+							"spec_c": "",
+							"unit": "deg C"
+						},
+						"number": "14",
+						"type": "Analog Input",
+						"configuration": "Differential",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "1",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "Thermocouple",
+							"detail": "Thermocouple",
+							"type": "Passive",
+							"id": "Shielded, non-referenced TC",
+							"model": "Omega-Type K",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input@0:Input/Unit",
+							"input": "degC",
+							"unit": "degC",
+							"excitation": "0",
+							"date": "",
+							"note": ""
+						},
+						"data": [
+							{
+								"a": "-0.09465",
+								"b": "0.00411523"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Other",
+							"spec_a": "Velocity",
+							"spec_b": "Axial RAM (Load) Velocity",
+							"spec_c": "",
+							"unit": "mm/min"
+						},
+						"number": "0",
+						"type": "Analog Output",
+						"configuration": "Referenced Single Ended",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "",
+							"detail": "Linear Motor",
+							"type": "Active",
+							"id": "",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "",
+							"input": "",
+							"unit": "",
+							"excitation": "0",
+							"date": "",
+							"note": ""
+						}
+					},
+					{
+						"header": {
+							"type": "Displacement",
+							"spec_a": "Volumetric",
+							"spec_b": "Pore Pressure Intensifier",
+							"spec_c": "",
+							"unit": "mm"
+						},
+						"number": "1",
+						"type": "Analog Output",
+						"configuration": "Referenced Single Ended",
+						"note": "",
+						"resolution": "16",
+						"range_low": "0",
+						"range_high": "10",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "",
+							"detail": "Step Motor",
+							"type": "Active",
+							"id": "",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "",
+							"input": "",
+							"unit": "",
+							"excitation": "0",
+							"date": "",
+							"note": ""
+						}
+					},
+					{
+						"header": {
+							"type": "Pressure",
+							"spec_a": "",
+							"spec_b": "",
+							"spec_c": "Pump",
+							"unit": ""
+						},
+						"number": "2",
+						"type": "Digital Output",
+						"configuration": "Line",
+						"note": "Haskel Gas Pump Trigger",
+						"resolution": "8",
+						"range_low": "0",
+						"range_high": "1",
+						"rate": "1kHz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "",
+							"detail": "Trigger",
+							"type": "Active",
+							"id": "",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "Input:Unit",
+							"input": "",
+							"unit": "",
+							"excitation": "0",
+							"date": "",
+							"note": ""
+						}
+					},
+					{
+						"header": {
+							"type": "Time",
+							"spec_a": "",
+							"spec_b": "",
+							"spec_c": "",
+							"unit": ""
+						},
+						"number": "3",
+						"type": "System Data",
+						"configuration": "Parallel",
+						"note": "Internal DAQ Clock",
+						"resolution": "16",
+						"range_low": "",
+						"range_high": "",
+						"rate": "5Hz",
+						"filter": "",
+						"gain": "x1",
+						"sensor": {
+							"template": "",
+							"detail": "Clock",
+							"type": "",
+							"id": "",
+							"model": "",
+							"version": "",
+							"number": "",
+							"serial": ""
+						},
+						"calibration": {
+							"template": "",
+							"input": "",
+							"unit": "",
+							"excitation": "0",
+							"date": "",
+							"note": ""
+						}
+					}
+				],
+				"documents": [
+					{
+						"type": "Data",
+						"format": "csv",
+						"path": "https://strabospot.org/i/41166980-024e-4b95-a3b3-e99798f8f26e/DSCF0001a.jpg",
+						"id": "Pat#5_Sensors",
+						"uuid": "41166980-024e-4b95-a3b3-e99798f8f26e",
+						"description": "Table of Sensors (Paterson#5)"
+					}
+				]
+			}
+		]
+	},
+	"sample": {
+		"name": "Carr_057_UM_#19",
+		"igsn": "Carr_057_UM_#19",
+		"id": "Carr_057_UM_#19",
+		"description": "Carrara Marble Cylinder",
+		"parent": {
+			"name": "Carr_Block_2_34",
+			"igsn": "Carr_Block_2_34",
+			"id": "Carr_B_2_B34",
+			"description": "Carrara Marble_ Block 2 Location B34"
+		},
+		"material": {
+			"material": {
+				"type": "Standards",
+				"name": "Carrara Marble",
+				"state": "Homogeneous",
+				"note": "Carrara Marble - White"
+			},
+			"composition": [
+				{
+					"mineral": "Calcite",
+					"fraction": "0.99",
+					"unit": "Vol%",
+					"grainsize": "150"
+				}
+			],
+			"provenance": {
+				"formation": "Carrara (Italy)",
+				"member": "Hettangian",
+				"submember": "",
+				"source": "Quarry",
+				"location": {
+					"street": "Apuane Alps",
+					"building": "",
+					"postcode": "54033",
+					"city": "Carrara",
+					"state": "Toscana",
+					"country": "Italia",
+					"latitude": "44.0793",
+					"longitude": "10.0979"
+				}
+			},
+			"texture": {
+				"bedding": "no bedding",
+				"lineation": "no apparent lineation",
+				"foliation": "no foliation",
+				"fault": "no faults"
+			}
+		},
+		"parameters": [
+			{
+				"control": "Weight",
+				"value": "23.7",
+				"unit": "g",
+				"prefix": "-",
+				"note": ""
+			},
+			{
+				"control": "Density",
+				"value": "2.7",
+				"unit": "cc",
+				"prefix": "-",
+				"note": ""
+			},
+			{
+				"control": "Fluid Saturation",
+				"value": "",
+				"unit": "%",
+				"prefix": "-",
+				"note": "dry"
+			},
+			{
+				"control": "Connected Porosity",
+				"value": "0.4",
+				"unit": "%",
+				"prefix": "-",
+				"note": ""
+			}
+		],
+		"documents": [
+			{
+				"type": "Picture",
+				"format": "jpg",
+				"path": "https://strabospot.org/i/c58c365c-1985-4ab1-9118-752b4bca478e/il_570xN.1056584090_ci3d.jpg",
+				"id": "Carr_Block2",
+				"uuid": "c58c365c-1985-4ab1-9118-752b4bca478e",
+				"description": "Carrara Marble - Bianco Block 2"
+			}
+		]
+	},
+	"experiment": {
+		"title": "Carrara Deformation Test",
+		"id": "Example Experiment",
+		"ieda": "Carr_057_UM_#19",
+		"start_date": "2023-11-02",
+		"end_date": "2023-11-02",
+		"description": "Another Carrara Marble Deformation Brittle/Plastic Experiment\nSample Assembly is standard Cu Jacket with Alumina and Zirconia spacers; no pore pressure connected, but internal Thermocouple on Top of the Sample. \nTemperature Gradient over Sample is calibrated for Furnace #35 to be 3degC @400C/50MPa",
+		"features": [
+			"Loading",
+			"Unloading",
+			"Heating",
+			"Cooling",
+			"High Pressure",
+			"Yield Strength",
+			"Strength",
+			"Drained/Undrained Pore Fluid",
+			"Triaxial Stress/Strain",
+			"Differential Stress"
+		],
+		"author": {
+			"firstname": "Ulrich",
+			"lastname": "Mok",
+			"affiliation": "Lab Manager",
+			"email": "u_mok@mit.edu",
+			"phone": "6175154745",
+			"website": "https://cord.mit.edu",
+			"id": "MOK_ID"
+		},
+		"geometry": [
+			{
+				"order": "2",
+				"type": "Jacket",
+				"geometry": "Tube",
+				"material": "Copper",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "210",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Wall Thickness",
+						"value": "0.1",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			},
+			{
+				"order": "3",
+				"type": "Forcing Block",
+				"geometry": "Cylinder",
+				"material": "Alumina",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "50",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Diameter",
+						"value": "15",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Bore Diameter",
+						"value": "2",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			},
+			{
+				"order": "4",
+				"type": "Forcing Block",
+				"geometry": "Cylinder",
+				"material": "Zirconia",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "30",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Diameter",
+						"value": "14",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Bore Diameter",
+						"value": "2",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			},
+			{
+				"order": "7",
+				"type": "Spacer",
+				"geometry": "Split Cylinder",
+				"material": "Alumina",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "6",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Diameter",
+						"value": "10",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			},
+			{
+				"order": "1",
+				"type": "Sample",
+				"geometry": "Cylinder",
+				"material": "Sample",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "19.76",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Diameter",
+						"value": "9.94",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			},
+			{
+				"order": "8",
+				"type": "Spacer",
+				"geometry": "Split Cylinder",
+				"material": "Alumina",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "6",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Diameter",
+						"value": "10",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			},
+			{
+				"order": "5",
+				"type": "Forcing Block",
+				"geometry": "Cylinder",
+				"material": "Alumina",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "50",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Diameter",
+						"value": "15",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Bore Diameter",
+						"value": "2",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			},
+			{
+				"order": "6",
+				"type": "Forcing Block",
+				"geometry": "Cylinder",
+				"material": "Zirconia",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "30",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Length",
+						"value": "15",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"variable": "Diameter",
+						"value": "2",
+						"unit": "mm",
+						"prefix": "-",
+						"note": ""
+					}
+				]
+			}
+		],
+		"protocol": [
+			{
+				"test": "High Pressure",
+				"objective": "Pressure/Leak Test ",
+				"description": "Initial Confining Pressure Cycle +- 5MPa 3 times ",
+				"parameters": [
+					{
+						"control": "Confining Pressure Pc",
+						"value": "5",
+						"unit": "MPa",
+						"note": ""
+					},
+					{
+						"control": "Temperature T",
+						"value": "23",
+						"unit": "degC",
+						"note": ""
+					}
+				]
+			},
+			{
+				"test": "High Pressure",
+				"objective": "Initial Pressurization",
+				"description": "",
+				"parameters": [
+					{
+						"control": "Confining Pressure Pc",
+						"value": "50",
+						"unit": "MPa",
+						"note": ""
+					},
+					{
+						"control": "Temperature T",
+						"value": "23",
+						"unit": "degC",
+						"note": ""
+					}
+				]
+			},
+			{
+				"test": "Loading",
+				"objective": "Find Touch Point ",
+				"description": "Move Axial piston until sample is loaded. ",
+				"parameters": [
+					{
+						"control": "Stress σ1",
+						"value": "0.1",
+						"unit": "MPa",
+						"note": "Touchpoint"
+					}
+				]
+			},
+			{
+				"test": "Heating",
+				"objective": "Heating to Run Temperature",
+				"description": "Simultaneously control differential load (0.1)  and confining Pressure ",
+				"parameters": [
+					{
+						"control": "Temperature T",
+						"value": "400",
+						"unit": "degC",
+						"note": ""
+					},
+					{
+						"control": "Confining Pressure Pc",
+						"value": "50",
+						"unit": "MPa",
+						"note": ""
+					},
+					{
+						"control": "Stress σ1",
+						"value": "0.1",
+						"unit": "MPa",
+						"note": "touchpoint"
+					}
+				]
+			},
+			{
+				"test": "Yield Strength",
+				"objective": "Start Deformation Test",
+				"description": "Constant Strain Rate",
+				"parameters": [
+					{
+						"control": "Strain Rate ε3/dt",
+						"value": "3E-5",
+						"unit": "sec-1",
+						"note": "±0.036 mm/min external displacement rate"
+					},
+					{
+						"control": "Strain ε1",
+						"value": "100",
+						"unit": "milistrain",
+						"note": "stop at 0.1 in-situ strain"
+					}
+				]
+			},
+			{
+				"test": "Unloading",
+				"objective": "Unload and cool Sample",
+				"description": "Switch off Furnace. Sample will unload",
+				"parameters": [
+					{
+						"control": "Stress σ1",
+						"value": "0",
+						"unit": "MPa",
+						"note": ""
+					},
+					{
+						"control": "Temperature T",
+						"value": "23",
+						"unit": "degC",
+						"note": ""
+					}
+				]
+			},
+			{
+				"test": "High Pressure",
+				"objective": "Depressurising",
+				"description": "Release Confining Pressure after Cool off.",
+				"parameters": [
+					{
+						"control": "Temperature T",
+						"value": "23",
+						"unit": "degC",
+						"note": ""
+					},
+					{
+						"control": "Confining Pressure Pc",
+						"value": "0.1",
+						"unit": "MPa",
+						"note": ""
+					},
+					{
+						"control": "Displacement Δs1",
+						"value": "2",
+						"unit": "mm",
+						"note": "backup 2mm to avoid reloading during depressurizing"
+					}
+				]
+			}
+		],
+		"documents": [
+			{
+				"type": "Picture",
+				"format": "jpg",
+				"path": "https://strabospot.org/i/24730478-7e23-4884-bbd1-3b757ab063b9/Sample_assembly.jpg",
+				"id": "Carr_1012_Assembly",
+				"uuid": "24730478-7e23-4884-bbd1-3b757ab063b9",
+				"description": "Sample Assembly-Cu Jacket"
+			},
+			{
+				"type": "Picture",
+				"format": "jpg",
+				"path": "https://strabospot.org/i/68c2e820-cf42-482a-b5c9-413786acc180/Split_Cylinder.jpg",
+				"id": "Carr_057_UM_#19",
+				"uuid": "68c2e820-cf42-482a-b5c9-413786acc180",
+				"description": "Split Cylinder"
+			}
+		]
+	},
+	"data": {
+		"keys": {
+			"facility": "",
+			"apparatus": "",
+			"sample": "",
+			"user": "",
+			"experiment": ""
+		},
+		"datasets": [
+			{
+				"data": "Parameters",
+				"type": "Data",
+				"format": "",
+				"id": "",
+				"uuid": "0f440c39-d290-4f09-94eb-e646b9ed5e1f",
+				"path": "",
+				"rating": "Very Good",
+				"description": "Various Post Experimental Measurements",
+				"parameters": [
+					{
+						"control": "Length",
+						"value": "18.04",
+						"error": "",
+						"unit": "mm",
+						"prefix": "-",
+						"note": "PostExperimental Length"
+					},
+					{
+						"control": "Diameter",
+						"value": "10.70",
+						"error": "",
+						"unit": "mm",
+						"prefix": "-",
+						"note": "Post_experimental width"
+					},
+					{
+						"control": "Final Strain ε",
+						"value": "8.7",
+						"error": "",
+						"unit": "%",
+						"prefix": "-",
+						"note": "measured"
+					},
+					{
+						"control": "Maximum Stress σ",
+						"value": "90",
+						"error": "",
+						"unit": "MPa",
+						"prefix": "-",
+						"note": ""
+					},
+					{
+						"control": "Final Strain ε",
+						"value": "10%",
+						"error": "",
+						"unit": "degC",
+						"prefix": "-",
+						"note": "nominal (in-situ)"
+					}
+				]
+			},
+			{
+				"data": "Imaging",
+				"type": "Picture",
+				"format": "",
+				"id": "Carr_057_UM_#19",
+				"uuid": "4e57d896-9480-4d38-a1e1-70d3a16e9488",
+				"path": "https://strabospot.org/i/4e57d896-9480-4d38-a1e1-70d3a16e9488/IMG_1878.jpeg",
+				"rating": "Good",
+				"description": ""
+			},
+			{
+				"data": "Imaging",
+				"type": "Picture",
+				"format": "",
+				"id": "Carr_057_UM_#19",
+				"uuid": "39be9c55-da00-4d80-939f-cd569ae75df4",
+				"path": "https://strabospot.org/i/39be9c55-da00-4d80-939f-cd569ae75df4/IMG_1880.jpeg",
+				"rating": "Good",
+				"description": "Post-Experimental Image"
+			},
+			{
+				"data": "Time Series",
+				"type": "Data",
+				"format": "text",
+				"id": "Carr_057_UM_Data",
+				"uuid": "39dee459-ddbc-4a34-8730-5dd3e1203488",
+				"path": "https://strabospot.org/i/39dee459-ddbc-4a34-8730-5dd3e1203488/Carr_057-UM.txt",
+				"rating": "Good",
+				"description": "Time Series Measurement during deformation test; sampling rate =5/sec",
+				"headers": [
+					{
+						"header": {
+							"header": "Time",
+							"spec_a": "Relative",
+							"spec_b": "Differential",
+							"spec_c": "",
+							"unit": "hour"
+						},
+						"type": "System Data",
+						"number": "0",
+						"note": "System Time form Start of Application",
+						"rating": "Good"
+					},
+					{
+						"header": {
+							"header": "Time",
+							"spec_a": "Relative",
+							"spec_b": "Differential",
+							"spec_c": "PCI-Clock",
+							"unit": "sec"
+						},
+						"type": "System Clock",
+						"number": "1",
+						"note": "Derived form PCI Internal Clock - is more precise than PC time.",
+						"rating": "Exceptional"
+					},
+					{
+						"header": {
+							"header": "Load",
+							"spec_a": "Axial",
+							"spec_b": "Internal",
+							"spec_c": "",
+							"unit": "KN"
+						},
+						"type": "Analog Input",
+						"number": "2",
+						"note": "Internal Capacitance Load Cell",
+						"rating": "Very Good"
+					},
+					{
+						"header": {
+							"header": "Displacement",
+							"spec_a": "Axial",
+							"spec_b": "External",
+							"spec_c": "High Gain",
+							"unit": "mm"
+						},
+						"type": "Analog Input",
+						"number": "3",
+						"note": "not applicable",
+						"rating": "Low"
+					},
+					{
+						"header": {
+							"header": "Displacement",
+							"spec_a": "Axial",
+							"spec_b": "External",
+							"spec_c": "Low Gain",
+							"unit": "mm"
+						},
+						"type": "Analog Input",
+						"number": "4",
+						"note": "",
+						"rating": "Very Good"
+					},
+					{
+						"header": {
+							"header": "Displacement",
+							"spec_a": "Volumetric",
+							"spec_b": "Pore Pressure Intensifier",
+							"spec_c": "",
+							"unit": "mm"
+						},
+						"type": "Analog Input",
+						"number": "5",
+						"note": "not applicable",
+						"rating": "Low"
+					},
+					{
+						"header": {
+							"header": "Pressure",
+							"spec_a": "Pore",
+							"spec_b": "Upstream",
+							"spec_c": "",
+							"unit": "MPa"
+						},
+						"type": "Analog Input",
+						"number": "6",
+						"note": "not applicable",
+						"rating": "Low"
+					},
+					{
+						"header": {
+							"header": "Pressure",
+							"spec_a": "Pore",
+							"spec_b": "Downstream",
+							"spec_c": "",
+							"unit": "MPa"
+						},
+						"type": "Analog Input",
+						"number": "7",
+						"note": "not applicable",
+						"rating": "Low"
+					},
+					{
+						"header": {
+							"header": "Load",
+							"spec_a": "Axial",
+							"spec_b": "External",
+							"spec_c": "",
+							"unit": "KN"
+						},
+						"type": "Analog Input",
+						"number": "8",
+						"note": "External Load cell gives good data during continuous compression. Use only if Internal Load cell gives erroneous data. ",
+						"rating": "Good"
+					},
+					{
+						"header": {
+							"header": "Pressure",
+							"spec_a": "Confining",
+							"spec_b": "Vessel",
+							"spec_c": "",
+							"unit": "MPa"
+						},
+						"type": "Analog Input",
+						"number": "9",
+						"note": "",
+						"rating": "Very Good"
+					},
+					{
+						"header": {
+							"header": "Temperature",
+							"spec_a": "Sample",
+							"spec_b": "Top",
+							"spec_c": "",
+							"unit": "deg C"
+						},
+						"type": "Analog Input",
+						"number": "11",
+						"note": "not applicable. Please refer to Experimental Protocol for Run temperature.",
+						"rating": "Low"
+					}
+				]
+			}
+		]
+	}
+}

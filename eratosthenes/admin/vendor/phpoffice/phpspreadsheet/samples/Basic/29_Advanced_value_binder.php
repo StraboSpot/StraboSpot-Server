@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 29_Advanced_value_binder.php
+ * Description: Handles 29 Advanced value binder operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\Cell\AdvancedValueBinder;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;

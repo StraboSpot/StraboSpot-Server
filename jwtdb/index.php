@@ -1,0 +1,207 @@
+<?php
+/**
+ * File: index.php
+ * Description: Main page or directory index
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
+
+//Initialize Databases
+include_once "../includes/config.inc.php";
+include "../db.php";
+include "../neodb.php";
+include "../db/strabospotclass.php";
+include_once('../includes/geophp/geoPHP.inc');
+include_once "../includes/UUID.php";
+include_once('../includes/jwt/quick-jwt.php');
+
+//Load Base Controller
+include "../db/controllers/MyController.php";
+
+//Load Additional Controllers
+foreach (glob("../db/controllers
+
+$headers = getallheaders();
+
+logToFile($headers, "Headers");
+
+if($headers['Authorization'] != ""){
+
+	$header = trim($headers['Authorization']);
+
+	if(strtolower(substr($header, 0, 5)) == "basic") {
+
+		$encoded = substr($header, 6);
+		$decoded = base64_decode($encoded);
+		$pos = strpos($decoded, ":");
+		$username = substr($decoded, 0, $pos);
+		$password = substr($decoded, $pos + 1);
+
+		if(md5($password)==$hashval){
+			$row=$db->get_row("select * from users where email='$username' and active = TRUE and deleted = FALSE");
+		}else{
+			$row=$db->get_row("select * from users where email='$username' and crypt('$password', password) = password and active = TRUE and deleted = FALSE");
+		}
+
+		if($row->pkey != ""){
+			$userpkey = (int)$row->pkey;
+		}else{
+			showUnauthorized();
+		}
+
+	}elseif(strtolower(substr($header, 0, 6)) == "bearer"){
+
+		$encoded = substr($header, 7);
+
+		$isValid = $qjt->validate($jwtsecret, $encoded);
+		if($isValid){
+
+			$decoded = $qjt->decode($encoded);
+
+			$username = $decoded['email'];
+			$jwtdate = $decoded['datecreated'];
+			$jwtuuid = $decoded['uuid'];
+
+			$row=$db->get_row("select * from users where email='$username' and active = TRUE and deleted = FALSE");
+
+			if($row->pkey != ""){
+
+				//Now check to see if JWT is still active
+				$count = $db->get_var("select count(*) from jwts where uuid = '$jwtuuid' and user_pkey = $row->pkey");
+
+				if($count > 0){
+					$userpkey = (int)$row->pkey;
+				}else{
+					showUnauthorized();
+				}
+			}else{
+				showUnauthorized();
+			}
+
+		}else{
+			showUnauthorized();
+		}
+
+	}else{
+		showUnauthorized();
+	}
+
+}else{
+	showUnauthorized();
+}
+
+$strabo = new StraboSpot($neodb,$userpkey,$db);
+
+//pass along uuid class
+$uuid = new UUID();
+$strabo->setuuid($uuid);
+
+$request = new Request();
+
+$request_method = $_SERVER['REQUEST_METHOD'];
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+$rawinput = file_get_contents("php://input");
+
+if(file_exists("log.txt")){
+	if($_SERVER["REQUEST_URI"] != "/db/imagexxx"){
+		if($username=="jasonash@ku.edu" || $username=="riplangford@gmail.comdd" || $username=="nathan.novak79@gmail.comdd"){
+
+			file_put_contents ("log.txt", "\n\n************************************************************************************************************************\n\n", FILE_APPEND);
+			file_put_contents ("log.txt", "REQUEST: ".ucfirst($request->url_elements[1])."\n\n", FILE_APPEND);
+			file_put_contents ("log.txt", "REQUEST_URI: ".$_SERVER["REQUEST_URI"]."\n\n", FILE_APPEND);
+			file_put_contents ("log.txt", "username: $username\n\n", FILE_APPEND);
+			file_put_contents ("log.txt", "Raw Input:\n".$rawinput, FILE_APPEND);
+			file_put_contents ("log.txt", "Request Method: ".$_SERVER['REQUEST_METHOD'], FILE_APPEND);
+		}
+	}
+}
+
+//Delete raw cache data that is older than 1 week
+$db->query("
+	delete from rawcache WHERE uploaddate < NOW() - INTERVAL '1 WEEK'
+");
+
+//Store username, request, request_uri, rawinput, date
+$db->query("
+	insert into rawcache (
+							username,
+							request,
+							request_uri,
+							rawdata,
+							request_method,
+							user_agent
+						) values (
+							'$username',
+							'".$request->url_elements[1]."',
+							'".$_SERVER["REQUEST_URI"]."',
+							'".pg_escape_string($rawinput)."',
+							'$request_method',
+							'$user_agent'
+							);
+");
+
+// route the request to the right place
+$request_type = $request->url_elements[1];
+$controller_name = ucfirst($request->url_elements[1]) . 'Controller';
+
+$showcontroller = $request->url_elements[1];
+if($showcontroller==""){$showcontroller="null";}
+
+if (class_exists($controller_name)) {
+	$controller = new $controller_name();
+	$controller->setstrabohandler($strabo);
+	$action_name = strtolower($request->verb) . 'Action';
+	$result = $controller->$action_name($request);
+}else{
+	//send an error header with brief explanation.
+	header("Bad Request", true, 404);
+	$result['Error']="No such function (".$showcontroller.")";
+	header('Content-Type: application/json; charset=utf8');
+}
+
+$view_name = ucfirst($request->apiformat) . 'View';
+if(class_exists($view_name)) {
+
+	//Log REST call to Matomo
+	$remoteip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	$rand = rand(111111,999999);
+	$userpkey = $strabo->userpkey;
+	$id = str_repeat("0", 16 - strlen($userpkey)) . $userpkey;
+
+	$params = array(
+		'action_name' => 'Strabo REST API',
+		'url' => 'https://strabospot.org/db/'.$request_type,
+		'idsite' => '1',
+		'rand' => $rand,
+		'uid' => $username,
+		'rec' => '1',
+		'apiv' => '1',
+		'_id' => $id,
+		'send_image' => '0',
+		'token_auth' => '01e0d17a086d20a2c2ee04064d0d6bc7',
+		'cip' => $remoteip
+	);
+
+	$endpoint = 'https://stats.strabospot.org/matomo.php';
+
+	$url = $endpoint . '?' . http_build_query($params);
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	$output = curl_exec($ch);
+	curl_close($ch);
+
+	$view = new $view_name();
+	$view->render($result);
+
+}else{
+	header("Bad Request", true, 400);
+	echo "Error: $request->format output not supported.";
+}

@@ -1,14 +1,32 @@
-<?PHP
+<?php
+/**
+ * File: index.php
+ * Description: Main page or directory index
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 include("../logincheck.php");
 
 include("../includes/config.inc.php");
 include("../db.php");
 
-include("../includes/header.php");
+include("../includes/mheader.php");
 
 ?>
 
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+
+						<header class="major">
+							<h2>Strabo MyMaps</h2>
+						</header>
 
 <style type="text/css">
 table.mymaps {
@@ -36,38 +54,37 @@ table.mymaps td {
 	background-color: white;
 }
 .button {
-    background-color: #da6161; 
-    border: none;
-    color: white;
-    padding: 10px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+	background-color: #da6161;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 5px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
 }
 .button:hover {
-    background-color: #983d3d;
-    color: white;
+	background-color: #983d3d;
+	color: white;
 }
 .copybutton {
 	width:20px;
 	height:20px;
 }
 
-
 #mapbanner{
 	width:100%;
-	background-color:#FFF;
+	background-color:#222;
 	border-top: 1px solid #666666;
 	border-bottom: 1px solid #666666;
 	padding:0px;
 	margin-bottom:10px;
 }
 
- /* The switch - the box around the slider */
+ /* The switch - the box around the bslider */
 .switch {
   position: relative;
   display: inline-block;
@@ -79,55 +96,6 @@ table.mymaps td {
 /* Hide default HTML checkbox */
 .switch input {display:none;}
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #f00;
-  -webkit-transition: .4s;
-  transition: .4s;
-  
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 6px;
-  width: 6px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #79b22e;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #79b22e;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(20px);
-  -ms-transform: translateX(20px);
-  transform: translateX(20px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
 .selecty {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -135,41 +103,28 @@ input:checked + .slider:before {
 	padding: 1px;
 }
 
-
 </style>
 
-<div id="mapbanner" style="padding:5px 0px 5px 0px;margin-bottom:20px;">
-	<table>
-		<tr>
-			<td>
-				<div>
-					<img src="/includes/images/mappart.png"/>
-				</div>
-			</td>
-			<td valign="top">
-				<div style="padding-left:10px;font-family: 'Raleway', sans-serif;font-size:16px;">
-					The StraboSpot My Maps interface allows you to upload your own custom GeoTIFF map files for inclusion in the StraboSpot mobile and desktop apps.
-					Files are accepted in .tif rectified GeoTIFF format up to 1024MB in size. The preferred coordinate system for uploaded files is WGS 84. If another
+<div>
+<p>
+<span class="image left"><img src="/includes/images/mappart.png" alt=""></span>
+					The StraboSpot My Maps interface allows you to upload your own custom GeoTIFF map files for inclusion in the StraboField mobile and desktop apps.<br>
+					Files are accepted in the following formats:
+					<ul style="padding-left:35px;">
+						<li>.tif rectified GeoTIFF format up to 1024MB in size.</li>
+						<li>.zip archive provided by the USGS NGMD containing .tif and .tif.aux.xml files</li>
+					</ul>
+					The preferred coordinate system for uploaded files is WGS 84. If another
 					coordinate system is provided, the file will be automatically converted which may result in undesirable map appearance.
-				</div>
-			</td>
-		</tr>
-	</table>
-	
-
-
-	<div style="clear:both;">
-	</div>
+</p>
 </div>
 
-<div style="width:100%; background-color:#FFF;">
-	<div style="float:left">
-		<h2>My Maps</h2>
-	</div>
+<div>
 	<div style="float:right;">
-		<button class="button" onclick="window.location.href='addgeotiff'">Add New Map</button>
+		<input type="submit" onclick="window.location.href='addgeotiff'" value="+ Add New Map"></input>
 	</div>
 	<div style="clear:both">
+		&nbsp;
 	</div>
 </div>
 
@@ -180,19 +135,18 @@ input:checked + .slider:before {
 		var copyText = document.getElementById(hash);
 		copyText.select();
 		document.execCommand("copy");
-		//alert("Copied code: " + copyText.value + " to clipboard");
 		$("#successmessage").html('Code&nbsp;'+hash+'&nbsp;copied<br>to&nbsp;clipboard.');
 		$("#successmessage").fadeIn();
 		$("#successmessage").fadeOut(2000);
 	}
-	
+
 	var clipboard = new ClipboardJS('.btn');
 
 	clipboard.on('success', function(e) {
 		console.info('Action:', e.action);
 		console.info('Text:', e.text);
 		console.info('Trigger:', e.trigger);
-		
+
 		$("#successmessage").html('Code&nbsp;'+e.text+'&nbsp;copied<br>to&nbsp;clipboard.');
 		$("#successmessage").fadeIn();
 		$("#successmessage").fadeOut(2000);
@@ -201,113 +155,142 @@ input:checked + .slider:before {
 	});
 
 	function  mapPub(maphash){
-		
-		//console.log(maphash);
-		
-		
+
 		if(document.getElementById('switch_'+maphash).checked){
-			//console.log("switch "+projectid+" checked");
 			console.log("https://strabospot.org/map_public?maphash="+maphash+"&state=public");
 			$.get("/map_public?maphash="+maphash+"&state=public");
 		}else{
-			//console.log("switch "+projectid+" not checked");
 			console.log("https://strabospot.org/map_public?maphash="+maphash+"&state=private");
 			$.get("/map_public?maphash="+maphash+"&state=private");
 		}
-		
+
 	}
+
+	function doMapOption(hash, mapname){
+		var selected = $('#map-'+hash).find(":selected").val();
+		$('#map-'+hash).find(":selected").prop('selected', false);
+
+		switch(selected){
+			case "view":
+				window.location='/geotiff/detail/'+hash;
+				break;
+			case "edit":
+				window.location='/geotiff/edit/'+hash;
+				break;
+			case "delete":
+				if (confirm("Are you sure you want to delete map "+mapname+"?") == true) {
+					window.location='/geotiff/delete/'+hash;
+				}
+				break;
+		}
+	}
+
+/*
+https://strabospot.org/geotiff/detail/66e09349881bf
+https://strabospot.org/geotiff/edit/66e09349881bf
+https://strabospot.org/geotiff/delete/66e09349881bf
+*/
 
 </script>
 
 <div id="successmessage"></div>
 
-<?
+<?php
 
 $userpkey = $_SESSION['userpkey'];
 
-$rows = $db->get_results("select * from geotiffs where userpkey=$userpkey order by uploaddate desc");
+$rows = $db->get_results_prepared("SELECT * FROM geotiffs WHERE userpkey=$1 ORDER BY uploaddate DESC", array($userpkey));
 
 if(count($rows)>0){
 ?>
 
-	<table class="mymaps">
+	<table class="myDataTable">
+		<thead>
 		<tr>
 			<th>&nbsp;</th>
 			<th>Public?</th>
 			<th>Map Name</th>
-			<th>Map Code</th>
-			<th>File Size</th>
-			<th>Upload Date</th>
+			<th class="hideSmall">Map Code</th>
+			<th></th>
+			<th class="hideSmall">File Size</th>
+			<th class="hideSmall">Upload Date</th>
 		</tr>
-<?
+		</thead>
+<?php
 
 foreach($rows as $row){
 
 	$hash=$row->hash;
 	$name=$row->name;
-	$uploaddate=$row->uploaddate;
+	$uploaddate=substr($row->uploaddate,0,10);
 	$filesize=$row->filesize;
-	$filesize = $filesize/1000000;
-	
-	//$db->dumpVar($row);exit();
-	
+	$filesize = round($filesize/1000000);
+
 	if($row->ispublic=="t"){
 		$checked=" checked";
 	}else{
 		$checked="";
 	}
-	
-	
+
 	?>
 	<tr>
-		<td>
-			<div align="center"><a href="detail/<?=$hash?>">VIEW</a>
-				 | <a href="edit/<?=$hash?>">EDIT</a>
-				 | <a href="delete/<?=$hash?>" onclick="return confirm('Are you sure?')">DELETE</a>
-			</div>
-		</td>
-		<td>
-			<label class="switch"><input type="checkbox" name="switch_<?=$hash?>" id="switch_<?=$hash?>" onclick="mapPub('<?=$hash?>')"<?=$checked?>><div class="slider"></div></label>
-		</td>
-		<td><?=$name?></td>
-		<td>
-		
-			<input id="<?=$hash?>" value="<?=$hash?>" readonly>
-
-			<button class="btn" data-clipboard-text="<?=$hash?>">
-				<img class="clippy" src="/includes/images/clippy.svg" alt="Copy to clipboard" width="13">
-			</button>
-
+		<td nowrap>
 			<!--
-			<button class="btn" data-clipboard-target="#<?=$hash?>">
+			<div align="center">
+				<a href="detail/<?php echo $hash?>">VIEW</a>
+				 | <a href="edit/<?php echo $hash?>">EDIT</a>
+				 | <a href="delete/<?php echo $hash?>" onclick="return confirm('Are you sure?')">DELETE</a>
+			</div>
+			-->
+		<select class="myDataSelect hideBigNineEighty" id="map-<?php echo $hash?>" onchange="doMapOption('<?php echo $hash?>','<?php echo $name?>');">
+			<option value="" style="display:none">Options...</option>
+			<option value="view">View</option>
+			<option value="edit">Edit</option>
+			<option value="delete">Delete</option>
+		</select>
+
+		<span class="hideSmallNineEighty">
+			<a href="detail/<?php echo $hash?>">View</a>&nbsp;&nbsp;&nbsp;<a href="edit/<?php echo $hash?>">Edit</a>&nbsp;&nbsp;&nbsp;<a href="delete/<?php echo $hash?>">Delete</a>
+		</span>
+
+		</td>
+		<td>
+			<label class="switch"><input type="checkbox" name="switch_<?php echo $hash?>" id="switch_<?php echo $hash?>" onclick="mapPub('<?php echo $hash?>')"<?php echo $checked?>><div class="slider sliderFix"></div></label>
+		</td>
+		<td><?php echo $name?></td>
+		<td class="hideSmall" nowrap>
+
+			<input type="text" id="<?php echo $hash?>" value="<?php echo $hash?>" size="8" style="height: 1.7em; display: inline;" readonly>
+		</td>
+		<td>
+			<button class="btn" data-clipboard-text="<?php echo $hash?>">
 				<img class="clippy" src="/includes/images/clippy.svg" alt="Copy to clipboard" width="13">
 			</button>
-			-->
-			
-			<!--<input type="text" class="hashbox" id="<?=$hash?>" value="<?=$hash?>" readonly> <a href="javascript:void(0);" onclick="myCopy('<?=$hash?>');"><img class="copybutton" src="/includes/images/copy-icon.png"></img></a>-->
-		
+
 		</td>
-		<td><?=$filesize?> MB</td>
-		<td><?=$uploaddate?></td>
+		<td class="hideSmall" nowrap><?php echo $filesize?> MB</td>
+		<td class="hideSmall"><?php echo $uploaddate?></td>
 	</tr>
-	<?
+	<?php
 
 }
 ?>
 	</table>
 
-<?
+<?php
 }else{
 	?>
 	No maps found. Click <a href="addgeotiff">here</a> to upload a new map.
-	<?
+	<?php
 }
+?>
 
+					<div class="bottomSpacer"></div>
 
+					</div>
+				</div>
 
-
-
-
-include("../includes/footer.php");
+<?php
+include("../includes/mfooter.php");
 
 ?>

@@ -1,5 +1,14 @@
-<?PHP
-
+<?php
+/**
+ * File: tile.php
+ * Description: Handles tile operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
 
 $hash=$_GET['hash'];
@@ -7,14 +16,8 @@ $x=$_GET['x'];
 $y=$_GET['y'];
 $z=$_GET['z'];
 
-
 if(file_exists("/srv/app/www/geotiff/upload/files/$hash.tif") && file_exists("/srv/app/www/geotiff/upload/maps/$hash.map")){
 
-	//echo "https://dev.strabospot.org/cgi-bin/mapserv?map=/var/www/geotiff/upload/maps/".$hash.".map&layer=geotifflayer&mode=tile&tile=".$x."+".$y."+".$z;
-	
-	//echo "https://strabospot.org/cgi-bin/mapserv?map=/var/www/geotiff/upload/maps/".$hash.".map&layer=geotifflayer&mode=tile&tile=".$x."+".$y."+".$z;exit();
-	
-	
 	$img = file_get_contents("https://strabospot.org/cgi-bin/mapserv?map=/var/www/geotiff/upload/maps/".$hash.".map&layer=geotifflayer&mode=tile&tile=".$x."+".$y."+".$z);
 	header("Content-Type: image/png");
 	echo $img;
@@ -22,8 +25,7 @@ if(file_exists("/srv/app/www/geotiff/upload/files/$hash.tif") && file_exists("/s
 }else{
 
 	header("HTTP/1.0 404 Not Found");
-	//exit();
-	
+
 	header("Content-Type: image/png");
 	$im = @imagecreate(256, 256)
 		or die("Cannot Initialize new GD image stream");
@@ -37,14 +39,6 @@ if(file_exists("/srv/app/www/geotiff/upload/files/$hash.tif") && file_exists("/s
 
 }
 
-
-
-
-
-
-
-
-
 exit();
 
 function dumpVar($var){
@@ -54,14 +48,5 @@ function dumpVar($var){
 }
 
 dumpVar($_GET);
-
-
-
-
-
-
-
-
-
 
 ?>

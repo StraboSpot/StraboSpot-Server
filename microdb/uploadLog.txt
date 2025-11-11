@@ -1,0 +1,3067 @@
+
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17119323937294
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17190665068113
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17190665068113
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17190665068113
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17339085262091
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 15937337079682
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17398387987352
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17398387987352
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17398387987352
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17398387987352
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17398626070840
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17400194680003
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17180410273260
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17400194680003
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17413761562621
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17413238372323
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17224018839093
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17224018839093
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17224018839093
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 16944706126951
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17369614350136
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17436097742193
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17375760696454
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+81,
+544,
+'{"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}',
+'17440646287935',
+'Quartz',
+'Other',
+'Legacy',
+'0x00ffffff',
+'0xccffffff',
+'100',
+'20')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 17440646287935
+            [pg_id] => 81
+            [json] => {"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (2657, 81, 544) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17454266789956
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17454266789956
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 16921082218075
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 16921082218075
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17375760696454
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+82,
+549,
+'{"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}',
+'17440646287935',
+'Quartz',
+'Other',
+'Legacy',
+'0x00ffffff',
+'0xccffffff',
+'100',
+'20')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 17440646287935
+            [pg_id] => 82
+            [json] => {"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (2660, 82, 549) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17410810190462
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17375760696454
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+83,
+551,
+'{"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}',
+'17440646287935',
+'Quartz',
+'Other',
+'Legacy',
+'0x00ffffff',
+'0xccffffff',
+'100',
+'20')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 17440646287935
+            [pg_id] => 83
+            [json] => {"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (2665, 83, 551) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 16918797371796
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 16918797371796
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17198622517466
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17456886800750
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17456886800750
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17456886800750
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17456886800750
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17456886800750
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17456886800750
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17439911612615
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17527494774847
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17422376151910
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17422402379255
+            [name] => Checkerboard
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff8080ff
+            [transparency] => 100
+            [tagSize] => 24.476021314387
+        )
+
+    [1] => stdClass Object
+        (
+            [id] => 17478448762054
+            [name] => ð 
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff8080ff
+            [transparency] => 100
+            [tagSize] => 39.529402097305
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+84,
+578,
+'{"id":"17422402379255","name":"Checkerboard","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xff8080ff","transparency":100,"tagSize":24.47602131438721}',
+'17422402379255',
+'Checkerboard',
+'Other',
+'Legacy',
+'0x008080ff',
+'0xff8080ff',
+'100',
+'24.476021314387')
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+85,
+578,
+'{"id":"17478448762054","name":"\u00f0\u009f\u0098\u0083 ","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xff8080ff","transparency":100,"tagSize":39.52940209730536}',
+'17478448762054',
+'ð ',
+'Other',
+'Legacy',
+'0x008080ff',
+'0xff8080ff',
+'100',
+'39.529402097305')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 17422402379255
+            [pg_id] => 84
+            [json] => {"id":"17422402379255","name":"Checkerboard","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xff8080ff","transparency":100,"tagSize":24.47602131438721}
+        )
+
+    [1] => stdClass Object
+        (
+            [strabo_id] => 17478448762054
+            [pg_id] => 85
+            [json] => {"id":"17478448762054","name":"\u00f0\u009f\u0098\u0083 ","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xff8080ff","transparency":100,"tagSize":39.52940209730536}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (3756, 85, 578) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17478448762054
+            [name] => ð 
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff8080ff
+            [transparency] => 100
+            [tagSize] => 39.529402097305
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (3760, 84, 578) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17422402379255
+            [name] => Checkerboard
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff8080ff
+            [transparency] => 100
+            [tagSize] => 24.476021314387
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17210668671303
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17528494785795
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17453171794008
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17531740808865
+            [name] => Bt1
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x0000ffff
+            [fillColor] => 0xffffffff
+            [transparency] => 68.732394366197
+            [tagSize] => 20
+            [notes] => Boudin made of Calcite
+
+        )
+
+    [1] => stdClass Object
+        (
+            [id] => 17531758622830
+            [name] => Bt2
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xffffffff
+            [transparency] => 68.732394366197
+            [tagSize] => 20
+        )
+
+    [2] => stdClass Object
+        (
+            [id] => 17531763941770
+            [name] => Bt3
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xffffffff
+            [transparency] => 68.732394366197
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize,
+notes) values (
+86,
+583,
+'{"id":"17531740808865","name":"Bt1","tagType":"Other","otherTagType":"Legacy","lineColor":"0x0000ffff","fillColor":"0xffffffff","transparency":68.7323943661972,"tagSize":20,"notes":"Boudin made of Calcite\n"}',
+'17531740808865',
+'Bt1',
+'Other',
+'Legacy',
+'0x0000ffff',
+'0xffffffff',
+'68.732394366197',
+'20',
+'Boudin made of Calcite
+')
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+87,
+583,
+'{"id":"17531758622830","name":"Bt2","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xffffffff","transparency":68.7323943661972,"tagSize":20}',
+'17531758622830',
+'Bt2',
+'Other',
+'Legacy',
+'0x00ffffff',
+'0xffffffff',
+'68.732394366197',
+'20')
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+88,
+583,
+'{"id":"17531763941770","name":"Bt3","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xffffffff","transparency":68.7323943661972,"tagSize":20}',
+'17531763941770',
+'Bt3',
+'Other',
+'Legacy',
+'0x008080ff',
+'0xffffffff',
+'68.732394366197',
+'20')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 17531740808865
+            [pg_id] => 86
+            [json] => {"id":"17531740808865","name":"Bt1","tagType":"Other","otherTagType":"Legacy","lineColor":"0x0000ffff","fillColor":"0xffffffff","transparency":68.7323943661972,"tagSize":20,"notes":"Boudin made of Calcite\n"}
+        )
+
+    [1] => stdClass Object
+        (
+            [strabo_id] => 17531758622830
+            [pg_id] => 87
+            [json] => {"id":"17531758622830","name":"Bt2","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xffffffff","transparency":68.7323943661972,"tagSize":20}
+        )
+
+    [2] => stdClass Object
+        (
+            [strabo_id] => 17531763941770
+            [pg_id] => 88
+            [json] => {"id":"17531763941770","name":"Bt3","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xffffffff","transparency":68.7323943661972,"tagSize":20}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (4502, 87, 583) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17531758622830
+            [name] => Bt2
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xffffffff
+            [transparency] => 68.732394366197
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (4503, 88, 583) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17531763941770
+            [name] => Bt3
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xffffffff
+            [transparency] => 68.732394366197
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (4504, 86, 583) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17531740808865
+            [name] => Bt1
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x0000ffff
+            [fillColor] => 0xffffffff
+            [transparency] => 68.732394366197
+            [tagSize] => 20
+            [notes] => Boudin made of Calcite
+
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17542158230718
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17544856138338
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17528494785795
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17544856138338
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17519898698403
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 16240461368316
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17375760696454
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+89,
+635,
+'{"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}',
+'17440646287935',
+'Quartz',
+'Other',
+'Legacy',
+'0x00ffffff',
+'0xccffffff',
+'100',
+'20')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 17440646287935
+            [pg_id] => 89
+            [json] => {"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52337, 89, 635) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 16973057440765
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 15010100285080
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 16704468098861
+            [name] => KIâ Dextral
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0xff0000ff
+            [fillColor] => 0x00ffffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Kinimatic indicator suggesting dextral sense of shear
+        )
+
+    [1] => stdClass Object
+        (
+            [id] => 16704471423222
+            [name] => Solid State
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff00ffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Evidence for Solid State Deformation
+        )
+
+    [2] => stdClass Object
+        (
+            [id] => 17606374527194
+            [name] => randomtag
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x000000ff
+            [fillColor] => 0xff0000ff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize,
+notes) values (
+90,
+637,
+'{"id":"16704468098861","name":"KI\u00e2\u0080\u0093 Dextral","tagType":"Other","otherTagType":"Legacy","lineColor":"0xff0000ff","fillColor":"0x00ffffff","transparency":100,"tagSize":20,"notes":"Kinimatic indicator suggesting dextral sense of shear"}',
+'16704468098861',
+'KIâ Dextral',
+'Other',
+'Legacy',
+'0xff0000ff',
+'0x00ffffff',
+'100',
+'20',
+'Kinimatic indicator suggesting dextral sense of shear')
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize,
+notes) values (
+91,
+637,
+'{"id":"16704471423222","name":"Solid State","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xff00ffff","transparency":100,"tagSize":20,"notes":"Evidence for Solid State Deformation"}',
+'16704471423222',
+'Solid State',
+'Other',
+'Legacy',
+'0x008080ff',
+'0xff00ffff',
+'100',
+'20',
+'Evidence for Solid State Deformation')
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+92,
+637,
+'{"id":"17606374527194","name":"randomtag","tagType":"Other","otherTagType":"Legacy","lineColor":"0x000000ff","fillColor":"0xff0000ff","transparency":100,"tagSize":20}',
+'17606374527194',
+'randomtag',
+'Other',
+'Legacy',
+'0x000000ff',
+'0xff0000ff',
+'100',
+'20')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 16704468098861
+            [pg_id] => 90
+            [json] => {"id":"16704468098861","name":"KI\u00e2\u0080\u0093 Dextral","tagType":"Other","otherTagType":"Legacy","lineColor":"0xff0000ff","fillColor":"0x00ffffff","transparency":100,"tagSize":20,"notes":"Kinimatic indicator suggesting dextral sense of shear"}
+        )
+
+    [1] => stdClass Object
+        (
+            [strabo_id] => 16704471423222
+            [pg_id] => 91
+            [json] => {"id":"16704471423222","name":"Solid State","tagType":"Other","otherTagType":"Legacy","lineColor":"0x008080ff","fillColor":"0xff00ffff","transparency":100,"tagSize":20,"notes":"Evidence for Solid State Deformation"}
+        )
+
+    [2] => stdClass Object
+        (
+            [strabo_id] => 17606374527194
+            [pg_id] => 92
+            [json] => {"id":"17606374527194","name":"randomtag","tagType":"Other","otherTagType":"Legacy","lineColor":"0x000000ff","fillColor":"0xff0000ff","transparency":100,"tagSize":20}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52349, 90, 637) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 16704468098861
+            [name] => KIâ Dextral
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0xff0000ff
+            [fillColor] => 0x00ffffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Kinimatic indicator suggesting dextral sense of shear
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52352, 91, 637) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 16704471423222
+            [name] => Solid State
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff00ffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Evidence for Solid State Deformation
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52353, 90, 637) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 16704468098861
+            [name] => KIâ Dextral
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0xff0000ff
+            [fillColor] => 0x00ffffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Kinimatic indicator suggesting dextral sense of shear
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52354, 91, 637) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 16704471423222
+            [name] => Solid State
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff00ffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Evidence for Solid State Deformation
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52355, 91, 637) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 16704471423222
+            [name] => Solid State
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff00ffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Evidence for Solid State Deformation
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52358, 91, 637) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 16704471423222
+            [name] => Solid State
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x008080ff
+            [fillColor] => 0xff00ffff
+            [transparency] => 100
+            [tagSize] => 20
+            [notes] => Evidence for Solid State Deformation
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52362, 92, 637) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17606374527194
+            [name] => randomtag
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x000000ff
+            [fillColor] => 0xff0000ff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17606582693348
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17613321769954
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 16944706126951
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17575329943107
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17575329943107
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17375760696454
+)
+ 
+
+
+tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+query
+insert into micro_tag (
+id,
+project_id,
+json,
+strabo_id,
+name,
+tagtype,
+othertagtype,
+linecolor,
+fillcolor,
+transparency,
+tagsize) values (
+93,
+643,
+'{"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}',
+'17440646287935',
+'Quartz',
+'Other',
+'Legacy',
+'0x00ffffff',
+'0xccffffff',
+'100',
+'20')
+ 
+
+
+collectedTags
+Array
+(
+    [0] => stdClass Object
+        (
+            [strabo_id] => 17440646287935
+            [pg_id] => 93
+            [json] => {"id":"17440646287935","name":"Quartz","tagType":"Other","otherTagType":"Legacy","lineColor":"0x00ffffff","fillColor":"0xccffffff","transparency":100,"tagSize":20}
+        )
+
+)
+ 
+
+
+micro_spot_tag query
+insert into micro_spot_tag (spot_id, tag_id, project_id) values (52416, 93, 643) 
+
+
+spot pg tags
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 17440646287935
+            [name] => Quartz
+            [tagType] => Other
+            [otherTagType] => Legacy
+            [lineColor] => 0x00ffffff
+            [fillColor] => 0xccffffff
+            [transparency] => 100
+            [tagSize] => 20
+        )
+
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => no
+    [project_id] => 17098366603542
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17613321769954
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17098366603542
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 
+
+
+POSTED to ProjectWithoutFileController
+Array
+(
+    [overwrite] => yes
+    [project_id] => 17606582693348
+)
+ 
+
+
+collectedTags
+Array
+(
+)
+ 

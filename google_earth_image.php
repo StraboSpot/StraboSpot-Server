@@ -1,13 +1,19 @@
-<?
+<?php
+/**
+ * File: google_earth_image.php
+ * Description: Generates Google Earth KML/image exports
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 $id=$_GET['id'];
 
-
-
 include("prepare_connections.php");
-
-//$neodb->dumpVar($_GET);exit();
-
 
 function fixLabel($label){
 	$returnlabel = "";
@@ -92,27 +98,24 @@ function fixLabel($label){
 #wsite-content h2.wsite-product-title {}
 .wsite-product .wsite-product-price a {}
 
-
 .apidoc {
 	font: 13px "PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-family: "PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: normal;
-    font-size-adjust: none;
-    font-stretch: normal;
-    -x-system-font: none;
-    -moz-font-feature-settings: normal;
-    -moz-font-language-override: normal;
+	font-family: "PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: normal;
+	font-size-adjust: none;
+	font-stretch: normal;
+	-x-system-font: none;
+	-moz-font-feature-settings: normal;
+	-moz-font-language-override: normal;
 }
-
-
 
 .apidoc h3 {
 	color: #333333;
-    font-size: 24px;
+	font-size: 24px;
 }
 
 .apidoc  code {
@@ -122,39 +125,39 @@ function fixLabel($label){
 }
 
 pre, code {
-    font-family: "Ubuntu Mono",Menlo,Consolas,Inconsolata,monospace;
-    font-size: 14px;
+	font-family: "Ubuntu Mono",Menlo,Consolas,Inconsolata,monospace;
+	font-size: 14px;
 }
 code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #C7254E;
-    background-color: #F9F2F4;
-    border-radius: 4px;
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #C7254E;
+	background-color: #F9F2F4;
+	border-radius: 4px;
 }
 code, kbd, pre, samp {
-    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 code, kbd, pre, samp {
-    font-family: monospace,monospace;
-    font-size: 1em;
+	font-family: monospace,monospace;
+	font-size: 1em;
 }
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .programlisting {
-    display: block;
-    padding: 9.5px;
-    margin: 0px 0px 10px;
-    font-size: 13px;
-    line-height: 1.42857;
-    color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
-    background-color: #F5F5F5;
-    border: 1px solid #CCC;
-    border-radius: 4px;
+	display: block;
+	padding: 9.5px;
+	margin: 0px 0px 10px;
+	font-size: 13px;
+	line-height: 1.42857;
+	color: #333;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: #F5F5F5;
+	border: 1px solid #CCC;
+	border-radius: 4px;
 }
 
 li.listitem {
@@ -167,25 +170,25 @@ li.listitem {
 	width:100%;
 	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #000000;
-	
+
 	-moz-border-radius-bottomleft:0px;
 	-webkit-border-bottom-left-radius:0px;
 	border-bottom-left-radius:0px;
-	
+
 	-moz-border-radius-bottomright:0px;
 	-webkit-border-bottom-right-radius:0px;
 	border-bottom-right-radius:0px;
-	
+
 	-moz-border-radius-topright:0px;
 	-webkit-border-top-right-radius:0px;
 	border-top-right-radius:0px;
-	
+
 	-moz-border-radius-topleft:0px;
 	-webkit-border-top-left-radius:0px;
 	border-top-left-radius:0px;
 }.strabotable table{
-    border-collapse: collapse;
-        border-spacing: 0;
+	border-collapse: collapse;
+		border-spacing: 0;
 	width:100%;
 	height:100%;
 	margin:0px;padding:0px;
@@ -208,13 +211,12 @@ li.listitem {
 	-webkit-border-bottom-left-radius:0px;
 	border-bottom-left-radius:0px;
 }.strabotable tr:hover td{
-	
+
 }
 .strabotable tr:nth-child(odd){ background-color:#e5e5e5; }
 .strabotable tr:nth-child(even)    { background-color:#ffffff; }.strabotable td{
 	vertical-align:middle;
-	
-	
+
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;
@@ -296,15 +298,15 @@ li.listitem {
 	background-color:#FFF;
 	font-size:24px;
 	position: relative;
-	/*left: 50%;*/
+	
 	top: 170px;
 	padding-top:15px;
 	padding-bottom:15px;
 }
 
 #geimage-wrapper {
-    width: 90%;
-    margin: auto;
+	width: 90%;
+	margin: auto;
 }
 
 </style>
@@ -317,7 +319,6 @@ var STYLE_PREFIX = 'wsite';
 //-->
 </script>
 
-<!--<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>-->
 <script src='/assets/js/jquery/jquery.min.js'></script>
 <script src="/assets/js/featherlight/featherlight.js"></script>
 
@@ -342,7 +343,6 @@ else document.observe('dom:loaded', initFlyouts);
 //-->
 </script>
 
-
 </head>
 <body class='  wsite-theme-light wsite-page-minutes '>
 <!-- <body class="tall-header  wsite-theme-light wsite-page-index"> with banner--->
@@ -362,9 +362,9 @@ else document.observe('dom:loaded', initFlyouts);
 				<div id='wsite-content' class='wsite-elements wsite-not-footer'>
 <!-- end header -->
 
-<img src="https://www.strabospot.org/mapimage/<?=$id?>.jpg" style="width:100%;"/>
+<img src="https://www.strabospot.org/mapimage/<?php echo $id?>.jpg" style="width:100%;"/>
 
-<?
+<?php
 
 $hidecols = array("annotated", "userpkey", "origfilename", "filename", "imagesha1", "width", "id", "lat", "lng");
 
@@ -377,29 +377,22 @@ $results = $results->values();
 <br><br>
 <table>
 	<tr><tdcolspan="2"><div align="center" style="font-size:1.4em;font-weight:bold;">Image Details</div></td></tr>
-<?
+<?php
 
 foreach($results as $key=>$value){
 	if(!in_array($key,$hidecols)){
 		$label=fixLabel($key);
 		?>
-		<tr><td nowrap valign="top" style=""><?=$label?>: </td><td><?=$value?></td></tr>
-		<?
+		<tr><td nowrap valign="top" style=""><?php echo $label?>: </td><td><?php echo $value?></td></tr>
+		<?php
 	}
 }
 
 ?>
 </table>
-<?
-
-//$neodb->dumpVar($results);
-
+<?php
 
 ?>
-
-
-
-		
 
 <!-- begin footer -->
 				</div>
@@ -414,7 +407,7 @@ foreach($results as $key=>$value){
 							<tr class="wsite-multicol-tr">
 								<td class="wsite-multicol-col" style="width:50%; padding:0 15px;">
 									<div class="wsite-spacer" style="height:50px;"></div>
-								</td>				
+								</td>
 								<td class="wsite-multicol-col" style="width:50%; padding:0 15px;">
 									<div class="wsite-spacer" style="height:50px;"></div>
 								</td>

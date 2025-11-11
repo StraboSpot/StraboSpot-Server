@@ -1,0 +1,10 @@
+php_value memory_limit 4086M
+
+RewriteEngine on
+
+
+
+RewriteRule ^apparatusList.json$ get_all_apparatuses.php [L]
+RewriteRule ^my_experiments.json$ get_my_experiments.php [L]
+RewriteRule ^doi_(.*)$ view_doi_project?u=$1 [L]
+RewriteRule ^tooltips.js$ tooltipsscript.php [L]

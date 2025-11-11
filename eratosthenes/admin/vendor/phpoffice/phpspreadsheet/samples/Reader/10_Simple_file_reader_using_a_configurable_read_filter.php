@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 10_Simple_file_reader_using_a_configurable_read_filter.php
+ * Description: MyReadFilter class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 namespace Samples\Sample10;
 

@@ -1,13 +1,24 @@
-<?
+<?php
+/**
+ * File: change_password.php
+ * Description: Password change form for logged-in users
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 include("logincheck.php");
 
-$userpkey = $_SESSION['userpkey'];
+$userpkey = (int)$_SESSION['userpkey'];
 
 include("includes/config.inc.php");
 include("db.php");
 
-$count=$db->get_var("select count(*) from users where pkey=$userpkey");
+$count=$db->get_var_prepared("SELECT count(*) FROM users WHERE pkey=$1", array($userpkey));
 
 if($count > 0){
 
@@ -16,80 +27,83 @@ if($count > 0){
 		$currentpassword=$_POST['currentpassword'];
 		$password=$_POST['password'];
 		$passwordconfirm=$_POST['passwordconfirm'];
-		
+
 		if($password==""){
 			$error.=$errordelim."Password cannot be blank.";$errordelim="<br>";
 		}
-		
+
 		if($password!=""){
 			if($password != $passwordconfirm){
 				$error.=$errordelim."Passwords do not match.";$errordelim="<br>";
 			}
 		}
-		
-		//check current password
-		$count = $db->get_var("select count(*) from users where crypt('$currentpassword', password) = password and pkey=$userpkey");
+
+		//check current password - SECURE: Using prepared statement
+		$count = $db->get_var_prepared("SELECT count(*) FROM users WHERE crypt($1, password) = password AND pkey=$2", array($currentpassword, $userpkey));
 		if($count==0){
 			$error.=$errordelim."Incorrect current password provided.";$errordelim="<br>";
 		}
-		
-		if($error==""){
-			//update password
-			$db->query("update users set password=crypt('$password', gen_salt('md5')) where pkey=$userpkey");
 
-		
-			include("includes/header.php");
+		if($error==""){
+			//update password - SECURE: Using prepared statement
+			$db->prepare_query("UPDATE users SET password=crypt($1, gen_salt('md5')) WHERE pkey=$2", array($password, $userpkey));
+
+			include("includes/mheader.php");
 			?>
-		
-				<h1>Success</h1><br><br>
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+
+						<header class="major">
+							<h2>Success!</h2>
+						</header>
 				Password has been reset.
-		
-			<?
-			include("includes/footer.php");
+					<div class="bottomSpacer"></div>
+
+					</div>
+				</div>
+			<?php
+			include("includes/mfooter.php");
 			exit();
 		}
 	}
 
-
 	if($error!=""){
-		$error="<div style=\"color:#FF0000;padding:10px;\">$error</div>";
+		$error="<div style=\"color:#e44c65;padding:10px;\">$error</div>";
 	}
 
-	include("includes/header.php");
-	
-	
+	include("includes/mheader.php");
+
 	?>
-	
-		<h2>Password Reset:</h2><br>
-		<?=$error?>
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+
+						<header class="major">
+							<h2>Password Reset</h2>
+						</header>
+		<?php echo $error?>
 		<form method="POST">
-		<table>
-			<tr><td>Current Password</td><td><input type="password" name="currentpassword" value="<?=$currentpassword?>"></td></tr>
-			<tr><td>New Password</td><td><input type="password" name="password" value="<?=$password?>"></td></tr>
-			<tr><td>Confirm Password</td><td><input type="password" name="passwordconfirm" value="<?=$passwordconfirm?>"></td></tr>
-			<tr><td colspan="2"><div align="center"><input type="submit" name="submit" value="Submit"></div></td></tr>
-		</table>
+			<div class="row gtr-uniform gtr-50">
+			<div class="col-12"><h3>Current Password:</h3></div>
+			<div class="col-12"><input type="password" name="currentpassword" value="<?php echo $currentpassword?>"></div>
+			<div class="col-12"><h3>New Password:</h3></div>
+			<div class="col-12"><input type="password" name="password" value="<?php echo $password?>"></div>
+			<div class="col-12"><h3>Confirm Password:</h3></div>
+			<div class="col-12"><input type="password" name="passwordconfirm" value="<?php echo $passwordconfirm?>"></div>
+			<div class="col-12"><input class="primary" type="submit" name="submit" value="Submit"></div>
+			</div>
 		</form>
-	<?
-	
-	
-	
-	include("includes/footer.php");
 
+					<div class="bottomSpacer"></div>
 
+					</div>
+				</div>
 
+	<?php
 
+	include("includes/mfooter.php");
 
 }
-
-
-
-
-
-
-
-
-
-
 
 ?>

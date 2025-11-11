@@ -1,7 +1,16 @@
-<?
-include("logincheck.php");
+<?php
+/**
+ * File: instrumentcatalog.php
+ * Description: StraboMicro Instrument Catalog
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
-//print_r($_SESSION);
+include("logincheck.php");
 
 $userpkey = $_SESSION['userpkey'];
 
@@ -9,13 +18,9 @@ include("prepare_connections.php");
 
 $credentials = $_SESSION['credentials'];
 
-//$db->dumpVar($_SESSION);exit();
-
-$instcount = $db->get_var("
-	select count(*) from instrument_users where users_pkey = $userpkey;
-");
-
-
+$instcount = $db->get_var_prepared("
+	SELECT count(*) FROM instrument_users WHERE users_pkey = $1
+", array($userpkey));
 
 if(!in_array($userpkey, $admin_pkeys) && $instcount == 0){
 	exit();
@@ -23,30 +28,28 @@ if(!in_array($userpkey, $admin_pkeys) && $instcount == 0){
 
 if(in_array($userpkey, $admin_pkeys)){
 	$institutionrows = $db->get_results("
-		select * from instrument_institution
+		SELECT * FROM institute ORDER BY institute_name
 	");
 }else{
-	$institutionrows = $db->get_results("
-		select ii.*
-		from
+	$institutionrows = $db->get_results_prepared("
+		SELECT ii.*
+		FROM
 		instrument_users iu,
-		instrument_institution ii
-		where
+		institute ii
+		WHERE
 		iu.institution_pkey = ii.pkey
-		and iu.users_pkey = $userpkey
-	");
+		AND iu.users_pkey = $1
+		ORDER BY institute_name
+	", array($userpkey));
 }
 
-include 'includes/header.php';
+include 'includes/mheader.php';
 //get groups based on userpkey
 ?>
 
 <style type="text/css">
 
-
-
 </style>
-
 
 <script src='/assets/js/jquery/jquery.min.js'></script>
 <script src="/assets/js/featherlight/featherlight.js"></script>
@@ -55,28 +58,36 @@ include 'includes/header.php';
 
 </script>
 
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+
+						<header class="major">
+							<h2>StraboMicro Instrument Catalog</h2>
+						</header>
+
 <div align="center">
-	<h2>Instrument Catalog</h2>
+	If you need an institute added to the catalog, please click <a href="mailto:strabospot@gmail.com?subject=Need Institute Added to Strabo Micro Instrument Catalog&body=Hello%2C%0A%0APlease%20add%20the%20following%20institute%20to%20the%20Strabo%20Micro%20Instrument%20Catalog%3A%0A%0AInstitute%20Type%3A%20%28Government%20or%20Education%29%0AInstitute%20Name%3A%0A%0AStrabo%20Account%3A <?php echo $username?>%0A%0AThanks%2C%0A%0A<?php echo $_SESSION['firstname']?>%20<?php echo $_SESSION['lastname']?>%0A">here</a>.
 </div>
 
-<?
+<?php
 
 foreach($institutionrows as $irow){
 	?>
-	
-	<h3 style="font-size:1.7em;"><?=$irow->name?> Instruments: <strong><a href="add_instrument?i=<?=$irow->pkey?>">+</a></strong></h3>
-	
-	<?
-	$instrumentrows = $db->get_results("
-		select i.*
-		from
+
+	<h3 style="font-size:1.7em;"><?php echo $irow->institute_name?> Instruments: <strong><a href="add_instrument?i=<?php echo $irow->pkey?>">+</a></strong></h3>
+
+	<?php
+	$instrumentrows = $db->get_results_prepared("
+		SELECT i.*
+		FROM
 		instrument i
-		where i.institution_pkey = $irow->pkey
-	");
-	
+		WHERE i.institution_pkey = $1
+	", array($irow->pkey));
+
 	if(count($instrumentrows) > 0){
 	?>
-	
+
 	<div class="strabotable" style="margin-left:0px;margin-bottom:10px;">
 
 		<table>
@@ -84,42 +95,44 @@ foreach($institutionrows as $irow){
 			<tr>
 				<td>&nbsp;</td>
 				<td>Name</td>
-				<td>Type</td>
-				<td>Brand</td>
-				<td>Model</td>
+				<td class="hideSmall">Type</td>
+				<td class="hideSmall">Brand</td>
+				<td class="hideSmall">Model</td>
 			</tr>
-			
-			<?
+
+			<?php
 			foreach($instrumentrows as $row){
 			?>
 			<tr>
-				<td style="width:60px;" nowrap><a href="edit_instrument?ii=<?=$row->pkey?>">edit</a> <a href="delete_instrument?ii=<?=$row->pkey?>" onclick="return confirm('Are you sure you want to delete this instrument?')">delete</a></td>
-				<td nowrap><?=$row->instrumentname?></td>
-				<td nowrap><?=$row->instrumenttype?></td>
-				<td nowrap><?=$row->instrumentbrand?></td>
-				<td nowrap><?=$row->instrumentmodel?></td>
+				<td style="width:60px;" nowrap><a href="edit_instrument?ii=<?php echo $row->pkey?>">edit</a> <a href="delete_instrument?ii=<?php echo $row->pkey?>" onclick="return confirm('Are you sure you want to delete this instrument?')">delete</a></td>
+				<td nowrap><?php echo $row->instrumentname?></td>
+				<td class="hideSmall" nowrap><?php echo $row->instrumenttype?></td>
+				<td class="hideSmall" nowrap><?php echo $row->instrumentbrand?></td>
+				<td class="hideSmall" nowrap><?php echo $row->instrumentmodel?></td>
 			</tr>
-			<?
+			<?php
 			}
 			?>
-	
+
 		</table>
 	</div>
-	
-	<?
+
+	<?php
 	}else{
 	?>
-	<div>No instruments yet exist for <?=$irow->name?>. Please clicke <a href="add_instrument?i=<?=$irow->pkey?>">here</a> to add an instrument.</div>
-	<?
+	<div>No instruments yet exist for <?php echo $irow->institute_name?>. Please click <a href="add_instrument?i=<?php echo $irow->pkey?>">here</a> to add an instrument.</div>
+	<?php
 	}
 }
 
 ?>
 
+						<div class="bottomSpacer"></div>
 
+					</div>
+				</div>
 
-
-
-
-
+<?php
+include 'includes/mfooter.php';
+?>
 

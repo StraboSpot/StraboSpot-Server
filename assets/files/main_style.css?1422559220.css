@@ -3,7 +3,7 @@
  a img { border: 0; }
  a { text-decoration: none; }
  html { height: 100%; }
- body { font-family: 'Open sans', sans-serif; font-size: 13px; color: #666666; min-height: 100%; background-color: #ffffff; }
+ body { font-family: 'Open sans', sans-serif; font-size: 13px; color: #666666; min-height: 100%; background-color: #ffffff; height: 100%; }
  .splash-page { background-color: #ffffff; }
  .bg-wrapper { background-color: #ffffff; }
  h2 { 
@@ -30,15 +30,17 @@
  #sitename a, #sitename a:link, #sitename a:visited { color: #484848; font-family: 'Raleway', sans-serif; font-size: 42px; text-transform: uppercase; background: url('theme/red_icons.png%3F1422559220') -9999px -9999px no-repeat; }
  a:link, a:visited { color: #f64c3f; }
  a:hover { color: #fe8c83; }
- #content-wrapper { width: 960px; margin: auto; }
+ #content-wrapper { width: 1260px; margin: auto; }
  .wsite-form-container { margin-top: 0 !important; }
  .paragraph ul, .paragraph ol { padding-left: 3em !important; }
- .bg-wrapper { padding-bottom: 100px; }
+ .bg-wrapper {
+ 	/*padding-bottom: 100px;*/
+ }
  #footer { font-family: 'Open sans', sans-serif; font-size: 14px; padding-top: 45px; padding-bottom: 45px; }
- #footer-content { width: 960px; margin: auto; }
+ #footer-content { width: 1260px; margin: auto; }
  #footer h2 { font-family: 'Raleway', sans-serif; font-size: 18px; text-transform: uppercase; }
  .weebly-footer { font-size: 13px; margin-top: 30px; }
- #navigation { padding-bottom: 40px; width: 960px; margin: auto; text-align: center; text-transform: uppercase; overflow: hidden; font-family: 'Raleway', sans-serif; font-size: 13px; }
+ #navigation { padding-bottom: 40px; width: 1260px; margin: auto; text-align: center; text-transform: uppercase; overflow: hidden; font-family: 'Raleway', sans-serif; font-size: 13px; }
  #navigation ul:before, #navigation ul:after { background-color: #d0d0d0; content: ""; display: inline-block; height: 1px; bottom: .1em; position: relative; vertical-align: middle; width: 50%; }
  #navigation ul:before { right: 29px; margin-left: -50%; }
  #navigation ul:after { left: 29px; margin-right: -50%; }
@@ -70,7 +72,7 @@
  .banner-wrap { text-align: center; background-repeat: no-repeat; background-size: cover; background-position: center center; width: 100%; }
  #banner { width: 550px; height: 100%; margin: auto; display: table; }
  #banner-container { display: table-cell; vertical-align: middle; }
- .banner-wrap a { color: #cdcdcd; }
+ .banner-wrap a { color: #666666; }
  .banner-wrap a:hover { text-decoration: underline; }
  .banner-wrap .button-wrap div { text-align: center !important; }
  .banner-wrap .wsite-button-inner { font-family: 'Open sans', sans-serif; text-transform: uppercase; font-size: 15px; }
@@ -141,3 +143,44 @@ div.paragraph li { padding-left: 5px !important; margin: 3px 0 0 !important; }
 div.paragraph ul, div.paragraph ul li { list-style: disc outside !important; }
 div.paragraph ol, div.paragraph ol li { list-style: decimal outside !important; }
 
+.bigSubmitButton {
+	display: inline-block;
+	border-radius: 8px;
+	background-color: #f4511e;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px;
+	vertical-align:middle;
+	/*width: 170px;*/
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.bigSubmitButton span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+
+.bigSubmitButton span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.bigSubmitButton:hover span {
+	padding-right: 25px;
+}
+
+.bigSubmitButton:hover span:after {
+	opacity: 1;
+	right: 0;
+}

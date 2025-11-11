@@ -1,3 +1,15 @@
+<?php
+/**
+ * File: adminheader.php
+ * Description: Page header template
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,15 +44,11 @@
 	<link rel="stylesheet" href="../includes/fancybox/src/css/core.css" type="text/css">
 
 	<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
 	<script src="/assets/js/ol4/ol.js"></script>
 	<script src="/assets/js/layerswitcher/layerswitcher.js"></script>
 
 	<!-- Map Search-Specific Files-->
 	<script src="../includes/map_search_functions.js"></script>
-
-
-
 
 	<!-- External Libraries-->
 	<script src="/assets/js/underscore/underscore-min.js"></script>
@@ -50,12 +58,10 @@
 	<script src="/assets/js/featherlight/featherlight.js"></script>
 	<script src="/assets/js/turf/turf.min.js"></script>
 	<script src="../includes/fancybox/src/js/core.js"></script>
-	
-
 
   </head>
   <body>
-  	<div class="adminwrapper">
+	  <div class="adminwrapper">
 		<div class="locationheading">
 		Admin Interface
 		</div>

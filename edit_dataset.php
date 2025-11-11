@@ -1,4 +1,15 @@
-<?
+<?php
+/**
+ * File: edit_dataset.php
+ * Description: Dataset editing interface
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 include("logincheck.php");
 include("includes/config.inc.php");
@@ -7,45 +18,28 @@ include("neodb.php");
 
 $userpkey=(int)$_SESSION['userpkey'];
 
-$id = $_GET['id']; 
+$id = $_GET['id'];
 
 $rows = $neodb->query("match (a:Dataset) where a.id=$id and a.userpkey = $userpkey return distinct(a) limit 1;");
 
-//$neodb->dumpVar($rows);//exit();
-
-
 $row = (object)$rows[0]->get("a")->values();
-
-//$neodb->dumpVar($row);exit();
-
 
 $name = $row->name;
 
 if($name==""){
-	include 'includes/header.php';
+	include 'includes/mheader.php';
 	?>
 	<h2>Dataset not found.</h2>
-	<?
-	include 'includes/footer.php';
+	<?php
+	include 'includes/mfooter.php';
 	exit();
 }
 
-
-
-//echo "datasetname: $name";exit();
-
-
 if($_POST['submit']!=""){
-
-
-
-
-	//print_r($_POST);
 
 	foreach($_POST as $key=>$value){
 		eval("\$$key=\$value;");
 	}
-
 
 	if($name==""){
 		include 'includes/header.php';
@@ -55,41 +49,26 @@ if($_POST['submit']!=""){
 	}
 
 	$name=addslashes($name);
-	
-	//echo "match (a:Dataset) where a.id=$id and a.userpkey = $userpkey set a.name='$name'";exit();
-	
+
 	//update here
 	$neodb->query("match (a:Dataset) where a.id=$id and a.userpkey = $userpkey set a.name='$name'");
-	
+
 	include 'includes/header.php';
-	
+
 	?>
 	<h2>Dataset Updated Successfully.</h2>
 
 	<br>
 	<br>
-	
-	<a href="my_data">Continue...</a>
 
+	<a href="my_field_data">Continue...</a>
 
-
-
-
-	<?
+	<?php
 
 	include 'includes/footer.php';
 
 	exit();
 }
-
-
-
-
-
-
-
-
-
 
 include 'includes/header.php';
 
@@ -100,22 +79,22 @@ include 'includes/header.php';
 	function showdiv(myid) {
 		document.getElementById(myid).style.display='block';
 	}
-	
+
 	function validateForm(){
-	
+
 		var myerror='';
 		var mydelim=''
-	
+
 		if(document.getElementById('name').value==""){
 			myerror=myerror+mydelim+'Dataset Name cannot be blank.';
 			mydelim='\n';
 		}
-		
+
 		if(myerror!=""){
 			alert(myerror);
 			return false;
 		}
-	
+
 	}
 
 </script>
@@ -128,9 +107,7 @@ Items with (<span style="color:red;font-weight:bold;">*</span>) are required.
 
 </div>
 
-
 <br>
-
 
 <form method="POST" onsubmit="return validateForm()">
 
@@ -140,30 +117,20 @@ Items with (<span style="color:red;font-weight:bold;">*</span>) are required.
 
 <table>
 
-	<tr><td nowrap><div align="right">Dataset Name:<span style="color:red;font-weight:bold;">*</span></div></td><td nowrap><input type="text" id="name" name="name" value="<?=$name?>"></td></tr>
+	<tr><td nowrap><div align="right">Dataset Name:<span style="color:red;font-weight:bold;">*</span></div></td><td nowrap><input type="text" id="name" name="name" value="<?php echo $name?>"></td></tr>
 
 </table>
-
-
 
 <br>
 <hr>
 <br>
 
-
-
 <input type="submit" value="Submit" name="submit">
 
-<input type="hidden" name="datasetid" value="<?=$id?>">
-
-
+<input type="hidden" name="datasetid" value="<?php echo $id?>">
 
 </form>
 
-
-
-
-
-<?
+<?php
 include 'includes/footer.php';
 ?>

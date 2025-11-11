@@ -74,22 +74,6 @@ ALTER TABLE ONLY users ALTER COLUMN pkey SET DEFAULT nextval('users_pkey_seq'::r
 ~~~
 
 
-## Neo4j Config: ##
-In order to correctly deal with spatial features, the Neo4j spatial must be installed.
-
-It is available here: [https://github.com/neo4j-contrib/spatial](https://github.com/neo4j-contrib/spatial)
-
-An editable layer must be created:
-
-http://neo4j.strabospot.org:80/db/data/ext/SpatialPlugin/graphdb/addEditableLayer
-
-layer:strabospot
-format:WKT
-nodePropertyName:wkt
-
-## Kobo Tools: ##
-Tools necessary to parse Kobo XML docs are found in cv/
-
 ## Config Files ##
 
 All configuration variables are stored in includes/config.inc.php.
@@ -102,18 +86,26 @@ config.inc.php
 Config Variables for connection to databases and email
 */
 
-$neousername = "neo4jusername";
-$neopassword = "neo4jpassword";
-$dbusername = "postgresqlusername";
-$dbpassword = "postgresqlpassword";
-$dbname = "postgresqldbname";
-$dbhost = "postgresqlhost";
-$straboemailaddress = "myusername@gmail.com";
-$straboemailpassword = "mygmailpassword"
+$neousername = "myneo4jusername"; 			//Neo4j username
+$neopassword = "myneo4jpassword"; 			//Neo4j password
+$neohost = "neo4jhostname"; 				//Neo4j host
+$neoport = 7687; 							//Neo4j port
+$neomode = "bolt"; 							//Neo4j connection mode
+$dbusername = "mydbusername"; 				//Postgres username
+$dbpassword = "mydbpassword"; 				//Postgres password
+$dbname = "mydbname"; 						//Postgres database name
+$dbhost = "mydbhost"; 						//Postgres database host
+$straboemailaddress = "myemail"; 			//Gmail address
+$straboemailpassword = "myemailpassword" 	//Gmail password
+$mailchimpAPIkey = "mailchimpapikey"; 		//For maintaining mailchimp mailing list
+$captchasecret="googlecaptchakey"; 			//Google captcha key
+$jwtsecret = "jwtsigningkey"; 				//JWT signing key
+$pushover_token = "pushovertoken"; 			//For alerting about new user registrations
+$pushover_user = "pushoveruser"; 			//Pushover user token
+$vloc="/var/www/versions"; 					//location to store versions
+
 ?>
 ~~~
-
-
 
 
 

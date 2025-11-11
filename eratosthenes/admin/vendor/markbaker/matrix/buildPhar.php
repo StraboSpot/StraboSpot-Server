@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: buildPhar.php
+ * Description: Handles buildPhar operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 # required: PHP 5.3+ and zlib extension
 

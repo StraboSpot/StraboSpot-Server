@@ -1,0 +1,4 @@
+
+RewriteEngine on
+
+RewriteRule ^installLocations.json$ installlocationsjson.php [L]

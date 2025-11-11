@@ -1,0 +1,149 @@
+Build Strabo Web Links:
+
+find * -type l -printf "%p -> %l\n"
+
+StraboSpotOffline.zip -> /StraboData/bigDriveData/StraboSpotOffline.zip
+arcfiles -> /StraboData/arcfiles/
+bkup -> /StraboData/bigDriveData/bkup/
+bkup_db_20240722am1/dbimages -> /opt/StraboData/dbimages/
+bkupgeotiff20240529/upload/maps -> /StraboData/GeotiffMaps/
+bkupgeotiff20240529/upload/files -> /StraboData/GeotiffFiles/
+db/dbimages -> /opt/StraboData/dbimages/
+db2/dbimages -> /opt/StraboData/dbimages/
+dbimages -> /StraboData/dbimages/
+devexperimental/expimages -> /StraboData/bigDriveData/expImages/
+doi/doiFiles -> /StraboData/bigDriveData/doi/
+experimental/expimages -> /StraboData/bigDriveData/expImages/
+fieldZips -> /StraboData/bigDriveData/fieldZips/
+geotiff/upload/maps -> /StraboData/GeotiffMaps/
+geotiff/upload/files -> /StraboData/GeotiffFiles/
+jwtdb/dbimages -> /opt/StraboData/dbimages/
+oldexperimental20241010/expimages -> /StraboData/bigDriveData/expImages/
+oldgeotiff20250716/upload/maps -> /StraboData/GeotiffMaps/
+oldgeotiff20250716/upload/files -> /StraboData/GeotiffFiles/
+profileimages -> /StraboData/profileimages/
+serialize/serialized -> /StraboData/bigDriveData/serialized/
+straboMicroDOI/doiFiles -> /StraboData/bigDriveData/doi/
+straboMicroDOI/smzFiles -> /StraboData/straboMicroFiles
+straboMicroFiles -> /StraboData/straboMicroFiles
+straboMicroView/smzFiles -> /StraboData/straboMicroFiles
+versions -> /StraboData/versions/
+ziptemp -> /StraboData/bigDriveData/tempFiles/
+
+
+find * -type l -printf "ln -s %l %p\n"
+
+//Good Commands:
+ln -s /StraboData/bigDriveData/StraboSpotOffline.zip StraboSpotOffline.zip
+ln -s /StraboData/arcfiles/ arcfiles
+ln -s /StraboData/bigDriveData/bkup/ bkup
+ln -s /opt/StraboData/dbimages/ db/dbimages
+ln -s /opt/StraboData/dbimages/ db2/dbimages
+ln -s /StraboData/dbimages/ dbimages
+ln -s /StraboData/bigDriveData/expImages/ devexperimental/expimages
+ln -s /StraboData/bigDriveData/doi/ doi/doiFiles
+ln -s /StraboData/bigDriveData/expImages/ experimental/expimages
+ln -s /StraboData/bigDriveData/fieldZips/ fieldZips
+ln -s /StraboData/GeotiffMaps/ geotiff/upload/maps
+ln -s /StraboData/GeotiffFiles/ geotiff/upload/files
+ln -s /opt/StraboData/dbimages/ jwtdb/dbimages
+ln -s /StraboData/profileimages/ profileimages
+ln -s /StraboData/bigDriveData/serialized/ serialize/serialized
+ln -s /StraboData/bigDriveData/doi/ straboMicroDOI/doiFiles
+ln -s /StraboData/straboMicroFiles straboMicroDOI/smzFiles
+ln -s /StraboData/straboMicroFiles straboMicroFiles
+ln -s /StraboData/straboMicroFiles straboMicroView/smzFiles
+ln -s /StraboData/versions/ versions
+ln -s /StraboData/bigDriveData/tempFiles/ ziptemp
+
+
+
+Replace Sym Links when working locally:
+First, remove:
+
+rm arcfiles
+rm db/dbimages
+rm dbimages
+rm doi/doiFiles
+rm experimental/expimages
+rm fieldZips
+rm geotiff/upload/maps
+rm geotiff/upload/files
+rm jwtdb/dbimages
+rm profileimages
+rm serialize/serialized
+rm straboMicroDOI/doiFiles
+rm straboMicroDOI/smzFiles
+rm straboMicroFiles
+rm straboMicroView/smzFiles
+rm versions
+rm ziptemp
+
+Then, make new dirs:
+
+mkdir arcfiles
+mkdir db/dbimages
+mkdir dbimages
+mkdir doi/doiFiles
+mkdir experimental/expimages
+mkdir fieldZips
+mkdir geotiff/upload/maps
+mkdir geotiff/upload/files
+mkdir jwtdb/dbimages
+mkdir profileimages
+mkdir serialize/serialized
+mkdir straboMicroDOI/doiFiles
+mkdir straboMicroDOI/smzFiles
+mkdir straboMicroFiles
+mkdir straboMicroView/smzFiles
+mkdir versions
+mkdir ziptemp
+
+
+
+To go back, do this:
+
+First, Remove dirs:
+
+rm -rf arcfiles
+rm -rf db/dbimages
+rm -rf dbimages
+rm -rf doi/doiFiles
+rm -rf experimental/expimages
+rm -rf fieldZips
+rm -rf geotiff/upload/maps
+rm -rf geotiff/upload/files
+rm -rf jwtdb/dbimages
+rm -rf profileimages
+rm -rf serialize/serialized
+rm -rf straboMicroDOI/doiFiles
+rm -rf straboMicroDOI/smzFiles
+rm -rf straboMicroFiles
+rm -rf straboMicroView/smzFiles
+rm -rf versions
+rm -rf ziptemp
+
+
+Then, restore links:
+
+ln -s /StraboData/bigDriveData/StraboSpotOffline.zip StraboSpotOffline.zip
+ln -s /StraboData/arcfiles/ arcfiles
+ln -s /StraboData/bigDriveData/bkup/ bkup
+ln -s /opt/StraboData/dbimages/ db/dbimages
+ln -s /opt/StraboData/dbimages/ db2/dbimages
+ln -s /StraboData/dbimages/ dbimages
+ln -s /StraboData/bigDriveData/expImages/ devexperimental/expimages
+ln -s /StraboData/bigDriveData/doi/ doi/doiFiles
+ln -s /StraboData/bigDriveData/expImages/ experimental/expimages
+ln -s /StraboData/bigDriveData/fieldZips/ fieldZips
+ln -s /StraboData/GeotiffMaps/ geotiff/upload/maps
+ln -s /StraboData/GeotiffFiles/ geotiff/upload/files
+ln -s /opt/StraboData/dbimages/ jwtdb/dbimages
+ln -s /StraboData/profileimages/ profileimages
+ln -s /StraboData/bigDriveData/serialized/ serialize/serialized
+ln -s /StraboData/bigDriveData/doi/ straboMicroDOI/doiFiles
+ln -s /StraboData/straboMicroFiles straboMicroDOI/smzFiles
+ln -s /StraboData/straboMicroFiles straboMicroFiles
+ln -s /StraboData/straboMicroFiles straboMicroView/smzFiles
+ln -s /StraboData/versions/ versions
+ln -s /StraboData/bigDriveData/tempFiles/ ziptemp

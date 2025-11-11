@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 42_RichText.php
+ * Description: Handles 42 RichText operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\Helper\Html as HtmlHelper;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;

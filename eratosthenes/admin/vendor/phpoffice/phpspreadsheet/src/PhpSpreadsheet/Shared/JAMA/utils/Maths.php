@@ -1,5 +1,16 @@
 <?php
 /**
+ * File: Maths.php
+ * Description: Handles Maths operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
+/**
  *    Pythagorean Theorem:.
  *
  *    a = 3

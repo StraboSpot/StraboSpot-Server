@@ -1,0 +1,309 @@
+accelerationvoltage,Acceleration Voltage,n
+alignment,Alignment,n
+amplitude,Amplitude,n
+amplitudeunit,Amplitude Unit,n
+analysisdwelltime,Analysis Dwell Time,n
+aperture,Aperture,n
+apertureunit,Aperture Unit,n
+areaofinterest,Area of Interest,n
+associatedfiles,Associated Files,y
+atomicmode,AtomicMode,n
+averaging,Averaging,n
+backgroundcomposition,Background Composition,n
+backgroundcorrectionfrequencyandnotes,Background Correction Frequency and Notes,n
+backgroundcorrectiontechnique,Background Correction Technique,n
+backgrounddwelltime,Background Dwell Time,n
+bands,Bands,y
+beamcurrent,Beam Current,n
+boundaries,Boundaries,y
+calibration,Calibration,n
+calibrationstandardnotes,Calibration Standard Notes,n
+camerabinning,Camera Binning,n
+cameralength,Camera Length,n
+cantileverstiffness,Cantilever Stiffness,n
+cements,Cements,n
+chilledmarginsdescription,Chilled Margins Description,n
+clasticdeformationbandinfo,Clastic Deformation Band Info,y
+closure,Closure,n
+closureother,Closure Other,n
+color,Color,n
+composition,Composition,n
+compositionnotes,Composition Notes,n
+crystallitesdistribution,Crystallites Distribution,n
+crystalliteslowersize,Crystallites Lower Size,n
+crystalliteslowersizeunit,Crystallites Lower Size Unit,n
+crystallitesmineralogy,Crystallites Mineralogy,n
+crystallitesshapes,Crystallites Shapes,y
+crystallitesuppersize,Crystallites Upper Size,n
+crystallitesuppersizeunit,Crystallites Upper Size Unit,n
+crystalliteszoning,Crystallites Zoning,n
+crystalliteszoningdetails,Crystallites Zoning Details,n
+crystalshapes,Crystal Shapes,y
+crystaltype,Crystal Type,n
+datacollectionsoftware,Data Collection Software,n
+datacollectionsoftwareversion,Data Collection Software Version,n
+datasets,Datasets,y
+datatype,Data Type,n
+date,Date,n
+deadtime,Dead Time,n
+degreeofweathering,Degree of Weathering,n
+description,Description,n
+descriptors,Descriptors,y
+detectormake,Detector Make,n
+detectormodel,Detector Model,n
+detectortype,Detector Type,n
+diffractiongrating,Diffraction Grating,n
+distancetocenter,Distance to Center,n
+dwelltime,Dwell Time,n
+element,Element,n
+enddate,End Date,n
+endpointorder,End Point Order,n
+endx,End X,n
+endy,End Y,n
+energyloss,Energy Loss,n
+environmentpurged,Environment Purged,n
+environmentpurgedgastype,Environment Purged Gas Type,n
+excitationwavelength,Excitation Wavelength,n
+existsonserver,Exists On Server,n
+fabriccategory,Fabric Category,n
+fabriccleavageinfo,Fabric Cleavage Info,y
+fabriccompositioninfo,Fabric Composition Info,y
+fabricdefinedby,Fabric Defined By,y
+fabricdescription,Fabric Description,n
+fabricdip,Fabric Dip,n
+fabricelement,Fabric Element,n
+fabricgrainshapeinfo,Fabric Grain Shape Info,y
+fabricgrainsizeinfo,Fabric Grain Size Info,y
+fabricinfo,Fabric Info,y
+fabriclabel,Fabric Label,n
+fabricplunge,Fabric Plunge,n
+fabricrake,Fabric Rake,n
+fabricreference,Fabric Reference,n
+fabrics,Fabrics,y
+fabricspacing,Fabric Spacing,n
+fabricstrike,Fabric Strike,n
+fabrictrend,Fabric Trend,n
+facing,Facing,n
+facingother,Facing Other,n
+filamenttype,Filament Type,n
+filename,File Name,n
+filetype,File Type,n
+foldcontinuity,Fold Continuity,n
+foldcontinuityother,Fold Continuity Other,n
+foldinfo,Fold Info,y
+folds,Folds,y
+foldstyle,Fold Style,n
+foldstyleother,Fold Style Other,n
+geometryofseams,Geometry of Seams,y
+geometrytype,Geometry Type,n
+gpsdatum,GPS Datum,n
+grainboundaryinfo,Grain Boundary Info,y
+graininfo,Grain Info,y
+grainorientationinfo,Grain Orientation Info,y
+grainorientationnotes,Grain Orientation Notes,n
+grains,Grains,y
+grainshapeinfo,Grain Shape Info,y
+grainshapenotes,Grain Shape Notes,n
+grainsize,Grain Size,n
+grainsizeinfo,Grain Size Info,y
+grainsizenotes,Grain Size Notes,n
+graintextures,Grain Textures,y
+groups,Groups,n
+growthmorphologies,Growth Morphologies,y
+handleorder,Handle Order,n
+handleoriginalcenter,Handle Original Center,n
+haschilledmargins,Has Chilled Margins,n
+hascrystallites,Has Crystallites,n
+hasfabric,Has Fabric,n
+hasinjectionfeatures,Has Injection Features,n
+hasmatrixgroundmass,Has Matrix Groundmass,n
+hassulphideoxide,Has Sulphide Oxide,n
+hassurvivorclasts,Has Survivor Clasts,n
+hasvesciclesamygdules,Has Vescicles Amygdules,n
+height,Height,y
+id,Id,y
+imagetype,Image Type,n
+inclusiontrails,Inclusion Trails,y
+injectionfeaturesaperture,Injection Features Aperture,n
+injectionfeaturesapertureunit,Injection Features Aperture Unit,n
+injectionfeatureslength,Injection Features Length,n
+injectionfeatureslengthunit,Injection Features Length Unit,n
+inplacenessofsample,Inplaceness of Sample,n
+instrument,Instrument,y
+instrumentbrand,Instrument Brand,n
+instrumentdetectors,Instrument Detectors,y
+instrumentmodel,Instrument Model,n
+instrumentnotes,Instrument Notes,n
+instrumentpurged,Instrument Purged,n
+instrumentpurgedgastype,Instrument Purged Gas Type,n
+instrumentsused,Instruments Used,n
+instrumenttype,Instrument Type,n
+integrationtime,Integration Time,n
+interlimbangle,InterLimb Angle,y
+interlimbangleother,InterLimb Angle Other,n
+intragraininfo,Intra Grain Info,y
+ismicrovisible,Is Micro Visible,y
+kinematics,Kinematics,y
+label,Label,n
+labelcolor,Label Color,y
+laboratory,Laboratory,n
+laserpower,Laser Power,n
+layers,Layers,y
+links,Links,y
+lithology,Lithology,n
+lookdirection,Look Direction,n
+magneticdeclination,Magnetic Declination,n
+mainsamplingpurpose,Main Sampling Purpose,n
+materialtype,Material Type,n
+matrixgroundmasscolor,Matrix Groundmass Color,n
+matrixgroundmassconstraintsoncomposition,Matrix Groundmass Constraints on Composition,n
+matrixgroundmassconstraintsoncompositiondetails,Matrix Groundmass Constraints on Composition Details,n
+mean,Mean,n
+meanorientation,Mean Orientation,n
+median,Median,n
+micrographs,Micrographs,y
+mineral,Mineral,n
+mineralogy,Mineralogy,y
+mineralogymethod,Mineralogy Method,n
+minerals,Minerals,y
+mode,Mode,n
+modifiedtimestamp,Modified Timestamp,n
+morphologies,Morphologies,y
+name,Name,n
+notes,Notes,n
+notesoncrystalstructuresused,Notes on Crystal Structures Used,n
+notesonpostprocessing,Notes on Post Processing,n
+numericvalue,Numeric Value,n
+objective,Objective,n
+offset,Offset,n
+offsetinparent,Offset in Parent,y
+offsetunit,Offset Unit,n
+operatingfrequency,Operating Frequency,n
+operator,Operator,n
+oppositepostion,Opposite Postion,n
+orientationaxialtrace,Orientation Axial Trace,n
+orientationinfo,Orientation Info,y
+orientationmethod,Orientation Method,n
+orientedsample,Oriented Sample,n
+originalcenter,Original Center,n
+originalimagesize,Original ImageSize,n
+originalpath,Original Path,n
+originalposition,Original Position,n
+othermaterialtype,Other Material Type,n
+othersamplingpurpose,Other Sampling Purpose,n
+othershape,Other Shape,n
+otherteammembers,Other Team Members,n
+othertype,Other Type,n
+parentid,Parent ID,y
+percentage,Percentage,n
+percentagecalculationmethod,Percentage Calculation Method,n
+phase1,Phase 1,n
+phase2,Phase 2,n
+phases,Phases,y
+pointinparent,Point in arent,n
+pointorder,Point Order,n
+points,Points,y
+polish,Polish,n
+polishdescription,Polish Description,n
+polygon,Polygon,n
+postprocessingsoftware,Post Processing Software,n
+postprocessingsoftwareversion,Post Processing Software Version,n
+projectlocation,Project Location,n
+pseudotachylyteinfo,Pseudotachylyte Info,y
+pseudotachylytes,Pseudotachylytes,y
+purposeofstudy,Purpose of Study,n
+reasoning,Reasoning,n
+relativehumidity,Relative Humidity,n
+relativeto,Relative to,n
+resolution,Resolution,n
+rgbcheck,RgbCheck,n
+rotation,Rotation,y
+sampledescription,Sample Description,n
+sampleid,Sample ID,n
+samplenotes,Sample Notes,n
+sampleorientationnotes,Sample Orientation Notes,n
+samples,Samples,y
+samplesize,Sample Size,n
+sampletemperature,Sample Temperature,n
+sampletype,Sample Type,n
+sampleunit,Sample Unit,n
+scale,Scale,n
+scalepixelspercentimeter,Scale Pixels per Centimeter,y
+scanarea,Scan Area,n
+scandimensions,Scan Dimensions,n
+scantime,Scan Time,n
+shape,Shape,n
+showlabel,Show Label,n
+sideplunge,Side Plunge,n
+sidereferencecorner,Side Reference Corner,n
+sidetrend,Side Trend,n
+sizeunit,Size Unit,n
+software,Software,n
+spacing,Spacing,n
+spacingunit,Spacing Unit,n
+spatialresolution,Spatial Resolution,n
+spectralresolution,Spectral Resolution,n
+spoother,SPO Other,n
+spotechnique,SPO Technique,n
+spots,Spots,y
+spotsize,Spot Size,n
+standarddeviation,Standard Deviation,n
+standardname,Standard Name,n
+standards,Standards,n
+startdate,Start Date,n
+startpointorder,Start Point Order,n
+startx,Start X,n
+starty,Start Y,n
+stepsize,Step Size,n
+styloliticcleavage,Stylolitic Cleavage,n
+subimageoriginalcenter,Sub Image Original Center,n
+subimageoriginalheight,Sub Image Original Height,n
+subimageoriginalrotation,Sub Image Original Rotation,n
+subimageoriginalwidth,Sub Image Original Width,n
+subimagepreviouscenter,Sub Image Previous Center,n
+subtype,Sub Type,n
+subtypes,Sub Types,y
+sulphideoxidedistribution,Sulphide Oxide Distribution,n
+sulphideoxidelowersize,Sulphide Oxide Lower Size,n
+sulphideoxidelowersizeunit,Sulphide Oxide Lower Size Unit,n
+sulphideoxidemineralogy,Sulphide Oxide Mineralogy,n
+sulphideoxideuppersize,Sulphide Oxide Upper Size,n
+sulphideoxideuppersizeunit,Sulphide Oxide Upper Size Unit,n
+survivorclastsdistribution,Survivor Clasts Distribution,n
+survivorclastsmargindescription,Survivor Clasts Margin Description,n
+survivorclastsmineralogy,Survivor Clasts Mineralogy,n
+symmetry,Symmetry,n
+temperatureofroom,Temperature of Room,n
+thickness,Thickness,n
+thicknessunit,Thickness Unit,n
+thicknessunits,Thickness Units,n
+time,Time,n
+tipdiameter,Tip Diameter,n
+topcorner,Top Corner,n
+topplunge,Top Plunge,n
+topreferencecorner,Top Reference Corner,n
+toptrend,Top Trend,n
+trendplungedip,Trend Plunge Dip,n
+trendplungestrike,Trend Plunge Strike,n
+type,Type,n
+types,Types,y
+unit,Unit,n
+university,University,n
+url,Url,n
+veininfo,Vein Info,y
+veins,Veins,y
+vergence,Vergence,n
+vesciclesamygdulesdistribution,Vescicles Amygdules Distribution,n
+vesciclesamygduleslowersize,Vescicles Amygdules Lower Size,n
+vesciclesamygduleslowersizeunit,Vescicles Amygdules Lower Size Unit,n
+vesciclesamygdulesmineralogy,Vescicles Amygdules Mineralogy,n
+vesciclesamygdulesuppersize,Vescicles Amygdules Upper Size,n
+vesciclesamygdulesuppersizeunit,Vescicles Amygdules Upper Size Unit,n
+wavelength,Wavelength,n
+wavelengthunit,Wavelength Unit,n
+wavenumberrange,Wavenumber Range,n
+width,Width,y
+workingdistance,Working Distance,n
+x,X,n
+y,Y,n
+foo,bar,y

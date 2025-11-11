@@ -1,8 +1,17 @@
-<?
+<?php
+/**
+ * File: index.php
+ * Description: Main page or directory index
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 include_once "../includes/config.inc.php"; //credentials, etc
 include "../db.php"; //postgres database abstraction layer
-
-//$db->dumpVar($_SERVER);
 
 include("header.php");
 ?>
@@ -112,7 +121,6 @@ include("header.php");
 	</table>
 </div>
 
-
 <script>
 	//Add listener to keywords box to do search when enter is pressed
 	var input = document.getElementById("keywords");
@@ -120,13 +128,9 @@ include("header.php");
 		if (event.keyCode === 13) {
 			doSearch();
 		}
-	}); 
+	});
 </script>
 
-
-
-
-
-<?
+<?php
 include("footer.php");
 ?>

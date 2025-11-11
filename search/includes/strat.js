@@ -323,6 +323,8 @@
 		//console.log("LoadedFeatures: "); console.log(loadedFeatures.features);
 		//console.log("currentStratSection"); console.log(currentStratSection);
 		
+		//console.log("currentStratSectionId: " + currentStratSectionId);
+		
 		//currentStratSection.properties.sed.strat_section.strat_section_id
 		
 		_.each(loadedFeatures.features, function (feature) {			
@@ -960,7 +962,7 @@
 		});
 	}
 	
-	function getSymbolPath(feature_type, orientation, orientation_type, facing) {
+	function sgetSymbolPath(feature_type, orientation, orientation_type, facing) {
 		// Set a default symbol by whether feature is planar or linear
 		var default_symbol = symbols.default_point;
 		if (orientation_type === 'linear_orientation') default_symbol = symbols.lineation_general;

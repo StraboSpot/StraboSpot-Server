@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 03_Simple_file_reader_using_the_IOFactory_to_return_a_reader.php
+ * Description: Handles 03 Simple file reader using the IOFactory to return a reader operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 04_Simple_file_reader_using_the_IOFactory_to_identify_a_reader_to_use.php
+ * Description: Handles 04 Simple file reader using the IOFactory to identify a reader to use operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

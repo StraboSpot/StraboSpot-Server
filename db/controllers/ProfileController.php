@@ -1,26 +1,26 @@
 <?php
+/**
+ * File: ProfileController.php
+ * Description: ProfileController class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
-/*
-******************************************************************
-StraboSpot REST API
-Profile Controller
-Author: Jason Ash (jasonash@ku.edu)
-Description: This controller allows for the storage/retrieval of
-				profile information for currently authenticated
-				user.
-******************************************************************
-*/
 
 class ProfileController extends MyController
 {
-    public function getAction($request) {
+	public function getAction($request) {
 
 		$data = $this->strabo->getProfile();
 
-        return $data;
-    }
+		return $data;
+	}
 
-    public function deleteAction($request) {
+	public function deleteAction($request) {
 
 		// delete the profile
 		$this->strabo->deleteProfile();
@@ -28,21 +28,20 @@ class ProfileController extends MyController
 		header("Profile deleted", true, 204);
 		$data['message']="Profile deleted.";
 
-        return $data;
-    }
+		return $data;
+	}
 
-
-    public function postAction($request) {
+	public function postAction($request) {
 
 		$upload = $request->parameters;
-		
+
 		unset($upload['apiformat']);
-		
+
 		$continueprofile="no";
 
 		//count properties to make sure json is set
 		if(count($upload)>0){$continueprofile="yes";}
-		
+
 		if($continueprofile=="no"){
 
 			// bad body sent, error
@@ -52,55 +51,23 @@ class ProfileController extends MyController
 		}else{
 
 			$injson = json_encode($upload);
-			
+
 			$data = $this->strabo->insertProfile($injson);
 			header("Profile created", true, 201);
 
 		}
-        
-        
-        return $data;
-    }
 
-    public function putAction($request) {
-    	
+		return $data;
+	}    public function optionsAction($request) {
+
 		header("Bad Request", true, 400);
 		$data["Error"] = "Bad Request.";
 
-        return $data;
-    }
+		return $data;
+	}    public function copyAction($request) {
 
-    public function optionsAction($request) {
-    	
 		header("Bad Request", true, 400);
 		$data["Error"] = "Bad Request.";
 
-        return $data;
-    }
-
-    public function patchAction($request) {
-    	
-		header("Bad Request", true, 400);
-		$data["Error"] = "Bad Request.";
-
-        return $data;
-    }
-
-    public function copyAction($request) {
-    	
-		header("Bad Request", true, 400);
-		$data["Error"] = "Bad Request.";
-
-        return $data;
-    }
-
-    public function searchAction($request) {
-    	
-		header("Bad Request", true, 400);
-		$data["Error"] = "Bad Request.";
-
-        return $data;
-    }
-
-
-}
+		return $data;
+	}}

@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 16_Handling_loader_exceptions_using_TryCatch.php
+ * Description: Handles 16 Handling loader exceptions using TryCatch operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

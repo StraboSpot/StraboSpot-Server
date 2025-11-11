@@ -1,9 +1,21 @@
+<?php
+/**
+ * File: footer.php
+ * Description: Page footer template
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+?>
 						<!--- Begin Footer --->
 						</div>
 					</div>
 				</div>
 			</main>
-			
+
 			<nav>
 				<div class="innertube">
 					<!--
@@ -34,14 +46,14 @@
 					-->
 				</div>
 			</nav>
-		
+
 		</div>
-		
+
 		<footer>
 			<div class="innertube">
 				<p></p>
 			</div>
 		</footer>
-	
+
 	</body>
 </html>

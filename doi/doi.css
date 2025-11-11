@@ -1,0 +1,171 @@
+#grayOut {
+   position: fixed;
+   left: 0px;
+   top: 0px;
+   height: 100%;
+   width: 100%;
+   background-color: black;
+   opacity: 0.5;
+   z-index: 55555;
+}
+
+.grayOut {
+   position: fixed;
+   left: 0px;
+   top: 0px;
+   height: 100%;
+   width: 100%;
+   background-color: black;
+   opacity: 0.7;
+   z-index: 55555;
+}
+
+.redCloseBox {
+	border-radius: 4px;
+	font-family: 'Raleway', sans-serif;
+	font-weight:bold;
+	/*font-size: 28px;*/
+	top: 2.5%;
+	/*left: 10%;*/
+	/*width: 1260px;*/
+	/*height: 95%;*/
+	/*margin-top: -55px;*/
+	/*margin:auto;*/
+	/*border: 1px solid #666;*/
+	margin-top: 0px;
+	margin-left: 0px;
+	background-color: #CC0000;
+	color:#FFFFFF;
+	position: fixed;
+	z-index: 66667;
+	overflow:auto;
+	padding:2px 5px;
+	cursor: pointer;
+}
+
+.modalBox {
+	border-radius: 8px;
+	font-family: 'Raleway', sans-serif;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 380px;
+	height: 565px;
+	border: 1px solid #666;
+	background-color: #333;
+	z-index: 66666;
+	overflow:auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	line-height: 1.5em;
+}
+
+.oldmodalBox {
+	border-radius: 8px;
+	font-family: 'Raleway', sans-serif;
+	/*font-size: 28px;*/
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	top: 2.5%;
+	/*left: 10%;*/
+	width: 500px;
+	height: 500px;
+	/*margin-top: -55px;*/
+	margin:auto;
+	border: 1px solid #666;
+	background-color: #ffffff;
+	position: fixed;
+	z-index: 66666;
+	overflow:auto;
+}
+
+.topTitle {
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Raleway', sans-serif;
+	font-size: 36px;
+}
+
+.warningText {
+	/*color: #b51619;*/
+	color: #FF0000;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.continueText {
+	color: #FFF;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+	/*width: 400px;*/
+	margin-left: 40px;
+}
+
+.projectTitle {
+	/*color: #b51619;*/
+	color: #FF0000;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+.submitButton {
+	display: inline-block;
+	border-radius: 8px;
+	background-color: #f4511e;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px;
+	width: 170px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.submitButton span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+
+.submitButton span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.submitButton:hover span {
+	padding-right: 25px;
+}
+
+.submitButton:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+#randTextBox {
+	font-size: 24px;
+	padding-left: 5px;
+	width: 300px;
+	text-align:center;
+}
+
+

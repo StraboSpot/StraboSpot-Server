@@ -1,4 +1,15 @@
-<?
+<?php
+/**
+ * File: searchmapsjson.php
+ * Description: Search API endpoint returning JSON results
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 include("../includes/config.inc.php");
 include("../db.php");
@@ -12,8 +23,6 @@ $allfeatures = array();
 
 foreach($rows as $row){
 
-	//$db->dumpVar($row);exit();
-
 	$pkey=$row->pkey;
 	$name=$row->name;
 	$hash=$row->hash;
@@ -26,12 +35,10 @@ foreach($rows as $row){
 			$part=trim(explode("(",$part)[1]);
 			$longitude = (float)trim(explode(",",$part)[0]);
 			$latitude = (float)trim(explode(",",$part)[1]);
-		
-			//echo "longitude:--$longitude--<br>";
-			//echo "latitude:--$latitude--<br>";
+
 		}
 	}
-	
+
 	$thisfeature = array();
 	$thisfeature['type']="Feature";
 	$thisfeature['geometry']=array();
@@ -52,19 +59,5 @@ $json = json_encode($thiscollection,JSON_PRETTY_PRINT);
 
 header('Content-Type: application/json');
 echo $json;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

@@ -229,7 +229,7 @@ input {
     height: 80px;
     position: absolute;
     bottom: 0;
-    background-color: #e0f2f1;
+    background-color: #FFF; /* #e0f2f1  */
     left:0;
     right:0;
     width:430px;
@@ -297,7 +297,7 @@ input {
 }
 
 input[type='checkbox'] {
-	display: none;
+	/*display: none;*/
 }
 
 .lbl-toggle {
@@ -381,19 +381,82 @@ input[type='checkbox'] {
 	border-bottom: 1px solid #666666;
 }
 
+.collapsible-content .content-inner a {
+	color:#666;
+	text-decoration: none;
+	font-size: .8em;
+	font-weight: bold;
+}
 
 
 
 
 
+/* The sidebar menu */
+.newSearchSideNav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 430px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
 
 
 
+/* Style page content */
+.newSearchMapWrapper {
+  margin-left: 430px; /* Same as the width of the sidebar */
+  padding: 0px;
+  height: 100%;
+}
 
 
+#map {
+	margin:0;
+}
 
 
+.bottomLeftButtons {
+  border-radius: 15px; /* 4px  */
+  background-color: #b30000;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 24px;
+  padding: 10px;
+  width: 180px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
 
+.bottomLeftButtons span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.bottomLeftButtons span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.bottomLeftButtons:hover span {
+  padding-right: 25px;
+}
+
+.bottomLeftButtons:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
 
 

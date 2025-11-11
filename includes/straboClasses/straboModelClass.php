@@ -1,31 +1,30 @@
 <?php
+/**
+ * File: straboModelClass.php
+ * Description: straboModelClass class
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
-/*
-******************************************************************
-Strabo Model Class
-Author: Jason Ash (jasonash@ku.edu)
-Description: This class loads XLS files from Kobo Forms
-			 and builds the necessary html elements for
-			 the shapefile parser. It also handles the loading
-			 functions for the shapefile data
-******************************************************************
-*/
 
 libxml_use_internal_errors(true);
 
 class straboModelClass
 {
 
- 	public function straboModelClass(){
+	 public function straboModelClass(){
 
- 		//$this->columns_with_other_option = array("planar_orientation_feature_type");
- 		$this->columns_with_other_option = array("fabric_feature_type", "fold_feature_type", "linear_orientation_feature_type", "other_3d_structure_feature_type", "planar_orientation_feature_type", "planar_orientation_movement", "rock_unit_sediment_type", "rock_unit_sedimentary_rock_type", "rock_unit_volcanic_rock_type", "rock_unit_plutonic_rock_types", "rock_unit_metamorphic_rock_types", "rock_unit_metamorphic_grade", "rock_unit_epoch", "sample_material_type", "sample_main_sampling_purpose", "tabular_zone_orientation_facing_defined_by", "tabular_zone_orientation_feature_type", "tabular_zone_orientation_intrusive_body_type", "tabular_zone_orientation_vein_fill", "tabular_zone_orientation_vein_array", "tabular_zone_orientation_fault_or_sz", "tabular_zone_orientation_movement", "tabular_zone_orientation_movement_justification", "tabular_zone_orientation_dir_indicators", "tabular_zone_orientation_enveloping_surface_geometry", "tensor_ellipsoid_type", "tensor_non_ellipsoidal_type", "tensor_ellipse_type", "trace_trace_type", "trace_trace_quality", "trace_contact_type", "trace_depositional_contact_type", "trace_intrusive_contact_type", "trace_metamorphic_contact_type", "trace_shear_sense", "trace_other_structural_zones", "trace_fold_type", "trace_fold_attitude", "trace_geomorphic_feature", "trace_antropogenic_feature", "trace_other_feature", "trace_trace_character" );
- 		$this->ignorelist = array("latitude_and_longitude","start","end");
- 		$this->founditems = array(); //store found matches between shapefile vars and data model vars
- 		$this->controlledlist = array();
- 		
- 		$this->loadXLSFiles();
- 	}
+		 $this->columns_with_other_option = array("fabric_feature_type", "fold_feature_type", "linear_orientation_feature_type", "other_3d_structure_feature_type", "planar_orientation_feature_type", "planar_orientation_movement", "rock_unit_sediment_type", "rock_unit_sedimentary_rock_type", "rock_unit_volcanic_rock_type", "rock_unit_plutonic_rock_types", "rock_unit_metamorphic_rock_types", "rock_unit_metamorphic_grade", "rock_unit_epoch", "sample_material_type", "sample_main_sampling_purpose", "tabular_zone_orientation_facing_defined_by", "tabular_zone_orientation_feature_type", "tabular_zone_orientation_intrusive_body_type", "tabular_zone_orientation_vein_fill", "tabular_zone_orientation_vein_array", "tabular_zone_orientation_fault_or_sz", "tabular_zone_orientation_movement", "tabular_zone_orientation_movement_justification", "tabular_zone_orientation_dir_indicators", "tabular_zone_orientation_enveloping_surface_geometry", "tensor_ellipsoid_type", "tensor_non_ellipsoidal_type", "tensor_ellipse_type", "trace_trace_type", "trace_trace_quality", "trace_contact_type", "trace_depositional_contact_type", "trace_intrusive_contact_type", "trace_metamorphic_contact_type", "trace_shear_sense", "trace_other_structural_zones", "trace_fold_type", "trace_fold_attitude", "trace_geomorphic_feature", "trace_antropogenic_feature", "trace_other_feature", "trace_trace_character" );
+		 $this->ignorelist = array("latitude_and_longitude","start","end");
+		 $this->founditems = array(); //store found matches between shapefile vars and data model vars
+		 $this->controlledlist = array();
+
+		 $this->loadXLSFiles();
+	 }
 
 	public function dumpVar($var){
 		echo "<pre>";
@@ -38,7 +37,7 @@ class straboModelClass
 		$newtime = $string.rand(1111,9999);
 		return (int)$newtime;
 	}
-	
+
 	public function getGroupItems($var){
 		$thisreturn=array();
 		foreach($this->fields as $field){
@@ -46,10 +45,10 @@ class straboModelClass
 				$thisreturn[]=$field;
 			}
 		}
-		
+
 		return $thisreturn;
 	}
-	
+
 	public function hasOrientationData(){
 		$hasodata=false;
 
@@ -86,7 +85,7 @@ class straboModelClass
 
 	public function hasCustomFields(){
 		$hasdata=false;
-		
+
 		if(count($this->get_vars("sfcustom")) > 0) $hasdata=true;
 
 		return $hasdata;
@@ -94,7 +93,7 @@ class straboModelClass
 
 	public function hasTagData(){
 		$hasdata=false;
-		
+
 		if(count($this->get_vars("tag")) > 0) $hasdata=true;
 
 		return $hasdata;
@@ -102,7 +101,7 @@ class straboModelClass
 
 	public function hasRockUnitData(){
 		$hasdata=false;
-		
+
 		if(count($this->get_vars("rock_unit")) > 0) $hasdata=true;
 
 		return $hasdata;
@@ -110,12 +109,11 @@ class straboModelClass
 
 	public function hasTraceData(){
 		$hasdata=false;
-		
+
 		if(count($this->get_vars("trace")) > 0) $hasdata=true;
 
 		return $hasdata;
 	}
-
 
 	public function has3dStructureData(){
 		$hasdata=false;
@@ -177,32 +175,25 @@ class straboModelClass
 	}
 
 	public function isUserColumnSelected($var,$shapefilevar){
-		
-		//echo "var: $var shapefilevar: $shapefilevar<br>";
-		//$this->dumpVar($this->usercolumns);exit();
-		
+
 		if($this->usercolumns){
 			foreach($this->usercolumns as $uc){
 
 				if($uc["usercol"]==$shapefilevar && $uc["strabocol"]==$var){
-					
-					
-					
+
 					return true;
 				}
 			}
 		}
-		
+
 		return false;
 	}
 
 	public function getSelectRows($var,$shapefilevar){
-	
+
 		$select="";
 		$items = $this->getGroupItems("$var");
-		
-		//$this->dumpVar($items);exit();
-		
+
 		$selecteditems = array();
 
 		$userdefined="no";
@@ -210,9 +201,9 @@ class straboModelClass
 		$lookshapefilevar = trim(strtolower($shapefilevar));
 
 		$alreadyoutput="no";
-		
+
 		if($this->usercolumns){
-		
+
 			foreach($items as $item){
 				$label = $item["label"];
 				if($item["hint"]!="")$label.=" : ".$item["hint"];
@@ -228,13 +219,13 @@ class straboModelClass
 				$label = $item["label"];
 				if($item["hint"]!="")$label.=" : ".$item["hint"];
 				$name = $item["name"];
-			
+
 				$selected="";
 
 				if($this->isUserColumnSelected($var."_".$name,$shapefilevar)){
 					$selected=" selected";
 				}
-			
+
 				$select.="<option value=\"".$var."_$name\"$selected>$label</option>\n";
 
 			}
@@ -245,32 +236,27 @@ class straboModelClass
 				$label = $item["label"];
 				if($item["hint"]!="")$label.=" : ".$item["hint"];
 				$name = $item["name"];
-			
+
 				$selected="";
 
-
 				if(!in_array($name,$this->founditems) && $userdefined=="no"){
-					//look to see if $name is first characters of $lookshapefilevar
-					//if($name==$lookshapefilevar){
 					if($lookshapefilevar==$name){
 						$selected=" selected";
 						$selecteditems[]=$name;
 						$this->founditems[]=$name;
 					}
 				}
-			
+
 			}
 
 			foreach($items as $item){
 				$label = $item["label"];
 				if($item["hint"]!="")$label.=" : ".$item["hint"];
 				$name = $item["name"];
-			
+
 				$selected="";
 
 				if(!in_array($name,$this->founditems) && $userdefined=="no"){
-					//look to see if $name is first characters of $lookshapefilevar
-					//if($name==$lookshapefilevar){
 					if(substr(substr($name,0,strlen($lookshapefilevar))==$lookshapefilevar)){
 						$selected=" selected";
 						$this->founditems[]=$name;
@@ -284,15 +270,13 @@ class straboModelClass
 				$label = $item["label"];
 				if($item["hint"]!="")$label.=" : ".$item["hint"];
 				$name = $item["name"];
-			
+
 				if(in_array($name,$selecteditems)){
 					$selected=" selected";
 				}else{
 					$selected="";
 				}
-			
 
-				
 				$select.="<option value=\"".$var."_$name\"$selected>$label</option>\n";
 
 			}
@@ -315,34 +299,32 @@ class straboModelClass
 	}
 
 	public function setUserColumns($uc){
-		
+
 		unset($this->usercolumns);
 		$this->usercolumns=array();
-		
+
 		if($uc){
-			
-			//NB_Station:;UTM_zone:;easting:;northing:;strike_RHR:;dip_RHR:;rake_RHR:;trend:linear_orientation_trend;plunge:linear_orientation_plunge;unit:;year:;planar_fea:;foliation:;lineation:;lineatio_1:;Mineralogy:;Accessory:;Rock_Type:;Mag_Susept:;Special_Fe:;Sample_Tak:;Geochron_S:
-			
+
 			$parts = explode(";",$uc);
 			$arraynum=0;
 			foreach($parts as $part){
-					
+
 				$bits = explode(":",$part);
 				$usercol = $bits[0];
 				$strabocol = $bits[1];
-				
+
 				if($usercol!="" && $strabocol!=""){
 					$this->usercolumns[$arraynum]["usercol"]=$usercol;
 					$this->usercolumns[$arraynum]["strabocol"]=$strabocol;
 					$arraynum++;
 				}
-					
+
 			}
-		
+
 		$this->setFileControlledVocabulary();
 
 		}
-	
+
 	}
 
 	public function userColumnToStraboColumn($usercolumn){
@@ -354,28 +336,24 @@ class straboModelClass
 	}
 
 	public function setFileControlledVocabulary(){
-	
-		/*
-		build $filevocab
-		$filevocab["names"][straboname][]=array(of items);
-		$filevocab["labels"][straboname][]=array(of items);
-		*/
-	
+
+		
+
 		foreach($this->usercolumns as $uc){
 			$strabocol = $uc["strabocol"];
 			$colnum = $this->getColNum($strabocol);
-			
+
 			if($this->isColnumControlled($colnum)){
-			
+
 				foreach($this->controlledlist[$colnum] as $c){
 					$this->filevocab["names"][$strabocol][]=$c["name"];
 					$this->filevocab["labels"][$strabocol][]=$c["label"];
 				}
-			
+
 			}
-			
+
 		}
-	
+
 	}
 
 	public function fitsControlled($strabocol,$value){
@@ -384,15 +362,12 @@ class straboModelClass
 
 		foreach($this->filevocab["names"][$strabocol] as $thisval){
 			$lookval = strtolower($thisval);
-			
-			//echo "<br><br>lookval: $lookval value: $value<br><br>";
-			
+
 			if($lookval==$value){
 				return $thisval;
 			}
 		}
 
-	
 		$x=0;
 		foreach($this->filevocab["labels"][$strabocol] as $thisval){
 			$lookval = strtolower($thisval);
@@ -407,7 +382,7 @@ class straboModelClass
 	}
 
 	public function isNumericTyped($strabocol){
-	
+
 		foreach($this->fields as $f){
 			if($f['strabolabel']==$strabocol){
 				if($f['type']=="integer" || $f['type']=="decimal" ){
@@ -415,45 +390,45 @@ class straboModelClass
 				}
 			}
 		}
-		
+
 		return false;
 	}
 
 	public function createCVError($strabocol,$value){
-	
+
 		$label = $this->getLabelFromStraboCol($strabocol);
-		
+
 		$error = "The value provided for $label ($value) is not valid. See the <a href=\"controlledvocab#$strabocol\">controlled vocabulary</a> for more information.";
-	
+
 		return $error;
 	}
 
 	public function createNumericTypeError($strabocol,$value){
-	
+
 		$label = $this->getLabelFromStraboCol($strabocol);
-		
+
 		$error = "The value provided for $label should be numeric only. The value provided ($value) is not numeric.";
-	
+
 		return $error;
 	}
 
 	public function implodeCVError($vocaberror){
-	
+
 		foreach($vocaberror as $key=>$value){
 			$thiserror .= $delim.$value; $delim="<br>\n";
 		}
-		
+
 		return $thiserror;
 	}
 
 	public function getLabelFromStraboCol($strabocol){
-	
+
 		foreach($this->fields as $f){
 			if($strabocol==$f["strabolabel"]) return $f["label"];
 		}
-		
+
 		return null;
-	
+
 	}
 
 	public function fixUnderscores($string){
@@ -478,38 +453,22 @@ class straboModelClass
 	}
 
 	public function getColNum($varname){
-	
+
 		$num=9999999;
-	
-		//$this->dumpVar($this->fields);exit();
+
 		foreach($this->fields as $f){
 			if($f["strabolabel"]==$varname) $num = $f["num"];
 		}
-		
+
 		return $num;
-	
+
 	}
 
 	public function addTag($tag,$spotid){
-		/*
-		$tag=[name] => tagone;
+		
 
-		$this->projectvars = 
-		[date] => 2017-02-14T21:10:34Z
-		[userpkey] => 3
-		[projectname] => shapefiletest
-		[preferences] => {"orientation":false,"_3dstructures":false,"images":false,"nest":false,"samples":false,"other_features":false,"inferences":false,"tags":false,"right_hand_rule":false,"drop_down_to_finish_typing":false}
-		[desc_project_name] => shapefiletest
-		[projecttype] => web
-		[json_description] => {"project_name":"shapefiletest"}
-		[datecreated] => 1487106634
-		[id] => 14871066349729
-		[modified_timestamp] => 1487106634000
-		
-		*/
-		
 		//find tag in project vars and update accordingly, or add if needed
-		
+
 		$tagname = $tag['name'];
 
 		$json_tags = $this->projectvars["json_tags"];
@@ -518,9 +477,9 @@ class straboModelClass
 		}else{
 			$json_tags=array();
 		}
-		
+
 		$fixed_tags = array();
-		
+
 		$tagfound="no";
 		foreach($json_tags as $json_tag){
 			if($json_tag["name"]==$tagname){
@@ -528,11 +487,11 @@ class straboModelClass
 				array_push($json_tag["spots"],$spotid);
 				$tagfound="yes";
 			}
-			
+
 			array_push($fixed_tags,$json_tag);
-			
+
 		}
-		
+
 		if($tagfound=="no"){
 			$json_tag=array();
 			$json_tag["name"]=$tagname;
@@ -541,34 +500,22 @@ class straboModelClass
 			$json_tag["spots"][]=$spotid;
 			array_push($fixed_tags,$json_tag);
 		}
-		
+
 		$this->projectvars["modified_timestamp"]=time();
 		$this->projectvars["json_tags"]=json_encode($fixed_tags);
-		
+
 	}
 
 	public function addRockUnitTag($rockunittag,$spotid){
-		/*
-		$tag=[name] => tagone;
+		
 
-		$this->projectvars = 
-		[date] => 2017-02-14T21:10:34Z
-		[userpkey] => 3
-		[projectname] => shapefiletest
-		[preferences] => {"orientation":false,"_3dstructures":false,"images":false,"nest":false,"samples":false,"other_features":false,"inferences":false,"tags":false,"right_hand_rule":false,"drop_down_to_finish_typing":false}
-		[desc_project_name] => shapefiletest
-		[projecttype] => web
-		[json_description] => {"project_name":"shapefiletest"}
-		[datecreated] => 1487106634
-		[id] => 14871066349729
-		[modified_timestamp] => 1487106634000
-		
-		*/
-		
 		//find tag in project vars and update accordingly, or add if needed
-		
+
 		$tagname = $rockunittag['name'];
 		if($tagname=="") $tagname="Rock Unit";
+
+		$mapunitname = $rockunittag['map_unit_name'];
+		$membername = $rockunittag['member_name'];
 
 		$json_tags = $this->projectvars["json_tags"];
 		if($json_tags!=""){
@@ -576,21 +523,23 @@ class straboModelClass
 		}else{
 			$json_tags=array();
 		}
-		
+
 		$fixed_tags = array();
-		
+
 		$tagfound="no";
 		foreach($json_tags as $json_tag){
-			if($json_tag["name"]==$tagname){
+			if($json_tag["name"]==$tagname && $json_tag["map_unit_name"]==$mapunitname && $json_tag["member_name"]==$membername ){
 				//add spot to list
-				array_push($json_tag["spots"],$spotid);
+				if(!in_array($spotid, $json_tag["spots"])){
+					array_push($json_tag["spots"],$spotid);
+				}
 				$tagfound="yes";
 			}
-			
+
 			array_push($fixed_tags,$json_tag);
-			
+
 		}
-		
+
 		if($tagfound=="no"){
 			$json_tag=array();
 			$json_tag["name"]=$tagname;
@@ -629,13 +578,11 @@ class straboModelClass
 
 			array_push($fixed_tags,$json_tag);
 		}
-		
+
 		$this->projectvars["modified_timestamp"]=time();
 		$this->projectvars["json_tags"]=json_encode($fixed_tags);
-		
+
 	}
-
-
 
 	public function fixCast($val){
 		$val=trim($val);
@@ -656,12 +603,12 @@ class straboModelClass
 			$len = strlen($prefix);
 			if(substr($key,0,$len)==$prefix){
 				if($this->sampleproperties[$value]!=""){
-					$key=str_replace($prefix."_","",$key);
+					$key = substr($key, strlen($prefix) + 1);
 					$returnarray[$key]=$this->sampleproperties[$value];
 				}
 			}
 		}
-		
+
 		return $returnarray;
 	}
 
@@ -671,7 +618,7 @@ class straboModelClass
 		$select.="<select name=\"".$varname."_select\">\n";
 		$select.="<option value=\"\">Select...</option>\n";
 		$select.="<option value=\"sfcustom_$varname\">Custom Column</option>\n";
-		
+
 		$select.="<optgroup label=\"Spot:\">\n";
 		$select.=$this->getSelectRows("spot",$varname);
 
@@ -695,7 +642,7 @@ class straboModelClass
 
 		$select.="<optgroup label=\"Rock Unit:\">\n";
 		$select.=$this->getSelectRows("rock_unit",$varname);
-		
+
 		$select.="<optgroup label=\"Trace:\">\n";
 		$select.=$this->getSelectRows("trace",$varname);
 
@@ -715,18 +662,18 @@ class straboModelClass
 
 	public function loadXLSFiles(){
 
- 		unset($this->fields);
- 		$this->fields = array();
- 		$this->fieldnum=0;
+		 unset($this->fields);
+		 $this->fields = array();
+		 $this->fieldnum=0;
 
 		$this->loadXLSFile("spot.xls","spot");
 		$this->loadXLSFile("rock_unit.xls","rock_unit");
 		$this->loadXLSFile("trace.xls","trace");
-		
+
 		$this->loadXLSFile("planar_orientation.xls","planar_orientation");
 		$this->loadXLSFile("linear_orientation.xls","linear_orientation");
 		$this->loadXLSFile("tabular_zone_orientation.xls","tabular_zone_orientation");
-		
+
 		$this->loadXLSFile("fabric.xls","fabric");
 		$this->loadXLSFile("fold.xls","fold");
 		$this->loadXLSFile("tensor.xls","tensor");
@@ -734,16 +681,16 @@ class straboModelClass
 
 		$this->loadXLSFile("sample.xls","sample");
 
+		$this->loadXLSFile("tephra.xls","tephra");
+
 		$this->loadXLSFile("other_features.xls","other_features");
 
 		$this->loadXLSFile("surface_feature.xls","surface_feature");
-		
+
 		$this->loadXLSFile("image_properties.xls","image");
 
 		$this->loadXLSFile("tag.xls","tag");
 
-		//$this->dumpVar($this->fields);
-	
 	}
 
 	public function getXLSRow($rows,$name){
@@ -759,7 +706,7 @@ class straboModelClass
 		$excel = new PhpExcelReader;
 
 		$excel->read("includes/straboClasses/kobofiles/xls/$filename");
-		
+
 		$rows = $excel->sheets[0]["cells"];
 
 		$namecol = $this->getXLSRow($rows,"name");
@@ -767,17 +714,15 @@ class straboModelClass
 		$labelcol = $this->getXLSRow($rows,"label");
 		$hintcol = $this->getXLSRow($rows,"hint");
 
-
-
 		foreach($rows as $row){
-		
+
 			$name = $row[$namecol];
 			$type = $row[$typecol];
 			$label = $row[$labelcol];
 			$hint = $row[$hintcol];
-			
+
 			if(!in_array ( $name , $this->ignorelist ) && $name!="" && $type!="acknowledge" && $type!="begin group" && $hint!="hint"){
-			
+
 				$this->fields[$this->fieldnum]['group']=$group;
 				$this->fields[$this->fieldnum]['name']=$name;
 				$this->fields[$this->fieldnum]['label']=$label;
@@ -792,25 +737,24 @@ class straboModelClass
 				}
 
 				$this->fieldnum++;
-			
+
 			}
 		}
 	}
 
-
 	public function addControlledItems($selectvar,$rows){
-	
+
 		$namecol = $this->getXLSRow($rows,"name");
 		$labelcol = $this->getXLSRow($rows,"label");
 		$listnamecol = $this->getXLSRow($rows,"list name");
-		
+
 		$varnum=0;
-		
+
 		foreach($rows as $row){
 			$name = $row[$namecol];
 			$label = $row[$labelcol];
 			$listname = $row[$listnamecol];
-			
+
 			if( $listname==$selectvar ){
 				$this->controlledlist[$this->fieldnum][$varnum]["name"]=$name;
 				$this->controlledlist[$this->fieldnum][$varnum]["label"]=$label;
@@ -818,9 +762,8 @@ class straboModelClass
 			}
 
 		}
-	
-	}
 
+	}
 
 }
 

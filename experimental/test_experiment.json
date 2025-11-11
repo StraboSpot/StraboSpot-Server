@@ -1,0 +1,536 @@
+{
+  "facility": {
+    "address": {
+      "street": "77 Massachusetts Avenue",
+      "building": "Bldg.54-715",
+      "postcode": "02139",
+      "city": "Cambridge",
+      "state": "MA",
+      "country": "USA",
+      "latitude": "42.3601",
+      "longitude": "71.0942"
+    },
+    "contact": {
+      "firstname": "Matej",
+      "lastname": "Pec",
+      "affiliation": "Professor",
+      "email": "mpec@mit.edu",
+      "phone": "617-324-7279",
+      "website": "https://mpec.scripts.mit.edu/peclab/",
+      "id": ""
+    },
+    "institute": "Massachusetts Institute of Technology",
+    "department": "Earth and Planetary Sciences (EAPS)",
+    "name": "Rock Physics Laboratory",
+    "type": "University Lab",
+    "id": "ETH_54_715",
+    "website": "https://eapsweb.mit.edu/",
+    "description": "",
+    "uuid": "38232802-67d9-4547-a473-dab048f66393",
+    "created_timestamp": "Wed, May 17 2023 20:02:44 UTC ",
+    "modified_timestamp": "Wed, May 17 2023 20:18:15 UTC "
+  },
+"apparatus": {
+		"name": "apparatus 2",
+		"type": "Shear Box",
+		"location": "Rm55",
+		"id": "app2id",
+		"description": "desc about apparatus 2ccc",
+		"features": [
+			"Loading",
+			"Unloading",
+			"Creep",
+			"Hardness",
+			"Pore Volume Compaction",
+			"Uniaxial Stress/Strain",
+			"Infrared"
+		],
+		"parameters": [
+			{
+				"type": "Sample Diameter",
+				"min": "12",
+				"max": "23",
+				"unit": "μg",
+				"prefix": "1E-2",
+				"note": "asdfasdf"
+			},
+			{
+				"type": "Stiffness",
+				"min": "23",
+				"max": "34",
+				"unit": "mg",
+				"prefix": "1E-3",
+				"note": "asdfasdf"
+			}
+		],
+		"documents": [
+			{
+				"type": "Software",
+				"format": "zip",
+				"path": "star_jedi.zip",
+				"id": "asdfas",
+				"uuid": "46828b41-99b4-4b78-86f8-4f35dbd3682c",
+				"description": "asdfasdf"
+			}
+		],
+		"uuid": "af98f9a4-4934-4680-abfe-f4aed212f1cf",
+		"created_timestamp": "Tue, May 2 2023 16:22:01 UTC ",
+		"modified_timestamp": "Tue, May 2 2023 16:22:59 UTC "
+	},
+  "daq": {
+    "name": "group name here",
+    "type": "Standard",
+    "location": "loc here",
+    "description": "some description here...",
+    "devices": [
+      {
+        "name": "my device",
+        "channels": [
+          {
+            "header": {
+              "type": "Temperature",
+              "spec_a": "Time",
+              "spec_b": "Time",
+              "spec_c": "otherspec",
+              "unit": "sec"
+            },
+            "number": "0",
+            "type": "Calculated",
+            "configuration": "System",
+            "note": "note here",
+            "resolution": "res here",
+            "range_low": "min here",
+            "range_high": "max here",
+            "rate": "rate here",
+            "filter": "filter here",
+            "gain": "x1",
+            "sensor": {
+              "template": "Accelerometer & Force",
+              "detail": "Clock",
+              "type": "Active",
+              "id": "man id",
+              "model": "modnum",
+              "version": "verlet",
+              "number": "vernum",
+              "serial": "serialnum"
+            },
+            "calibration": {
+              "template": "Input:Unit",
+              "input": "degC",
+              "unit": "degC",
+              "excitation": "excit",
+              "date": "2023-05-08",
+              "note": "note here"
+            },
+            "data": [
+              {
+                "a": "4213",
+                "b": "7262"
+              },
+              {
+                "a": "9767",
+                "b": "8748"
+              }
+            ]
+          },
+          {
+            "header": {
+              "type": "Strain",
+              "spec_a": "Time",
+              "spec_b": "Time",
+              "spec_c": "otherspec",
+              "unit": "sec"
+            },
+            "number": "1",
+            "type": "Calculated",
+            "configuration": "System",
+            "note": "note here",
+            "resolution": "res here",
+            "range_low": "min here",
+            "range_high": "max here",
+            "rate": "rate here",
+            "filter": "filter here",
+            "gain": "x1",
+            "sensor": {
+              "template": "Accelerometer & Force",
+              "detail": "Clock",
+              "type": "Active",
+              "id": "man id",
+              "model": "modnum",
+              "version": "verlet",
+              "number": "vernum",
+              "serial": "serialnum"
+            },
+            "calibration": {
+              "template": "Input:Unit",
+              "input": "degC",
+              "unit": "degC",
+              "excitation": "excit",
+              "date": "2023-05-08",
+              "note": "note here"
+            },
+            "data": [
+              {
+                "a": "8411",
+                "b": "3014"
+              },
+              {
+                "a": "8008",
+                "b": "5053"
+              },
+              {
+                "a": "5013",
+                "b": "8777"
+              }
+            ]
+          },
+          {
+            "header": {
+              "type": "Displacement",
+              "spec_a": "Time",
+              "spec_b": "Time",
+              "spec_c": "otherspec",
+              "unit": "sec"
+            },
+            "number": "5",
+            "type": "Calculated",
+            "configuration": "System",
+            "note": "note here",
+            "resolution": "res here",
+            "range_low": "min here",
+            "range_high": "max here",
+            "rate": "rate here",
+            "filter": "filter here",
+            "gain": "x1",
+            "sensor": {
+              "template": "Accelerometer & Force",
+              "detail": "Clock",
+              "type": "Active",
+              "id": "man id",
+              "model": "modnum",
+              "version": "verlet",
+              "number": "vernum",
+              "serial": "serialnum"
+            },
+            "calibration": {
+              "template": "Input:Unit",
+              "input": "degC",
+              "unit": "degC",
+              "excitation": "excit",
+              "date": "2023-05-08",
+              "note": "note here"
+            },
+            "data": [
+              {
+                "a": "4525",
+                "b": "6771"
+              }
+            ]
+          }
+        ],
+        "documents": [
+          {
+            "type": "Manual",
+            "format": "jpg",
+            "path": "file3.txt",
+            "id": "doc id here",
+            "uuid": "2e3d1e51-1b23-4679-9d95-d1c18a59457c",
+            "description": "desc here"
+          },
+          {
+            "type": "Diagram",
+            "format": "jpg",
+            "path": "file2.txt",
+            "id": "doc id here",
+            "uuid": "0387daf1-acdd-4862-9fd0-b3bb2feb004c",
+            "description": "desc here"
+          }
+        ]
+      },
+      {
+        "name": "my device",
+        "channels": [
+          {
+            "header": {
+              "type": "Time",
+              "spec_a": "Time",
+              "spec_b": "Time",
+              "spec_c": "otherspec",
+              "unit": "sec"
+            },
+            "number": "0",
+            "type": "Calculated",
+            "configuration": "System",
+            "note": "note here",
+            "resolution": "res here",
+            "range_low": "min here",
+            "range_high": "max here",
+            "rate": "rate here",
+            "filter": "filter here",
+            "gain": "x1",
+            "sensor": {
+              "template": "Accelerometer & Force",
+              "detail": "Clock",
+              "type": "Active",
+              "id": "man id",
+              "model": "modnum",
+              "version": "verlet",
+              "number": "vernum",
+              "serial": "serialnum"
+            },
+            "calibration": {
+              "template": "Input:Unit",
+              "input": "degC",
+              "unit": "degC",
+              "excitation": "excit",
+              "date": "2023-05-08",
+              "note": "note here"
+            },
+            "data": [
+              {
+                "a": "5899",
+                "b": "3548"
+              }
+            ]
+          }
+        ],
+        "documents": [
+          {
+            "type": "Picture",
+            "format": "jpg",
+            "path": "file1.txt",
+            "id": "doc id here",
+            "uuid": "7c6ce385-3291-4ae2-9f1a-c16b2c3fdf57",
+            "description": "desc here"
+          }
+        ]
+      }
+    ]
+  },
+  "sample": {
+    "name": "sample name here",
+    "igsn": "ABC000002",
+    "id": "my_samp_id",
+    "description": "samp desc here...",
+    "parent": {
+      "name": "parent sample name here",
+      "igsn": "ABC000001",
+      "id": "my_parent_samp_id",
+      "description": "parent samp desc here..."
+    },
+    "material": {
+      "material": {
+        "type": "Glass",
+        "name": "material name here",
+        "state": "Homogeneous",
+        "note": "notes here..."
+      },
+      "composition": [
+			{
+					"mineral": "Apophyllite",
+					"fraction": "frac here",
+					"unit": "Vol%",
+					"grainsize": "grain size here"
+				},
+				{
+					"mineral": "Astrophyllite",
+					"fraction": "frac here",
+					"unit": "Vol%",
+					"grainsize": "grain size here"
+				},
+				{
+					"mineral": "Apophyllite",
+					"fraction": "frac here",
+					"unit": "Vol%",
+					"grainsize": "grain size here"
+				}
+      ],
+      "provenance": {
+        "formation": "formation name here",
+        "member": "member name here",
+        "submember": "sub member name here",
+        "source": "Surface",
+        "location": {
+          "street": "123 Main St.",
+          "building": "Apt. 12",
+          "postcode": "12345",
+          "city": "Anytown",
+          "state": "KS",
+          "country": "USA",
+          "latitude": "39.556",
+          "longitude": "-119.223"
+        }
+      },
+      "texture": {
+        "bedding": "bedding here...",
+        "lineation": "lineation here...",
+        "foliation": "foliation here...",
+        "fault": "fault here..."
+      }
+    },
+    "parameters": [
+      {
+        "control": "Weight",
+        "value": "frac here",
+        "unit": "degC",
+        "prefix": "-",
+        "note": "note here"
+      },
+      {
+        "control": "Connected Porosity",
+        "value": "frac here",
+        "unit": "degC",
+        "prefix": "-",
+        "note": "note here"
+      },
+      {
+        "control": "Density",
+        "value": "frac here",
+        "unit": "degC",
+        "prefix": "-",
+        "note": "note here"
+      }
+    ],
+    "documents": [
+      {
+        "type": "Manual",
+        "format": "jpg",
+        "id": "doc id here",
+        "description": "desc here",
+        "uuid": "0a8d4d6b-dbff-4d8c-8ebd-96a20c98c8b7",
+        "path": "file1.txt"
+      }
+    ]
+  },
+  "experiment": {
+    "title": "experiment title name here",
+    "id": "id here",
+    "ieda": "ieda id",
+    "start_date": "2023-06-08",
+    "end_date": "2023-06-08",
+    "description": "Some description here...",
+    "features": [
+      "Loading",
+      "Unloading",
+      "Heating",
+      "Cooling",
+      "Hydrostatic Tests",
+      "HIP",
+      "Elastic Moduli",
+      "Yield Strength",
+      "Simple Shear",
+      "Rotary Shear",
+      "Reactive Flow"
+    ],
+    "author": {
+      "firstname": "John",
+      "lastname": "Smith",
+      "affiliation": "Lab Manager",
+      "email": "test@gmail.com",
+      "phone": "785-555-1212",
+      "website": "https://www.google.com",
+      "id": "0000-0001-2345-6789"
+    },
+    "geometry": [
+      {
+        "order": "1",
+        "type": "Sample",
+        "geometry": "Cylinder",
+        "material": "Sample",
+        "dimensions": [
+          {
+            "variable": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "prefix": "-",
+            "note": "some notes here..."
+          }
+        ]
+      },
+      {
+        "order": "2",
+        "type": "Forcing Block",
+        "geometry": "Cylinder",
+        "material": "Sample",
+        "dimensions": [
+          {
+            "variable": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "prefix": "-",
+            "note": "some notes here..."
+          },
+          {
+            "variable": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "prefix": "-",
+            "note": "some notes here..."
+          }
+        ]
+      }
+    ],
+    "protocol": [
+      {
+        "objective": "objective here...",
+        "description": "description here...",
+        "parameters": [
+          {
+            "control": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "note": "some notes here..."
+          },
+          {
+            "control": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "note": "some notes here..."
+          }
+        ]
+      },
+      {
+        "objective": "objective here...",
+        "description": "description here...",
+        "parameters": [
+          {
+            "control": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "note": "some notes here..."
+          },
+          {
+            "control": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "note": "some notes here..."
+          },
+          {
+            "control": "Length",
+            "value": "123.45",
+            "unit": "degC",
+            "note": "some notes here..."
+          }
+        ]
+      }
+    ],
+    "documents": [
+      {
+        "type": "Data",
+        "format": "jpg",
+        "id": "doc id here",
+        "description": "desc here",
+        "uuid": "375fe49a-7686-4d43-93fc-8e92a5ee74bb",
+        "path": "file1.txt"
+      },
+      {
+        "type": "Diagram",
+        "format": "jpg",
+        "id": "doc id here",
+        "description": "desc here",
+        "uuid": "63e79854-083c-4cfd-8574-1423b928b28e",
+        "path": "file3.txt"
+      }
+    ]
+  }
+}

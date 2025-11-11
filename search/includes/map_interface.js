@@ -1,7 +1,7 @@
 //Map Interface Building
 var zoomres=40; //where to switch to spots view
-var datasetsurl = '/search/searchdatasets.json';
-var lastdatasetsurl ='/search/searchdatasets.json';
+var datasetsurl = 'newsearchdatasets.json';
+var lastdatasetsurl ='newsearchdatasets.json';
 var allDatasets = [];
 var newSearchFeatures = "";
 var ctx = null;
@@ -112,9 +112,9 @@ var baseLayers = new ol.layer.Group({
 
 var mapView = new ol.View({
 	'projection': 'EPSG:3857',
-	'center': [-11000000, 4600000],
-	'zoom': 5, //5
-	'minZoom': 0
+	'center': [-9000000, 4600000], //[-11000000, 4600000]
+	'zoom': 3, //5
+	'minZoom': 3
 });
 
 
@@ -131,10 +131,7 @@ map.addLayer(featureLayer);
 
 
 
-
-
-
-
+map.on('moveend', updateMapDiv);
 
 
 map.on('precompose', function (event) {
@@ -158,16 +155,6 @@ map.on('precompose', function (event) {
 
 });
 
-
-
-
-
-
-
-
-
-
-map.on('moveend', updateMapDiv);
 
 var layerSwitcher = new ol.control.LayerSwitcher({
 	tipLabel: 'Layers' // Optional label for button
@@ -219,7 +206,7 @@ map.on('click', function (evt) {
 
 			getCurrentSpot(); //get the clicked spot into memory
 
-			console.log(currentSpot);
+			//console.log(currentSpot);
 		
 			updateSidebar();
 	
@@ -273,32 +260,45 @@ var showZoomedOut = function(){
 }
 
 var newSearchRebuildDatasetsLayer = function(){
-
-	var stringFeatures = JSON.stringify(newSearchFeatures);
-	console.log(stringFeatures);
-	
-	
-	$("#datasetswaiting").show();
-	
-	
 	
 	console.log("in newSearchRebuildDatasetsLayer");
 
-	const newSearchFormat = new ol.format.GeoJSON();
-	const newFeatures = newSearchFormat.readFeatures(JSON.parse(JSON.stringify(newSearchFeatures)));
+	//console.log("heyo");
+	
+	//var stringFeatures = JSON.stringify(newSearchFeatures);
+	//console.log(stringFeatures);
+	
+	//var fooFeatures = '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-65.7270746324572,-24.39926619728]},"properties":{"name":"Default","projectname":"Andes 2018","id":"15214564309566","count":"1","owner":"Katie Graham"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-77.9999816,25.0412466]},"properties":{"name":"South Island Outcrop","projectname":"Modern Carbonates Field Trip 2019","id":"15767655255103","count":"1","owner":"Casey Duncan"}}]}';
+	
+	//$("#datasetswaiting").show();
+	
+	
+	
+	
+
+	//var newSearchFormat = new ol.format.GeoJSON();
+	//var newFeatures = newSearchFormat.readFeatures(JSON.parse(fooFeatures));
+	
+	
+	//var newFeatures = (new ol.format.GeoJSON()).readFeatures(newSearchFeatures, {
+	//dataProjection : 'EPSG:3857',
+	//featureProjection: 'EPSG:4326'
+	//});
 	
 	/*
-	var newFeatures = (new ol.format.GeoJSON()).readFeatures(newSearchFeatures, {
+	var newFeatures = (new ol.format.GeoJSON()).readFeatures(JSON.parse(fooFeatures), {
 	dataProjection : 'EPSG:4326',
 	featureProjection: 'EPSG:3857'
 	});
 	*/
 	
-	console.log(newFeatures);
+	//console.log(newFeatures);
 	
+	/*
 	datasetPointsSource = new ol.source.Vector({
 		features: newFeatures
 	});
+	*/
 	
 	/*
 	datasetPointsSource = new ol.source.Vector({
@@ -306,7 +306,33 @@ var newSearchRebuildDatasetsLayer = function(){
 	format: new ol.format.GeoJSON()
 	});
 	*/
+	
 
+
+
+	var format = new ol.format.GeoJSON({
+      defaultDataProjection: 'EPSG:4326'
+    });
+    var features = format.readFeatures(newSearchFeatures, {
+      dataProjection: 'EPSG:4326',
+      featureProjection: 'EPSG:3857'
+    });
+
+	datasetPointsSource = new ol.source.Vector({
+		features: features
+	});
+
+
+
+
+
+
+
+
+
+
+
+	/*
 	var listenerKey = datasetPointsSource.on('change', function(e) {
 		if (datasetPointsSource.getState() == 'ready') {
 			$("#datasetswaiting").hide();
@@ -329,7 +355,7 @@ var newSearchRebuildDatasetsLayer = function(){
 			ol.Observable.unByKey(listenerKey);
 		}
 	});
-
+	*/
 
 	datasetPointsLayer.setSource(datasetPointsSource);
 	

@@ -1,5 +1,6 @@
 RewriteEngine on
 
+RewriteRule ^dl/(.*)$ downloadgeotiff.php?hash=$1 [L]
 RewriteRule ^detail/(.*)$ geotiffdetail.php?hash=$1 [L]
 RewriteRule ^delete/(.*)$ deletegeotiff.php?hash=$1 [L]
 RewriteRule ^edit/(.*)$ editgeotiff.php?hash=$1 [L]

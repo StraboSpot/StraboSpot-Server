@@ -1,12 +1,13 @@
 <?php
-
-/*
- * This file is part of the GraphAware Neo4j Client package.
+/**
+ * File: RecordView.php
+ * Description: View details page
  *
- * (c) Graph Aware Limited <http://graphaware.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
  */
 
 namespace GraphAware\Neo4j\Client\Formatter;

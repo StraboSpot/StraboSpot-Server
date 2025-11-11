@@ -1,12 +1,13 @@
 <?php
-
-/*
- * This file is part of the Symfony package.
+/**
+ * File: AbstractEventDispatcherTest.php
+ * Description: postFoo() stops the propagation, so only one listener should
  *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
  */
 
 namespace Symfony\Component\EventDispatcher\Tests;
@@ -17,17 +18,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 abstract class AbstractEventDispatcherTest extends \PHPUnit_Framework_TestCase
 {
-    /* Some pseudo events */
-    const preFoo = 'pre.foo';
-    const postFoo = 'post.foo';
-    const preBar = 'pre.bar';
-    const postBar = 'post.bar';
-
-    /**
-     * @var EventDispatcher
-     */
     private $dispatcher;
-
     private $listener;
 
     protected function setUp()
@@ -314,60 +305,3 @@ class TestEventListener
 {
     public $preFooInvoked = false;
     public $postFooInvoked = false;
-
-    /* Listener methods */
-
-    public function preFoo(Event $e)
-    {
-        $this->preFooInvoked = true;
-    }
-
-    public function postFoo(Event $e)
-    {
-        $this->postFooInvoked = true;
-
-        $e->stopPropagation();
-    }
-}
-
-class TestWithDispatcher
-{
-    public $name;
-    public $dispatcher;
-
-    public function foo(Event $e, $name, $dispatcher)
-    {
-        $this->name = $name;
-        $this->dispatcher = $dispatcher;
-    }
-}
-
-class TestEventSubscriber implements EventSubscriberInterface
-{
-    public static function getSubscribedEvents()
-    {
-        return array('pre.foo' => 'preFoo', 'post.foo' => 'postFoo');
-    }
-}
-
-class TestEventSubscriberWithPriorities implements EventSubscriberInterface
-{
-    public static function getSubscribedEvents()
-    {
-        return array(
-            'pre.foo' => array('preFoo', 10),
-            'post.foo' => array('postFoo'),
-            );
-    }
-}
-
-class TestEventSubscriberWithMultipleListeners implements EventSubscriberInterface
-{
-    public static function getSubscribedEvents()
-    {
-        return array('pre.foo' => array(
-            array('preFoo1'),
-            array('preFoo2', 10),
-        ));
-    }
-}

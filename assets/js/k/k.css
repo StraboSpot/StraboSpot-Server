@@ -1,0 +1,106 @@
+
+.konblink {
+  animation: konblinker 2s linear infinite;
+}
+
+@keyframes konblinker {  
+  50% { opacity: 0; }
+}
+
+
+@-webkit-keyframes roll {
+from { -webkit-transform: rotate(0deg) }
+to   { -webkit-transform: rotate(360deg) }
+}
+
+@-moz-keyframes roll {
+from { -moz-transform: rotate(0deg) }
+to   { -moz-transform: rotate(360deg) }
+}
+
+@keyframes roll {
+from { transform: rotate(0deg) }
+to   { transform: rotate(360deg) }
+}
+
+.animatedkflip {
+-moz-animation-name: roll;
+-moz-animation-duration: 4s;
+-moz-animation-iteration-count: 1;
+-webkit-animation-name: roll;
+-webkit-animation-duration: 4s;
+-webkit-animation-iteration-count: 1;
+}
+
+@-moz-keyframes spin { 
+    100% { -moz-transform: rotate(360deg); } 
+}
+@-webkit-keyframes spin { 
+    100% { -webkit-transform: rotate(360deg); } 
+}
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg); 
+        transform:rotate(360deg); 
+    } 
+}
+
+@-moz-keyframes tilt-shaking {
+  0% { -moz-transform: rotate(0deg); }
+  25% { -moz-transform: rotate(5deg); }
+  50% { -moz-transform: rotate(0eg); }
+  75% { -moz-transform: rotate(-5deg); }
+  100% { -moz-transform: rotate(0deg); }
+}
+
+@-webkit-keyframes tilt-shaking {
+  0% { -webkit-transform: rotate(0deg); }
+  25% { -webkit-transform: rotate(5deg); }
+  50% { -webkit-transform: rotate(0eg); }
+  75% { -webkit-transform: rotate(-5deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+
+.kflip {
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-moz-transition-duration: 5s;
+}
+
+.kon {
+    width: 300px;
+    height: 480px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-150px;/* half width*/
+    margin-top:-240px;/* half height*/
+	z-index: 66666;
+    -webkit-animation:tilt-shaking .5s linear infinite;
+    -moz-animation:tilt-shaking .5s linear infinite;
+    animation:tilt-shaking .5s linear infinite;
+}
+
+
+.konGrayOut {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 1.0;
+  z-index: 55555;
+}
+

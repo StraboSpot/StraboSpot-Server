@@ -1,11 +1,11 @@
 //Map Interface Building
-var zoomres=40; //where to switch to spots view
-var datasetsurl = 'searchmaps.json';
-var lastdatasetsurl ='searchdatasets.json';
-var allDatasets = [];
+	let zoomres=40; //where to switch to spots view
+	let datasetsurl = 'searchmaps.json';
+	let lastdatasetsurl ='searchdatasets.json';
+	let allDatasets = [];
 
-var newibextent = [0, 0, 400, 300];
-var imageBasemapLayer = new ol.layer.Image({
+	let newibextent = [0, 0, 400, 300];
+	let imageBasemapLayer = new ol.layer.Image({
   'source': new ol.source.ImageStatic({
 	'attributions': [
 	  new ol.Attribution({
@@ -25,18 +25,18 @@ var imageBasemapLayer = new ol.layer.Image({
 
 
 /*
-var datasetPointsSource = new ol.source.Vector({
+	let datasetPointsSource = new ol.source.Vector({
 features: (new ol.format.GeoJSON()).readFeatures(datasetsJSON)
 });
 */
 
 
-var datasetPointsSource = new ol.source.Vector({
+	let datasetPointsSource = new ol.source.Vector({
 url: datasetsurl,
 format: new ol.format.GeoJSON()
 });
 
-var datasetPointsLayer = new ol.layer.Vector({
+	let datasetPointsLayer = new ol.layer.Vector({
 	source: datasetPointsSource,
 	style: datasetPointStyleFunction(),
 	name: 'datasetpoints'
@@ -44,25 +44,25 @@ var datasetPointsLayer = new ol.layer.Vector({
 
 });
 
-var featureLayer = new ol.layer.Group({
+	let featureLayer = new ol.layer.Group({
 	name: 'featureLayer',
 	title: 'Spots',
 	layers: []
 });
 
-var datasetsLayer = new ol.layer.Group({
+	let datasetsLayer = new ol.layer.Group({
 	'name': 'datasetsLayer',
 	'title': 'Datasets',
 	'layers': []
 });
 
-var ibfeatureLayer = new ol.layer.Group({
+	let ibfeatureLayer = new ol.layer.Group({
 	name: 'ibfeatureLayer',
 	title: 'Spots',
 	layers: []
 });
 
-var baseLayers = new ol.layer.Group({
+	let baseLayers = new ol.layer.Group({
 	'title': 'Base maps',
 	layers: [
 		new ol.layer.Tile({
@@ -100,7 +100,7 @@ var baseLayers = new ol.layer.Group({
 	]
 });
 
-var mapView = new ol.View({
+	let mapView = new ol.View({
 	'projection': 'EPSG:3857',
 	'center': [-11000000, 4600000],
 	'zoom': 5, //5
@@ -123,7 +123,7 @@ map.addLayer(featureLayer);
 
 map.on('moveend', updateMapDiv);
 
-var layerSwitcher = new ol.control.LayerSwitcher({
+	let layerSwitcher = new ol.control.LayerSwitcher({
 	tipLabel: 'Layers' // Optional label for button
 });
 
@@ -133,17 +133,17 @@ featureLayer.set('title',null);
 datasetsLayer.set('title',null);
 layerSwitcher.renderPanel();
 
-var outextent = map.getView().calculateExtent(map.getSize());
+	let outextent = map.getView().calculateExtent(map.getSize());
 
-var outleft = ol.extent.getBottomLeft(outextent)[0];
-var outbottom = ol.extent.getBottomLeft(outextent)[1];
-var outright = ol.extent.getTopRight(outextent)[0];
-var outtop = ol.extent.getTopRight(outextent)[1];
+	let outleft = ol.extent.getBottomLeft(outextent)[0];
+	let outbottom = ol.extent.getBottomLeft(outextent)[1];
+	let outright = ol.extent.getTopRight(outextent)[0];
+	let outtop = ol.extent.getTopRight(outextent)[1];
 
-var outwkt = 'POLYGON (('+outleft+' '+outbottom+', '+outleft+' '+outtop+', '+outright+' '+outtop+', '+outright+' '+outbottom+', '+outleft+' '+outbottom+'))';
-var outformat = new ol.format.WKT();
-var outbox = outformat.readFeature(outwkt);
-var outgeometry = outbox.getGeometry();
+	let outwkt = 'POLYGON (('+outleft+' '+outbottom+', '+outleft+' '+outtop+', '+outright+' '+outtop+', '+outright+' '+outbottom+', '+outleft+' '+outbottom+'))';
+	let outformat = new ol.format.WKT();
+	let outbox = outformat.readFeature(outwkt);
+	let outgeometry = outbox.getGeometry();
 
 
 
@@ -152,25 +152,24 @@ map.on('click', function (evt) {
 	if(allDatasets.length == 0){
 		updateAllDatasets();
 	}
-	
+
 	removeSelectedSymbol(map);
 
-	var feature = getClickedFeature(map, evt);
-	var layer = getClickedLayer(map, evt);
+	let feature = getClickedFeature(map, evt);
+	let layer = getClickedLayer(map, evt);
 	if (feature && layer && layer.get('name') !== 'datasetpointss' && layer.get('name') !== 'selectedHighlightLayer') {
-		
-		if(layer.get('name')!== 'datasetpoints'){
-		
 
-		
+		if(layer.get('name')!== 'datasetpoints'){
+
+
+
 		}else{
-		
-			//console.log(feature.getProperties());
+
 			clickedDatasetId = feature.get('hash');
-			
+
 			//alert(clickedDatasetId);
 			window.open("https://strabospot.org/geotiff/detail/"+clickedDatasetId);
-		
+
 		}
 
 	}else{
@@ -181,25 +180,23 @@ map.on('click', function (evt) {
 
 
 
-var showZoomedOut = function(){
+	let showZoomedOut = function(){
 
 	//hideLayer('spots');
 	$("#spotswaiting").hide();
 	closeSideBar();
 	removeSelectedSymbol(map);
 	hideLayer('featureLayer');
-	
+
 	if(lastdatasetsurl != datasetsurl){
-	
-		//console.log("rebuild datasetpoints layer here (datasetsurl: "+datasetsurl+")");
+
 
 		rebuildDatasetsLayer();
 
 		lastdatasetsurl = datasetsurl;
 	}else{
-		//console.log("Not Changed (datasetsurl: "+datasetsurl+")");
 	}
-	
+
 	showLayer('datasetpoints');
 	featureLayer.set('title',null);
 	datasetsLayer.set('title',null);
@@ -207,10 +204,10 @@ var showZoomedOut = function(){
 
 }
 
-var rebuildDatasetsLayer = function(){
+	let rebuildDatasetsLayer = function(){
 
 	$("#datasetswaiting").show();
-	
+
 	console.log("in rebuildDatasetsLayer");
 
 	datasetPointsSource = new ol.source.Vector({
@@ -220,10 +217,10 @@ var rebuildDatasetsLayer = function(){
 
 	datasetPointsLayer.setSource(datasetPointsSource);
 
-	var listenerKey = datasetPointsSource.on('change', function(e) {
+	let listenerKey = datasetPointsSource.on('change', function(e) {
 		if (datasetPointsSource.getState() == 'ready') {
 			$("#datasetswaiting").hide();
-			
+
 			//remove those features in expandedDatasets
 			_.each(expandedDatasets, function(exdat){
 				exid = exdat.get('id');
@@ -235,17 +232,17 @@ var rebuildDatasetsLayer = function(){
 					}
 				});
 			});
-			
+
 			console.log("allDatasets:");
 			console.log(allDatasets);
 
 			ol.Observable.unByKey(listenerKey);
 		}
 	});
-	
+
 }
 
-var showZoomedIn = function(){
+	let showZoomedIn = function(){
 
 	hideLayer('datasetpoints');
 	showLayer('featureLayer');
@@ -259,25 +256,25 @@ var showZoomedIn = function(){
 
 function updateMapDiv(evt) {
 
-	var resolution = map.getView().getResolution();
-	var zoom = map.getView().getZoom();
-	
+	let resolution = map.getView().getResolution();
+	let zoom = map.getView().getZoom();
+
 	document.getElementById("myres").innerHTML='resolution: '+resolution+' zoom: '+zoom;
-	
+
 	/*
 	if(!baseMapActive){
-	
+
 		if(resolution < zoomres){ //show individual spots (was 20)
 
 			showZoomedIn();
 
 		}else{
-	
+
 			showZoomedOut();
 
 		}
 
 	}
 	*/
-	
+
 }

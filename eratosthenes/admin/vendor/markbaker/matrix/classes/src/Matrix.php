@@ -1,4 +1,14 @@
 <?php
+/**
+ * File: Matrix.php
+ * Description: Matrix class definition
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
 /**
  *
@@ -39,21 +49,10 @@ class Matrix
     protected $columns;
     protected $grid = [];
 
-    /*
-     * Create a new Matrix object from an array of values
-     *
-     * @param array $grid
-     */
     public function __construct(array $grid)
     {
         $this->buildFromArray(array_values($grid));
     }
-
-    /*
-     * Create a new Matrix object from an array of values
-     *
-     * @param array $grid
-     */
     protected function buildFromArray(array $grid)
     {
         $this->rows = count($grid);
@@ -65,7 +64,6 @@ class Matrix
             0
         );
         $this->columns = $columns;
-
         array_walk(
             $grid,
             function (&$value) use ($columns) {

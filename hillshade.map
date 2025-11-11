@@ -1,0 +1,38 @@
+	MAP
+	  
+	  #CONFIG "MS_ERRORFILE" "/mserrors.txt"
+	  #DEBUG 5
+	  
+	  IMAGETYPE      PNG
+	  EXTENT         -180 -90 180 90
+	  SIZE           400 300
+	  IMAGECOLOR 255 255 255
+
+	  OUTPUTFORMAT
+		NAME "png"
+		MIMETYPE "image/png"
+		DRIVER AGG/PNG8
+		IMAGEMODE RGB
+		TRANSPARENT TRUE
+	  END
+  
+	  PROJECTION
+		 "init=epsg:4326"
+	  END
+
+	  LAYER
+		  NAME "geotifflayer"
+		  #DEBUG 5
+		  TYPE RASTER
+		  STATUS ON
+		  CONNECTION "https://elevation.nationalmap.gov:443/arcgis/services/3DEPElevation/ImageServer/WMSServer?"
+		  CONNECTIONTYPE WMS
+		  METADATA
+			  "wms_srs"             "EPSG:4326"
+			  "wms_name"            "3DEPElevation:Hillshade Gray"
+			  "wms_server_version"  "1.3.0"
+			  "wms_format"          "image/png"
+		  END
+	  END
+
+	END

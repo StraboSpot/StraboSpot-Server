@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 45_Quadratic_equation_solver.php
+ * Description: Handles 45 Quadratic equation solver operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 
 require __DIR__ . '/../Header.php';

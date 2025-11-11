@@ -1,21 +1,20 @@
 <?php
-
-/*
-******************************************************************
-StraboSpot Public Image
-Author: Jason Ash (jasonash@ku.edu)
-Description: This script allows the public retrieval of images
-				from the StraboSpot database
-******************************************************************
-*/
-
+/**
+ * File: publicimage.php
+ * Description: Handles publicimage operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
 
 //Initialize Databases
 include_once "includes/config.inc.php";
 include "db.php";
 include "neodb.php";
-
 
 $id=$_GET['id'];
 
@@ -25,7 +24,7 @@ if(!is_numeric($id)){
 }
 
 function showNotFound(){
-	//echo "not found."; exit();
+	header("HTTP/1.0 404 Not Found");
 	header ('Content-Type: image/png');
 	$output = file_get_contents("/srv/app/www/includes/images/image-not-found.png");
 	echo $output;
@@ -40,9 +39,6 @@ function oldshowFile($filename){
 }
 
 function showFile($filename){
-	//header ('Content-Type: image/jpg');
-	//$output = file_get_contents("/var/www/dbimages/$filename");
-	//echo $output;
 	header('Location: /dbimages/'.$filename);
 	exit();
 }
@@ -51,7 +47,8 @@ if($id==""){
 	showNotFound();
 }
 
-$rows = $neodb->get_results("match (i:Image) where i.id=$id and i.filename is not null return i.filename");
+$safe_id = addslashes($id);
+$rows = $neodb->get_results("match (i:Image) where i.id=$safe_id and i.filename is not null return i.filename");
 
 foreach($rows as $row){ //roll over to look for duplicates
 
@@ -61,8 +58,6 @@ foreach($rows as $row){ //roll over to look for duplicates
 	}
 
 }
-
-
 
 if($filename==""){
 	showNotFound();

@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 07_Simple_file_reader_loading_a_single_named_worksheet.php
+ * Description: Handles 07 Simple file reader loading a single named worksheet operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

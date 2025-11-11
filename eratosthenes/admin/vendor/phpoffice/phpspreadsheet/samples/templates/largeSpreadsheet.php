@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: largeSpreadsheet.php
+ * Description: Handles largeSpreadsheet operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 // Create new Spreadsheet object
 use PhpOffice\PhpSpreadsheet\Spreadsheet;

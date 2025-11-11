@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: 11_Documentsecurity.php
+ * Description: Handles 11 Documentsecurity operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 

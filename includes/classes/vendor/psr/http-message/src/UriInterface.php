@@ -1,4 +1,15 @@
 <?php
+/**
+ * File: UriInterface.php
+ * Description: Handles UriInterface operations
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
 namespace Psr\Http\Message;
 
 /**

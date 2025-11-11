@@ -55,7 +55,7 @@ if($term != ""){
 		$pkey = $row->pkey;
 		$thisuser['id'] = $pkey;
 		$thisuser['label'] = "$lastname, $firstname";
-		$thisuser['value'] = "$pkey";
+		$thisuser['value'] = "$lastname, $firstname";
 		$out[] = $thisuser;
 	}
 }

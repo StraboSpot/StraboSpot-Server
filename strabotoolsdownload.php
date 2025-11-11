@@ -1,5 +1,16 @@
-<?
-include 'includes/header.php';
+<?php
+/**
+ * File: strabotoolsdownload.php
+ * Description: StraboTools App
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
+include 'includes/mheader.php';
 
 ?>
 
@@ -40,7 +51,6 @@ include 'includes/header.php';
 }
 
 .greenbutton:hover span {
-  //padding-right: 25px;
 }
 
 .greenbutton:hover span:after {
@@ -49,8 +59,6 @@ include 'includes/header.php';
 }
 
 .greenbutton:active {
-  //background-color: #3e8e41;
-  //box-shadow: 0 2px #666;
   transform: translateY(2px);
 }
 
@@ -71,7 +79,6 @@ include 'includes/header.php';
 .inlineblock{
 	display:inline-block;
 }
-
 
 .osrow {
 	padding: 20px 0px 0px 5px;
@@ -130,20 +137,22 @@ include 'includes/header.php';
 
 </style>
 
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
 
+						<header class="major">
+							<h2>StraboTools App</h2>
+						</header>
 
-<h2>The StraboTools App:</h2>
-
-<div class="osrow">
-
+<div>
 	<div align="center">
-		<img class="osimage" src="assets/js/images/apple.png"/> StraboTools for iOS is available on the <a href="https://apps.apple.com/us/app/strabotools/id1496239162?ls=1" target="_blank">iTunes Store</a>
+		<h3>StraboTools for iOS is available in the <a href="https://apps.apple.com/us/app/strabotools/id1496239162?ls=1" target="_blank">App Store</a></h3>
 	</div>
 </div>
 
 <div style="width:100%;padding-top:20px;">
 <p>StraboTools is designed to aid geologic field work by providing quantitative data that are otherwise difficult to estimate in the field. The app was developed for work in plutonic rocks such as granite, but it can be useful in field work in any type of rock and for study of thin sections as well. The app analyzes a photograph taken within the app or imported into it.</p>
-
 
 <p>•The Edge Fabric tool plots an ellipse that summarizes the orientations of image brightness gradients. In rocks with a fabric produced by deformation, this ellipse provides the orientation of the fabric and an axial ratio, which correlates with bulk deformation. The tool also reports the orientation in space of the line defined by the long axis of the ellipse. If, for example, the fabric being measured is planar, then these intersection lineations will lie on a great circle. Edge fabric diagrams are useful both in the field and for analysis of photomicrographs.</p>
 
@@ -153,40 +162,19 @@ include 'includes/header.php';
 
 </div>
 
-<div style="width:100%;text-align:center;padding-top:20px;"><img class="appimageborder" src="assets/files/tools_pics/ipad2.png" width="700px" /></div>
-<div style="width:100%;text-align:center;padding-top:20px;"><img class="appimageborder" src="assets/files/tools_pics/ipad3.png" width="700px" /></div>
-<div style="width:100%;text-align:center;padding-top:20px;"><img class="appimageborder" src="assets/files/tools_pics/ipad4.png" width="700px" /></div>
-<div style="width:100%;text-align:center;padding-top:20px;"><img class="appimageborder" src="assets/files/tools_pics/ipad5.png" width="700px" /></div>
-<div style="width:100%;text-align:center;padding-top:20px;"><img class="appimageborder" src="assets/files/tools_pics/ipad6.png" width="700px" /></div>
-<div style="width:100%;text-align:center;padding-top:20px;"><img class="appimageborder" src="assets/files/tools_pics/ipad7.png" width="700px" /></div>
-
-
-<!--
-<div style="text-align:center;">
-	<table style="padding-top:10px;">
-		<tr>
-			<td class="appimage" style="text-align:center;"><img class="appimageborder" src="assets/files/tools_pics/ipad1.png" width="300px" /></td>
-		</tr>
-		<tr>
-			<td class="appimage"><img class="appimageborder" src="assets/files/tools_pics/ipad2.png" width="500px" /></td>
-		</tr>
-		<tr>
-			<td class="appimage"><img class="appimageborder" src="assets/files/tools_pics/ipad3.png" width="500px" /></td>
-		</tr>
-		<tr>
-			<td class="appimage"><img class="appimageborder" src="assets/files/tools_pics/ipad4.png" width="500px" /></td>
-		</tr>
-		<tr>
-			<td class="appimage"><img class="appimageborder" src="assets/files/tools_pics/ipad5.png" width="500px" /></td>
-		</tr>
-		<tr>
-			<td class="appimage"><img class="appimageborder" src="assets/files/tools_pics/ipad6.png" width="500px" /></td>
-		</tr>
-
-	</table>
+<div class="box alt">
+	<div class="row gtr-50 gtr-uniform">
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/tools_pics/ipad2.png" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/tools_pics/ipad3.png" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/tools_pics/ipad4.png" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/tools_pics/ipad5.png" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/tools_pics/ipad6.png" alt=""></span></div>
+		<div class="col-6 col-12-xsmall"><span class="image fit"><img src="assets/files/tools_pics/ipad7.png" alt=""></span></div>
+	</div>
 </div>
--->
 
-<?
-include("includes/footer.php");
+					</div>
+				</div>
+<?php
+include("includes/mfooter.php");
 ?>

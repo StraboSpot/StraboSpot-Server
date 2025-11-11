@@ -1,5 +1,5 @@
-var addTabValueRow = function (label,value,bordertop){
-	var thishtml="";
+	let addTabValueRow = function (label,value,bordertop){
+	let thishtml="";
 	if(bordertop){
 		borderclass = ' sidebar_value_row_border_top';
 	}else{
@@ -14,8 +14,8 @@ var addTabValueRow = function (label,value,bordertop){
 	return thishtml;
 }
 
-var addRockUnitRow = function (label,value,bordertop){
-	var thishtml="";
+	let addRockUnitRow = function (label,value,bordertop){
+	let thishtml="";
 	if(bordertop){
 		borderclass = ' sidebar_value_row_border_top';
 	}else{
@@ -27,34 +27,34 @@ var addRockUnitRow = function (label,value,bordertop){
 	return thishtml;
 }
 
-var addTabTitleRow = function (label){
-	var thishtml="";
+	let addTabTitleRow = function (label){
+	let thishtml="";
 	thishtml += '<div class="sidebar_title_row">'+label+'</div>';
 	return thishtml;
 }
 
-var addTabCategory = function (group, label, modelvars, spotvars){
-	var thishtml="";
-	var bordertop = false;
-	
+	let addTabCategory = function (group, label, modelvars, spotvars){
+	let thishtml="";
+	let bordertop = false;
+
 	thishtml += addTabTitleRow(label);
-	
+
 	_.each(modelvars, function(value, key){
 		if(spotvars[key]){
 			if(spotvars[key]!='not_specified'){
-				var thisval = cvFixVal(group,key,spotvars[key]);
+	let thisval = cvFixVal(group,key,spotvars[key]);
 				thishtml += addTabValueRow(value,thisval,bordertop);
 				bordertop = true;
 			}
 		}
 	});
-	
+
 	return thishtml;
 }
 
 cvFixVal = function (group,itemname,value){
 
-	var thisval="";
+	let thisval="";
 	if(typeof controlledVocab[group+'_'+itemname] != 'undefined'){
 		if(typeof controlledVocab[group+'_'+itemname][value] != 'undefined'){
 			thisval = controlledVocab[group+'_'+itemname][value];
@@ -64,7 +64,7 @@ cvFixVal = function (group,itemname,value){
 	}else{
 		thisval = value;
 	}
-	
+
 	return thisval;
 
 }
@@ -75,8 +75,8 @@ cvFixVal = function (group,itemname,value){
 *********** Rock Unit ***************************
 */
 
-var hasRockUnit = function(spotid){
-	var foundit = false;
+	let hasRockUnit = function(spotid){
+	let foundit = false;
 	_.each(loadedFeatures.tags, function(tag){
 		if(tag.type=='geologic_unit'){
 			_.each(tag.spots, function (thisspotid){
@@ -86,20 +86,20 @@ var hasRockUnit = function(spotid){
 			});
 		}
 	});
-	
+
 	return foundit;
 }
 
-var fixSpaces = function(string){
+	let fixSpaces = function(string){
 
-	var newstring = string.replace(/_/g, " ");
+	let newstring = string.replace(/_/g, " ");
 
 	return newstring;
 }
 
-var buildRockUnitRows = function(spotid){
-	var thishtml = "";
-	var showtopbar = false;
+	let buildRockUnitRows = function(spotid){
+	let thishtml = "";
+	let showtopbar = false;
 	_.each(loadedFeatures.tags, function(tag){
 		if(tag.type=='geologic_unit'){
 			_.each(tag.spots, function (thisspotid){
@@ -119,9 +119,9 @@ var buildRockUnitRows = function(spotid){
 	return thishtml;
 }
 
-var buildOrientations = function(){
-	var thishtml = "";
-	var bordertop = false;
+	let buildOrientations = function(){
+	let thishtml = "";
+	let bordertop = false;
 	if(currentSpot.properties.orientation_data){
 		_.each(currentSpot.properties.orientation_data, function(orientation){
 			thishtml += addOrientation(orientation,bordertop);
@@ -133,9 +133,9 @@ var buildOrientations = function(){
 	return thishtml;
 }
 
-var buildSamples = function(){
-	var thishtml = "";
-	var bordertop = false;
+	let buildSamples = function(){
+	let thishtml = "";
+	let bordertop = false;
 	if(currentSpot.properties.samples){
 		_.each(currentSpot.properties.samples, function(sample){
 			thishtml += addSample(sample,bordertop);
@@ -147,9 +147,9 @@ var buildSamples = function(){
 	return thishtml;
 }
 
-var buildOtherFeatures = function(){
-	var thishtml = "";
-	var bordertop = false;
+	let buildOtherFeatures = function(){
+	let thishtml = "";
+	let bordertop = false;
 	if(currentSpot.properties.other_features){
 		_.each(currentSpot.properties.other_features, function(of){
 			thishtml += addOtherFeature(of,bordertop);
@@ -161,9 +161,9 @@ var buildOtherFeatures = function(){
 	return thishtml;
 }
 
-var build3DStructures = function(){
-	var thishtml = "";
-	var bordertop = false;
+	let build3DStructures = function(){
+	let thishtml = "";
+	let bordertop = false;
 	if(currentSpot.properties._3d_structures){
 		_.each(currentSpot.properties._3d_structures, function(structure){
 			thishtml += add3DStructure(structure,bordertop);
@@ -175,9 +175,9 @@ var build3DStructures = function(){
 	return thishtml;
 }
 
-var buildImages = function(){
-	var thishtml = "";
-	var bordertop = false;
+	let buildImages = function(){
+	let thishtml = "";
+	let bordertop = false;
 	if(currentSpot.properties.images){
 		_.each(currentSpot.properties.images, function(image){
 			thishtml += addImage(image,bordertop);
@@ -190,8 +190,8 @@ var buildImages = function(){
 }
 
 
-var hasFeatureLevelTags = function(spotid){
-	var foundit = false;
+	let hasFeatureLevelTags = function(spotid){
+	let foundit = false;
 	_.each(loadedFeatures.tags, function(tag){
 		_.each(tag.features, function (value,thisspotid){
 			if(thisspotid == spotid){
@@ -199,13 +199,13 @@ var hasFeatureLevelTags = function(spotid){
 			}
 		});
 	});
-	
+
 	return foundit;
 }
 
 
-var hasSpotLevelTags = function(spotid){
-	var foundit = false;
+	let hasSpotLevelTags = function(spotid){
+	let foundit = false;
 	_.each(loadedFeatures.tags, function(tag){
 		_.each(tag.spots, function (thisspotid){
 			if(thisspotid == spotid){
@@ -213,31 +213,31 @@ var hasSpotLevelTags = function(spotid){
 			}
 		});
 	});
-	
+
 	return foundit;
 }
 
 
-var addTagRow = function (tag,bordertop){
+	let addTagRow = function (tag,bordertop){
 
-	var thishtml="";
+	let thishtml="";
 	if(bordertop){
 		borderclass = ' sidebar_value_row_border_top';
 	}else{
 		borderclass = '';
 	}
-	
-	var tagid = tag.id;
-	var tagname = tag.name;
-	var tagtype = tag.type;
-	tagtype = tagtype.replace("_", " ");
-	
-	//get counts for tag
-	var counthtml = '';
-	var countdelim = '';
 
-	var spotcount = 0;
-	
+	let tagid = tag.id;
+	let tagname = tag.name;
+	let tagtype = tag.type;
+	tagtype = tagtype.replace("_", " ");
+
+	//get counts for tag
+	let counthtml = '';
+	let countdelim = '';
+
+	let spotcount = 0;
+
 	if(tag.spots){
 		//add check for query
 		_.each(tag.spots, function(spotid){
@@ -246,13 +246,13 @@ var addTagRow = function (tag,bordertop){
 			}
 		});
 	}
-	
+
 	if(spotcount > 0){
 		counthtml = spotcount+" Spots";
 		countdelim = ", ";
 	}
-	
-	var featurecount = 0;
+
+	let featurecount = 0;
 	_.each(tag.features, function(feature){
 		//featurecount = featurecount + feature.length;
 		_.each(feature, function(featureid){
@@ -261,7 +261,7 @@ var addTagRow = function (tag,bordertop){
 			}
 		});
 	});
-	
+
 	if(featurecount > 0){
 		counthtml += countdelim+featurecount+" Features";
 	}
@@ -273,16 +273,16 @@ var addTagRow = function (tag,bordertop){
 }
 
 
-var addTagDetailSpotRow = function (spotid,bordertop){
+	let addTagDetailSpotRow = function (spotid,bordertop){
 
-	var thishtml="";
+	let thishtml="";
 	if(bordertop){
 		borderclass = ' sidebar_value_row_border_top';
 	}else{
 		borderclass = '';
 	}
 
-	var spotname = idToName(spotid);
+	let spotname = idToName(spotid);
 
 	thishtml += '<div class="sidebar_tag_row'+borderclass+'" onClick="switchToSpot('+spotid+');">';
 	thishtml += '<div class="sidebar_value_row_value"><span class="tag_row_label">'+spotname+'</span></div>';
@@ -290,16 +290,16 @@ var addTagDetailSpotRow = function (spotid,bordertop){
 	return thishtml;
 }
 
-var addTagDetailFeatureRow = function (featureid,bordertop){
+	let addTagDetailFeatureRow = function (featureid,bordertop){
 
-	var thishtml="";
+	let thishtml="";
 	if(bordertop){
 		borderclass = ' sidebar_value_row_border_top';
 	}else{
 		borderclass = '';
 	}
-	
-	var featurename = idToName(featureid);
+
+	let featurename = idToName(featureid);
 
 	thishtml += '<div class="sidebar_tag_row'+borderclass+'" onClick="switchToFeature('+featureid+');">';
 	thishtml += '<div class="sidebar_value_row_value" ><span class="tag_row_label">'+featurename+'</span></div>';
@@ -309,9 +309,9 @@ var addTagDetailFeatureRow = function (featureid,bordertop){
 
 
 
-var getSpotLevelTags = function(spotid){
-	var thishtml="";
-	var bordertop = false;
+	let getSpotLevelTags = function(spotid){
+	let thishtml="";
+	let bordertop = false;
 	_.each(loadedFeatures.tags, function(tag){
 		_.each(tag.spots, function (thisspotid){
 			if(thisspotid == spotid){
@@ -320,13 +320,13 @@ var getSpotLevelTags = function(spotid){
 			}
 		});
 	});
-	
+
 	return thishtml;
 }
 
-var getFeatureLevelTags = function(spotid){
-	var thishtml="";
-	var bordertop = false;
+	let getFeatureLevelTags = function(spotid){
+	let thishtml="";
+	let bordertop = false;
 	_.each(loadedFeatures.tags, function(tag){
 		_.each(tag.features, function (value,thisspotid){
 			if(thisspotid == spotid){
@@ -335,18 +335,18 @@ var getFeatureLevelTags = function(spotid){
 			}
 		});
 	});
-	
+
 	return thishtml;
 }
 
 
-var tagDetail = function(tagid,target){
-	var thishtml = "";
-	var thistag = {};
-	var spotname = "";
-	
-	var backfunction = "alert('Error! No Back Function Set.');";
-	
+	let tagDetail = function(tagid,target){
+	let thishtml = "";
+	let thistag = {};
+	let spotname = "";
+
+	let backfunction = "alert('Error! No Back Function Set.');";
+
 	if(target=='tags_tab'){
 		backfunction = "updateTagsTab();";
 	}else if(target=='orientations_tab'){
@@ -358,12 +358,12 @@ var tagDetail = function(tagid,target){
 	}else if(target=='other_features_tab'){
 		backfunction = "updateOtherFeaturesTab();";
 	}
-	
+
 	thishtml = '<div class="back_button" onClick="'+backfunction+'"><img width="20" height="20" src="includes/images/back.png"></img> Back...</div>'
-	
+
 	thishtml += addTabTitleRow('Tag');
-	
-	var bordertop = false;
+
+	let bordertop = false;
 	_.each(loadedFeatures.tags, function(tag){
 		if(tag.id == tagid){
 			thistag = tag;
@@ -379,7 +379,7 @@ var tagDetail = function(tagid,target){
 
 	bordertop = false;
 	if(thistag.spots){
-		var spotcount=0;
+	let spotcount=0;
 		_.each(thistag.spots, function(spotid){
 			if(spotFitsQuery(getSpot(spotid))){
 				spotcount++;
@@ -400,8 +400,8 @@ var tagDetail = function(tagid,target){
 
 	bordertop = false;
 	if(thistag.features){
-		
-		var featurecount=0;
+
+	let featurecount=0;
 		_.each(thistag.features, function(featurearray){
 			_.each(featurearray, function(featureid){
 				if(spotFitsQuery(getSpotFromFeatureId(featureid))){
@@ -409,14 +409,14 @@ var tagDetail = function(tagid,target){
 				}
 			});
 		});
-		
+
 		if(featurecount == 1){
 			thishtml += addTabTitleRow('1 Feature');
 		}else{
 			thishtml += addTabTitleRow(featurecount+' Features');
 		}
 
-		var featurecount=0;
+	let featurecount=0;
 		_.each(thistag.features, function(featurearray){
 			_.each(featurearray, function(feature){
 				if(spotFitsQuery(getSpotFromFeatureId(feature))){
@@ -433,8 +433,8 @@ var tagDetail = function(tagid,target){
 }
 
 
-var buildTags = function(){
-	var thishtml="";
+	let buildTags = function(){
+	let thishtml="";
 	if(hasSpotLevelTags(currentSpot.properties.id)){
 		thishtml += addTabTitleRow('Spot Level Tags');
 		thishtml += getSpotLevelTags(currentSpot.properties.id);
@@ -444,20 +444,19 @@ var buildTags = function(){
 		thishtml += addTabTitleRow('Feature Level Tags');
 		thishtml += getFeatureLevelTags(currentSpot.properties.id);
 	}
-	
 
-	//console.log(loadedFeatures.tags);
-	
+
+
 	if(thishtml == ""){
 		thishtml = "No Tags for this spot.";
 	}
-	
+
 	return thishtml;
 }
 
 
-var isImageBasemap = function(imageid){
-	var found = false;
+	let isImageBasemap = function(imageid){
+	let found = false;
 	_.each(loadedFeatures.image_basemaps, function(ib){
 		if(ib==imageid){
 			found = true;
@@ -466,83 +465,82 @@ var isImageBasemap = function(imageid){
 	return found;
 }
 
-var moreImageInfo = function(imageid){
-	var thishtml = "";
+	let moreImageInfo = function(imageid){
+	let thishtml = "";
 	_.each(currentSpot.properties.images, function(image){
 		if(image.id==imageid){
 			thishtml = addTabCategory('image', 'Image Details', image_vars, image);
 		}
 	});
-	
+
 	if(thishtml!=""){
 		thishtml = '<div class="back_button" onClick="updateImagesTab();"><img width="20" height="20" src="includes/images/back.png"></img> Back to Images</div>'+thishtml;
 	}else{
 		thishtml = "<div>No image data found.</div>";
 	}
-	
+
 	//$.featherlight('<div>'+thishtml+'</div>');
 	$("#images_tab").html('<div>'+thishtml+'</div>');
 }
 
-var addImage = function(image,bordertop){
-	
-	//console.log(image);
-	
-	var thishtml = "";
-	
+	let addImage = function(image,bordertop){
+
+
+	let thishtml = "";
+
 	thishtml += '<div class="image_row">';
-	
+
 	thishtml += '<div class="col image_col">';
-	
+
 	thishtml += '<img src="https://strabospot.org/mapimage/'+image.id+'.jpg" width="100" height="100" onClick="$.featherlight(\'https://strabospot.org/mapimage/'+image.id+'.jpg\',{closeOnClick:\'anywhere\'});">';
-	
+
 	thishtml += '</div>';
 
 	thishtml += '<div class="col">';
-	
-	
-	
+
+
+
 	if(image.title){
-		var title = image.title;
+	let title = image.title;
 		if(title.length > 30){
 			title = title.substring(0,30)+'...';
 		}
 		thishtml += '<div class="image_title">'+title+'</div>';
 	}
-	
+
 	if(image.caption){
-		var caption = image.caption;
+	let caption = image.caption;
 		if(caption.length > 30){
 			caption = caption.substring(0,30)+'...';
 		}
 		thishtml += '<div class="image_caption">'+caption+'</div>';
 	}
-	
+
 	thishtml += '<div onClick="moreImageInfo('+image.id+');" class="image_info_button"><img src="includes/images/info.png" width="15" height="15"> More Info</div>';
-	
+
 	if(isImageBasemap(image.id)){
 		thishtml += '<div onClick="switchToImageBasemap('+image.id+');" class="map_icon"><img src="includes/images/map.png" width="15" height="15"> Image Basemap</div>';
 	}
-	
+
 	thishtml += '</div>';
-	
+
 	thishtml += '</div>';
-	
+
 	return thishtml;
 }
 
-var addDetailValueRow = function(key,value){
+	let addDetailValueRow = function(key,value){
 	thishtml = '<div><span class="detail_bold">'+key+'</span> : '+value+'</div>';
 	return thishtml;
 }
 
 //tagDetail('+tagid+',\'tags_tab\');
 
-var getFeatureTags = function(oid,tagstab){
-	var thishtml = "";
-	var thisname = "";
-	var thisdiv = "";
-	var foundtags = [];
+	let getFeatureTags = function(oid,tagstab){
+	let thishtml = "";
+	let thisname = "";
+	let thisdiv = "";
+	let foundtags = [];
 	_.each(loadedFeatures.tags, function(tag){
 		if(tag.features){
 			_.each(tag.features, function(feat){
@@ -556,182 +554,178 @@ var getFeatureTags = function(oid,tagstab){
 			})
 		}
 	});
-	
+
 	if(foundtags.length > 0){
 		thishtml = '<div class = "tags_italic">'+'Tags: '+foundtags.join(', ')+'</div>';
 	}
-	
+
 	return thishtml;
 }
 
-var addOrientation = function (o,bordertop){
-	var thishtml="";
+	let addOrientation = function (o,bordertop){
+	let thishtml="";
 
-	//console.log(o);
 	if(o.orientation_type){
 		o.type=o.orientation_type;
 	}
 
-	var thisborderclass = "";
+	let thisborderclass = "";
 	if(bordertop){
 		thisborderclass = " sidebar_value_row_border_top";
 	}
-	
-	var groupvars = "";
+
+	let groupvars = "";
 	if(o.type=="planar_orientation") groupvars = planar_orientation_vars;
 	if(o.type=="linear_orientation") groupvars = linear_orientation_vars;
 	if(o.type=="tabular_zone_orientation") groupvars = tabular_zone_orienation_vars;
 
 	thishtml += '<div class = "sidebar_value_row'+thisborderclass+'">';
-	
-	var thislabel="";
+
+	let thislabel="";
 	if(o.label){
 		thislabel = o.label;
 	}else{
 		thislabel = o.type;
 	}
-	
+
 	thishtml += '<div class = "sidebar_value_row_title">'+thislabel+'</div>';
 	//thishtml += '<div class = "tags_italic">'+'Tags: tag one, tag two, tag three</div>';
 
 	thishtml += getFeatureTags(o.id,'orientations_tab');
-	
+
 	thishtml += '<div class = "detail_pad">';
-	
+
 	_.each(groupvars, function(value, key){
 		if(o[key]){
 			if(key!='label'){
-				var thisval = cvFixVal(o.type,key,o[key]);
+	let thisval = cvFixVal(o.type,key,o[key]);
 				thishtml += addDetailValueRow(value,thisval);
 				bordertop = true;
 			}
 		}
 	});
-	
+
 	if(o.associated_orientation){
 		_.each(o.associated_orientation, function(assoc){
 			thishtml += addDetailValueRow('Associated Orientation','');
 			thishtml += addOrientation(assoc);
 		});
 	}
-	
+
 	thishtml += '</div>';
 	thishtml += '</div>';
-	
+
 	return thishtml;
 }
 
-var addSample = function (samp,bordertop){
-	var thishtml="";
+	let addSample = function (samp,bordertop){
+	let thishtml="";
 
-	//console.log(o);
 
-	var thisborderclass = "";
+	let thisborderclass = "";
 	if(bordertop){
 		thisborderclass = " sidebar_value_row_border_top";
 	}
-	
-	var groupvars = sample_vars;
+
+	let groupvars = sample_vars;
 
 	thishtml += '<div class = "sidebar_value_row'+thisborderclass+'">';
-	
+
 	thishtml += '<div class = "sidebar_value_row_title">'+samp.label+'</div>';
 	//thishtml += '<div class = "tags_italic">'+'Tags: tag one, tag two, tag three</div>';
 
 	thishtml += getFeatureTags(samp.id,'samples_tab');
-	
+
 	thishtml += '<div class = "detail_pad">';
-	
+
 	_.each(groupvars, function(value, key){
 		if(samp[key]){
 			if(key!='label'){
-				var thisval = cvFixVal(samp.type,key,samp[key]);
+	let thisval = cvFixVal(samp.type,key,samp[key]);
 				thishtml += addDetailValueRow(value,thisval);
 				bordertop = true;
 			}
 		}
 	});
-	
+
 	thishtml += '</div>';
 	thishtml += '</div>';
-	
+
 	return thishtml;
 }
 
-var addOtherFeature = function (otherfeature,bordertop){
-	var thishtml="";
+	let addOtherFeature = function (otherfeature,bordertop){
+	let thishtml="";
 
-	//console.log(o);
 
-	var thisborderclass = "";
+	let thisborderclass = "";
 	if(bordertop){
 		thisborderclass = " sidebar_value_row_border_top";
 	}
-	
-	var groupvars = other_features_vars;
+
+	let groupvars = other_features_vars;
 
 	thishtml += '<div class = "sidebar_value_row'+thisborderclass+'">';
-	
+
 	thishtml += '<div class = "sidebar_value_row_title">'+otherfeature.label+'</div>';
 	//thishtml += '<div class = "tags_italic">'+'Tags: tag one, tag two, tag three</div>';
 
 	thishtml += getFeatureTags(otherfeature.id,'other_features_tab');
-	
+
 	thishtml += '<div class = "detail_pad">';
 
 	_.each(groupvars, function(value, key){
 		if(otherfeature[key]){
 			if(otherfeature!='label'){
-				var thisval = cvFixVal(otherfeature.type,key,otherfeature[key]);
+	let thisval = cvFixVal(otherfeature.type,key,otherfeature[key]);
 				thishtml += addDetailValueRow(value,thisval);
 				bordertop = true;
 			}
 		}
 	});
-	
+
 	thishtml += '</div>';
 	thishtml += '</div>';
-	
+
 	return thishtml;
 }
-var add3DStructure = function (structure,bordertop){
-	var thishtml="";
+	let add3DStructure = function (structure,bordertop){
+	let thishtml="";
 
-	//console.log(o);
 
-	var thisborderclass = "";
+	let thisborderclass = "";
 	if(bordertop){
 		thisborderclass = " sidebar_value_row_border_top";
 	}
-	
-	var groupvars = "";
+
+	let groupvars = "";
 	if(structure.type=="fabric") groupvars = fabric_vars;
 	if(structure.type=="fold") groupvars = fold_vars;
 	if(structure.type=="tensor") groupvars = tensor_vars;
 	if(structure.type=="other_3d_structure") groupvars = other_3d_structure_vars;
 
 	thishtml += '<div class = "sidebar_value_row'+thisborderclass+'">';
-	
+
 	thishtml += '<div class = "sidebar_value_row_title">'+structure.label+'</div>';
 	//thishtml += '<div class = "tags_italic">'+'Tags: tag one, tag two, tag three</div>';
 
 	thishtml += getFeatureTags(structure.id,'_3d_structures_tab');
-	
+
 	thishtml += '<div class = "detail_pad">';
-	
+
 	_.each(groupvars, function(value, key){
 		if(structure[key]){
 			if(key!='label'){
-				var thisval = cvFixVal(structure.type,key,structure[key]);
+	let thisval = cvFixVal(structure.type,key,structure[key]);
 				thishtml += addDetailValueRow(value,thisval);
 				bordertop = true;
 			}
 		}
 	});
-	
+
 	thishtml += '</div>';
 	thishtml += '</div>';
-	
+
 	return thishtml;
 }
 
@@ -739,21 +733,21 @@ var add3DStructure = function (structure,bordertop){
 *********** Spot Tab ***************************
 */
 
-var updateSpotTab = function(){
-	
-	var tabhtml = "";
+	let updateSpotTab = function(){
+
+	let tabhtml = "";
 
 	tabhtml += addTabValueRow('Spot Name',spotNames[clickedMapFeature]);
 	//tabhtml += addTabValueRow('Spot Name','foofoofoo');
-	
+
 	tabhtml += addTabTitleRow('Geography');
 	tabhtml += addTabValueRow('Geometry',currentSpot.geometry.type);
-	
+
 	if(currentSpot.geometry.type=='Point'){
 		tabhtml += addTabValueRow('Latitude',currentSpot.geometry.coordinates[1],true);
 		tabhtml += addTabValueRow('Longitude',currentSpot.geometry.coordinates[0],true);
 	}
-	
+
 	if(currentSpot.properties.surface_feature){
 		tabhtml += addTabCategory('surface_feature', 'Surface Feature',surface_feature_vars,currentSpot.properties.surface_feature);
 	}
@@ -779,16 +773,16 @@ var updateSpotTab = function(){
 
 	tabhtml += addTabTitleRow('Spot Owner');
 	tabhtml += addTabValueRow('',currentSpot.properties.owner);
-	
+
 	$("#spot_tab").html(tabhtml);
 }
 
 
 
-var getChildren = function(thisSpot) {
-	var childrenSpots = [];
+	let getChildren = function(thisSpot) {
+	let childrenSpots = [];
 	if (thisSpot.properties.images) {
-		var imageBasemaps = _.map(thisSpot.properties.images, function (image) {
+	let imageBasemaps = _.map(thisSpot.properties.images, function (image) {
 			return image.id;
 		});
 		childrenSpots = _.filter(loadedFeatures.features, function (spot) {
@@ -798,7 +792,7 @@ var getChildren = function(thisSpot) {
 	// Only non-point features can have children
 	if (_.propertyOf(thisSpot.geometry)('type')) {
 		if (_.propertyOf(thisSpot.geometry)('type') !== 'Point') {
-			var otherSpots = _.reject(loadedFeatures.features, function (spot) {
+	let otherSpots = _.reject(loadedFeatures.features, function (spot) {
 				return spot.properties.id === thisSpot.properties.id || !spot.geometry;
 			});
 			_.each(otherSpots, function (spot) {
@@ -812,9 +806,9 @@ var getChildren = function(thisSpot) {
 				}
 				// If Spot is not a point and all of its points are inside thisSpot then Spot is a child
 				else {
-					var points = turf.explode(spot);
+	let points = turf.explode(spot);
 					if (points.features) {
-						var pointsInside = [];
+	let pointsInside = [];
 						_.each(points.features, function (point) {
 							if (turf.inside(point, thisSpot)) pointsInside.push(point);
 						});
@@ -831,8 +825,8 @@ var getChildren = function(thisSpot) {
 	return childrenSpots;
 }
 
-var getParents = function(thisSpot) {
-	var parentSpots = [];
+	let getParents = function(thisSpot) {
+	let parentSpots = [];
 	if (thisSpot.properties.image_basemap) {
 
 		_.each(loadedFeatures.features, function(spot){
@@ -846,7 +840,7 @@ var getParents = function(thisSpot) {
 		});
 
 	}else{
-		var otherSpots = _.reject(loadedFeatures.features, function (spot) {
+	let otherSpots = _.reject(loadedFeatures.features, function (spot) {
 			return spot.properties.id === thisSpot.properties.id || !spot.geometry;
 		});
 		if (_.propertyOf(thisSpot.geometry)('type')) {
@@ -865,12 +859,12 @@ var getParents = function(thisSpot) {
 			}else{
 				// If thisSpot is a line or polygon and all of its points are inside a feature then
 				// that feature is a parent of this Spot
-				var points = turf.explode(thisSpot);
+	let points = turf.explode(thisSpot);
 				if (points.features) {
 					_.each(otherSpots, function (spot) {
-						
+
 						if (_.propertyOf(spot.geometry)('type') !== 'Point') {
-							var pointsInside = [];
+	let pointsInside = [];
 							_.each(points.features, function (point) {
 								if (turf.inside(point, spot)) pointsInside.push(point);
 							});
@@ -888,8 +882,8 @@ var getParents = function(thisSpot) {
 	return parentSpots;
 }
 
-var getSpotIcon = function(spot){
-	var thishtml="";
+	let getSpotIcon = function(spot){
+	let thishtml="";
 	if(spot.properties.image_basemap){
 		if(spot.geometry.type == "Polygon" || spot.geometry.type == "Polygon"){
 			thishtml = '<img class="geometry-icon" src="includes/images/polygon-image-basemap.png"/>';
@@ -910,12 +904,12 @@ var getSpotIcon = function(spot){
 	return thishtml;
 }
 
-var buildNesting = function(){
+	let buildNesting = function(){
 
-	var thishtml = "";
+	let thishtml = "";
 
-	var parents = getParents(currentSpot);
-	var children = getChildren(currentSpot);
+	let parents = getParents(currentSpot);
+	let children = getChildren(currentSpot);
 
 	if(parents.length > 0){
 		console.log(parents);
@@ -924,7 +918,7 @@ var buildNesting = function(){
 		});
 		thishtml += '<div class = "nest_down_arrow"><i class="ion-arrow-down-c padding-left"></i></div>';
 	}
-	
+
 	if(parents.length > 0 || children.length > 0){
 		thishtml += '<div class = "nest_title">'+getSpotIcon(currentSpot)+'This Spot ('+currentSpot.properties.name+')</div>';
 	}
@@ -939,7 +933,7 @@ var buildNesting = function(){
 	if(thishtml==""){
 		thishtml = 'This spot is not nested.';
 	}
-	
+
 	return thishtml;
 
 }
@@ -948,12 +942,12 @@ var buildNesting = function(){
 *********** Orientations Tab ***************************
 */
 
-var updateOrientationsTab = function(){
-	
-	var tabhtml = "";
-	
+	let updateOrientationsTab = function(){
+
+	let tabhtml = "";
+
 	tabhtml += buildOrientations();
-	
+
 	$("#orientations_tab").html(tabhtml);
 }
 
@@ -961,12 +955,12 @@ var updateOrientationsTab = function(){
 *********** Samples Tab ***************************
 */
 
-var updateSamplesTab = function(){
-	
-	var tabhtml = "";
-	
+	let updateSamplesTab = function(){
+
+	let tabhtml = "";
+
 	tabhtml += buildSamples();
-	
+
 	$("#samples_tab").html(tabhtml);
 }
 
@@ -974,12 +968,12 @@ var updateSamplesTab = function(){
 *********** Other Features Tab ***************************
 */
 
-var updateOtherFeaturesTab = function(){
-	
-	var tabhtml = "";
-	
+	let updateOtherFeaturesTab = function(){
+
+	let tabhtml = "";
+
 	tabhtml += buildOtherFeatures();
-	
+
 	$("#other_features_tab").html(tabhtml);
 }
 
@@ -987,12 +981,12 @@ var updateOtherFeaturesTab = function(){
 *********** 3D Structures Tab ***************************
 */
 
-var update3DStructuresTab = function(){
-	
-	var tabhtml = "";
-	
+	let update3DStructuresTab = function(){
+
+	let tabhtml = "";
+
 	tabhtml += build3DStructures();
-	
+
 	$("#_3d_structures_tab").html(tabhtml);
 }
 
@@ -1000,12 +994,12 @@ var update3DStructuresTab = function(){
 *********** Images Tab ***************************
 */
 
-var updateImagesTab = function(){
-	
-	var tabhtml = "";
-	
+	let updateImagesTab = function(){
+
+	let tabhtml = "";
+
 	tabhtml += buildImages();
-	
+
 	$("#images_tab").html(tabhtml);
 }
 
@@ -1013,12 +1007,12 @@ var updateImagesTab = function(){
 *********** Tags Tab ***************************
 */
 
-var updateTagsTab = function(){
-	
-	var tabhtml = "";
-	
+	let updateTagsTab = function(){
+
+	let tabhtml = "";
+
 	tabhtml += buildTags();
-	
+
 	$("#tags_tab").html(tabhtml);
 }
 
@@ -1026,12 +1020,12 @@ var updateTagsTab = function(){
 *********** Nesting Tab ***************************
 */
 
-var updateNestingTab = function(){
-	
-	var tabhtml = "";
-	
+	let updateNestingTab = function(){
+
+	let tabhtml = "";
+
 	tabhtml += buildNesting();
-	
+
 	$("#nesting_tab").html(tabhtml);
 }
 

@@ -2,10 +2,56 @@
 
 session_start();
 $userlevel = $_SESSION['userlevel'];
+$userpkey = $_SESSION['userpkey'];
+
+//print_r($_SESSION);exit();
 
 if($_GET['datasetid']!=""){
+	
+	$dsid = $_GET['datasetid'];
+	
+	include_once("../prepare_connections.php");
+	
 	$sitetitle = "Strabo Dataset";
 	$sitebanner = "&nbsp;&nbsp;&nbsp;Strabo Dataset";
+	
+	//check for existence here and show error if needed
+ 
+	$pcount = $neodb->get_var("match (p:Project)-[HAS_DATASET]->(d:Dataset) where d.id = $dsid and (p.public = true or p.public = 1 or p.userpkey = $userpkey) return count(p)");
+	
+	//$pcount = $db->get_var("select count(*) from project p, dataset d where d.project_pkey = p.project_pkey and d.strabo_dataset_id = '$dsid' and p.ispublic");
+	
+	//echo "pcount: $pcount";
+
+	//echo "match (p:Project)-[HAS_DATASET]->(d:Dataset) where d.id = $dsid and (p.public = true or p.public = 1) return count(p)";exit();
+	
+	if($pcount == 0){
+		
+		include("../includes/header.php");
+		
+		/*
+		match (p:Project)-[HAS_DATASET]->(d:Dataset) where d.id = 16262333681396 return count(p)
+		*/
+		
+		$existcount = $neodb->get_var("match (p:Project)-[HAS_DATASET]->(d:Dataset) where d.id = $dsid return count(p)");
+		
+		//echo "$existcount";exit();
+		
+		if($existcount > 0){
+			//private
+			?>
+				<div style="text-align: center; text-transform: uppercase; font-family: 'Raleway', sans-serif; font-size: 20px;">Error: Project is set to private.</div>
+			<?
+		}else{
+			//not exists
+			?>
+				<div style="text-align: center; text-transform: uppercase; font-family: 'Raleway', sans-serif; font-size: 20px;">Error: Dataset not found.</div>
+			<?
+		}
+		include("includes/footer.php");
+		exit();
+	}
+
 }else{
 	$sitetitle = "StraboSpot Search";
 	$sitebanner = "StraboSpot Search";
@@ -36,17 +82,25 @@ if($_GET['datasetid']!=""){
 	<meta name="theme-color" content="#ffffff">
 
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,200,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="/assets/js/ol4/ol.css" type="text/css">
-	<link rel="stylesheet" href="/assets/js/layerswitcher/layerswitcher.css" type="text/css">
+	<link rel="stylesheet" href="includes/ol.css" type="text/css">
+	<link rel="stylesheet" href="includes/layerswitcher.css" type="text/css">
+
 	<link rel="stylesheet" href="/assets/js/jquery-sidebar/jquery.sidebar.css" type="text/css">
 	<link rel="stylesheet" href="/assets/js/jquery-ui/jquery-ui.css" type="text/css">
 	<link rel="stylesheet" href="/assets/js/featherlight/featherlight.css" type="text/css">
 	<link rel="stylesheet" href="/assets/js/ionic/css/ionic.css" type="text/css">
-	<link rel="stylesheet" href="includes/map_search.css" type="text/css">
-	<link rel="stylesheet" href="/search/includes/fancybox/src/css/core.css" type="text/css">
+	<link rel="stylesheet" href="includes/new_map_search.css" type="text/css">
+	<link rel="stylesheet" href="includes/fancybox/src/css/core.css" type="text/css">
+	<link rel="stylesheet" href="includes/sidesearch.css" type="text/css">
+	<link rel="stylesheet" href="includes/w3.css" type="text/css">
+	
+	
 
 	<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+
+	<!--<script src="https://cdn.polyffffill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>-->
+
+	
 	<script src="/assets/js/ol4/ol.js"></script>
 	<script src="/assets/js/layerswitcher/layerswitcher.js"></script>
 
@@ -54,18 +108,27 @@ if($_GET['datasetid']!=""){
 	<script src="includes/map_search_functions.js"></script>
 	<script src="includes/tab_builders.js"></script>
 	<script src="includes/strat.js"></script>
-	
-	<script src="/search/includes/data_model.js"></script>
+	<script src="includes/data_model.js"></script>
+	<script src="includes/sidebar.js"></script>
 	
 	<!-- External Libraries-->
 	<script src="/assets/js/underscore/underscore-min.js"></script>
+
 	<script src="/assets/js/jquery/jquery.min.js"></script>
 	<script src="/assets/js/jquery-sidebar/jquery.sidebar.min.js"></script>
 	<script src="/assets/js/jquery-ui/jquery-ui.js"></script>
+
+	<script src="includes/js/jquery-debounce.js"></script>
+	
+
+
 	<script src="/assets/js/featherlight/featherlight.js"></script>
 	<script src="/assets/js/turf/turf.min.js"></script>
-	<script src="/search/includes/fancybox/src/js/core.js"></script>
+	<script src="includes/fancybox/src/js/core.js"></script>
 	
+	<link rel="stylesheet" href="includes/js/easyautocomplete/dist/easy-autocomplete.css" type="text/css">
+	<script src="includes/js/easyautocomplete/dist/jquery.easy-autocomplete.js"></script>
+
 	<script>
 		$( function() {
 			$( "#tabs" ).tabs({
@@ -187,34 +250,177 @@ if($_GET['datasetid']!=""){
 
   </head>
 
-  <body<?=$onload?>>
-    <div id="map" class="map"></div>
-    <div id="toptext">
-    	<button style="display:none;" onclick='zoomToCenterAndExtent("LTEwODkwNDUwLjA3Mjc2NDE1OHg0NjUzMTcyLjIxNDA5Mjc5M3gxMw==");'>Zoom Test</button>
-    	<button style="display:none;" onclick='console.log(buildDatasetsURL());'>Get URL</button>
-    	<button style="display:none;" onclick='console.log($("#query_has_image").is(":checked"));'>Image Checkbox Value</button>
-    	<button style="display:none;" onclick='switchToSpotDiv();'>Spot</button>
-    	<button style="display:none;" onclick='switchToQueryDiv();'>Query</button>
-    	<button style="display:none;" onclick='toggleSpotQuery();'>Toggle</button>
-		<button style="display:none;" onclick='setSelectedSymbol(map, activeGeometry);'>Enable Geometry</button>
-		<button style="display:none;" onclick="console.log(idsNames);">log idsnames</button>
-		<button style="display:none;" onclick="saveExtent()">Save Extent</button>
-		<button style="display:none;" onclick="zoomToSavedExtent()">Zoom to Saved Extent</button>
-		<button style="display:none;" onclick="$.featherlight('http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-30.jpg');">featherlight test</button>
-		<button style="display:none;" onclick="loadFeatures()">LoadFeatures</button>
-		<button style="display:none;" onclick="openSideBar();">Open</button>
-		<button style="display:none;" onclick="closeSideBar();">Close</button>
-		<button style="display:none;" onclick="toggleSideBar();">Toggle</button>
-		<button style="display:none;" onclick="gotoDataset(15246069817544);">Go To Dataset</button>
-		<div id="myres" style="display:none">span</div>
-		<span class="siteTitle">&nbsp;</span>
-    </div>
 
-	<div id="toptexttitle">
-		<?=$sitebanner?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <body<?=$onload?>>
+
+	
+	<div class="newSearchSideNav"  id="mySidebar">
+
+
+		<div class="sidenav">
+
+			<div class="sideBarHeader">
+				<div style="text-align: center;padding-bottom:10px;padding-top:10px;">
+					<image src="includes/images/strabo-search-header.jpg" width="350px" />
+				</div>
+			</div>
+			
+			<div class="sideBarContent">
+				<div style="font-weight:bold;">
+				Set Search Criteria:
+				</div>
+				<div id="rowContainer">
+
+
+
+
+
+
+
+
+
+
+
+
+					
+					
+				</div>
+				
+				<!--<input type="checkbox" name="dldataset" class="dldatasets" value="foo" checked="checked\"> checkbox here-->
+
+				<div id="performingSearch" style="width: 450px; padding-top:50px; font-weight:700; color:#666; display: none;">
+					<div style="text-align:center;">
+						<div style="float: left; padding-left:120px;">&nbsp;</div>
+						<div style="float: left; display: inline-block;"><img src="includes/images/box.gif"/></div>
+						<div style="float: left; display: inline-block; padding-top:15px;">Performing Search...</div>
+						<div style="clear: left;"></div>
+					</div>
+				</div>
+				<div style="width: 100%; padding-top:10px; padding-bottom: 10px; font-weight: 700; color: #b30000; font-size: 13px;">
+					<div id="searchCountResults" style="text-align:center;"></div>
+				</div>
+
+
+				<div id="searchResults"></div>
+			</div>
+			
+			<div class="sideBarFooter">
+				<div>
+					<!--<button onclick="doNewSearchTest();">here</button>-->
+					
+					<div style="padding-top:10px;">
+						<div style="float:left;text-align:center;width:210px;">
+							<button id="sideNewSearchButton" class="bottomLeftButtons" style="display:none;" onclick="newSearchReset();"><span>New Search</span></button>
+						</div>
+						<div style="float:left;text-align:center;width:210px;">
+							<button id="sideDownloadButton" class="bottomLeftButtons" style="display:none;" onclick="openDownloadWindow();"><span>Download</span></button>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+
+
+		</div>
+
+		<div id="myres" style="display:none;"></div>
 	</div>
 
-	<img id="toptextlogo" src="/includes/images/strabo_icon_web.png"/>
+	<div class="newSearchMapWrapper">
+		<div id="map" >
+
+			<div id="back_map"><button class="back_map_button" onClick="goBack();"/></div>
+	
+			<div id="download_map"><button class="download_map_button tooltip" onClick="openDownloadWindow();"/><span class="tooltiptext">Download Options</span></div>
+
+			<div id="map_home"><button class="map_home_button tooltip" onClick="zoomHome();"/></div>
+
+			<?
+			if($userlevel >=566){
+			?>
+			<div id="link_map"><button class="link_map_button" onClick="showStaticUrl();"/></div>
+			<?
+			}
+			?>
+			
+
+
+		</div>
+
+	</div>
+
+
+	<div id="spotswaiting">
+		<table>
+			<tr>
+				<td><img src="/assets/js/images/box.gif"></td><td nowrap>Loading Spots...</td>
+			</tr>
+		</table>
+		<div id="spotsProgressMessage">
+			Gathering spots from server...
+		</div>
+		<div id="spotsProgressBar">
+			<div id="spotsProgressInnerBar">
+				&nbsp;
+			</div>
+		</div>
+	</div>
+
 
     <div id="openDatasets">
     	<div class="openDatasetsBar">
@@ -224,6 +430,8 @@ if($_GET['datasetid']!=""){
 
     	</div>
     </div>
+    
+    <!--
     <div id="spotswaiting">
     	<table>
     		<tr>
@@ -242,6 +450,7 @@ if($_GET['datasetid']!=""){
     	</div>
 
     </div>
+    -->
 
     <div id="datasetswaiting">
     	<table>
@@ -251,31 +460,7 @@ if($_GET['datasetid']!=""){
     	</table>
     </div>
 
-	<div id="back_map"><button class="back_map_button" onClick="goBack();"/></div>
-	
-	<div id="download_map"><button class="download_map_button tooltip" onClick="openDownloadWindow();"/><span class="tooltiptext">Download Options</span></div>
-	
-	<?
-	//if($userlevel >=5){
-	?>
-	<div id="link_map"><button class="link_map_button" onClick="showStaticUrl();"/></div>
-	<?
-	//}
-	?>
 
-	<div id="map_home"><button class="map_home_button tooltip" onClick="zoomHome();"/><span class="tooltiptext">Original Zoom Level</span></div>
-	
-	<!--
-	<div id="map_query"><button class="map_query_button tooltip" onClick="toggleSpotQuery();"/><span class="tooltiptext">Set Search Criteria</span></div>
-	
-	<a data-fancybox="modal" data-src="#modal" href="javascript:;">Inline (HTML) Content</a>
-	
-	$.fancybox.open({src  : '#queryWindow', type : 'inline', opts : { afterShow : function( instance, current ) {console.info( 'done!' );}}});
-
-	<div id="map_query"><button class="map_query_button tooltip" onClick="$.featherlight('#queryWindow');"/><span class="tooltiptext">Set Search Criteria</span></div>
-	-->
-
-	<div id="map_query"><button class="map_query_button tooltip" onClick="$.fancybox.open({src  : '#queryWindow', type : 'inline', opts : { afterShow : function( instance, current ) {console.info( 'done!' );}}});"/><span class="tooltiptext">Set Search Criteria</span></div>
 
 	<div id="downloadOptionsWindow">
 		<div id="downloadOptionsWindowInside">
@@ -339,13 +524,34 @@ if($_GET['datasetid']!=""){
 					</tr>
 					<tr>
 						<td valign="top">
-							<button class="downloadsubmit" onclick="downloadData('stratsection');"><span>Strat Section(s)</span></button>
+							<button class="downloadsubmit" onclick="downloadData('stratsection');"><span>Strat&nbsp;Section(s)</span></button>
 						</td>
 						<td>
 							Download StraboSpot strat section SVG file(s).
 						</td>
 					</tr>
-
+					<tr>
+						<td valign="top">
+							<button class="downloadsubmit" onclick="downloadData('json');"><span>JSON</span></button>
+						</td>
+						<td>
+							Download StraboSpot data in JSON format.
+						</td>
+					</tr>
+<?
+if(in_array($userpkey,[3])){
+?>
+					<tr>
+						<td valign="top">
+							<button class="downloadsubmit" onclick="downloadData('debug');"><span>Debug</span></button>
+						</td>
+						<td>
+							Download StraboSpot data in debug format.
+						</td>
+					</tr>
+<?
+}
+?>
 				</table>
 
 
@@ -426,7 +632,7 @@ if($_GET['datasetid']!=""){
 	</div>
 
 
-	<div class="sidebar right" style="overflow-y: scroll;">
+	<div class="sidebar right">
 
 		<div id="sidebarspot">
 			<div id="sidebar_spot_name" align="center">foofoo</div>
@@ -439,6 +645,7 @@ if($_GET['datasetid']!=""){
 					<li><a href="#images_tab">IMAGES</a></li>
 					<li><a href="#nesting_tab">NESTING</a></li>
 					<li><a href="#samples_tab">SAMPLES</a></li>
+					<li><a href="#tephra_tab">TEPHRA</a></li>
 					<li><a href="#other_features_tab">OTHER FEATURES</a></li>
 					<li><a href="#tags_tab">TAGS</a></li>
 					<li><a href="#igmet_tab">IG/MET</a></li>
@@ -457,6 +664,7 @@ if($_GET['datasetid']!=""){
 				<div id="images_tab" class="sidebarOverflow"></div>
 				<div id="nesting_tab" class="sidebarOverflow"></div>
 				<div id="samples_tab" class="sidebarOverflow"></div>
+				<div id="tephra_tab" class="sidebarOverflow"></div>
 				<div id="other_features_tab" class="sidebarOverflow"></div>
 				<div id="tags_tab" class="sidebarOverflow"></div>
 				<div id="igmet_tab" class="sidebarOverflow"></div>
@@ -499,7 +707,7 @@ if($_GET['datasetid']!=""){
     ?>
 
     <?
-    if($_GET['datasetid']!=""){
+    if($_GET['sdatasetid']!=""){
     	$c = $_GET['datasetid'];
     ?>
     <script>
@@ -508,6 +716,13 @@ if($_GET['datasetid']!=""){
     <?
     }
     ?>
+	<script>
+		//sidesearch_open();
+		//$(".ol-viewport").append('    ');
+		addRow();
+	</script>
+	
 
+	
   </body>
 </html>

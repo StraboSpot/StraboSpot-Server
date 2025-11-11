@@ -1,5 +1,16 @@
 <?php
 /**
+ * File: Header.php
+ * Description: Return to the caller script when runs by CLI
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
+
+/**
  * Header file.
  */
 use PhpOffice\PhpSpreadsheet\Helper\Sample;
@@ -50,7 +61,6 @@ if ($helper->isCli()) {
                                 echo '<li><a href="/' . $file . '">' . $name . '</a></li>';
                             } ?></ul>
                         </li>
-                    <?php
                     } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -60,5 +70,4 @@ if ($helper->isCli()) {
                 </div>
             </div>
         </div>
-        <?php
         echo $helper->getPageHeading();

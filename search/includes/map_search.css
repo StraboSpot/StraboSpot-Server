@@ -655,7 +655,7 @@ pre {
 	text-align: center;
 	font-size: 11px;
 	padding: 3px;
-	width: 120px;
+	width: 100px;
 	transition: all 0.2s;
 	cursor: pointer;
 	margin: 1px;
@@ -776,6 +776,6 @@ table.downloadTable td{
 }
 
 .sidebarOverflow {
-	height: 600px;
-	/*overflow-y: scroll;*/
+	height: 800px;
+	overflow-y: scroll;
 }

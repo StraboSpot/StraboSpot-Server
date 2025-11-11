@@ -44,16 +44,17 @@ tab_ids[3]="_3d_structures_tab";
 tab_ids[4]="images_tab";
 tab_ids[5]="nesting_tab";
 tab_ids[6]="samples_tab";
-tab_ids[7]="other_features_tab";
-tab_ids[8]="tags_tab";
-tab_ids[9]="igmet_tab";
-tab_ids[10]="strat_section_tab";
-tab_ids[11]="sed_lithologies_tab";
-tab_ids[12]="sed_bedding_tab";
-tab_ids[13]="sed_structures_tab";
-tab_ids[14]="sed_diagenesis_tab";
-tab_ids[15]="sed_fossils_tab";
-tab_ids[16]="sed_interpretations_tab";
+tab_ids[7]="tephra_tab";
+tab_ids[8]="other_features_tab";
+tab_ids[9]="tags_tab";
+tab_ids[10]="igmet_tab";
+tab_ids[11]="strat_section_tab";
+tab_ids[12]="sed_lithologies_tab";
+tab_ids[13]="sed_bedding_tab";
+tab_ids[14]="sed_structures_tab";
+tab_ids[15]="sed_diagenesis_tab";
+tab_ids[16]="sed_fossils_tab";
+tab_ids[17]="sed_interpretations_tab";
 
 
 var tab_names = [];
@@ -64,17 +65,17 @@ tab_names[3]="_3d_structures";
 tab_names[4]="images";
 tab_names[5]="nesting";
 tab_names[6]="samples";
-tab_names[7]="other_features";
-tab_names[8]="tags";
-tab_names[9]="igmet";
-tab_names[10]="strat_section";
-tab_names[11]="sed_lithologies";
-tab_names[12]="sed_bedding";
-tab_names[13]="sed_structures";
-tab_names[14]="sed_diagenesis";
-tab_names[15]="sed_fossils";
-tab_names[16]="sed_interpretations";
-
+tab_names[7]="tephra";
+tab_names[8]="other_features";
+tab_names[9]="tags";
+tab_names[10]="igmet";
+tab_names[11]="strat_section";
+tab_names[12]="sed_lithologies";
+tab_names[13]="sed_bedding";
+tab_names[14]="sed_structures";
+tab_names[15]="sed_diagenesis";
+tab_names[16]="sed_fossils";
+tab_names[17]="sed_interpretations";
 		
 function getClickedFeature(map, evt) {
 	return map.forEachFeatureAtPixel(evt.pixel, function (feat, lyr) {
@@ -164,6 +165,77 @@ function setSelectedSymbol(map, geometry) {
 	map.addLayer(selectedHighlightLayer);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Add a feature to highlight selected Dataset
+function setSelectedDataset(map, longitude, latitude) {
+	var selected = new ol.Feature({
+		geometry: new ol.geom.Point(ol.proj.transform([longitude, latitude], 'EPSG:4326', 'EPSG:3857'))
+	});
+
+	var style = {};
+
+	style = new ol.style.Style({
+		image: new ol.style.Circle({
+			radius: 40,
+			stroke: new ol.style.Stroke({
+				color: 'white',
+				width: 2
+			}),
+			fill: new ol.style.Fill({
+				color: [245, 121, 0, 0.6]
+			})
+		})
+	});
+
+
+	var selectedHighlightSource = new ol.source.Vector({
+		features: [selected]
+	});
+
+	selectedHighlightLayer = new ol.layer.Vector({
+		name: 'selectedHighlightLayer',
+		source: selectedHighlightSource,
+		style: style
+	});
+
+	map.addLayer(selectedHighlightLayer);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var hideLayer = function(layername){
 	var mylayers = map.getLayers();
@@ -283,7 +355,11 @@ var updateMap = function() {
 		var mappedFeatures = [];
 		_.each(spots, function (spot) {
 			if(!spot.properties.image_basemap && !spot.properties.strat_section_id){
-
+				if(spot.properties.name!=""){
+					spotNames[spot.properties.id]=spot.properties.name;
+				}else{
+					spotNames[spot.properties.id]=spot.properties.id;
+				}
 				if(layerStates[spot.properties.datasetid]!="no" ){	//look to see whether layer is turned on				
 					if ((spot.geometry.type === 'Point' || spot.geometry.type === 'MultiPoint') && spot.properties.orientation_data) {
 						_.each(spot.properties.orientation_data, function (orientation) {
@@ -299,12 +375,6 @@ var updateMap = function() {
 					}
 					else mappedFeatures.push(JSON.parse(JSON.stringify(spot)));
 				}
-			}
-			
-			if(spot.properties.name!=""){
-				spotNames[spot.properties.id]=spot.properties.name;
-			}else{
-				spotNames[spot.properties.id]=spot.properties.id;
 			}
 			
 			currentpercent = Math.round(currentspotcount/totalspotcount*100);
@@ -615,6 +685,12 @@ function toRadians(deg) {
 
 function getSymbolPath(feature_type, orientation, orientation_type) {
 
+	/*
+	console.log("feature_type: " + feature_type);
+	console.log("orientation: " + orientation);
+	console.log("orientation_type: " + orientation_type);
+	*/
+	
 	var symbols = {
 		'default_point': '/assets/js/images/geology/point.png',
 
@@ -666,9 +742,26 @@ function getSymbolPath(feature_type, orientation, orientation_type) {
 	}
 }
 
+function hexToRGB(hex, alpha) {
+    var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (alpha) {
+        return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+    } else {
+        return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+}
+
+//hexToRGB('#FF0000', 0.5);
+
 // creates a ol vector layer for supplied geojson object
-function geojsonToVectorLayer(geojson, projection) {
+function geojsonToVectorLayer(geojson, projection, tags) {
 	// textStyle is a function because each point has a different text associated
+	
+	
+	
 	function textStyle(text) {
 		return new ol.style.Text({
 			'font': '12px Calibri,sans-serif',
@@ -742,11 +835,59 @@ function geojsonToVectorLayer(geojson, projection) {
 		var orientation_type = 'none';
 		var orientation = feature.get('orientation');
 		if (orientation) {
-			rotation = orientation.strike || orientation.trend || rotation;
+			
+
+			//rotation = orientation.strike || orientation.trend || orientation.dip_direction || rotation;
+			
+			if(orientation.strike){
+				rotation = orientation.strike;
+			}else if(orientation.dip_direction){
+				rotation = orientation.dip_direction - 90;
+				//rotation = -90;
+				//rotation = orientation.dip_direction;
+				if(isNaN(rotation)){
+					rotation = 0;
+				}
+			}else if(orientation.trend){
+				rotation = orientation.trend;
+			}
+			
 			symbol_orientation = orientation.dip || orientation.plunge || symbol_orientation;
+			
+/*
+			if($o->strike != ""){
+				$iconrotation = $o->strike;
+			}elseif($o->dip_direction != ""){
+				$iconrotation = 360 % (90 - $o->dip_direction);
+			}elseif($o->trend != ""){
+				$iconrotation = $o->trend;
+			}else{
+				$iconrotation = 0;
+			}
+*/
+			
+			
+			
+			
 			feature_type = orientation.feature_type || feature_type;
 			orientation_type = orientation.type || orientation_type;
 		}
+		
+		/*
+		console.log("feature_type: "+feature_type);
+		console.log("symbol_orientation: "+symbol_orientation);
+		console.log("orientation_type: "+orientation_type);
+		console.log("getIconForFeature Rotation: " + rotation);
+		*/
+/*
+		"id": "ec318ddc-b765-4ce2-82d4-4d7dec9c2ff9",
+		"type": "planar_orientation",
+		"feature_type": "foliation",
+		"dip": 74,
+		"unix_timestamp": 1718282274406,
+		"dip_direction": 320,
+		"modified_timestamp": 1718282336103
+*/
 
 		return new ol.style.Icon({
 			'anchorXUnits': 'fraction',
@@ -759,7 +900,11 @@ function geojsonToVectorLayer(geojson, projection) {
 	}
 
 	function getPolyFill(feature) {
+		
+		var thisId = feature.get('id');
+		
 		var color = 'rgba(0, 0, 255, 0.4)';			 // blue
+
 		if (feature.get('surface_feature')) {
 			var surfaceFeature = feature.get('surface_feature');
 			switch (surfaceFeature.surface_feature_type) {
@@ -792,6 +937,22 @@ function geojsonToVectorLayer(geojson, projection) {
 					break;
 			}
 		}
+		
+		//fix color here based on tags if exist
+		//console.log(feature);
+		//color = '#FF0000';
+		//hexToRGB('#FF0000', 0.5);
+		
+		_.each(loadedFeatures.tags, function(thistag){
+			if(_.contains(thistag.spots, thisId)){
+				if(thistag.color && thistag.color != ""){
+					color = hexToRGB(thistag.color, 0.4);
+				}
+			}
+		});
+		
+		
+		
 		return new ol.style.Fill({
 			'color': color
 		});
@@ -800,12 +961,19 @@ function geojsonToVectorLayer(geojson, projection) {
 	// Set styles for points, lines and polygon and groups
 	function styleFunction(feature, resolution) {
 		var rotation = 0;
-		var pointText = feature.get('name');
+		var pointText = "";
+		
+		pointText = feature.get('name');
+		if(pointText == null){ pointText = "Unnamed"; }
+		
+		//console.log(pointText);
+		
 		var orientation = feature.get('orientation');
 		if (orientation) {
 			rotation = orientation.strike || orientation.trend || rotation;
 			//pointText = orientation.dip || orientation.plunge || pointText;
 			pointText = feature.get('name');
+			if(pointText == null){ pointText = "Unnamed"; }
 		}
 
 		var pointStyle = [
@@ -913,8 +1081,146 @@ var getCurrentViewEnvelope = function(){ //not padded
 
 
 
+
+
+
+
 //add features from a single dataset
 var addFeatures = function(id){
+
+	console.log("datasetid: "+id);
+	
+	//dsets=14849417046343
+	
+	currentlyLoading = true;
+	
+	env = getEnvelope();
+
+	//show loading animation
+	//document.getElementById('spotswaiting').style.display="block";
+
+	//$('#spotswaiting').css('display', 'block');
+	$('#spotswaiting').show();
+	//$('#spotsProgressMessage').html('Getting spots from server.');
+	//$('#spotsProgressMessage').show();
+	
+
+
+
+
+
+
+
+
+
+	querystring = createQueryString();
+
+	$.post( "interfacesearch.php?dsids="+id, querystring, function( result ) {
+		console.log('Did dataset search and received:');
+		console.log(result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	//get data from interfacesearch
+	//$.getJSON('newsearchspots.json?env='+env+'&dsets='+id,function(result){
+		
+		//$('#spotsProgressMessage').html('Adding spots to map.');
+		//$('#spotsProgressMessage').show();
+		
+		//$('#spotsProgressInnerBar').css('width', '0%');
+		//$('#spotsProgressBar').show();
+		
+		//console.log(result);
+		
+		//add new features to loadedfeatures.features
+		
+		if(loadedFeatures==""){
+			loadedFeatures = {};
+			loadedFeatures.features = [];
+			loadedFeatures.datasets = [];
+			loadedFeatures.tags = [];
+			loadedFeatures.relationships = [];
+			loadedFeatures.image_basemaps = [];
+		}
+
+		//add features to loadedFeatures
+		_.each(result.features, function(newfeat){
+			loadedFeatures.features.push(newfeat);
+		});
+		_.each(result.datasets, function(newds){
+			loadedFeatures.datasets.push(newds);
+		});
+		_.each(result.tags, function(newtag){
+			newtag.datasetid=id;
+			loadedFeatures.tags.push(newtag);
+		});
+		_.each(result.relationships, function(newrel){
+			newrel.datasetid=id;
+			loadedFeatures.relationships.push(newrel);
+		});
+		_.each(result.image_basemaps, function(newib){
+			newib.datasetid=id;
+			loadedFeatures.image_basemaps.push(newib);
+		});
+		
+		console.log("loadedFeatures:");
+		console.log(loadedFeatures);
+
+		saveIdsToNames();
+		
+		updateMap();
+		
+		//document.getElementById('spotswaiting').style.display="none";
+		
+		currentlyLoading = false;
+		
+		if(result.envelope!=""){
+			//zoomToPoly(result.envelope);
+			console.log(result.envelope);
+		}
+		
+		if(result.centroid!=""){
+			console.log("centroid:");
+			console.log(result.centroid);
+			longitude = result.centroid.longitude;
+			latitude = result.centroid.latitude;
+			console.log("Longitude: "+longitude);
+			console.log("Latitude: "+latitude);
+			
+			//check current zoom
+			var currentZoom = map.getView().getZoom();
+			if(currentZoom < 10){
+				panToCoords(longitude, latitude, 10);
+			}else{
+				panToCoords(longitude, latitude, currentZoom);
+			}
+			
+		}
+		
+	});
+		
+
+}
+
+
+
+
+
+
+//add features from a single dataset
+var OLDDDDDDDDDDDaddFeatures = function(id){
 
 	//dsets=14849417046343
 	
@@ -931,7 +1237,7 @@ var addFeatures = function(id){
 	//$('#spotsProgressMessage').show();
 	
 
-	$.getJSON('searchspots.json?env='+env+'&dsets='+id,function(result){
+	$.getJSON('newsearchspots.json?env='+env+'&dsets='+id,function(result){
 		
 		//$('#spotsProgressMessage').html('Adding spots to map.');
 		//$('#spotsProgressMessage').show();
@@ -994,6 +1300,8 @@ var addFeatures = function(id){
 
 
 
+
+
 //fetch features from database
 var loadFeatures = function(){
 
@@ -1008,7 +1316,7 @@ var loadFeatures = function(){
 		//show loading animation
 		document.getElementById('spotswaiting').style.display="block";
 
-		$.getJSON('searchspots.json?env='+env,function(result){
+		$.getJSON('newsearchspots.json?env='+env,function(result){
 			loadedFeatures = result;
 			
 			saveIdsToNames();
@@ -1076,6 +1384,8 @@ var updateSidebar = function(){
 		updateTagsTab();
 	}else if(activeTabName=="samples"){
 		updateSamplesTab();
+	}else if(activeTabName=="tephra"){
+		updateTephraTab();
 	}else if(activeTabName=="other_features"){
 		updateOtherFeaturesTab();
 	}else if(activeTabName=="nesting"){
@@ -1137,7 +1447,7 @@ var getImageInfo = function(imageid){
     })
 }
 
-var bkup0507getImageInfo = function(imageid){
+var bkup05072020getImageInfo = function(imageid){
     return new Promise(function(resolve, reject){
 
         var im = new Image()
@@ -1215,14 +1525,9 @@ var goBack = function(){
 		switchToImageBasemap(crumbs.pop());
 	}else{
 		switchToMainMap();
+		closeSideBar();
 	}
 }
-
-
-
-
-
-
 
 var switchToImageBasemap = function(imageid){
 
@@ -1304,274 +1609,95 @@ var switchToImageBasemap = function(imageid){
 	});
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var idToName = function(id){
+
+	returnid = id;
+
+	if(idsNames[id]){
+		returnid=idsNames[id];
+	}
+	
+	return returnid;
+}
+
+var saveIdsToNames = function(){
+	
+	//build idsNames array to hold all names of spots and sub-properties for later retrieval via idToName();
+	//idsNames[12341234]="foo";
+	
+	if(loadedFeatures){
+		var spots = loadedFeatures.features;
+		_.each(spots, function(spot){
+		
+			spot=spot.properties;
+			
+			if(spot.name){
+				idsNames[spot.id]=spot.name;
+			}
+			
+			if(spot.images){
+				_.each(spot.images, function(image){
+					featureSpotIds[image.id]=spot.id;
+					featureTypes[image.id]="image";
+					if(image.title){
+						idsNames[image.id]=image.title;
+					}
+				});
+			}
+
+			if(spot.orientation_data){
+				_.each(spot.orientation_data, function(or){
+					featureSpotIds[or.id]=spot.id;
+					featureTypes[or.id]="orientation";
+					if(or.label){
+						idsNames[or.id]=or.label;
+					}
+					if(or.associated_orientation){
+						_.each(or.associated_orientation, function(aor){
+							featureSpotIds[aor.id]=spot.id;
+							featureTypes[aor.id]="orientation";
+							if(aor.label){
+								idsNames[aor.id]=aor.label;
+							}
+						});
+					}
+				});
+			}
+
+			if(spot._3d_structures){
+				_.each(spot._3d_structures, function(str){
+					featureSpotIds[str.id]=spot.id;
+					featureTypes[str.id]="3d_structure";
+					if(str.label){
+						idsNames[str.id]=str.label;
+					}
+				});
+			}
+
+			if(spot.other_features){
+				_.each(spot.other_features, function(of){
+					featureSpotIds[of.id]=spot.id;
+					featureTypes[of.id]="other_feature";
+					if(of.label){
+						idsNames[of.id]=of.label;
+					}
+				});
+			}
+			
+			if(spot.samples){
+				_.each(spot.samples, function(sample){
+					featureSpotIds[sample.id]=spot.id;
+					featureTypes[sample.id]="sample";
+					if(sample.label){
+						idsNames[sample.id]=sample.label;
+					}
+				});
+			}
+
+		});
+	}
+
+}
 
 function getSpotWithThisStratSection(stratSectionId) {
 	var activeSpots = loadedFeatures.features;
@@ -1670,10 +1796,6 @@ var switchToStratSection = function(stratSectionId){
 		//});
 		
 	});
-}
-
-var initialResizeMap = function() {
-	map.updateSize();
 }
 
 //put features onto map
@@ -1870,386 +1992,6 @@ function stratStyleFunction(feature, resolution) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var idToName = function(id){
-
-	returnid = id;
-
-	if(idsNames[id]){
-		returnid=idsNames[id];
-	}
-	
-	return returnid;
-}
-
-var saveIdsToNames = function(){
-	
-	//build idsNames array to hold all names of spots and sub-properties for later retrieval via idToName();
-	//idsNames[12341234]="foo";
-	
-	if(loadedFeatures){
-		var spots = loadedFeatures.features;
-		_.each(spots, function(spot){
-		
-			spot=spot.properties;
-			
-			if(spot.name){
-				idsNames[spot.id]=spot.name;
-			}
-			
-			if(spot.images){
-				_.each(spot.images, function(image){
-					featureSpotIds[image.id]=spot.id;
-					featureTypes[image.id]="image";
-					if(image.title){
-						idsNames[image.id]=image.title;
-					}
-				});
-			}
-
-			if(spot.orientation_data){
-				_.each(spot.orientation_data, function(or){
-					featureSpotIds[or.id]=spot.id;
-					featureTypes[or.id]="orientation";
-					if(or.label){
-						idsNames[or.id]=or.label;
-					}
-					if(or.associated_orientation){
-						_.each(or.associated_orientation, function(aor){
-							featureSpotIds[aor.id]=spot.id;
-							featureTypes[aor.id]="orientation";
-							if(aor.label){
-								idsNames[aor.id]=aor.label;
-							}
-						});
-					}
-				});
-			}
-
-			if(spot._3d_structures){
-				_.each(spot._3d_structures, function(str){
-					featureSpotIds[str.id]=spot.id;
-					featureTypes[str.id]="3d_structure";
-					if(str.label){
-						idsNames[str.id]=str.label;
-					}
-				});
-			}
-
-			if(spot.other_features){
-				_.each(spot.other_features, function(of){
-					featureSpotIds[of.id]=spot.id;
-					featureTypes[of.id]="other_feature";
-					if(of.label){
-						idsNames[of.id]=of.label;
-					}
-				});
-			}
-			
-			if(spot.samples){
-				_.each(spot.samples, function(sample){
-					featureSpotIds[sample.id]=spot.id;
-					featureTypes[sample.id]="sample";
-					if(sample.label){
-						idsNames[sample.id]=sample.label;
-					}
-				});
-			}
-
-		});
-	}
-
-}
-
 var featureIdToSpotId = function(featureid){
 
 	var spotid=null
@@ -2434,6 +2176,11 @@ var debugMap = function(){
 	
 	console.log("left: "+left+" right: "+right+" top: "+top+" bottom: "+bottom);
 	console.log("zoom: "+zoom);
+	
+	console.log(newSearchFeatures);
+	
+
+	
 }
 
 var saveExtent = function(){
@@ -2728,7 +2475,7 @@ var buildDatasetsURL= function(){
 
 	var newurl = buildGetSearchVars();
 
-	newurl = "/search/searchdatasets.json?"+newurl;
+	newurl = "newsearchdatasets.json?"+newurl;
 
 	return newurl;
 }
@@ -2781,15 +2528,20 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 var gotoDataset = async (datasetid) => {
 //var gotoDataset = function(datasetid){
 	$('#spotswaiting').show();
-	await delay(2000);
+	await delay(3000);
 	if(allDatasets.length == 0){
 		updateAllDatasets();
 	}
-	console.log(datasetid);
+	console.log("dataset id: " + datasetid);
 	ds = datasetPointsSource.getFeatures();
 	$.each(ds, function(index,value){
-		var thisid = value.get('id');
+
+		var thisid = value.get('id').split('-')[1];
+		
+		console.log('thisid: ' + thisid);
+
 		if(thisid == datasetid){
+			console.log("found it");
 			clickedDatasetId = datasetid;
 			expandDataset(value);
 			datasetPointsSource.removeFeature(value);
@@ -2799,6 +2551,7 @@ var gotoDataset = async (datasetid) => {
 }
 
 var expandDataset = function(feature){
+	console.log("expanding");
 	expandedDatasets.push(feature);
 	mapDataset(feature);
 	updateShownDatasets();
@@ -2811,11 +2564,12 @@ var mapDataset = function(feature){
 
 var closeDataset = function(id){
 	
+	console.log("close dataset: "+id);
+	
 	//close dataset from map and list box
 	removeDatasetFromArray(id);
 	removeDatasetFromLoadedFeatures(id);
 	restoreDatasetPoint(id);
-	
 	
 	updateShownDatasets();
 
@@ -2848,6 +2602,9 @@ var removeDatasetFromArray = function(id){
 }
 
 var removeDatasetFromLoadedFeatures = function(id){
+	
+	console.log("closing this dataset: "+id);
+	
 	var newLoadedFeatures = {};
 	newLoadedFeatures.features = [];
 	newLoadedFeatures.datasets = [];
@@ -2856,6 +2613,7 @@ var removeDatasetFromLoadedFeatures = function(id){
 	newLoadedFeatures.image_basemaps = [];
 
 	_.each(loadedFeatures.features, function(feat){
+		console.log("this feature dsetid: "+feat.properties.datasetid);
 		if(feat.properties.datasetid!=id){
 			newLoadedFeatures.features.push(feat);
 		}
@@ -2907,17 +2665,19 @@ var updateShownDatasets = function(){
 			projectname = ds.get('projectname');
 			
 			//thishtml += '<div class="datasetRow" onclick="closeDataset(\''+id+'\');" ><img src="includes/images/red_close_button.png" width="10px" height="10px" /> '+name+' ('+count+' spots)</div>';
-			thishtml += '<div><img class = "datasetRow" src="/search/includes/images/red_close_button.png" width="10px" height="10px" onclick="closeDataset(\''+id+'\');" /> '+projectname + ' - ' + name+' ('+count+' spots) (Owned by '+owner+')</div>';
+			thishtml += '<div><img class = "datasetRow" src="includes/images/red_close_button.png" width="10px" height="10px" onclick="closeDataset(\''+id+'\');" /> '+projectname + ' - ' + name+' ('+count+' spots) (Owned by '+owner+')</div>';
 		});
 		$("#openDatasetsList").html(thishtml);
 		$("#openDatasets").show();
 		$("#download_map").show();
+		$("#sideDownloadButton").show();
 	}else{
 		//clear html and hide div
 		//#openDatasets && #openDatasetsList
 		$("#openDatasetsList").html("");
 		$("#openDatasets").hide();
 		$("#download_map").hide();
+		$("#sideDownloadButton").hide();
 	}
 }
 
@@ -2958,8 +2718,6 @@ var zoomToPoly = function(inwkt){
 	mapView.fit(newgeometry, {duration: 1000});
 }
 
-
-
 var openDownloadWindow = function(){
 	
 	if(currentMode == "stratMap"){
@@ -2978,7 +2736,11 @@ var openDownloadWindow = function(){
 		var currentStratDatasetId = getDatasetIdForSpotId(stratSectionId);
 		console.log("currentStratDatasetId: " + currentStratDatasetId);
 		
-		window.open("https://strabospot.org/pstrat_section?id="+stratSectionId+"&did="+currentStratDatasetId); 
+		var idParts = currentStratDatasetId.split("-");
+		var downloadId = idParts[1];
+		console.log("downloadId: " + downloadId);
+		
+		window.open("https://strabospot.org/pstrat_section?id="+stratSectionId+"&did="+downloadId); 
 	
 	}else{
 	
@@ -3007,8 +2769,6 @@ var openDownloadWindow = function(){
 		);
 	
 	}
-	
-
 }
 
 function getDatasetIdForSpotId(spotId){
@@ -3038,8 +2798,12 @@ var downloadData = function(datatype){
 		var getvars = buildGetSearchVars();
 		
 		//console.log("search vars: "+getvars);
+		querystring = createQueryString();
 
-		window.location='/searchdownload?type='+datatype+'&dsids='+dsids+'&range='+range+'&envelope='+envelope+'&'+getvars;
+		//window.location='/newsearchdownload?type='+datatype+'&dsids='+dsids+'&range='+range+'&envelope='+envelope+'&'+getvars;
+		//window.location='/newsearchdownload?type='+datatype+'&dsids='+dsids+'&range='+range+'&envelope='+envelope+'&querystring='+querystring;
+		console.log('/newsearchdownload?type='+datatype+'&dsids='+dsids+'&range='+range+'&envelope='+envelope+'&querystring='+querystring);
+		window.open('/newsearchdownload?type='+datatype+'&dsids='+dsids+'&range='+range+'&envelope='+envelope+'&querystring='+querystring);
 
 
 	}else{

@@ -1,10 +1,19 @@
-<?
-//15127006137888
-//15200201621597
+<?php
+/**
+ * File: debugprojectscript.php
+ * Description: Debugging utility and diagnostic tool
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
 include("logincheck.php");
 
 $project_id = $_GET['project_id'];
+$raw = $_GET['r'];
 
 if($project_id==""){
 	echo "no project id provided";exit();
@@ -15,100 +24,57 @@ if(!is_numeric($project_id)){
 }
 
 include("prepare_connections.php");
+include("includes/straboClasses/straboOutputClass.php");
+include("doi/doiOutputClass.php");
 
-$credentials = $_SESSION['credentials'];
+$count = $neodb->get_var("Match (p:Project) where p.id = $project_id and p.userpkey = $userpkey return count(p)");
+if($count == 0) exit("Project not found.");
 
-$row = $neodb->get_results("match (p:Project {userpkey:$userpkey,id:$project_id}) optional match (p)-[HAS_DATASET]->(d:Dataset) optional match (d)-[HAS_SPOT]->(s:Spot) with p,d,count(s) as count with p,collect ({d:d,count:count}) as d return p,d order by p.modified_timestamp desc;");
-$row = $row[0];
+$straboOut = new straboOutputClass($strabo,$_GET);
 
-if($row==""){
-	echo "project $project_id not found";exit();
+$doiOut = new doiOutputClass($strabo, $_GET);
+
+$uuid = $uuid->v4();
+
+$project = $straboOut->doiDataOut($project_id);
+$json = json_encode($project, JSON_PRETTY_PRINT);
+
+if($raw){
+	header('Content-Type: application/json; charset=utf-8');
+	echo $json;
+	exit();
+}else{
+	include("includes/mheader.php");
+	?>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+
+						<header class="major">
+							<h2>Project Data in Strabo JSON Format</h2>
+						</header>
+
+							<section id="content">
+
+	<h3><a href="/debugprojectscript?project_id=<?php echo $project_id?>&r=1" target="_blank">Click here to download raw combined JSON</a></h3>
+	<h2>Project JSON:</h2>
+	<pre>
+	<?php echo $json?>
+	</pre>
+	<br><br>
+
+							</section>
+
+					<div class="bottomSpacer"></div>
+
+					</div>
+				</div>
+
+	<?php
+	include("includes/mfooter.php");
 }
 
-include 'includes/header.php';
-
-$project = $row->get("p");
-$project=(object)$project->values();
-
-$project_id = $project->id;
-
-//echo "project_id: $project_id";
-
-$project_data = $strabo->getProject($project_id);
-$project_data = json_encode($project_data, JSON_PRETTY_PRINT);
-
-?>
-<h2>Project JSON:</h2>
-<pre>
-<?=$project_data?>
-</pre>
-<br><br>
-<?
-
-$datasets = $row->get("d");
-if(count($datasets)>0){
-
-	foreach($datasets as $dataset){
-	
-		$spotcount = $dataset["count"];
-		
-		$ds=$dataset["d"];
-		$ds=(object)$ds->values();
-
-		$dataset_id = $ds->id;
-		
-		$dataset_data = $strabo->getSingleDataset($dataset_id);
-		$dataset_data = json_encode($dataset_data, JSON_PRETTY_PRINT);
-		
-		?>
-		<h2>Dataset JSON:</h2>
-		<pre>
-		<?=$dataset_data?>
-		</pre>
-		<br><br>
-		<?
-		
-		
-		?>
-		<h2>Spots JSON:</h2>
-		<?
-		if($spotcount > 0){
-		
-			$spot_data = $strabo->getDatasetSpots($dataset_id);
-			$spot_data = json_encode($spot_data, JSON_PRETTY_PRINT);
-			?>
-			<pre>
-			<?=$spot_data?>
-			</pre>
-			<br><br>
-			<?
-		
-		}else{
-			?>
-			<pre>
-			No spots found for this dataset.
-			</pre>
-			<br><br>
-			<?
-		}
-
-	}
-}
-
-
-
-
-include 'includes/footer.php';
-
-
-
-
-
-
-
-
-
-
-
+exit();
 
 ?>

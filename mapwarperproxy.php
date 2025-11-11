@@ -1,16 +1,20 @@
-<?
-/* 
-   This script fixes invalid headers being sent by MapWarper
-   by creating our own and proxying the file content.
-
-   http://mapwarper.net/maps/tile/16083/14/2919/6471.png
-*/
+<?php
+/**
+ * File: mapwarperproxy.php
+ * Description: JSON data endpoint
+ *
+ * @package    StraboSpot Web Site
+ * @author     Jason Ash <jasonash@ku.edu>
+ * @copyright  2025 StraboSpot
+ * @license    https://opensource.org/licenses/MIT MIT License
+ * @link       https://strabospot.org
+ */
 
 $data=$_GET['data'];
 
 $extension = explode(".",$data)[1];
 
-$content = file_get_contents("http://mapwarper.net/maps/tile/".$data);
+$content = file_get_contents("https://mapwarper.net/maps/tile/".$data);
 
 if(strlen($content)>0){
 

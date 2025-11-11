@@ -1,0 +1,775 @@
+{
+	"facility": {
+		"address": {
+			"street": "77 Massachusetts Avenue",
+			"building": "Bldg.54-715",
+			"postcode": "02139",
+			"city": "Cambridge",
+			"state": "MA",
+			"country": "USA",
+			"latitude": "42.3601",
+			"longitude": "71.0942"
+		},
+		"contact": {
+			"firstname": "Matej",
+			"lastname": "Pec",
+			"affiliation": "Professor",
+			"email": "mpec@mit.edu",
+			"phone": "617-324-7279",
+			"website": "https://mpec.scripts.mit.edu/peclab/",
+			"id": ""
+		},
+		"institute": "Massachusetts Institute of Technology",
+		"department": "Earth and Planetary Sciences (EAPS)",
+		"name": "Rock Physics Laboratory",
+		"type": "University Lab",
+		"id": "ETH_54_715",
+		"website": "https://eapsweb.mit.edu/",
+		"description": "",
+		"uuid": "38232802-67d9-4547-a473-dab048f66393",
+		"created_timestamp": "Wed, May 17 2023 20:02:44 UTC ",
+		"modified_timestamp": "Wed, May 17 2023 20:18:15 UTC "
+	},
+	"apparatus": {
+		"name": "Paterson Rig #5",
+		"type": "Paterson Apparatus",
+		"location": "E54-715",
+		"id": "Pat_#5",
+		"description": "This apparatus is capable of reaching confining pressures up to 500 MPa and temperatures up to 1300˚C with Argon gas serving as the confining medium. It was designed by Prof. Mervyn Paterson and is one of 13 existing apparatus of this type world-wide. This apparatus is uniquely suited for high-resolution deformation experiments of relatively large samples up to 15 mm in diameter and 30 mm in length thanks to its internal load cell and compensated piston design which eliminates any seal friction from load measurements. The apparatus has a three-zone furnace with temperature gradients of <1 ˚C/mm and a hot-zone ~40 mm in length.  Furthermore, it is equipped with a pore pressure system which allows for permeability measurements during deformation as well as introduction of various fluids into the deforming rocks at high pressures and temperatures. Recently the Paterson Apparatus was upgraded to allow acoustic velocity and acoustic emission (AE) measurements. Currently we are limited to low temperature experiments (<300oC) for AE measurements.",
+		"features": [
+			"Loading",
+			"Unloading",
+			"Heating",
+			"High Temperature",
+			"HIP",
+			"Synthesis",
+			"Mineral Reactions",
+			"Yield Strength",
+			"Failure Strength",
+			"Strength",
+			"Creep",
+			"Reactive Flow",
+			"Pore Fluid Control",
+			"Permeability",
+			"Steady-State Permeability",
+			"Transient Permeability",
+			"Drained/Undrained Pore Fluid",
+			"P-Wave Velocity",
+			"S-Wave Velocity"
+		],
+		"parameters": [
+			{
+				"type": "Confining Pressure",
+				"min": "1",
+				"max": "700",
+				"unit": "MPa",
+				"prefix": "-",
+				"note": "Nominal 400MPa"
+			},
+			{
+				"type": "Temperature",
+				"min": "23",
+				"max": "1250",
+				"unit": "degC",
+				"prefix": "-",
+				"note": "Furnace dependent"
+			},
+			{
+				"type": "Pore Pressure",
+				"min": "1",
+				"max": "300",
+				"unit": "MPa",
+				"prefix": "-",
+				"note": ""
+			},
+			{
+				"type": "σ1-Displacement",
+				"min": "20",
+				"max": "49",
+				"unit": "mm",
+				"prefix": "-",
+				"note": ""
+			},
+			{
+				"type": "σ1-Load",
+				"min": "0",
+				"max": "100",
+				"unit": "kN",
+				"prefix": "-",
+				"note": ""
+			},
+			{
+				"type": "Stiffness",
+				"min": "",
+				"max": "75.19",
+				"unit": "kN·mm-1",
+				"prefix": "-",
+				"note": ""
+			}
+		],
+		"uuid": "0768c908-72e8-4eb3-857a-4825f75e225b",
+		"created_timestamp": "Wed, May 17 2023 20:23:43 UTC ",
+		"modified_timestamp": "Wed, May 17 2023 20:37:45 UTC "
+	},
+	"daq": {
+		"name": "group name heree",
+		"type": "Standard",
+		"location": "loc here",
+		"description": "some description here...",
+		"devices": [
+			{
+				"name": "my device",
+				"channels": [
+					{
+						"header": {
+							"type": "Time",
+							"spec_a": "Time",
+							"spec_b": "Time",
+							"spec_c": "otherspec",
+							"unit": "sec"
+						},
+						"number": "0",
+						"type": "Calculated",
+						"configuration": "System",
+						"note": "note here",
+						"resolution": "res here",
+						"range_low": "min here",
+						"range_high": "max here",
+						"rate": "rate here",
+						"filter": "filter here",
+						"gain": "x1",
+						"sensor": {
+							"template": "Accelerometer & Force",
+							"detail": "Clock",
+							"type": "Active",
+							"id": "man id",
+							"model": "modnum",
+							"version": "verlet",
+							"number": "vernum",
+							"serial": "serialnum"
+						},
+						"calibration": {
+							"template": "Input:Unit",
+							"input": "degC",
+							"unit": "degC",
+							"excitation": "excit",
+							"date": "2023-05-08",
+							"note": "note here"
+						},
+						"data": [
+							{
+								"a": "4562",
+								"b": "2362"
+							},
+							{
+								"a": "5182",
+								"b": "4244"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Temperature",
+							"spec_a": "Time",
+							"spec_b": "Time",
+							"spec_c": "otherspec",
+							"unit": "sec"
+						},
+						"number": "0",
+						"type": "Calculated",
+						"configuration": "System",
+						"note": "note here",
+						"resolution": "res here",
+						"range_low": "min here",
+						"range_high": "max here",
+						"rate": "rate here",
+						"filter": "filter here",
+						"gain": "x1",
+						"sensor": {
+							"template": "Accelerometer & Force",
+							"detail": "Clock",
+							"type": "Active",
+							"id": "man id",
+							"model": "modnum",
+							"version": "verlet",
+							"number": "vernum",
+							"serial": "serialnum"
+						},
+						"calibration": {
+							"template": "Input:Unit",
+							"input": "degC",
+							"unit": "degC",
+							"excitation": "excit",
+							"date": "2023-05-08",
+							"note": "note here"
+						}
+					}
+				],
+				"documents": [
+					{
+						"type": "Data",
+						"format": "csv",
+						"path": "testFile.json",
+						"id": "doc id here",
+						"uuid": "209e6b6c-3bf1-44cc-8ed8-7ff1b42e18d3",
+						"description": "desc here"
+					},
+					{
+						"type": "Software",
+						"format": "png",
+						"path": "IMG_0613.PNG",
+						"id": "doc id here",
+						"uuid": "40ef803a-7392-40c6-b94d-457d079bbc8c",
+						"description": "desc here"
+					}
+				]
+			},
+			{
+				"name": "my device2",
+				"channels": [
+					{
+						"header": {
+							"type": "Time",
+							"spec_a": "Time",
+							"spec_b": "Time",
+							"spec_c": "otherspec",
+							"unit": "sec"
+						},
+						"number": "0",
+						"type": "Calculated",
+						"configuration": "System",
+						"note": "note here",
+						"resolution": "res here",
+						"range_low": "min here",
+						"range_high": "max here",
+						"rate": "rate here",
+						"filter": "filter here",
+						"gain": "x1",
+						"sensor": {
+							"template": "Accelerometer & Force",
+							"detail": "Clock",
+							"type": "Active",
+							"id": "man id",
+							"model": "modnum",
+							"version": "verlet",
+							"number": "vernum",
+							"serial": "serialnum"
+						},
+						"calibration": {
+							"template": "Input:Unit",
+							"input": "degC",
+							"unit": "degC",
+							"excitation": "excit",
+							"date": "2023-05-08",
+							"note": "note here"
+						},
+						"data": [
+							{
+								"a": "4562",
+								"b": "2362"
+							},
+							{
+								"a": "5182",
+								"b": "4244"
+							}
+						]
+					},
+					{
+						"header": {
+							"type": "Time",
+							"spec_a": "Time",
+							"spec_b": "Time",
+							"spec_c": "otherspec",
+							"unit": "sec"
+						},
+						"number": "0",
+						"type": "Calculated",
+						"configuration": "System",
+						"note": "note here",
+						"resolution": "res here",
+						"range_low": "min here",
+						"range_high": "max here",
+						"rate": "rate here",
+						"filter": "filter here",
+						"gain": "x1",
+						"sensor": {
+							"template": "Accelerometer & Force",
+							"detail": "Clock",
+							"type": "Active",
+							"id": "man id",
+							"model": "modnum",
+							"version": "verlet",
+							"number": "vernum",
+							"serial": "serialnum"
+						},
+						"calibration": {
+							"template": "Input:Unit",
+							"input": "degC",
+							"unit": "degC",
+							"excitation": "excit",
+							"date": "2023-05-08",
+							"note": "note here"
+						}
+					},
+					{
+						"header": {
+							"type": "Time",
+							"spec_a": "Time",
+							"spec_b": "Time",
+							"spec_c": "otherspec",
+							"unit": "sec"
+						},
+						"number": "0",
+						"type": "Calculated",
+						"configuration": "System",
+						"note": "note here",
+						"resolution": "res here",
+						"range_low": "min here",
+						"range_high": "max here",
+						"rate": "rate here",
+						"filter": "filter here",
+						"gain": "x1",
+						"sensor": {
+							"template": "Accelerometer & Force",
+							"detail": "Clock",
+							"type": "Active",
+							"id": "man id",
+							"model": "modnum",
+							"version": "verlet",
+							"number": "vernum",
+							"serial": "serialnum"
+						},
+						"calibration": {
+							"template": "Input:Unit",
+							"input": "degC",
+							"unit": "degC",
+							"excitation": "excit",
+							"date": "2023-05-08",
+							"note": "note here"
+						},
+						"data": [
+							{
+								"a": "4562",
+								"b": "2362"
+							},
+							{
+								"a": "5182",
+								"b": "4244"
+							},
+							{
+								"a": "3717",
+								"b": "6157"
+							},
+							{
+								"a": "4893",
+								"b": "9987"
+							},
+							{
+								"a": "8945",
+								"b": "1674"
+							}
+						]
+					}
+				],
+				"documents": [
+					{
+						"type": "Manual",
+						"format": "jpg",
+						"path": "testFile.json",
+						"id": "doc id here",
+						"uuid": "209e6b6c-3bf1-44cc-8ed8-7ff1b42e18d3",
+						"description": "desc here"
+					},
+					{
+						"type": "Manual",
+						"format": "jpg",
+						"path": "IMG_0613.PNG",
+						"id": "doc id here",
+						"uuid": "40ef803a-7392-40c6-b94d-457d079bbc8c",
+						"description": "desc here"
+					},
+					{
+						"type": "Manual",
+						"format": "jpg",
+						"path": "toKinsley.png",
+						"id": "doc id here",
+						"uuid": "0ebdbed2-e899-40cf-914b-58f649e41b46",
+						"description": "desc here"
+					}
+				]
+			}
+		]
+	},
+	"sample": {
+		"name": "sample name here",
+		"igsn": "ABC000002",
+		"id": "my_samp_id",
+		"description": "samp desc here...",
+		"parent": {
+			"name": "parent sample name here",
+			"igsn": "ABC000001",
+			"id": "my_parent_samp_id",
+			"description": "parent samp desc here..."
+		},
+		"material": {
+			"material": {
+				"type": "Glass",
+				"name": "material name here",
+				"state": "Homogeneous",
+				"note": "notes here..."
+			},
+			"composition": [
+				{
+					"mineral": "Actinolite",
+					"fraction": "frac here",
+					"unit": "Vol%",
+					"grainsize": "grain size here"
+				},
+				{
+					"mineral": "Axinite",
+					"fraction": "frac here",
+					"unit": "Vol%",
+					"grainsize": "grain size here"
+				},
+				{
+					"mineral": "Hornblende",
+					"fraction": "frac here",
+					"unit": "Vol%",
+					"grainsize": "grain size here"
+				}
+			],
+			"provenance": {
+				"formation": "formation name here",
+				"member": "member name here",
+				"submember": "sub member name here",
+				"source": "Surface",
+				"location": {
+					"street": "123 Main St.",
+					"building": "Apt. 12",
+					"postcode": "12345",
+					"city": "Anytown",
+					"state": "KS",
+					"country": "USA",
+					"latitude": "39.556",
+					"longitude": "-119.223"
+				}
+			},
+			"texture": {
+				"bedding": "bedding here...",
+				"lineation": "lineation here...",
+				"foliation": "foliation here...",
+				"fault": "fault here..."
+			}
+		},
+		"parameters": [
+			{
+				"control": "Connected Porosity",
+				"value": "frac here",
+				"unit": "degC",
+				"prefix": "-",
+				"note": "note here"
+			},
+			{
+				"control": "Total Porosity",
+				"value": "frac here",
+				"unit": "degC",
+				"prefix": "-",
+				"note": "note here"
+			}
+		],
+		"documents": [
+			{
+				"type": "Video",
+				"format": "txt",
+				"path": "openwrt-22.03.5-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin",
+				"id": "doc id here",
+				"uuid": "a5301d02-8793-477f-b6a3-324a4f5bf92b",
+				"description": "desc here"
+			},
+			{
+				"type": "Other",
+				"format": "png",
+				"path": "doc000056811-2.pdf",
+				"id": "doc id here",
+				"uuid": "227f5415-e8e7-4977-8435-21ddc15284b2",
+				"description": "desc here"
+			}
+		]
+	},
+	"experiment": {
+		"title": "experiment title name here",
+		"id": "id here",
+		"ieda": "ieda id",
+		"start_date": "2023-06-08",
+		"end_date": "2023-06-08",
+		"description": "Some description here...",
+		"features": [
+			"Loading",
+			"Unloading",
+			"Synthesis",
+			"Yield Strength",
+			"Rotary Shear",
+			"Indentation"
+		],
+		"author": {
+			"firstname": "John",
+			"lastname": "Smith",
+			"affiliation": "",
+			"email": "test@gmail.com",
+			"phone": "785-555-1212",
+			"website": "https://www.google.com",
+			"id": "0000-0001-2345-6789"
+		},
+		"geometry": [
+			{
+				"order": "1",
+				"type": "Sample",
+				"geometry": "Cylinder",
+				"material": "Sample",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "123.45",
+						"unit": "degC",
+						"prefix": "-",
+						"note": "some notes here..."
+					},
+					{
+						"variable": "Length",
+						"value": "123.45",
+						"unit": "degC",
+						"prefix": "-",
+						"note": "some notes here..."
+					}
+				]
+			},
+			{
+				"order": "4",
+				"type": "Forcing Block",
+				"geometry": "Cylinder",
+				"material": "Sample",
+				"dimensions": [
+					{
+						"variable": "Length",
+						"value": "123.45",
+						"unit": "degC",
+						"prefix": "-",
+						"note": "some notes here..."
+					},
+					{
+						"variable": "Length",
+						"value": "123.45",
+						"unit": "degC",
+						"prefix": "-",
+						"note": "some notes here..."
+					}
+				]
+			}
+		],
+		"protocol": [
+			{
+				"objective": "objective here...1",
+				"description": "description here...1",
+				"parameters": [
+					{
+						"control": "Bore Diameter",
+						"value": "123.45",
+						"unit": "degC",
+						"note": "some notes here..."
+					},
+					{
+						"control": "Height",
+						"value": "123.45",
+						"unit": "degC",
+						"note": "some notes here..."
+					},
+					{
+						"control": "Span",
+						"value": "123.45",
+						"unit": "degC",
+						"note": "some notes here..."
+					}
+				]
+			},
+			{
+				"objective": "objective here...2",
+				"description": "description here...2",
+				"parameters": [
+					{
+						"control": "Diameter",
+						"value": "123.45",
+						"unit": "degC",
+						"note": "some notes here..."
+					},
+					{
+						"control": "Height",
+						"value": "123.45",
+						"unit": "degC",
+						"note": "some notes here..."
+					}
+				]
+			}
+		],
+		"documents": [
+			{
+				"type": "Picture",
+				"format": "zip",
+				"path": "IMG_0613.PNG",
+				"id": "doc id here",
+				"uuid": "f294f64e-7281-4122-9397-4aad6ced61a9",
+				"description": "desc here"
+			},
+			{
+				"type": "Diagram",
+				"format": "csv",
+				"path": "IMG_0617.PNG",
+				"id": "doc id here",
+				"uuid": "3dea4f0c-2e5d-4a5c-a16c-56744a4a1ce6",
+				"description": "desc here"
+			}
+		]
+	},
+	"data": {
+		"keys": {
+			"facility": "",
+			"apparatus": "",
+			"sample": "",
+			"user": "",
+			"experiment": ""
+		},
+		"datasets": [
+			{
+				"data": "Parameters",
+				"type": "Software",
+				"format": "text",
+				"id": "data id hereqqq",
+				"uuid": "a80fd21f-2b7b-49d9-b230-00af83efc97b",
+				"path": "file.txt",
+				"rating": "Very Good",
+				"description": "desc hereee",
+				"parameters": [
+					{
+						"control": "Length",
+						"value": "223.453",
+						"error": "1123.45",
+						"unit": "sec",
+						"prefix": "1E-1",
+						"note": "some notes herewww..."
+					},
+					{
+						"control": "Weight",
+						"value": "123.45",
+						"error": "123.45",
+						"unit": "degC",
+						"prefix": "-",
+						"note": "some notes here..."
+					}
+				]
+			},
+			{
+				"data": "Time Series",
+				"type": "Picture",
+				"format": "text",
+				"id": "data id here",
+				"uuid": "0c3b1d91-8fe7-43b5-9b4c-620d80dddfb0",
+				"path": "foo.sql",
+				"rating": "Low",
+				"description": "desc here",
+				"headers": [
+					{
+						"header": {
+							"header": "Temperature",
+							"spec_a": "Room",
+							"spec_b": "Internal",
+							"spec_c": "other specifier here",
+							"unit": "deg F"
+						},
+						"type": "Digital Input",
+						"number": "6",
+						"note": "some description hereww...",
+						"rating": "Low"
+					},
+					{
+						"header": {
+							"header": "Time",
+							"spec_a": "Absolute",
+							"spec_b": "Total",
+							"spec_c": "other specifier here",
+							"unit": "sec"
+						},
+						"type": "Analog Input",
+						"number": "8",
+						"note": "ssssome description here...",
+						"rating": "Low"
+					}
+				]
+			},
+			{
+				"data": "Pore Fluid",
+				"type": "Picture",
+				"format": "text",
+				"id": "data id here",
+				"uuid": "147e10cf-ff64-4875-a59a-96cdea49faf8",
+				"path": "blah.csv",
+				"rating": "Low",
+				"description": "desc here",
+				"fluid": {
+					"phases": [
+						{
+							"composition": "Chemistry",
+							"component": "component here",
+							"fraction": "fraction here",
+							"activity": "activity here",
+							"fugacity": "fugacity here",
+							"unit": "Vol%",
+							"solutes": [
+								{
+									"component": "Na+",
+									"value": "234.45",
+									"error": "432.45",
+									"unit": "Wt%"
+								}
+							]
+						},
+						{
+							"composition": "Chemistry",
+							"component": "component here",
+							"fraction": "fraction here",
+							"activity": "activity here",
+							"fugacity": "fugacity here",
+							"unit": "Vol%",
+							"solutes": [
+								{
+									"component": "TIC",
+									"value": "1123.45",
+									"error": "2123.45",
+									"unit": "deg C"
+								},
+								{
+									"component": "Sr++",
+									"value": "5123.45",
+									"error": "6123.45",
+									"unit": "Wt%"
+								},
+								{
+									"component": "pH",
+									"value": "813.45",
+									"error": "213.45",
+									"unit": "Vol%"
+								}
+							]
+						},
+						{
+							"composition": "None",
+							"component": "n component here",
+							"fraction": "ffraction here",
+							"activity": "aactivity here",
+							"fugacity": "ffugacity here",
+							"unit": "Mol%"
+						}
+					]
+				}
+			}
+		]
+	}
+}

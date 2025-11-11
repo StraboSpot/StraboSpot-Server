@@ -1,0 +1,932 @@
+{
+  "id": "16364682249049",
+  "name": "TestProject",
+  "startDate": "2021-11-09",
+  "endDate": "2021-11-10",
+  "purposeOfStudy": "purp of study",
+  "otherTeamMembers": "other team members",
+  "areaOfInterest": "area of interest",
+  "gpsDatum": "gps datum",
+  "magneticDeclination": "mag dec",
+  "notes": "project notes",
+  "projectLocation": "local",
+  "datasets": [
+    {
+      "id": "16364682307680",
+      "name": "datasetname",
+      "samples": [
+        {
+          "id": "16364682940406",
+          "label": "samplelabel",
+          "sampleID": "sampleid",
+          "mainSamplingPurpose": "fabric___micro",
+          "sampleDescription": "sampdescription",
+          "materialType": "tephra",
+          "inplacenessOfSample": "5___definitely",
+          "orientedSample": "yes",
+          "sampleSize": "sample size",
+          "degreeOfWeathering": "5___fresh",
+          "sampleNotes": "sample notes",
+          "sampleType": "sampletype",
+          "color": "colorhere",
+          "lithology": "lith",
+          "sampleUnit": "sampunit",
+          "otherMaterialType": "",
+          "sampleOrientationNotes": "samporientationnotes",
+          "micrographs": [
+            {
+              "id": "16364684056362",
+              "name": "micrograph name",
+              "imageType": "Ru",
+              "width": 2500.0,
+              "height": 1855.0,
+              "polish": true,
+              "polishDescription": "polish desc",
+              "notes": "micrograph notes",
+              "scalePixelsPerCentimeter": 248.717993067144,
+              "orientationInfo": {
+                "orientationMethod": "trendPlunge",
+                "topTrend": 1.0,
+                "topPlunge": 2.0,
+                "topReferenceCorner": "left",
+                "sideReferenceCorner": "top",
+                "trendPlungeStrike": 3.0,
+                "trendPlungeDip": 4.0
+              },
+              "instrument": {
+                "instrumentType": "Scanning Electron Microscopy (SEM)",
+                "dataType": "Energy Dispersive X-ray Spectroscopy (EDS)",
+                "instrumentBrand": "FEI",
+                "instrumentModel": "Quanta 600",
+                "university": "Texas A\u0026M",
+                "laboratory": "Materials Imaging Center",
+                "dataCollectionSoftware": "somesoft",
+                "dataCollectionSoftwareVersion": "123",
+                "postProcessingSoftware": "someothersoft",
+                "postProcessingSoftwareVersion": "456",
+                "filamentType": "filtype",
+                "instrumentDetectors": [
+                  {
+                    "detectorType": "EBSD",
+                    "detectorMake": "Oxford",
+                    "detectorModel": "Nordlys"
+                  },
+                  {
+                    "detectorType": "EDS",
+                    "detectorMake": "Oxford",
+                    "detectorModel": "Max-50"
+                  },
+                  {
+                    "detectorType": "Secondary Electron",
+                    "detectorMake": "",
+                    "detectorModel": ""
+                  },
+                  {
+                    "detectorType": "Backscattered Electron",
+                    "detectorMake": "",
+                    "detectorModel": ""
+                  }
+                ],
+                "instrumentNotes": "instrumentnotes",
+                "accelerationVoltage": 123.0,
+                "beamCurrent": 456.0,
+                "spotSize": 444.0,
+                "aperture": 66.0,
+                "workingDistance": 444.0,
+                "stepSize": 23.0,
+                "deadTime": 23.0,
+                "calibrationStandardNotes": "calstand notes"
+              },
+              "isMicroVisible": true
+            },
+            {
+              "id": "16364684989992",
+              "parentID": "16364684056362",
+              "name": "micrograph 2",
+              "imageType": "Ru",
+              "width": 2000.0,
+              "height": 1560.0,
+              "polish": true,
+              "polishDescription": "polish 2 desc",
+              "notes": "micrograph 2 notes",
+              "scalePixelsPerCentimeter": 866.0,
+              "offsetInParent": {
+                "X": 1271.9660194174758,
+                "Y": 601.4563106796116
+              },
+              "rotation": 0.0,
+              "mineralogy": {
+                "percentageCalculationMethod": "Point Count",
+                "mineralogyMethod": "Optical",
+                "minerals": [
+                  {
+                    "name": "Cummingtonite",
+                    "operator": "eq",
+                    "percentage": 33.0
+                  }
+                ],
+                "notes": "asdf"
+              },
+              "spots": [
+                {
+                  "id": "16364685768567",
+                  "name": "spot on micrograph 2",
+                  "labelColor": "0xffffffff",
+                  "showLabel": true,
+                  "color": "0xff6666ff",
+                  "date": "2021-11-09T14:36:00.610Z",
+                  "time": "2021-11-09T14:36:00.610Z",
+                  "notes": "spot notes here",
+                  "modifiedTimestamp": 1636468560611,
+                  "geometryType": "polygon",
+                  "points": [
+                    {
+                      "X": 220.3913491246138,
+                      "Y": 496.3954685890833
+                    },
+                    {
+                      "X": 160.65911431513905,
+                      "Y": 416.0659114315138
+                    },
+                    {
+                      "X": 138.0020597322348,
+                      "Y": 341.9155509783727
+                    },
+                    {
+                      "X": 185.37590113285273,
+                      "Y": 280.12358393408846
+                    },
+                    {
+                      "X": 286.302780638517,
+                      "Y": 240.98867147270843
+                    },
+                    {
+                      "X": 378.99073120494336,
+                      "Y": 265.70545829042214
+                    },
+                    {
+                      "X": 407.826982492276,
+                      "Y": 327.4974253347064
+                    },
+                    {
+                      "X": 405.7672502574665,
+                      "Y": 403.7075180226569
+                    },
+                    {
+                      "X": 360.4531410916581,
+                      "Y": 461.38002059732224
+                    },
+                    {
+                      "X": 317.1987641606591,
+                      "Y": 500.51493305870224
+                    },
+                    {
+                      "X": 263.6457260556128,
+                      "Y": 502.5746652935117
+                    }
+                  ],
+                  "mineralogy": {
+                    "percentageCalculationMethod": "Qualitative Estimate",
+                    "mineralogyMethod": "Optical",
+                    "minerals": [
+                      {
+                        "name": "Monazite",
+                        "operator": "eq",
+                        "percentage": 11.0
+                      },
+                      {
+                        "name": "Zircon",
+                        "operator": "eq",
+                        "percentage": 22.0
+                      }
+                    ],
+                    "notes": "mineralogy notes here"
+                  },
+                  "grainInfo": {
+                    "grainSizeInfo": [
+                      {
+                        "phases": [
+                          "Zircon"
+                        ],
+                        "mean": 1.0,
+                        "median": 2.0,
+                        "mode": 3.0,
+                        "standardDeviation": 4.0,
+                        "sizeUnit": "um"
+                      },
+                      {
+                        "phases": [
+                          "Monazite",
+                          "Zircon"
+                        ],
+                        "mean": 4.0,
+                        "median": 5.0,
+                        "mode": 6.0,
+                        "standardDeviation": 7.0,
+                        "sizeUnit": "um"
+                      }
+                    ],
+                    "grainShapeInfo": [
+                      {
+                        "phases": [
+                          "Monazite",
+                          "Zircon"
+                        ],
+                        "shape": "Euhedral"
+                      },
+                      {
+                        "phases": [
+                          "Monazite",
+                          "Zircon"
+                        ],
+                        "shape": "Anhedral"
+                      }
+                    ],
+                    "grainOrientationInfo": [
+                      {
+                        "phases": [
+                          "Monazite",
+                          "Zircon"
+                        ],
+                        "meanOrientation": 12.0,
+                        "relativeTo": "Horizontal",
+                        "software": "soft here",
+                        "spoTechnique": "other",
+                        "spoOther": "ddd"
+                      },
+                      {
+                        "phases": [
+                          "Monazite"
+                        ],
+                        "meanOrientation": 55.0,
+                        "relativeTo": "Vertical",
+                        "software": "other soft",
+                        "spoTechnique": "bestFitEllipse"
+                      }
+                    ],
+                    "grainSizeNotes": "grain size notes",
+                    "grainShapeNotes": "grain shape notes",
+                    "grainOrientationNotes": "grain orientation notes"
+                  },
+                  "fabricInfo": {
+                    "fabrics": [
+                      {
+                        "fabricLabel": "test fabric 1",
+                        "fabricElement": "lineation",
+                        "fabricCategory": "primary",
+                        "fabricSpacing": "penetrative",
+                        "fabricDefinedBy": [
+                          "composition",
+                          "grainSize",
+                          "grainShape",
+                          "cleavage"
+                        ],
+                        "fabricCompositionInfo": {
+                          "compositionNotes": "notes",
+                          "layers": [
+                            {
+                              "composition": "composition layer 1",
+                              "thickness": 12.0,
+                              "thicknessUnits": "mm"
+                            },
+                            {
+                              "composition": "composition layer 2",
+                              "thickness": 14.0,
+                              "thicknessUnits": "um"
+                            },
+                            {
+                              "composition": "composition layer 3",
+                              "thickness": 44.0,
+                              "thicknessUnits": "um"
+                            }
+                          ]
+                        },
+                        "fabricGrainSizeInfo": {
+                          "grainSizeNotes": "layer notes",
+                          "layers": [
+                            {
+                              "grainSize": "0",
+                              "thickness": 1.0,
+                              "thicknessUnits": "um"
+                            },
+                            {
+                              "grainSize": "2",
+                              "thickness": 3.0,
+                              "thicknessUnits": "um"
+                            }
+                          ]
+                        },
+                        "fabricGrainShapeInfo": {
+                          "phases": [
+                            "Monazite",
+                            "Zircon"
+                          ],
+                          "alignment": "weak",
+                          "shape": "euhedral",
+                          "notes": "grain shape notes"
+                        },
+                        "fabricCleavageInfo": {
+                          "spacing": 222.0,
+                          "spacingUnit": "um",
+                          "styloliticCleavage": true,
+                          "geometryOfSeams": [
+                            "planar"
+                          ],
+                          "notes": "cleavage notes"
+                        }
+                      },
+                      {
+                        "fabricLabel": "test fabric 2",
+                        "fabricElement": "foliation",
+                        "fabricCategory": "primary",
+                        "fabricSpacing": "penetrative",
+                        "fabricDefinedBy": [
+                          "composition"
+                        ],
+                        "fabricCompositionInfo": {
+                          "compositionNotes": "some notes",
+                          "layers": [
+                            {
+                              "composition": "layer 1 comp",
+                              "thickness": 33.0,
+                              "thicknessUnits": "um"
+                            },
+                            {
+                              "composition": "layer 2 comp",
+                              "thickness": 66.0,
+                              "thicknessUnits": "um"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "notes": "fabric notes"
+                  },
+                  "associatedFiles": [
+                    {
+                      "fileName": "tripNotes.txt",
+                      "originalPath": "/Users/jason/Desktop/tripNotes.txt",
+                      "fileType": "Other",
+                      "otherType": "Text File",
+                      "notes": "Associated files notes."
+                    },
+                    {
+                      "fileName": "testSpreadsheet.xlsx",
+                      "originalPath": "/Users/jason/Desktop/testSpreadsheet.xlsx",
+                      "fileType": "Spreadsheet",
+                      "notes": "Some test file."
+                    }
+                  ],
+                  "links": [
+                    {
+                      "label": "Google",
+                      "url": "https://www.google.com"
+                    },
+                    {
+                      "label": "GitHub",
+                      "url": "https://github.com"
+                    }
+                  ],
+                  "clasticDeformationBandInfo": {
+                    "bands": [
+                      {
+                        "types": [
+                          {
+                            "type": "Cataclastic"
+                          }
+                        ],
+                        "thickness": 11.0,
+                        "thicknessUnit": "µm",
+                        "cements": "Zircon, Cinnabar"
+                      },
+                      {
+                        "types": [
+                          {
+                            "type": "Compaction"
+                          }
+                        ],
+                        "thickness": 22.0,
+                        "thicknessUnit": "µm",
+                        "cements": "Cummingtonite, Aminoffite"
+                      }
+                    ],
+                    "notes": "deformation notes"
+                  },
+                  "grainBoundaryInfo": {
+                    "boundaries": [
+                      {
+                        "phase1": "Monazite",
+                        "phase2": "Zircon",
+                        "morphologies": [
+                          {
+                            "type": "Cuspate/Lobate"
+                          },
+                          {
+                            "type": "Curved"
+                          }
+                        ],
+                        "descriptors": [
+                          {
+                            "type": "Triple Junction",
+                            "subTypes": [
+                              {
+                                "type": "120"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "Four-Grain Junction"
+                          }
+                        ]
+                      },
+                      {
+                        "phase1": "Monazite",
+                        "morphologies": [
+                          {
+                            "type": "Curved"
+                          }
+                        ],
+                        "descriptors": [
+                          {
+                            "type": "Corona"
+                          }
+                        ]
+                      }
+                    ],
+                    "notes": "grain boundary notes"
+                  },
+                  "intraGrainInfo": {
+                    "grains": [
+                      {
+                        "mineral": "Monazite",
+                        "grainTextures": [
+                          {
+                            "type": "Undulose Extinction"
+                          },
+                          {
+                            "type": "Kink Bands"
+                          },
+                          {
+                            "type": "Deformation Lamellae"
+                          }
+                        ]
+                      },
+                      {
+                        "mineral": "Zircon",
+                        "grainTextures": [
+                          {
+                            "type": "Dissolution Features"
+                          },
+                          {
+                            "type": "Precipitation Features"
+                          },
+                          {
+                            "type": "Twins"
+                          }
+                        ]
+                      }
+                    ],
+                    "notes": "Intragrain Notes"
+                  },
+                  "veinInfo": {
+                    "veins": [
+                      {
+                        "mineralogy": "Zirconolite, Gibbsite",
+                        "crystalShapes": [
+                          {
+                            "type": "Equant Blocky"
+                          },
+                          {
+                            "type": "Fibrous"
+                          }
+                        ],
+                        "growthMorphologies": [
+                          {
+                            "type": "Antitaxial"
+                          }
+                        ],
+                        "inclusionTrails": [
+                          {
+                            "type": "Solid"
+                          }
+                        ]
+                      },
+                      {
+                        "mineralogy": "Alkali Feldspar, Sylvite",
+                        "crystalShapes": [
+                          {
+                            "type": "Equant Blocky"
+                          },
+                          {
+                            "type": "Stretched"
+                          }
+                        ],
+                        "growthMorphologies": [
+                          {
+                            "type": "Syntaxial"
+                          }
+                        ],
+                        "inclusionTrails": [
+                          {
+                            "type": "Solid"
+                          }
+                        ],
+                        "kinematics": [
+                          {
+                            "type": "Hybrid"
+                          }
+                        ]
+                      }
+                    ],
+                    "notes": "Vein notes"
+                  },
+                  "pseudotachylyteInfo": {
+                    "pseudotachylytes": [
+                      {
+                        "label": "some label here",
+                        "hasMatrixGroundmass": true,
+                        "matrixGroundmassColor": "ddd",
+                        "matrixGroundmassConstraintsOnComposition": true,
+                        "matrixGroundmassConstraintsOnCompositionDetails": "fff",
+                        "hasCrystallites": true,
+                        "crystallitesMineralogy": "Bazirite, Aqualite",
+                        "crystallitesShapes": [
+                          "Euhedral",
+                          "Dendritic"
+                        ],
+                        "crystallitesLowerSize": 33.0,
+                        "crystallitesLowerSizeUnit": "µm",
+                        "crystallitesUpperSize": 44.0,
+                        "crystallitesUpperSizeUnit": "µm",
+                        "crystallitesZoning": true,
+                        "crystallitesZoningDetails": "zoning info",
+                        "crystallitesDistribution": "dist",
+                        "hasSurvivorClasts": true,
+                        "survivorClastsMineralogy": "Jadeite",
+                        "survivorClastsMarginDescription": "ffff",
+                        "survivorClastsDistribution": "dddd",
+                        "hasSulphideOxide": false,
+                        "hasFabric": false,
+                        "hasInjectionFeatures": false,
+                        "hasChilledMargins": false,
+                        "hasVesciclesAmygdules": false
+                      },
+                      {
+                        "label": "other label",
+                        "hasMatrixGroundmass": false,
+                        "hasCrystallites": false,
+                        "hasSurvivorClasts": false,
+                        "hasSulphideOxide": false,
+                        "hasFabric": true,
+                        "fabricDescription": "dddd",
+                        "hasInjectionFeatures": true,
+                        "injectionFeaturesAperture": 333.0,
+                        "injectionFeaturesApertureUnit": "µm",
+                        "injectionFeaturesLength": 444.0,
+                        "injectionFeaturesLengthUnit": "µm",
+                        "hasChilledMargins": false,
+                        "hasVesciclesAmygdules": false
+                      }
+                    ],
+                    "reasoning": "reasoning here",
+                    "notes": "notes here"
+                  }
+                }
+              ],
+              "grainInfo": {
+                "grainSizeInfo": [
+                  {
+                    "phases": [
+                      "Cummingtonite"
+                    ],
+                    "mean": 34.0,
+                    "median": 43.0,
+                    "mode": 34.0,
+                    "standardDeviation": 23.0,
+                    "sizeUnit": "um"
+                  }
+                ],
+                "grainShapeInfo": [
+                  {
+                    "phases": [
+                      "Cummingtonite"
+                    ],
+                    "shape": "Euhedral"
+                  }
+                ],
+                "grainOrientationInfo": [
+                  {
+                    "phases": [
+                      "Cummingtonite"
+                    ],
+                    "meanOrientation": 555.0,
+                    "relativeTo": "Horizontal",
+                    "software": "asdfasdfasdf",
+                    "spoTechnique": "bestFitEllipse"
+                  }
+                ],
+                "grainSizeNotes": "grainsize notes here",
+                "grainShapeNotes": "grain shape notes",
+                "grainOrientationNotes": "grain orientation notes"
+              },
+              "fabricInfo": {
+                "fabrics": [
+                  {
+                    "fabricLabel": "sdfg",
+                    "fabricElement": "foliation",
+                    "fabricCategory": "secondary",
+                    "fabricSpacing": "penetrative",
+                    "fabricDefinedBy": [
+                      "grainSize"
+                    ],
+                    "fabricGrainSizeInfo": {
+                      "grainSizeNotes": "sdfg",
+                      "layers": [
+                        {
+                          "grainSize": "45",
+                          "thickness": 345.0,
+                          "thicknessUnits": "um"
+                        },
+                        {
+                          "grainSize": "345",
+                          "thickness": 345.0,
+                          "thicknessUnits": "um"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fabricLabel": "asdfasdf",
+                    "fabricElement": "foliation",
+                    "fabricCategory": "primary",
+                    "fabricSpacing": "penetrative",
+                    "fabricDefinedBy": [
+                      "composition",
+                      "grainSize",
+                      "grainShape",
+                      "cleavage"
+                    ],
+                    "fabricCompositionInfo": {
+                      "compositionNotes": "asdfasdf",
+                      "layers": [
+                        {
+                          "composition": "asdf",
+                          "thickness": 234.0,
+                          "thicknessUnits": "um"
+                        },
+                        {
+                          "composition": "asdf",
+                          "thickness": 234.0,
+                          "thicknessUnits": "um"
+                        },
+                        {
+                          "composition": "asdf34",
+                          "thickness": 234.0,
+                          "thicknessUnits": "um"
+                        }
+                      ]
+                    },
+                    "fabricGrainSizeInfo": {
+                      "grainSizeNotes": "asdf",
+                      "layers": [
+                        {
+                          "grainSize": "243asdf",
+                          "thickness": 234.0,
+                          "thicknessUnits": "um"
+                        },
+                        {
+                          "grainSize": "asdf",
+                          "thickness": 234.0,
+                          "thicknessUnits": "um"
+                        }
+                      ]
+                    },
+                    "fabricGrainShapeInfo": {
+                      "phases": [
+                        "Cummingtonite"
+                      ],
+                      "alignment": "weak",
+                      "shape": "euhedral",
+                      "notes": "asdfasdf"
+                    },
+                    "fabricCleavageInfo": {
+                      "spacing": 234234.0,
+                      "spacingUnit": "um",
+                      "styloliticCleavage": true,
+                      "geometryOfSeams": [
+                        "planar",
+                        "anastomosing",
+                        "discontinuous"
+                      ],
+                      "notes": "asdfasdf"
+                    }
+                  }
+                ],
+                "notes": "sdfsdfg"
+              },
+              "associatedFiles": [
+                {
+                  "fileName": "puppy2.png",
+                  "originalPath": "/Users/jason/Dropbox/Screenshots/puppy2.png",
+                  "fileType": "Image",
+                  "notes": "puppy pic here"
+                }
+              ],
+              "links": [
+                {
+                  "label": "Navdat",
+                  "url": "https://www.navdat.org"
+                }
+              ],
+              "instrument": {
+                "instrumentType": "Scanning Electron Microscopy (SEM)",
+                "dataType": "Energy Dispersive X-ray Spectroscopy (EDS)",
+                "instrumentBrand": "FEI",
+                "instrumentModel": "Quanta 600",
+                "university": "Texas A\u0026M",
+                "laboratory": "Materials Imaging Center",
+                "dataCollectionSoftware": "somesoft",
+                "dataCollectionSoftwareVersion": "123",
+                "postProcessingSoftware": "someothersoft",
+                "postProcessingSoftwareVersion": "456",
+                "filamentType": "filtype",
+                "instrumentDetectors": [
+                  {
+                    "detectorType": "EBSD",
+                    "detectorMake": "Oxford",
+                    "detectorModel": "Nordlys"
+                  },
+                  {
+                    "detectorType": "EDS",
+                    "detectorMake": "Oxford",
+                    "detectorModel": "Max-50"
+                  },
+                  {
+                    "detectorType": "Secondary Electron",
+                    "detectorMake": "",
+                    "detectorModel": ""
+                  },
+                  {
+                    "detectorType": "Backscattered Electron",
+                    "detectorMake": "",
+                    "detectorModel": ""
+                  }
+                ],
+                "instrumentNotes": "instrumentnotes",
+                "accelerationVoltage": 123.0,
+                "beamCurrent": 456.0,
+                "spotSize": 444.0,
+                "aperture": 66.0,
+                "workingDistance": 444.0,
+                "stepSize": 23.0,
+                "deadTime": 23.0,
+                "calibrationStandardNotes": "calstand notes"
+              },
+              "clasticDeformationBandInfo": {
+                "bands": [
+                  {
+                    "types": [
+                      {
+                        "type": "Cataclastic"
+                      }
+                    ],
+                    "thickness": 45.0,
+                    "thicknessUnit": "µm",
+                    "cements": "Anhydrite, Beryl"
+                  }
+                ],
+                "notes": "sdfgsdfg"
+              },
+              "grainBoundaryInfo": {
+                "boundaries": [
+                  {
+                    "phase1": "Cummingtonite",
+                    "morphologies": [
+                      {
+                        "type": "Curved"
+                      }
+                    ],
+                    "descriptors": [
+                      {
+                        "type": "Filling/Decoration",
+                        "subTypes": [
+                          {
+                            "type": "Fluid Inclusion"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "notes": "sbsdfg"
+              },
+              "intraGrainInfo": {
+                "grains": [
+                  {
+                    "mineral": "Monazite",
+                    "grainTextures": [
+                      {
+                        "type": "Kink Bands"
+                      },
+                      {
+                        "type": "Precipitation Features"
+                      }
+                    ]
+                  },
+                  {
+                    "mineral": "Cummingtonite",
+                    "grainTextures": [
+                      {
+                        "type": "Alteration"
+                      }
+                    ]
+                  }
+                ],
+                "notes": "sdfgsdfg"
+              },
+              "veinInfo": {
+                "veins": [
+                  {
+                    "mineralogy": "Majorite, Aegirine",
+                    "crystalShapes": [
+                      {
+                        "type": "Elongate Blocky"
+                      }
+                    ],
+                    "growthMorphologies": [
+                      {
+                        "type": "Antitaxial"
+                      }
+                    ],
+                    "inclusionTrails": [
+                      {
+                        "type": "Fluid",
+                        "subType": "Mean Spacing",
+                        "numericValue": 4545.0,
+                        "unit": "µm"
+                      },
+                      {
+                        "type": "Solid"
+                      }
+                    ],
+                    "kinematics": [
+                      {
+                        "type": "Shear (Modes II and III)"
+                      }
+                    ]
+                  }
+                ],
+                "notes": "sdgnddgh"
+              },
+              "pseudotachylyteInfo": {
+                "pseudotachylytes": [
+                  {
+                    "label": "sdfgsdfg",
+                    "hasMatrixGroundmass": false,
+                    "hasCrystallites": false,
+                    "hasSurvivorClasts": false,
+                    "hasSulphideOxide": false,
+                    "hasFabric": false,
+                    "hasInjectionFeatures": true,
+                    "injectionFeaturesAperture": 546.0,
+                    "injectionFeaturesApertureUnit": "µm",
+                    "injectionFeaturesLength": 345.0,
+                    "injectionFeaturesLengthUnit": "µm",
+                    "hasChilledMargins": true,
+                    "chilledMarginsDescription": "sdbsdfbg",
+                    "hasVesciclesAmygdules": false
+                  }
+                ],
+                "reasoning": "xcbvxcvb",
+                "notes": "sdfgsdfg"
+              },
+              "foldInfo": {
+                "folds": [
+                  {
+                    "label": "sdfgsdfg",
+                    "interLimbAngle": [
+                      "Gentle",
+                      "Open"
+                    ],
+                    "closure": "Rounded",
+                    "orientationAxialTrace": "Overturned",
+                    "symmetry": "Symmetric",
+                    "wavelength": 345.0,
+                    "wavelengthUnit": "µm",
+                    "amplitude": 4567.0,
+                    "amplitudeUnit": "µm",
+                    "foldStyle": "Similar",
+                    "foldContinuity": "Disharmonic",
+                    "facing": "Anticline"
+                  }
+                ],
+                "notes": "sdfgsdfbgdfgh"
+              },
+              "isMicroVisible": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
